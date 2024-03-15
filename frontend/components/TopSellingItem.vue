@@ -19,13 +19,7 @@
                     <div class="slider-container">
                         <div class="slider" ref="slider">
                             <div class="slide" v-for="item in toproducts" :key="item.id">
-                                <!-- <nuxt-link :to="`/product-details/${item.slug}`">
-                                    <img :src="item.thumnail_img" alt="" style="height: 150px;width: 150px;">
-                                    <p class="text-center">
-                                        {{ item.name }}
-                                    </p>
-                                </nuxt-link> -->
-                                <!-- <div class="product_grid text-start">
+                                <div class="product_grid text-start">
                                     <nuxt-link :to="`/product-details/${item.slug}`">
                                         <img :src="item.thumnail_img" class="img-fluid" loading="lazy">
 
@@ -48,16 +42,9 @@
                                         </div>
                                         <h6>(200)</h6>
                                     </div>
-                                </div> -->
-                                <nuxt-link :to="`/product-details/${item.slug}`">
-                                    <div class="sell_itm text-start" bis_skin_checked="1">
-                                        <img :src="item.thumnail_img" class="img-fluid" alt="product-image">
-                                        <span>{{ item.discount }}%</span>
-                                        <h5>{{ item.name }}</h5>
-                                        <h6> {{ item.price - (item.price * item.discount / 100) }} USD</h6>
-                                        <h6><strike> {{ item.price }} USD</strike></h6>
-                                    </div>
-                                </Nuxt-link>
+                                    <!-- <button  type="button" class="btn_cart" @click="addToCart(item.id)">Add to cart </button> -->
+                                    <!-- <button type="button" class="btn_sold">SoldOut</button> -->
+                                </div>
                             </div>
 
                             <div class="prev-slide" @click="scrollLeft">&lsaquo;</div>

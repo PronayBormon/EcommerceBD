@@ -410,46 +410,19 @@ class CategoryController extends Controller
         ];
         return response()->json($response, 200);
     }
-    public function attributeValRows($product_id, $request_product_attribute_id)
+    public function attributeValRows($attributes_id)
     {
 
-        //when click save attrbu and value
-        //$request_product_attribute_id = $request->product_attribute_id;
-        //$product_id = $request->product_id;
-        //dd($request->all());
-        $dataArr = AttributeValues::where('attributes_id', $request_product_attribute_id)->select('id', 'attributes_id', 'name')->get();
-        $chkPost = ProductAttributes::where('product_id', $product_id)->where('attributes_id', $request_product_attribute_id)->first();
-        if (empty($chkPost)) {
-            $data = array(
-                'product_id'                 => $product_id,
-                'attributes_id'              => $request_product_attribute_id,
-            );
-            $product_attribute_id = ProductAttributes::insertGetId($data);
-        } else {
-            $product_attribute_id = $chkPost->id;
-        }
+        $attrValues = AttributeValues::where('attributes_id', $attributes_id)->select('id', 'attributes_id', 'name')->get();
+        $collection = collect($attrValues);
+        $modifiedCollection = $collection->map(function ($item) {
+            return [
+                'id' => $item['id'],
+                'name' => $item['name'],
+            ];
+        });
 
-        // dd($dataArr);
-        $ar = [];
-        foreach ($dataArr as $v) {
-            $pro_id               = (int)$product_id;
-            $attributes_id        = (int)$v->attributes_id;
-            $product_attribute_id = empty($chkPost) ? $product_attribute_id : $chkPost->id; //(int)$product_attribute_id;
-            $product_att_value_id = (int)$v->id;
-            ProductAttributeValue::where('product_id', $pro_id)->where('attribute_id', $attributes_id)->where('product_attribute_id', $product_attribute_id)->where('product_att_value_id', $product_att_value_id)->delete();
-            $ar = array(
-                'product_id'         => $pro_id,
-                'attribute_id'         => $attributes_id,
-                'product_attribute_id' => $product_attribute_id,
-                'product_att_value_id' => $product_att_value_id,
-            );
-            ProductAttributeValue::insert($ar);
-        }
-
-        $response = [
-            'message' => 'success'
-        ];
-        return response()->json($response, 200);
+        return response()->json($modifiedCollection, 200);
     }
     public function getSubCategoryChild($id)
     {

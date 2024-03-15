@@ -24,14 +24,6 @@
                         <div class="slider-container">
                             <div class="slider" ref="slider">
                                 <div class="slide" v-for="item in category.products" :key="item.product_id">
-                                    <!-- <nuxt-link :to="`/product-details/${item.slug}`">
-                                    <img :src="item.thumnail" alt="" style="height: 150px; width: 150px;" />
-                                    <h1 class="text-center">{{ item.name }}</h1>
-                                    <div class="d-flex align-items-center">
-                                        <p class="text-center">${{ item.price }}</p>
-                                        <span>{{ item.discount }}%</span>
-                                    </div>
-                                </nuxt-link> -->
                                     <div class="product_grid text-start">
                                         <nuxt-link :to="`/product-details/${item.slug}`">
                                             <img :src="item.thumnail" class="img-fluid" loading="lazy">
@@ -49,7 +41,8 @@
                                                 <p v-else >${{ item.price }}</p>
 
                                                 <p  v-if="item.discount !== 0"><strike>${{ item.price }}</strike> <span>${{ item.discount }}</span></p> 
-                                            </div><div v-else>
+                                            </div>
+                                            <div v-else>
                                                 <p>${{ item.price }}</p>
                                                 <!-- <p><strike>${{ item.price }}</strike></p> -->
                                             </div>
@@ -66,6 +59,9 @@
                                             </div>
                                             <h6>(200)</h6>
                                         </div>
+                                        <button  type="button" class="btn_cart" @click="addToCart(item.id)">Add to
+                                                cart </button>
+                                            <!-- <button type="button" class="btn_sold">SoldOut</button> -->
                                     </div>
 
                                     <!-- <nuxt-link :to="`/product-details/${item.slug}`">
@@ -88,6 +84,7 @@
 
             </div>
         </div>
+        <!-- {{ product }} -->
     </div>
 </template>
 
@@ -124,7 +121,6 @@ export default {
 
     methods: {
 
-
         calculateSubtotal() {
             return 0;
         },
@@ -148,8 +144,10 @@ export default {
             }
         },
         addToCart(productId) {
-            const productToAdd = this.products.find((product) => product.id === productId);
-            //const existingItem = this.cart.find((item) => item.product.id === productId);
+            const productToAdd = this.products.find((products) => products.product_id === productId);
+            
+            console.log(productToAdd);
+            const existingItem = this.cart.find((item) => item.product.id === productId);
 
             if (productToAdd) {
                 this.cart.push({
@@ -176,6 +174,29 @@ export default {
             }, 2000);
 
         },
+        async fetchDefaultProduct() {
+            this.loading = true;
+            const category_id = 25;
+            await this.$axios.get('/unauthenticate/searchProductCategory', {
+                params: {
+                    category_id: category_id,
+                    // Add more parameters as needed
+                }
+            }).then(response => {
+                // console.log("======" + response.data.result);
+                this.products = response.data.result;
+                this.product = response.data.result;
+                this.categories = response.data.result;
+                console.log(response.data.result);
+            })
+                .catch(error => {
+                    // Handle error
+                })
+                .finally(() => {
+                    this.loading = false; // Hide loader after response
+                });;
+
+        },
 
 
         scrollLeft() {
@@ -195,28 +216,6 @@ export default {
         scrollToCurrentSlide() {
             const slidesContainer = this.$refs.slider;
             slidesContainer.scrollLeft = this.currentSlide * (150 + 10); // Adjust for slide width and margin
-        },
-        async fetchDefaultProduct() {
-            this.loading = true;
-            const category_id = 25;
-            await this.$axios.get('/unauthenticate/searchProductCategory', {
-                params: {
-                    category_id: category_id,
-                    // Add more parameters as needed
-                }
-            }).then(response => {
-                // console.log("======" + response.data.result);
-                this.products = response.data.result;
-                this.product = response.data.result;
-                this.categories = response.data.result;
-            })
-                .catch(error => {
-                    // Handle error
-                })
-                .finally(() => {
-                    this.loading = false; // Hide loader after response
-                });;
-
         },
         async initOwlCarousel() {
             const slider = this.$el.querySelector('.slider');

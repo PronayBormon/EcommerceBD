@@ -371,7 +371,7 @@ export default {
         async fetchData(slug) {
             this.loading = true;
             const response = await this.$axios.get(`/unauthenticate/findCategorys/${slug}`).then(response => {
-                this.prouducts = response.data.result.reverse();
+                this.prouducts = response.data.result;
                 this.pro_count = response.data.pro_count;
                 this.categoryname = response.data.categoryname;
                 console.log(response.data.result);

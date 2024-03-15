@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Product;
 
 use App\Http\Controllers\Controller;
+use App\Models\Attribute as ModelsAttribute;
 use Illuminate\Http\Request;
 use Auth;
 use Validator;
@@ -19,13 +20,16 @@ use App\Models\Product;
 use App\Models\ProductAdditionalImg;
 use App\Models\ProductVarrient;
 use App\Models\AttributeValues;
+use App\Models\Attribute as Attr;
 use App\Models\OrderHistory;
 use Illuminate\Support\Str;
 use Illuminate\Pagination\LengthAwarePaginator;
 use App\Rules\MatchOldPassword;
+use Attribute;
 use Illuminate\Support\Facades\Hash;
 use Session;
 use DB;
+use PhpParser\Node\Stmt\TryCatch;
 
 class ProductController extends Controller
 {
@@ -34,10 +38,8 @@ class ProductController extends Controller
     {
         $this->middleware('auth:api');
         $id = auth('api')->user();
-        if (!empty($id)) {
-            $user = User::find($id->id);
-            $this->userid = $user->id;
-        }
+        $user = User::find($id->id);
+        $this->userid = $user->id;
     }
 
     public function productUpdate(Request $request)
@@ -253,54 +255,7 @@ class ProductController extends Controller
             //update
         }
     }
-
-    public function insertVarientGroup(Request $request)
-    {
-
-        $varrients = $request->input('varrient');
-        //dd($request->all());     
-        foreach ($varrients as $key => $varrientData) {
-            $v_id = $varrientData['varient_id'];
-            $find = ProductVarrient::where('id', $v_id)->first();
-            $vid = $find->id;
-            if (!empty($find)) {
-                //start validation
-                $validator = Validator::make($varrientData, [
-                    "sku" => 'required',
-                    "qty" => 'required|min:1',
-                    "price" => 'required|min:0',
-                    //"file" => 'required|image|mimes:jpeg,png,jpg,gif', // Adjust allowed file types and maximum size as needed
-                ]);
-                if ($validator->fails()) {
-                    return response()->json(['errors' => $validator->errors()], 422);
-                }
-                //end validation 
-
-                $v_data['sku']   = $varrientData['sku'];
-                $v_data['qty']   = $varrientData['qty'];
-                $v_data['price'] = $varrientData['price'];
-                if ($request->hasFile("varrient.$key.file")) {
-                    $file = $request->file("varrient.$key.file");
-                    $uniqueFileName = Str::random(40) . '.' . $file->getClientOriginalExtension();
-                    $ext = strtolower($file->getClientOriginalExtension());
-                    //$path = $uniqueFileName . '.' . $ext;
-                    $path = $uniqueFileName;
-                    $uploadPath = '/backend/files/';
-                    $upload_url = $uploadPath . $path;
-                    $file->move(public_path('/backend/files/'), $upload_url);
-                    $file_url = $uploadPath . $path;
-                    //$data['image'] = $file_url;
-                    //$file->storeAs('uploads', $uniqueFileName);
-                    $v_data['file'] = $file_url;
-                }
-                // echo '<pre>';
-                // print_r($v_data);
-                ProductVarrient::where('id', $vid)->update($v_data);
-            }
-        }
-        return response()->json(['message' => 'Data updated successfully'], 200);
-    }
-
+    
     function generateUnique4DigitNumber($existingNumbers = [])
     {
         do {
@@ -310,126 +265,37 @@ class ProductController extends Controller
         return $uniqueNumber;
     }
 
-    public function insertProductVarient(Request $request)
-    {
-
-        $validator = Validator::make($request->all(), [
-            'product_id'            => 'required|integer',
-            'selectedHistoryValues' => 'required',
-        ]);
-        if ($validator->fails()) {
-            return response()->json(['errors' => $validator->errors()], 422);
-        }
-        $res     = $request->selectedHistoryValues;
-        // dd($res);
-        //array_shift($res);
-        // Use array_filter to remove "undefined" values
-        //$resultArray = array_filter($res, function ($value) {
-        //return $value !== "undefined";
-        //});
-        $arr_val = $res; //implode(',', $resultArray);
-        $resultArray =  explode(',', $arr_val); // $arr_val;
-        //dd($resultArray);
-        // unique number:
-        $numbers = []; // An array to store existing numbers to check against
-        $uniqueNumber      = $this->generateUnique4DigitNumber($numbers);
-        $existingNumbers[] = $uniqueNumber . $request->product_id; // Add the generated number to the list
-        $uniqueNum         = $existingNumbers[0];
-        //find product for price
-        $product = Product::find($request->product_id);
-
-        $insertArr                        = new ProductVarrient();
-        $insertArr->pro_attr_val_his_id   = $arr_val;
-        $insertArr->product_id            = $request->product_id;
-        $insertArr->sku                   = $uniqueNum;
-        $insertArr->qty                   = 1;
-        $insertArr->price                 = !empty($product->price) ? $product->price : 0;
-        $insertArr->entry_by              = $this->userid;
-        $insertArr->save();
-
-        $pro_varient_id = $insertArr->id;
-        foreach ($resultArray as $key => $val) {
-            $findrow = AttributeValues::where('id', $val)->select('name')->first();
-            //echo "$key=====$val.<br>";
-            $insertArr                        = new ProductVarrientHistory();
-            $insertArr->pro_attr_val_his_id   = $val;
-            $insertArr->varient_name          = $findrow->name;
-            $insertArr->pro_varient_id        = $pro_varient_id;
-            $insertArr->product_id            = $request->product_id;
-            $insertArr->save();
-        }
-        $msg['msg']     = "Insert successfully";
-        return response()->json($msg);
-    }
-    public function insertProductAttrAndValues(Request $request)
-    {
-        // this merge button action
-        $chkPost = ProductAttributes::where('product_id', $request->product_id)->where('attributes_id', $request->product_attribute_id)->first();
-        if (empty($chkPost)) {
-            $data = array(
-                'product_id'                 => $request->product_id,
-                'attributes_id'              => $request->product_attribute_id,
-            );
-            $product_attribute_id = ProductAttributes::insertGetId($data);
-        } else {
-            $product_attribute_id = $chkPost->attributes_id;
-        }
-        if (!empty($request->AttrValues)) {
-            $arr_val = $request->AttrValues;
-            foreach ($arr_val as $key => $v) {
-                $newRecord                  = new ProductAttributeValue();
-                $newRecord->product_att_value_id  = $v;
-                $newRecord->attribute_id          = $request->product_attribute_id;
-                $newRecord->product_attribute_id  = $product_attribute_id;
-                $newRecord->product_id            = $request->product_id;
-                $newRecord->save();
-            }
-        }
-        $response = [
-            'message' => 'Successfull',
-        ];
-        return response()->json($response);
-    }
-    public function getAttrHistory($id)
-    {
-        $product_id = (int) $id;
-        $Attrdata = ProductAttributes::checkingAttrube($product_id);
-        $formatedData = [];
-        $categoriesData = $Attrdata; //Category::all(); // Assuming you have a Category model and table
-        foreach ($categoriesData as $val) {
-            $atthistory =  ProductAttributes::attribueHistory($val->attributes_id);
-            $subcategoryNames = $atthistory;
-            $formatedData[] = [
-                'id'             => $val->id,
-                'name'           => ucfirst($val->name),
-                'value_history'  => $subcategoryNames,
-            ];
-        }
-        return response()->json(array_values($formatedData));
-        //dd($categoriess);
-    }
+    
     public function getVarientHistory(Request $request)
     {
-        $product_id = $request->product_id;
-        $arrData    = ProductVarrientHistory::getProductVarientHistory($product_id);
-        //dd($arrData);
+        $product_id         = $request->product_id;
+        $arrData            = ProductVarrientHistory::where('product_id',$product_id)->get();
+        $groupData          = ProductVarrientHistory::where('product_id',$product_id)->select('id','color')->groupBy('color')->get();
         $formatedData = [];
         foreach ($arrData as $Key => $value) {
             $formatedData[] = [
-                'varient_id'       => $value->pro_varient_id,
+                'id'               => $value->id,
+                'color'            => $value->color,
+                'size'             => $value->size,
                 'sku'              => $value->sku,
-                'price'            => $value->price,
                 'qty'              => $value->qty,
-                'file'             => $value->file,
-                'showfile'         => !empty($value->file) ? url($value->file) : "",
+                'price'            => $value->price,
+                'image'            => !empty($value->image) ? url($value->image) : "",
                 'product_id'       => $value->product_id,
-                'path'             => $value->varient_name,
             ];
         }
-
-        //dd($formatedData);
-        return response()->json($formatedData);
-    }
+        $gdata = [];
+        foreach ($groupData as $Key => $value) {
+            $gdata[] = [
+                'id'               => $value->id,
+                'color'            => $value->color,
+            ];
+        }
+       
+        $pdata['varient']    = $formatedData;
+        $pdata['colorGroup'] = $gdata;
+        return response()->json($pdata);
+    }    
     public function deleteValrient(Request $request)
     {
 
@@ -449,7 +315,6 @@ class ProductController extends Controller
 
     public function deleteCategory(Request $request)
     {
-
         // dd($request->all());
         $dynamicArray = explode(',', $request->item); // Convert the string to an array
         $lastElement  = trim(end($dynamicArray));
@@ -638,4 +503,149 @@ class ProductController extends Controller
         }
         return response()->json("successfully delete product", 200);
     }
+
+    public function insertVarient(Request $request)
+    {
+
+        $data = [
+            'id' => $request->id,
+            'sku' => $request->sku,
+            'qty' => $request->qty,
+            'price' => $request->price,
+            'id' => $request->id,
+            'id' => $request->id,
+        ];
+        // dd($data);
+        // return false;
+        
+        if (
+            isset($request->id) && is_array($request->id) &&
+            isset($request->sku) && is_array($request->sku) &&
+            isset($request->qty) && is_array($request->qty) &&
+            isset($request->price) && is_array($request->price) &&
+            count($request->id) === count($request->sku) &&
+            count($request->id) === count($request->qty) &&
+            count($request->id) === count($request->price)
+
+        ) {
+
+            //  dd($request->all());
+            // Loop through the arrays and update records
+        foreach ($request->id as $index => $id) {
+            // Check if SKU, Qty, and Price are not null or empty
+            if (
+                !empty($request->sku[$index]) && !empty($request->qty[$index]) && !empty($request->price[$index]) &&
+                $request->hasFile('images.' . $index)
+            ) {
+                // Update records based on $id
+
+                $image = $request->file('images.' . $index); // Retrieve the image file
+                $imageName = time() . '_' . $image->getClientOriginalName(); // Generate unique image name
+                $image->move(public_path('/backend/files/'), $imageName); // Move image to storage
+
+                ProductVarrientHistory::where('id', $id)->update([
+                    'sku'   => !empty($request->sku[$index]) ? $request->sku[$index] : "",
+                    'qty'   => !empty($request->qty[$index]) ? $request->qty[$index] : "", //$request->qty[$index],
+                    'price' => !empty($request->price[$index]) ? $request->price[$index] : "", //$request->qty[$index],//$request->price[$index]
+                    'image' => '/backend/files/' . $imageName // Store image path
+                ]);
+            }else if (
+                !empty($request->sku[$index]) && !empty($request->qty[$index]) && !empty($request->price[$index])
+            ) {
+
+                ProductVarrientHistory::where('id', $id)->update([
+                    'sku'   => !empty($request->sku[$index]) ? $request->sku[$index] : "",
+                    'qty'   => !empty($request->qty[$index]) ? $request->qty[$index] : "", //$request->qty[$index],
+                    'price' => !empty($request->price[$index]) ? $request->price[$index] : "", 
+                ]);
+            }
+        }
+        }
+
+        return response()->json(['message' => 'Data updated successfully'], 200);
+    }
+
+
+    public function checkAttribue(Request $request){
+
+        try {
+            $data['attribute'] = ProductVarrientHistory::where('color', $request->color)
+                ->where('product_id', $request->product_id)
+                ->get();
+            return response()->json($data);
+        } catch (QueryException $e) {
+            // Handle query exception
+            return response()->json(['error' => 'Query exception occurred'], 500);
+        }
+
+    }
+
+    public function varientList($product_id)
+    {
+        $pdata['varient'] = ProductVarrientHistory::where('product_id', $product_id)->get();
+        return response()->json($pdata);
+    }
+    public function deleteVarient(Request $request)
+    {
+
+        $id         = $request->input('id');
+        $product_id = $request->input('product_id');
+        //echo "ID: $id----ProductID: $product_id";
+
+        try {
+            ProductVarrientHistory::where('product_id', $product_id)
+                ->where('id', $id)
+                ->delete();
+
+            $pdata['varient'] = ProductVarrientHistory::where('product_id', $product_id)->get();
+            return response()->json($pdata);
+        } catch (QueryException $e) {
+            // Log the error
+            \Log::error('Error deleting product variant history: ' . $e->getMessage());
+
+            // Return an error response
+            return response()->json(['error' => 'Failed to delete product variant history'], 500);
+        }
+        return response()->json(['message' => 'successfully delete'], 200);
+    }
+    public function generateCombinations(Request $request)
+    {
+        $product_id = $request->input('product_id');
+        $colors     = $request->input('colors'); //['Red', 'Green', 'Black'];//$request->input('colors');
+        $sizes      = $request->input('sizes'); //['10', '12', '14', '16'];//$request->input('sizes');
+        //$warranties = ['1 Y', '2 Y'];//$request->input('warranties');
+        $combinations = [];
+        // Iterate over colors
+        foreach ($colors as $color) {
+            // Iterate over sizes
+            foreach ($sizes as $size) {
+                // Iterate over warranties
+                // Create combination
+                $combination = "$color-$size";
+                $combinations[] = $combination;
+            }
+        }
+        ProductVarrientHistory::where('product_id', $product_id)->delete();
+        $product = Product::where('id', $product_id)->first();
+        //dd($product->price);
+        foreach ($combinations as $combination) {
+            // Split the combination into color and size
+            [$color, $size] = explode('-', $combination);
+            // Create an array to store the data for insertion
+            $data = [
+                'color'         => $color,
+                'size'          => $size,
+                'product_id'    => $product_id,
+                'price'         => !empty($product) ? $product->price : "",
+            ];
+
+            // Insert the data into the database
+            ProductVarrientHistory::create($data);
+        }
+
+        $pdata['varient'] = ProductVarrientHistory::where('product_id', $product_id)->get();
+        // Return combinations as JSON response
+        return response()->json($pdata);
+    }
+    
 }

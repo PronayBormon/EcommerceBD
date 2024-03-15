@@ -2,519 +2,445 @@
   {
     "name": "allbrands",
     "path": "/allbrands",
-    "component": "D:\\\\Nuxt Projects\\\\dubail_ecommarce\\\\frontend\\\\pages\\\\allbrands.vue",
-    "chunkName": "pages/allbrands",
-    "_name": "_8bb4c0d4"
+    "component": "D:\\\\nuxt\\\\New folder\\\\frontend\\\\pages\\\\allbrands.vue",
+    "chunkName": "pages/allbrands"
   },
   {
     "name": "allshop",
     "path": "/allshop",
-    "component": "D:\\\\Nuxt Projects\\\\dubail_ecommarce\\\\frontend\\\\pages\\\\allshop.vue",
-    "chunkName": "pages/allshop",
-    "_name": "_2f1f5440"
+    "component": "D:\\\\nuxt\\\\New folder\\\\frontend\\\\pages\\\\allshop.vue",
+    "chunkName": "pages/allshop"
   },
   {
     "name": "blog",
     "path": "/blog",
-    "component": "D:\\\\Nuxt Projects\\\\dubail_ecommarce\\\\frontend\\\\pages\\\\blog.vue",
-    "chunkName": "pages/blog",
-    "_name": "_f5f14c6e"
+    "component": "D:\\\\nuxt\\\\New folder\\\\frontend\\\\pages\\\\blog.vue",
+    "chunkName": "pages/blog"
   },
   {
     "name": "blog-details",
     "path": "/blog-details",
-    "component": "D:\\\\Nuxt Projects\\\\dubail_ecommarce\\\\frontend\\\\pages\\\\blog-details.vue",
-    "chunkName": "pages/blog-details",
-    "_name": "_7b75abbe"
+    "component": "D:\\\\nuxt\\\\New folder\\\\frontend\\\\pages\\\\blog-details.vue",
+    "chunkName": "pages/blog-details"
   },
   {
     "name": "cart",
     "path": "/cart",
-    "component": "D:\\\\Nuxt Projects\\\\dubail_ecommarce\\\\frontend\\\\pages\\\\cart.vue",
-    "chunkName": "pages/cart",
-    "_name": "_a64c9372"
+    "component": "D:\\\\nuxt\\\\New folder\\\\frontend\\\\pages\\\\cart.vue",
+    "chunkName": "pages/cart"
   },
   {
     "name": "changepassword",
     "path": "/changepassword",
-    "component": "D:\\\\Nuxt Projects\\\\dubail_ecommarce\\\\frontend\\\\pages\\\\changepassword.vue",
-    "chunkName": "pages/changepassword",
-    "_name": "_f428b59c"
+    "component": "D:\\\\nuxt\\\\New folder\\\\frontend\\\\pages\\\\changepassword.vue",
+    "chunkName": "pages/changepassword"
   },
   {
     "name": "changepassword copy",
     "path": "/changepassword%20copy",
-    "component": "D:\\\\Nuxt Projects\\\\dubail_ecommarce\\\\frontend\\\\pages\\\\changepassword copy.vue",
-    "chunkName": "pages/changepassword copy",
-    "_name": "_64911d53"
+    "component": "D:\\\\nuxt\\\\New folder\\\\frontend\\\\pages\\\\changepassword copy.vue",
+    "chunkName": "pages/changepassword copy"
   },
   {
     "name": "charity",
     "path": "/charity",
-    "component": "D:\\\\Nuxt Projects\\\\dubail_ecommarce\\\\frontend\\\\pages\\\\charity.vue",
-    "chunkName": "pages/charity",
-    "_name": "_0243657e"
+    "component": "D:\\\\nuxt\\\\New folder\\\\frontend\\\\pages\\\\charity.vue",
+    "chunkName": "pages/charity"
   },
   {
     "name": "checkout",
     "path": "/checkout",
-    "component": "D:\\\\Nuxt Projects\\\\dubail_ecommarce\\\\frontend\\\\pages\\\\checkout.vue",
-    "chunkName": "pages/checkout",
-    "_name": "_7b8fb426"
+    "component": "D:\\\\nuxt\\\\New folder\\\\frontend\\\\pages\\\\checkout.vue",
+    "chunkName": "pages/checkout"
   },
   {
     "name": "coupons",
     "path": "/coupons",
-    "component": "D:\\\\Nuxt Projects\\\\dubail_ecommarce\\\\frontend\\\\pages\\\\coupons.vue",
-    "chunkName": "pages/coupons",
-    "_name": "_b56b0b94"
+    "component": "D:\\\\nuxt\\\\New folder\\\\frontend\\\\pages\\\\coupons.vue",
+    "chunkName": "pages/coupons"
   },
   {
     "name": "customer-review",
     "path": "/customer-review",
-    "component": "D:\\\\Nuxt Projects\\\\dubail_ecommarce\\\\frontend\\\\pages\\\\customer-review.vue",
-    "chunkName": "pages/customer-review",
-    "_name": "_32497b50"
+    "component": "D:\\\\nuxt\\\\New folder\\\\frontend\\\\pages\\\\customer-review.vue",
+    "chunkName": "pages/customer-review"
   },
   {
     "name": "flas-sale",
     "path": "/flas-sale",
-    "component": "D:\\\\Nuxt Projects\\\\dubail_ecommarce\\\\frontend\\\\pages\\\\flas-sale.vue",
-    "chunkName": "pages/flas-sale",
-    "_name": "_2b556a36"
+    "component": "D:\\\\nuxt\\\\New folder\\\\frontend\\\\pages\\\\flas-sale.vue",
+    "chunkName": "pages/flas-sale"
   },
   {
     "name": "forget-password",
     "path": "/forget-password",
-    "component": "D:\\\\Nuxt Projects\\\\dubail_ecommarce\\\\frontend\\\\pages\\\\forget-password.vue",
-    "chunkName": "pages/forget-password",
-    "_name": "_9bbb08b8"
+    "component": "D:\\\\nuxt\\\\New folder\\\\frontend\\\\pages\\\\forget-password.vue",
+    "chunkName": "pages/forget-password"
   },
   {
     "name": "login",
     "path": "/login",
-    "component": "D:\\\\Nuxt Projects\\\\dubail_ecommarce\\\\frontend\\\\pages\\\\login.vue",
-    "chunkName": "pages/login",
-    "_name": "_7dd0bed2"
+    "component": "D:\\\\nuxt\\\\New folder\\\\frontend\\\\pages\\\\login.vue",
+    "chunkName": "pages/login"
   },
   {
     "name": "official-store",
     "path": "/official-store",
-    "component": "D:\\\\Nuxt Projects\\\\dubail_ecommarce\\\\frontend\\\\pages\\\\official-store.vue",
-    "chunkName": "pages/official-store",
-    "_name": "_39574f34"
+    "component": "D:\\\\nuxt\\\\New folder\\\\frontend\\\\pages\\\\official-store.vue",
+    "chunkName": "pages/official-store"
   },
   {
     "name": "official-store-grid",
     "path": "/official-store-grid",
-    "component": "D:\\\\Nuxt Projects\\\\dubail_ecommarce\\\\frontend\\\\pages\\\\official-store-grid.vue",
-    "chunkName": "pages/official-store-grid",
-    "_name": "_a6190e06"
+    "component": "D:\\\\nuxt\\\\New folder\\\\frontend\\\\pages\\\\official-store-grid.vue",
+    "chunkName": "pages/official-store-grid"
   },
   {
     "name": "OfficialStoreFilter",
     "path": "/OfficialStoreFilter",
-    "component": "D:\\\\Nuxt Projects\\\\dubail_ecommarce\\\\frontend\\\\pages\\\\OfficialStoreFilter.vue",
-    "chunkName": "pages/OfficialStoreFilter",
-    "_name": "_14622ad7"
+    "component": "D:\\\\nuxt\\\\New folder\\\\frontend\\\\pages\\\\OfficialStoreFilter.vue",
+    "chunkName": "pages/OfficialStoreFilter"
   },
   {
     "name": "OfficialStoreFilterGrid",
     "path": "/OfficialStoreFilterGrid",
-    "component": "D:\\\\Nuxt Projects\\\\dubail_ecommarce\\\\frontend\\\\pages\\\\OfficialStoreFilterGrid.vue",
-    "chunkName": "pages/OfficialStoreFilterGrid",
-    "_name": "_a7f46086"
+    "component": "D:\\\\nuxt\\\\New folder\\\\frontend\\\\pages\\\\OfficialStoreFilterGrid.vue",
+    "chunkName": "pages/OfficialStoreFilterGrid"
   },
   {
     "name": "payment",
     "path": "/payment",
-    "component": "D:\\\\Nuxt Projects\\\\dubail_ecommarce\\\\frontend\\\\pages\\\\payment.vue",
-    "chunkName": "pages/payment",
-    "_name": "_3d3d4aa2"
+    "component": "D:\\\\nuxt\\\\New folder\\\\frontend\\\\pages\\\\payment.vue",
+    "chunkName": "pages/payment"
   },
   {
     "name": "product-grid",
     "path": "/product-grid",
-    "component": "D:\\\\Nuxt Projects\\\\dubail_ecommarce\\\\frontend\\\\pages\\\\product-grid.vue",
-    "chunkName": "pages/product-grid",
-    "_name": "_2cdd178b"
+    "component": "D:\\\\nuxt\\\\New folder\\\\frontend\\\\pages\\\\product-grid.vue",
+    "chunkName": "pages/product-grid"
   },
   {
     "name": "product-list",
     "path": "/product-list",
-    "component": "D:\\\\Nuxt Projects\\\\dubail_ecommarce\\\\frontend\\\\pages\\\\product-list.vue",
-    "chunkName": "pages/product-list",
-    "_name": "_6a1cd0e3"
+    "component": "D:\\\\nuxt\\\\New folder\\\\frontend\\\\pages\\\\product-list.vue",
+    "chunkName": "pages/product-list"
   },
   {
     "name": "refund",
     "path": "/refund",
-    "component": "D:\\\\Nuxt Projects\\\\dubail_ecommarce\\\\frontend\\\\pages\\\\refund.vue",
-    "chunkName": "pages/refund",
-    "_name": "_411546df"
+    "component": "D:\\\\nuxt\\\\New folder\\\\frontend\\\\pages\\\\refund.vue",
+    "chunkName": "pages/refund"
   },
   {
     "name": "required",
     "path": "/required",
-    "component": "D:\\\\Nuxt Projects\\\\dubail_ecommarce\\\\frontend\\\\pages\\\\required.vue",
-    "chunkName": "pages/required",
-    "_name": "_09f52fc6"
+    "component": "D:\\\\nuxt\\\\New folder\\\\frontend\\\\pages\\\\required.vue",
+    "chunkName": "pages/required"
   },
   {
     "name": "return-and-replacement",
     "path": "/return-and-replacement",
-    "component": "D:\\\\Nuxt Projects\\\\dubail_ecommarce\\\\frontend\\\\pages\\\\return-and-replacement.vue",
-    "chunkName": "pages/return-and-replacement",
-    "_name": "_98948b34"
+    "component": "D:\\\\nuxt\\\\New folder\\\\frontend\\\\pages\\\\return-and-replacement.vue",
+    "chunkName": "pages/return-and-replacement"
   },
   {
     "name": "sell-on-ecommerce",
     "path": "/sell-on-ecommerce",
-    "component": "D:\\\\Nuxt Projects\\\\dubail_ecommarce\\\\frontend\\\\pages\\\\sell-on-ecommerce.vue",
-    "chunkName": "pages/sell-on-ecommerce",
-    "_name": "_25e8a256"
+    "component": "D:\\\\nuxt\\\\New folder\\\\frontend\\\\pages\\\\sell-on-ecommerce.vue",
+    "chunkName": "pages/sell-on-ecommerce"
   },
   {
     "name": "sell-on-filter",
     "path": "/sell-on-filter",
-    "component": "D:\\\\Nuxt Projects\\\\dubail_ecommarce\\\\frontend\\\\pages\\\\sell-on-filter.vue",
-    "chunkName": "pages/sell-on-filter",
-    "_name": "_08bb6d5c"
+    "component": "D:\\\\nuxt\\\\New folder\\\\frontend\\\\pages\\\\sell-on-filter.vue",
+    "chunkName": "pages/sell-on-filter"
   },
   {
     "name": "seller-form",
     "path": "/seller-form",
-    "component": "D:\\\\Nuxt Projects\\\\dubail_ecommarce\\\\frontend\\\\pages\\\\seller-form.vue",
-    "chunkName": "pages/seller-form",
-    "_name": "_a7fe2f0a"
+    "component": "D:\\\\nuxt\\\\New folder\\\\frontend\\\\pages\\\\seller-form.vue",
+    "chunkName": "pages/seller-form"
   },
   {
     "name": "service",
     "path": "/service",
-    "component": "D:\\\\Nuxt Projects\\\\dubail_ecommarce\\\\frontend\\\\pages\\\\service.vue",
-    "chunkName": "pages/service",
-    "_name": "_6b7e0044"
+    "component": "D:\\\\nuxt\\\\New folder\\\\frontend\\\\pages\\\\service.vue",
+    "chunkName": "pages/service"
   },
   {
     "name": "today-deal",
     "path": "/today-deal",
-    "component": "D:\\\\Nuxt Projects\\\\dubail_ecommarce\\\\frontend\\\\pages\\\\today-deal.vue",
-    "chunkName": "pages/today-deal",
-    "_name": "_3c397142"
+    "component": "D:\\\\nuxt\\\\New folder\\\\frontend\\\\pages\\\\today-deal.vue",
+    "chunkName": "pages/today-deal"
   },
   {
     "name": "update-password",
     "path": "/update-password",
-    "component": "D:\\\\Nuxt Projects\\\\dubail_ecommarce\\\\frontend\\\\pages\\\\update-password.vue",
-    "chunkName": "pages/update-password",
-    "_name": "_4e51ab70"
+    "component": "D:\\\\nuxt\\\\New folder\\\\frontend\\\\pages\\\\update-password.vue",
+    "chunkName": "pages/update-password"
   },
   {
     "name": "affiliate-affiliate-dashboard",
     "path": "/affiliate/affiliate-dashboard",
-    "component": "D:\\\\Nuxt Projects\\\\dubail_ecommarce\\\\frontend\\\\pages\\\\affiliate\\\\affiliate-dashboard.vue",
-    "chunkName": "pages/affiliate/affiliate-dashboard",
-    "_name": "_66eaf24e"
+    "component": "D:\\\\nuxt\\\\New folder\\\\frontend\\\\pages\\\\affiliate\\\\affiliate-dashboard.vue",
+    "chunkName": "pages/affiliate/affiliate-dashboard"
   },
   {
     "name": "affiliate-affiliate-programe",
     "path": "/affiliate/affiliate-programe",
-    "component": "D:\\\\Nuxt Projects\\\\dubail_ecommarce\\\\frontend\\\\pages\\\\affiliate\\\\affiliate-programe.vue",
-    "chunkName": "pages/affiliate/affiliate-programe",
-    "_name": "_24a9bdd2"
+    "component": "D:\\\\nuxt\\\\New folder\\\\frontend\\\\pages\\\\affiliate\\\\affiliate-programe.vue",
+    "chunkName": "pages/affiliate/affiliate-programe"
   },
   {
     "name": "affiliate-affiliate-programe-register",
     "path": "/affiliate/affiliate-programe-register",
-    "component": "D:\\\\Nuxt Projects\\\\dubail_ecommarce\\\\frontend\\\\pages\\\\affiliate\\\\affiliate-programe-register.vue",
-    "chunkName": "pages/affiliate/affiliate-programe-register",
-    "_name": "_5f236cc9"
+    "component": "D:\\\\nuxt\\\\New folder\\\\frontend\\\\pages\\\\affiliate\\\\affiliate-programe-register.vue",
+    "chunkName": "pages/affiliate/affiliate-programe-register"
   },
   {
     "name": "affiliate-affiliate-transfer",
     "path": "/affiliate/affiliate-transfer",
-    "component": "D:\\\\Nuxt Projects\\\\dubail_ecommarce\\\\frontend\\\\pages\\\\affiliate\\\\affiliate-transfer.vue",
-    "chunkName": "pages/affiliate/affiliate-transfer",
-    "_name": "_21bd51a1"
+    "component": "D:\\\\nuxt\\\\New folder\\\\frontend\\\\pages\\\\affiliate\\\\affiliate-transfer.vue",
+    "chunkName": "pages/affiliate/affiliate-transfer"
   },
   {
     "name": "brand-product-brand-grid",
     "path": "/brand-product/brand-grid",
-    "component": "D:\\\\Nuxt Projects\\\\dubail_ecommarce\\\\frontend\\\\pages\\\\brand-product\\\\brand-grid.vue",
-    "chunkName": "pages/brand-product/brand-grid",
-    "_name": "_7094e144"
+    "component": "D:\\\\nuxt\\\\New folder\\\\frontend\\\\pages\\\\brand-product\\\\brand-grid.vue",
+    "chunkName": "pages/brand-product/brand-grid"
   },
   {
     "name": "category-all-categorys",
     "path": "/category/all-categorys",
-    "component": "D:\\\\Nuxt Projects\\\\dubail_ecommarce\\\\frontend\\\\pages\\\\category\\\\all-categorys.vue",
-    "chunkName": "pages/category/all-categorys",
-    "_name": "_42bf1c18"
+    "component": "D:\\\\nuxt\\\\New folder\\\\frontend\\\\pages\\\\category\\\\all-categorys.vue",
+    "chunkName": "pages/category/all-categorys"
   },
   {
     "name": "category-category-grid",
     "path": "/category/category-grid",
-    "component": "D:\\\\Nuxt Projects\\\\dubail_ecommarce\\\\frontend\\\\pages\\\\category\\\\category-grid.vue",
-    "chunkName": "pages/category/category-grid",
-    "_name": "_251a30a0"
+    "component": "D:\\\\nuxt\\\\New folder\\\\frontend\\\\pages\\\\category\\\\category-grid.vue",
+    "chunkName": "pages/category/category-grid"
   },
   {
     "name": "category-category-list",
     "path": "/category/category-list",
-    "component": "D:\\\\Nuxt Projects\\\\dubail_ecommarce\\\\frontend\\\\pages\\\\category\\\\category-list.vue",
-    "chunkName": "pages/category/category-list",
-    "_name": "_6259e9f8"
+    "component": "D:\\\\nuxt\\\\New folder\\\\frontend\\\\pages\\\\category\\\\category-list.vue",
+    "chunkName": "pages/category/category-list"
   },
   {
     "name": "seller-change-password",
     "path": "/seller/change-password",
-    "component": "D:\\\\Nuxt Projects\\\\dubail_ecommarce\\\\frontend\\\\pages\\\\seller\\\\change-password.vue",
-    "chunkName": "pages/seller/change-password",
-    "_name": "_24c7c822"
+    "component": "D:\\\\nuxt\\\\New folder\\\\frontend\\\\pages\\\\seller\\\\change-password.vue",
+    "chunkName": "pages/seller/change-password"
   },
   {
     "name": "seller-order-details",
     "path": "/seller/order-details",
-    "component": "D:\\\\Nuxt Projects\\\\dubail_ecommarce\\\\frontend\\\\pages\\\\seller\\\\order-details.vue",
-    "chunkName": "pages/seller/order-details",
-    "_name": "_621de466"
+    "component": "D:\\\\nuxt\\\\New folder\\\\frontend\\\\pages\\\\seller\\\\order-details.vue",
+    "chunkName": "pages/seller/order-details"
   },
   {
     "name": "seller-seller-account-setting",
     "path": "/seller/seller-account-setting",
-    "component": "D:\\\\Nuxt Projects\\\\dubail_ecommarce\\\\frontend\\\\pages\\\\seller\\\\seller-account-setting.vue",
-    "chunkName": "pages/seller/seller-account-setting",
-    "_name": "_744b2770"
+    "component": "D:\\\\nuxt\\\\New folder\\\\frontend\\\\pages\\\\seller\\\\seller-account-setting.vue",
+    "chunkName": "pages/seller/seller-account-setting"
   },
   {
     "name": "seller-seller-comission-history",
     "path": "/seller/seller-comission-history",
-    "component": "D:\\\\Nuxt Projects\\\\dubail_ecommarce\\\\frontend\\\\pages\\\\seller\\\\seller-comission-history.vue",
-    "chunkName": "pages/seller/seller-comission-history",
-    "_name": "_77aef502"
+    "component": "D:\\\\nuxt\\\\New folder\\\\frontend\\\\pages\\\\seller\\\\seller-comission-history.vue",
+    "chunkName": "pages/seller/seller-comission-history"
   },
   {
     "name": "seller-seller-customer-returns",
     "path": "/seller/seller-customer-returns",
-    "component": "D:\\\\Nuxt Projects\\\\dubail_ecommarce\\\\frontend\\\\pages\\\\seller\\\\seller-customer-returns.vue",
-    "chunkName": "pages/seller/seller-customer-returns",
-    "_name": "_67ad43ec"
+    "component": "D:\\\\nuxt\\\\New folder\\\\frontend\\\\pages\\\\seller\\\\seller-customer-returns.vue",
+    "chunkName": "pages/seller/seller-customer-returns"
   },
   {
     "name": "seller-seller-dashboard",
     "path": "/seller/seller-dashboard",
-    "component": "D:\\\\Nuxt Projects\\\\dubail_ecommarce\\\\frontend\\\\pages\\\\seller\\\\seller-dashboard.vue",
-    "chunkName": "pages/seller/seller-dashboard",
-    "_name": "_386bf3a8"
+    "component": "D:\\\\nuxt\\\\New folder\\\\frontend\\\\pages\\\\seller\\\\seller-dashboard.vue",
+    "chunkName": "pages/seller/seller-dashboard"
   },
   {
     "name": "seller-seller-leftsidebar",
     "path": "/seller/seller-leftsidebar",
-    "component": "D:\\\\Nuxt Projects\\\\dubail_ecommarce\\\\frontend\\\\pages\\\\seller\\\\seller-leftsidebar.vue",
-    "chunkName": "pages/seller/seller-leftsidebar",
-    "_name": "_3c17a88d"
+    "component": "D:\\\\nuxt\\\\New folder\\\\frontend\\\\pages\\\\seller\\\\seller-leftsidebar.vue",
+    "chunkName": "pages/seller/seller-leftsidebar"
   },
   {
     "name": "seller-seller-message",
     "path": "/seller/seller-message",
-    "component": "D:\\\\Nuxt Projects\\\\dubail_ecommarce\\\\frontend\\\\pages\\\\seller\\\\seller-message.vue",
-    "chunkName": "pages/seller/seller-message",
-    "_name": "_2f44ea1f"
+    "component": "D:\\\\nuxt\\\\New folder\\\\frontend\\\\pages\\\\seller\\\\seller-message.vue",
+    "chunkName": "pages/seller/seller-message"
   },
   {
     "name": "seller-seller-orders",
     "path": "/seller/seller-orders",
-    "component": "D:\\\\Nuxt Projects\\\\dubail_ecommarce\\\\frontend\\\\pages\\\\seller\\\\seller-orders.vue",
-    "chunkName": "pages/seller/seller-orders",
-    "_name": "_62d127fd"
+    "component": "D:\\\\nuxt\\\\New folder\\\\frontend\\\\pages\\\\seller\\\\seller-orders.vue",
+    "chunkName": "pages/seller/seller-orders"
   },
   {
     "name": "seller-seller-payment-history",
     "path": "/seller/seller-payment-history",
-    "component": "D:\\\\Nuxt Projects\\\\dubail_ecommarce\\\\frontend\\\\pages\\\\seller\\\\seller-payment-history.vue",
-    "chunkName": "pages/seller/seller-payment-history",
-    "_name": "_1895aa36"
+    "component": "D:\\\\nuxt\\\\New folder\\\\frontend\\\\pages\\\\seller\\\\seller-payment-history.vue",
+    "chunkName": "pages/seller/seller-payment-history"
   },
   {
     "name": "seller-seller-products",
     "path": "/seller/seller-products",
-    "component": "D:\\\\Nuxt Projects\\\\dubail_ecommarce\\\\frontend\\\\pages\\\\seller\\\\seller-products.vue",
-    "chunkName": "pages/seller/seller-products",
-    "_name": "_4624fefc"
+    "component": "D:\\\\nuxt\\\\New folder\\\\frontend\\\\pages\\\\seller\\\\seller-products.vue",
+    "chunkName": "pages/seller/seller-products"
   },
   {
     "name": "seller-seller-products-post",
     "path": "/seller/seller-products-post",
-    "component": "D:\\\\Nuxt Projects\\\\dubail_ecommarce\\\\frontend\\\\pages\\\\seller\\\\seller-products-post.vue",
-    "chunkName": "pages/seller/seller-products-post",
-    "_name": "_2a895efe"
+    "component": "D:\\\\nuxt\\\\New folder\\\\frontend\\\\pages\\\\seller\\\\seller-products-post.vue",
+    "chunkName": "pages/seller/seller-products-post"
   },
   {
     "name": "seller-seller-profile",
     "path": "/seller/seller-profile",
-    "component": "D:\\\\Nuxt Projects\\\\dubail_ecommarce\\\\frontend\\\\pages\\\\seller\\\\seller-profile.vue",
-    "chunkName": "pages/seller/seller-profile",
-    "_name": "_6de6d2c1"
+    "component": "D:\\\\nuxt\\\\New folder\\\\frontend\\\\pages\\\\seller\\\\seller-profile.vue",
+    "chunkName": "pages/seller/seller-profile"
   },
   {
     "name": "seller-seller-wallet",
     "path": "/seller/seller-wallet",
-    "component": "D:\\\\Nuxt Projects\\\\dubail_ecommarce\\\\frontend\\\\pages\\\\seller\\\\seller-wallet.vue",
-    "chunkName": "pages/seller/seller-wallet",
-    "_name": "_707521de"
+    "component": "D:\\\\nuxt\\\\New folder\\\\frontend\\\\pages\\\\seller\\\\seller-wallet.vue",
+    "chunkName": "pages/seller/seller-wallet"
   },
   {
     "name": "seller-seller-wishlist",
     "path": "/seller/seller-wishlist",
-    "component": "D:\\\\Nuxt Projects\\\\dubail_ecommarce\\\\frontend\\\\pages\\\\seller\\\\seller-wishlist.vue",
-    "chunkName": "pages/seller/seller-wishlist",
-    "_name": "_11fc6a46"
+    "component": "D:\\\\nuxt\\\\New folder\\\\frontend\\\\pages\\\\seller\\\\seller-wishlist.vue",
+    "chunkName": "pages/seller/seller-wishlist"
   },
   {
     "name": "user-account-statement",
     "path": "/user/account-statement",
-    "component": "D:\\\\Nuxt Projects\\\\dubail_ecommarce\\\\frontend\\\\pages\\\\user\\\\account-statement.vue",
-    "chunkName": "pages/user/account-statement",
-    "_name": "_437d804d"
+    "component": "D:\\\\nuxt\\\\New folder\\\\frontend\\\\pages\\\\user\\\\account-statement.vue",
+    "chunkName": "pages/user/account-statement"
   },
   {
     "name": "user-my-reviews",
     "path": "/user/my-reviews",
-    "component": "D:\\\\Nuxt Projects\\\\dubail_ecommarce\\\\frontend\\\\pages\\\\user\\\\my-reviews.vue",
-    "chunkName": "pages/user/my-reviews",
-    "_name": "_466db9ec"
+    "component": "D:\\\\nuxt\\\\New folder\\\\frontend\\\\pages\\\\user\\\\my-reviews.vue",
+    "chunkName": "pages/user/my-reviews"
   },
   {
     "name": "user-mySalary",
     "path": "/user/mySalary",
-    "component": "D:\\\\Nuxt Projects\\\\dubail_ecommarce\\\\frontend\\\\pages\\\\user\\\\mySalary.vue",
-    "chunkName": "pages/user/mySalary",
-    "_name": "_344df408"
+    "component": "D:\\\\nuxt\\\\New folder\\\\frontend\\\\pages\\\\user\\\\mySalary.vue",
+    "chunkName": "pages/user/mySalary"
   },
   {
     "name": "user-order-details",
     "path": "/user/order-details",
-    "component": "D:\\\\Nuxt Projects\\\\dubail_ecommarce\\\\frontend\\\\pages\\\\user\\\\order-details.vue",
-    "chunkName": "pages/user/order-details",
-    "_name": "_3edf3641"
+    "component": "D:\\\\nuxt\\\\New folder\\\\frontend\\\\pages\\\\user\\\\order-details.vue",
+    "chunkName": "pages/user/order-details"
   },
   {
     "name": "user-user-blogPost",
     "path": "/user/user-blogPost",
-    "component": "D:\\\\Nuxt Projects\\\\dubail_ecommarce\\\\frontend\\\\pages\\\\user\\\\user-blogPost.vue",
-    "chunkName": "pages/user/user-blogPost",
-    "_name": "_32fd3622"
+    "component": "D:\\\\nuxt\\\\New folder\\\\frontend\\\\pages\\\\user\\\\user-blogPost.vue",
+    "chunkName": "pages/user/user-blogPost"
   },
   {
     "name": "user-user-dashborad",
     "path": "/user/user-dashborad",
-    "component": "D:\\\\Nuxt Projects\\\\dubail_ecommarce\\\\frontend\\\\pages\\\\user\\\\user-dashborad.vue",
-    "chunkName": "pages/user/user-dashborad",
-    "_name": "_173f7bc6"
+    "component": "D:\\\\nuxt\\\\New folder\\\\frontend\\\\pages\\\\user\\\\user-dashborad.vue",
+    "chunkName": "pages/user/user-dashborad"
   },
   {
     "name": "user-user-mlm",
     "path": "/user/user-mlm",
-    "component": "D:\\\\Nuxt Projects\\\\dubail_ecommarce\\\\frontend\\\\pages\\\\user\\\\user-mlm.vue",
-    "chunkName": "pages/user/user-mlm",
-    "_name": "_4ca25fc4"
+    "component": "D:\\\\nuxt\\\\New folder\\\\frontend\\\\pages\\\\user\\\\user-mlm.vue",
+    "chunkName": "pages/user/user-mlm"
   },
   {
     "name": "user-user-orders",
     "path": "/user/user-orders",
-    "component": "D:\\\\Nuxt Projects\\\\dubail_ecommarce\\\\frontend\\\\pages\\\\user\\\\user-orders.vue",
-    "chunkName": "pages/user/user-orders",
-    "_name": "_0fdfae25"
+    "component": "D:\\\\nuxt\\\\New folder\\\\frontend\\\\pages\\\\user\\\\user-orders.vue",
+    "chunkName": "pages/user/user-orders"
   },
   {
     "name": "user-user-profile",
     "path": "/user/user-profile",
-    "component": "D:\\\\Nuxt Projects\\\\dubail_ecommarce\\\\frontend\\\\pages\\\\user\\\\user-profile.vue",
-    "chunkName": "pages/user/user-profile",
-    "_name": "_62a91199"
+    "component": "D:\\\\nuxt\\\\New folder\\\\frontend\\\\pages\\\\user\\\\user-profile.vue",
+    "chunkName": "pages/user/user-profile"
   },
   {
     "name": "user-user-requireProduct",
     "path": "/user/user-requireProduct",
-    "component": "D:\\\\Nuxt Projects\\\\dubail_ecommarce\\\\frontend\\\\pages\\\\user\\\\user-requireProduct.vue",
-    "chunkName": "pages/user/user-requireProduct",
-    "_name": "_05baa08a"
+    "component": "D:\\\\nuxt\\\\New folder\\\\frontend\\\\pages\\\\user\\\\user-requireProduct.vue",
+    "chunkName": "pages/user/user-requireProduct"
   },
   {
     "name": "user-user-security",
     "path": "/user/user-security",
-    "component": "D:\\\\Nuxt Projects\\\\dubail_ecommarce\\\\frontend\\\\pages\\\\user\\\\user-security.vue",
-    "chunkName": "pages/user/user-security",
-    "_name": "_475a1a00"
+    "component": "D:\\\\nuxt\\\\New folder\\\\frontend\\\\pages\\\\user\\\\user-security.vue",
+    "chunkName": "pages/user/user-security"
   },
   {
     "name": "user-user-whichlist",
     "path": "/user/user-whichlist",
-    "component": "D:\\\\Nuxt Projects\\\\dubail_ecommarce\\\\frontend\\\\pages\\\\user\\\\user-whichlist.vue",
-    "chunkName": "pages/user/user-whichlist",
-    "_name": "_202405aa"
+    "component": "D:\\\\nuxt\\\\New folder\\\\frontend\\\\pages\\\\user\\\\user-whichlist.vue",
+    "chunkName": "pages/user/user-whichlist"
   },
   {
     "name": "user-user-withdrawal",
     "path": "/user/user-withdrawal",
-    "component": "D:\\\\Nuxt Projects\\\\dubail_ecommarce\\\\frontend\\\\pages\\\\user\\\\user-withdrawal.vue",
-    "chunkName": "pages/user/user-withdrawal",
-    "_name": "_594f8bf5"
+    "component": "D:\\\\nuxt\\\\New folder\\\\frontend\\\\pages\\\\user\\\\user-withdrawal.vue",
+    "chunkName": "pages/user/user-withdrawal"
   },
   {
     "name": "seller-products-product-edit",
     "path": "/seller/products/product-edit",
-    "component": "D:\\\\Nuxt Projects\\\\dubail_ecommarce\\\\frontend\\\\pages\\\\seller\\\\products\\\\product-edit.vue",
-    "chunkName": "pages/seller/products/product-edit",
-    "_name": "_cff8161c"
+    "component": "D:\\\\nuxt\\\\New folder\\\\frontend\\\\pages\\\\seller\\\\products\\\\product-edit.vue",
+    "chunkName": "pages/seller/products/product-edit"
   },
   {
     "name": "seller-products-product-preview",
     "path": "/seller/products/product-preview",
-    "component": "D:\\\\Nuxt Projects\\\\dubail_ecommarce\\\\frontend\\\\pages\\\\seller\\\\products\\\\product-preview.vue",
-    "chunkName": "pages/seller/products/product-preview",
-    "_name": "_eddf71e0"
+    "component": "D:\\\\nuxt\\\\New folder\\\\frontend\\\\pages\\\\seller\\\\products\\\\product-preview.vue",
+    "chunkName": "pages/seller/products/product-preview"
   },
   {
     "name": "seller-products-product-varient",
     "path": "/seller/products/product-varient",
-    "component": "D:\\\\Nuxt Projects\\\\dubail_ecommarce\\\\frontend\\\\pages\\\\seller\\\\products\\\\product-varient.vue",
-    "chunkName": "pages/seller/products/product-varient",
-    "_name": "_4a2eba51"
+    "component": "D:\\\\nuxt\\\\New folder\\\\frontend\\\\pages\\\\seller\\\\products\\\\product-varient.vue",
+    "chunkName": "pages/seller/products/product-varient"
   },
   {
     "name": "index",
     "path": "/",
-    "component": "D:\\\\Nuxt Projects\\\\dubail_ecommarce\\\\frontend\\\\pages\\\\index.vue",
-    "chunkName": "pages/index",
-    "_name": "_97adc88a"
+    "component": "D:\\\\nuxt\\\\New folder\\\\frontend\\\\pages\\\\index.vue",
+    "chunkName": "pages/index"
   },
   {
     "name": "user-invite-user-id",
     "path": "/user/invite-user/:id?",
-    "component": "D:\\\\Nuxt Projects\\\\dubail_ecommarce\\\\frontend\\\\pages\\\\user\\\\invite-user\\\\_id.vue",
-    "chunkName": "pages/user/invite-user/_id",
-    "_name": "_085c307d"
+    "component": "D:\\\\nuxt\\\\New folder\\\\frontend\\\\pages\\\\user\\\\invite-user\\\\_id.vue",
+    "chunkName": "pages/user/invite-user/_id"
   },
   {
     "name": "business-slug",
     "path": "/business/:slug?",
-    "component": "D:\\\\Nuxt Projects\\\\dubail_ecommarce\\\\frontend\\\\pages\\\\business\\\\_slug.vue",
-    "chunkName": "pages/business/_slug",
-    "_name": "_860ad41a"
+    "component": "D:\\\\nuxt\\\\New folder\\\\frontend\\\\pages\\\\business\\\\_slug.vue",
+    "chunkName": "pages/business/_slug"
   },
   {
     "name": "product-details-slug",
     "path": "/product-details/:slug?",
-    "component": "D:\\\\Nuxt Projects\\\\dubail_ecommarce\\\\frontend\\\\pages\\\\product-details\\\\_slug.vue",
-    "chunkName": "pages/product-details/_slug",
-    "_name": "_28428e8d"
+    "component": "D:\\\\nuxt\\\\New folder\\\\frontend\\\\pages\\\\product-details\\\\_slug.vue",
+    "chunkName": "pages/product-details/_slug"
   },
   {
     "name": "resetpassword-slug",
     "path": "/resetpassword/:slug?",
-    "component": "D:\\\\Nuxt Projects\\\\dubail_ecommarce\\\\frontend\\\\pages\\\\resetpassword\\\\_slug.vue",
-    "chunkName": "pages/resetpassword/_slug",
-    "_name": "_bd12ddf2"
+    "component": "D:\\\\nuxt\\\\New folder\\\\frontend\\\\pages\\\\resetpassword\\\\_slug.vue",
+    "chunkName": "pages/resetpassword/_slug"
   }
 ]

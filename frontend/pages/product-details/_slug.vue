@@ -151,6 +151,7 @@
                                                 <p class="ms-0 d-block"><strike v-if="pro_row.discount !== 0">Was: ${{
                                         pro_row.price }}</strike></p>
                                             </h5>
+                                            <h5 v-else>${{ pro_row.price }}</h5>
 
                                             <p v-if="pro_row.stock_status == 1 && pro_row.stock_qty >=1 ">In stock</p>
                                             <p v-else-if="pro_row.stock_status == 2 && pro_row.stock_qty >=1">in stock</p>
@@ -174,26 +175,23 @@
                                                 </h6>
                                             </div>
                                             <div class="d-flex align-items-end">
-                                                <div class="size_attr">
+                                                <div class="size_attr" v-if="colorGroup">
                                                     <label for="">Color:</label>
-                                                    <select name="" id="" required class="form-control">
-                                                        <option value="">Black</option>
-                                                        <option value="">White</option>
-                                                        <option value=""> Red</option>
-                                                        <option value=""> Blue</option>
-                                                        <option value=""> Yellow</option>
-                                                        <option value=""> navy Blue</option>
+                                                    <select v-model="color" class="form-control w-100" @change="showAttrVal()">
+                                                        <option disabled value="" selected>Select</option>
+                                                        <option v-for="(item, index) in colorGroup" :key="index" :value="item.color"
+                                                            :selected="item.selected">
+                                                            {{ item.color }}
+                                                        </option>
                                                     </select>
                                                 </div>
-                                                <div class="size_attr">
+                                                <!-- {{ attibute }} -->
+                                                <!-- ===================================  -->
+                                                <div class="size_attr" v-if="varientList !== null">
                                                     <label for="">Size:</label>
-                                                    <select name="" id="" required class="form-control">
-                                                        <option value=""> XS</option>
-                                                        <option value=""> S</option>
-                                                        <option value=""> M</option>
-                                                        <option value=""> L</option>
-                                                        <option value=""> XL</option>
-                                                        <option value=""> XXL</option>
+                                                    <select  required class="form-control">
+                                                        <option disabled value="" selected>Select</option>
+                                                        <option v-for="(varient, index) in varientList" :key="index" @click="handleButtonClick(varient)" :value="varient.size"> {{varient.size}}</option>
                                                     </select>
                                                 </div>
                                                 <div class="number">
@@ -202,6 +200,7 @@
                                                         @input="sanitizeInput" />
                                                     <span class="plus" @click="increment">+</span>
                                                 </div>
+                                                <!-- ==============================  -->
                                             </div>
 
                                             <button type="button" class="btn_cart"
@@ -486,12 +485,16 @@ export default {
                 price: '',
                 file: ''
             }],
+            color: '',
             brands_details: [],
             currentDateTime: null,
             futureDate: null,
             futureDay: null,
             daysToAdd: '',
             seller: [],
+            historVarient: [],
+            colorGroup: [],
+            varientList: [],
 
         };
     },
@@ -507,7 +510,37 @@ export default {
             return this.$auth.loggedIn;
         },
     },
-    methods: {
+    methods: {        
+        
+        handleButtonClick(varient) {
+            this.varientData = varient;
+            this.pro_row.price = varient.price;
+            this.featuresimgs = varient.image;
+            // Handle button click event for the selected variant
+            // console.log('Button clicked for color:', varient.color);
+            // console.log('Button clicked for size:', varient.size);
+            // console.log('Button clicked for qty:', varient.qty);
+            // console.log('Button clicked for price:', varient.price);
+            // console.log('Button clicked for image:', varient.image);
+        },
+        showAttrVal() {
+            this.varientList = [];
+            // console.log("value:" + this.color +"===="+ this.pro_Id);
+            const color = this.color;
+            let product_id = this.pro_Id;
+
+            this.$axios.get(`/unauthenticate/checkAttribueDetails`, {
+                params: {
+                    product_id: product_id,
+                    color: color
+                }
+            }).then(response => {
+                this.varientList = response.data.attribute;
+            });
+
+
+        },
+        // =================================================
         updateDateTime() {
             const now = new Date();
             if (now.getHours() >= 17) {
@@ -665,16 +698,20 @@ export default {
             this.featuresimgs = response.data.data.featuredImage;
             this.slider_img = response.data.data.slider_img;
             this.pro_row = response.data.data.pro_row;
+            this.pro_Id = response.data.data.pro_row.id;
             this.seller = response.data.seller;
             this.brands_details = response.data.brand;
             this.product = response.data.data.product;
             this.daysToAdd = response.data.data.pro_row.shipping_days;
-            this.historVarient = response.data.varient;
+            this.historVarient = response.data.attibute.varient;
+            this.colorGroup = response.data.attibute.colorGroup;
+            // console.log(response.data.attibute.colorGroup);
             this.loading = false;
 
             $(".product_details").html(response.data.data.pro_row.description);
             $(".shortDescPro").html(response.data.data.pro_row.short_description);
-            // console.log("====" + response.data.attri_id.id);
+            // console.log("====TEST=========" + response.data.attibute);
+
         },
 
     },

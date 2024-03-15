@@ -24,22 +24,23 @@ use Illuminate\Support\Str;
 use App\Models\OrderHistory;
 use function Ramsey\Uuid\v1;
 use Illuminate\Http\Request;
-use App\Models\ProductCategory;
+use App\Models\AttributeValues;
 //use User;
-use App\Models\topHeaderBanner;
+use App\Models\ProductCategory;
 
+use App\Models\topHeaderBanner;
 use App\Rules\MatchOldPassword;
 use App\Models\ProductAttributes;
 use PhpParser\Node\Stmt\TryCatch;
 use App\Models\sliderSideAdsModel;
 use App\Models\User as ModelsUser;
 use App\Http\Controllers\Controller;
-use App\Models\AttributeValues;
 use App\Models\ProductAdditionalImg;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
 use App\Models\ProductAttributeValue;
 use App\Models\ProductVarrientHistory;
+use Illuminate\Database\QueryException;
 use App\Models\HomeAroductSliderCategory;
 use Workbench\App\Models\User as AppModelsUser;
 
@@ -521,13 +522,39 @@ class UnauthenticatedController extends Controller
             "status"    => !empty($brand->status)? $brand->status : '',
         ];
 
-        // dd($formateBrand);
-        // return false;
+        // featc attribute 
+        $arrData            = ProductVarrientHistory::where('product_id',$findproductrow->id)->get();
+        $groupData          = ProductVarrientHistory::where('product_id',$findproductrow->id)->select('id','color')->groupBy('color')->get();
+        $formatedData = [];
+        foreach ($arrData as $Key => $value) {
+            $formatedData[] = [
+                'id'               => $value->id,
+                'color'            => $value->color,
+                'size'             => $value->size,
+                'sku'              => $value->sku,
+                'qty'              => $value->qty,
+                'price'            => $value->price,
+                'image'            => !empty($value->image) ? url($value->image) : "",
+                'product_id'       => $value->product_id,
+            ];
+        }
+        $gdata = [];
+        foreach ($groupData as $Key => $value) {
+            $gdata[] = [
+                'id'               => $value->id,
+                'color'            => $value->color,
+            ];
+        }
+       
+        $pdata['varient']    = $formatedData;
+        $pdata['colorGroup'] = $gdata;
+        // return response()->json($pdata);
 
         return response()->json([
             'data'      => $data,
             'brand'     => $formateBrand,
             'seller'    => !empty($seller)? $seller:'',
+            'attibute' => $pdata,
         ], 200);
     }
 
@@ -815,5 +842,18 @@ class UnauthenticatedController extends Controller
         } catch (\Exception $e) {
             return response()->json(['error' => $e->getMessage()], 500);
         }
+    }
+    public function checkAttribueDetails(Request $request){
+
+        try {
+            $data['attribute'] = ProductVarrientHistory::where('color', $request->color)
+                ->where('product_id', $request->product_id)
+                ->get();
+            return response()->json($data);
+        } catch (QueryException $e) {
+            // Handle query exception
+            return response()->json(['error' => 'Query exception occurred'], 500);
+        }
+
     }
 }

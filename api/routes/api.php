@@ -129,7 +129,7 @@ Route::group([
     Route::get('getSubCategoryChild/{id}', [CategoryController::class, 'getSubCategoryChild']);
     Route::get('attributeRow/{id}', [CategoryController::class, 'attributeRow']);
     Route::get('attributeValRow/{id}', [CategoryController::class, 'attributeValRow']);
-    Route::get('attributeValRows/{product_id}/{product_attribute_id}', [CategoryController::class, 'attributeValRows']);
+    Route::get('attributeValRows/{attributes_id}', [CategoryController::class, 'attributeValRows']);
     Route::get('search', [CategoryController::class, 'searchCategory']);
     Route::get('attributes', [CategoryController::class, 'getAttribute']);
     Route::get('attributes-list', [CategoryController::class, 'getAttributeList']);
@@ -144,6 +144,7 @@ Route::group([
 
     Route::post('save', [ProductController::class, 'save']);
     Route::post('product-update', [ProductController::class, 'productUpdate']);
+    Route::post('insertVarient', [ProductController::class, 'insertVarient']);
     Route::post('insertVarientGroup', [ProductController::class, 'insertVarientGroup']);
     Route::get('getProductList', [ProductController::class, 'getProductList']);
     Route::get('sellerProductList', [ProductController::class, 'sellerProductList']);
@@ -157,6 +158,10 @@ Route::group([
     Route::get('deleteCategory', [ProductController::class, 'deleteCategory']);
     Route::get('getVarientHistory', [ProductController::class, 'getVarientHistory']);
     Route::get('removeProducts/{id}', [ProductController::class, 'removeProducts']);
+    Route::post('generate-combinations', [ProductController::class, 'generatecombinations']);
+    Route::post('deleteVarient', [ProductController::class, 'deleteVarient']);
+    Route::get('varient-list/{id}', [ProductController::class, 'varientList']);
+    Route::get('checkAttribue', [ProductController::class, 'checkAttribue']);
 });
 
 Route::group([
@@ -257,6 +262,7 @@ Route::group([
     Route::get('getAdsbanner', [UnauthenticatedController::class, 'topadsbanner']);
     Route::get('brandproductList/{slug}', [UnauthenticatedController::class, 'getbrandproductList']);
     Route::get('speacialCategory', [UnauthenticatedController::class, 'getSpeacialCatList']);
+    Route::get('checkAttribueDetails', [UnauthenticatedController::class, 'checkAttribueDetails']);
 
 
 });

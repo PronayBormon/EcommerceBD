@@ -1,283 +1,323 @@
 <template>
-<div>
-    <!--start page wrapper -->
-    <div class="page-wrapper">
-        <div class="page-content">
-            <!--breadcrumb-->
-            <div class="page-breadcrumb d-none d-sm-flex align-items-center mb-3">
-                <div class="ps-3">
-                    <nav aria-label="breadcrumb">
-                        <ol class="breadcrumb mb-0 p-0">
-                            <li class="breadcrumb-item">
-                                <router-link to="/" href="javascript:;"><i class="bx bx-home-alt"></i></router-link>
-                            </li>
-                            <li class="breadcrumb-item" aria-current="page">
-                                <router-link to="/ecommarce/product-list">Product List</router-link>
-                            </li>
-                            <li class="breadcrumb-item active" aria-current="page">Product Preview</li>
-                        </ol>
-                    </nav>
+    <div>
+        <!--start page wrapper -->
+        <div class="page-wrapper">
+            <div class="page-content">
+                <!--breadcrumb-->
+                <div class="page-breadcrumb d-none d-sm-flex align-items-center mb-3">
+                    <div class="ps-3">
+                        <nav aria-label="breadcrumb">
+                            <ol class="breadcrumb mb-0 p-0">
+                                <li class="breadcrumb-item">
+                                    <router-link to="/" href="javascript:;"><i class="bx bx-home-alt"></i></router-link>
+                                </li>
+                                <li class="breadcrumb-item" aria-current="page">
+                                    <router-link to="/ecommarce/product-list">Product List</router-link>
+                                </li>
+                                <li class="breadcrumb-item active" aria-current="page">Product Preview</li>
+                            </ol>
+                        </nav>
+                    </div>
                 </div>
-            </div>
-            <!--end breadcrumb-->
-            <!--end row-->
-            <div class="row">
-                <div class="col-xl-12 mx-auto">
-                    <div class="card border-top border-0 border-4 border-info">
-                        <div class="card-body">
-                            <div class="border p-4 rounded">
-                                <div class="card">
+                <!--end breadcrumb-->
+                <!--end row-->
+                <div class="row">
+                    <div class="col-xl-12 mx-auto">
+                        <div class="card border-top border-0 border-4 border-info">
+                            <div class="card-body">
+                                <div class="border p-4 rounded">
+                                    <div class="card">
 
-                                    <table class="table table-bordered w-100">
-                                        <tr>
-                                            <td width="21%">Product Name</td>
-                                            <td width="1%"><strong>:</strong></td>
-                                            <td width="78%">{{ productData.name }}</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Meta Tag Title</td>
-                                            <td><strong>:</strong></td>
-                                            <td>{{ productData.meta_title }}</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Meta Tag Description</td>
-                                            <td><strong>:</strong></td>
-                                            <td>{{ productData.meta_description }}</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Meta Tag Keywords</td>
-                                            <td><strong>:</strong></td>
-                                            <td>{{ productData.meta_keyword }}</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Product Tags</td>
-                                            <td><strong>:</strong></td>
-                                            <td>{{ productData.product_tag }}</td>
-                                        </tr>
+                                        <table class="table table-bordered w-100">
+                                            <tr>
+                                                <td width="21%">Product Name</td>
+                                                <td width="1%"><strong>:</strong></td>
+                                                <td width="78%">{{ productData.name }}</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Meta Tag Title</td>
+                                                <td><strong>:</strong></td>
+                                                <td>{{ productData.meta_title }}</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Meta Tag Description</td>
+                                                <td><strong>:</strong></td>
+                                                <td>{{ productData.meta_description }}</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Meta Tag Keywords</td>
+                                                <td><strong>:</strong></td>
+                                                <td>{{ productData.meta_keyword }}</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Product Tags</td>
+                                                <td><strong>:</strong></td>
+                                                <td>{{ productData.product_tag }}</td>
+                                            </tr>
 
-                                        <tr>
-                                            <td colspan="3">&nbsp;</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Brand</td>
-                                            <td><strong>:</strong></td>
-                                            <td>{{ productData.brand_name }}</td>
-                                        </tr>
-                                        <tr>
-                                            <td>SKU</td>
-                                            <td><strong>:</strong></td>
-                                            <td>{{ productData.sku }}</td>
-                                        </tr>
-                                        <tr>
-                                            <td>External Link</td>
-                                            <td><strong>:</strong></td>
-                                            <td>{{ productData.external_link }}</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Description</td>
-                                            <td><strong>:</strong></td>
-                                            <td>
-                                                <div class="pro_description marleft"></div>
+                                            <tr>
+                                                <td colspan="3">&nbsp;</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Brand</td>
+                                                <td><strong>:</strong></td>
+                                                <td>{{ productData.brand_name }}</td>
+                                            </tr>
+                                            <tr>
+                                                <td>SKU</td>
+                                                <td><strong>:</strong></td>
+                                                <td>{{ productData.sku }}</td>
+                                            </tr>
+                                            <tr>
+                                                <td>External Link</td>
+                                                <td><strong>:</strong></td>
+                                                <td>{{ productData.external_link }}</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Description</td>
+                                                <td><strong>:</strong></td>
+                                                <td>
+                                                    <div class="pro_description marleft"></div>
 
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>Price</td>
-                                            <td><strong>:</strong></td>
-                                            <td>{{ productData.price }}</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Unit</td>
-                                            <td><strong>:</strong></td>
-                                            <td>{{ productData.unit }}</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Discount</td>
-                                            <td><strong>:</strong></td>
-                                            <td>{{ productData.discount }}</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Quantity</td>
-                                            <td><strong>:</strong></td>
-                                            <td>{{ productData.stock_qty }}</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Stock Minimum Quantity</td>
-                                            <td><strong>:</strong></td>
-                                            <td>{{ productData.stock_mini_qty }}</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Out Of Stock Status</td>
-                                            <td><strong>:</strong></td>
-                                            <td>
-                                                <span v-if="productData.stock_status === 1" class="marleft">2-3 Days</span>
-                                                <span v-if="productData.stock_status === 2" class="marleft">In Stock</span>
-                                                <span v-if="productData.stock_status === 3" class="marleft">Out Of Stock</span>
-                                                <span v-if="productData.stock_status === 4" class="marleft">Pre-Order</span>
-                                                <span v-if="productData.stock_status === 5" class="marleft">Others</span>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>&nbsp;</td>
-                                            <td>&nbsp;</td>
-                                            <td>&nbsp;</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Free Shipping</td>
-                                            <td><strong>:</strong></td>
-                                            <td>
-                                                <div v-if="productData.free_shopping === 0" class="marleft">No</div>
-                                                <div v-if="productData.free_shopping === 1" class="marleft">Yes</div>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>Flat Rate</td>
-                                            <td><strong>:</strong></td>
-                                            <td>
-                                                <div v-if="productData.flat_rate_status === 0" class="marleft">No</div>
-                                                <div v-if="productData.flat_rate_status === 1" class="marleft">Yes</div>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>Shipping Days</td>
-                                            <td><strong>:</strong></td>
-                                            <td>{{ productData.shipping_days }}</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Vat</td>
-                                            <td><strong>:</strong></td>
-                                            <td>{{ productData.vat }} </td>
-                                        </tr>
-                                        <tr>
-                                            <td>Vat Status</td>
-                                            <td><strong>:</strong></td>
-                                            <td>
-                                                <div v-if="productData.vat_status === 0" class="marleft">No</div>
-                                                <div v-if="productData.vat_status === 1" class="marleft">Yes</div>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>Tax</td>
-                                            <td><strong>:</strong></td>
-                                            <td>{{ productData.tax }} </td>
-                                        </tr>
-                                        <tr>
-                                            <td>Tax Status</td>
-                                            <td><strong>:</strong></td>
-                                            <td>
-                                                <div v-if="productData.tax_status === 0" class="marleft">No</div>
-                                                <div v-if="productData.tax_status === 1" class="marleft">Yes</div>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>&nbsp;</td>
-                                            <td>&nbsp;</td>
-                                            <td>&nbsp;</td>
-                                        </tr>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>Price</td>
+                                                <td><strong>:</strong></td>
+                                                <td>{{ productData.price }}</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Unit</td>
+                                                <td><strong>:</strong></td>
+                                                <td>{{ productData.unit }}</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Discount</td>
+                                                <td><strong>:</strong></td>
+                                                <td>{{ productData.discount }}</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Quantity</td>
+                                                <td><strong>:</strong></td>
+                                                <td>{{ productData.stock_qty }}</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Stock Minimum Quantity</td>
+                                                <td><strong>:</strong></td>
+                                                <td>{{ productData.stock_mini_qty }}</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Out Of Stock Status</td>
+                                                <td><strong>:</strong></td>
+                                                <td>
+                                                    <span v-if="productData.stock_status === 1" class="marleft">2-3
+                                                        Days</span>
+                                                    <span v-if="productData.stock_status === 2" class="marleft">In
+                                                        Stock</span>
+                                                    <span v-if="productData.stock_status === 3" class="marleft">Out Of
+                                                        Stock</span>
+                                                    <span v-if="productData.stock_status === 4"
+                                                        class="marleft">Pre-Order</span>
+                                                    <span v-if="productData.stock_status === 5"
+                                                        class="marleft">Others</span>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>&nbsp;</td>
+                                                <td>&nbsp;</td>
+                                                <td>&nbsp;</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Free Shipping</td>
+                                                <td><strong>:</strong></td>
+                                                <td>
+                                                    <div v-if="productData.free_shopping === 0" class="marleft">No</div>
+                                                    <div v-if="productData.free_shopping === 1" class="marleft">Yes
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>Flat Rate</td>
+                                                <td><strong>:</strong></td>
+                                                <td>
+                                                    <div v-if="productData.flat_rate_status === 0" class="marleft">No
+                                                    </div>
+                                                    <div v-if="productData.flat_rate_status === 1" class="marleft">Yes
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>Shipping Days</td>
+                                                <td><strong>:</strong></td>
+                                                <td>{{ productData.shipping_days }}</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Vat</td>
+                                                <td><strong>:</strong></td>
+                                                <td>{{ productData.vat }} </td>
+                                            </tr>
+                                            <tr>
+                                                <td>Vat Status</td>
+                                                <td><strong>:</strong></td>
+                                                <td>
+                                                    <div v-if="productData.vat_status === 0" class="marleft">No</div>
+                                                    <div v-if="productData.vat_status === 1" class="marleft">Yes</div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>Tax</td>
+                                                <td><strong>:</strong></td>
+                                                <td>{{ productData.tax }} </td>
+                                            </tr>
+                                            <tr>
+                                                <td>Tax Status</td>
+                                                <td><strong>:</strong></td>
+                                                <td>
+                                                    <div v-if="productData.tax_status === 0" class="marleft">No</div>
+                                                    <div v-if="productData.tax_status === 1" class="marleft">Yes</div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>&nbsp;</td>
+                                                <td>&nbsp;</td>
+                                                <td>&nbsp;</td>
+                                            </tr>
 
-                                        <tr>
-                                            <td>Manufacturer</td>
-                                            <td><strong>:</strong></td>
-                                            <td>{{ productData.manufacturer }}</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Categories</td>
-                                            <td><strong>:</strong></td>
-                                            <td>
-                                                <div class="output-container">
-                                                    <span class="show_categorys"></span>
+                                            <tr>
+                                                <td>Manufacturer</td>
+                                                <td><strong>:</strong></td>
+                                                <td>{{ productData.manufacturer }}</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Categories</td>
+                                                <td><strong>:</strong></td>
+                                                <td>
+                                                    <div class="output-container">
+                                                        <span class="show_categorys"></span>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>Download Link</td>
+                                                <td><strong>:</strong></td>
+                                                <td>{{ productData.download_link }}</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Status</td>
+                                                <td><strong>:</strong></td>
+                                                <td>
+                                                    <div v-if="productData.status === 0" class="marleft">Draft</div>
+                                                    <div v-if="productData.status === 1" class="marleft">Publish</div>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </div>
+
+                                    <div class="row">
+
+                                        <div class="col-md-3">
+                                            <div class="alert alert-primary" role="alert">
+                                                <center><small>Thumbnail Images</small></center>
+                                                <hr />
+                                                <img :src="productImg" alt="N/A"
+                                                    class="img-fluid max-width-100 img-thumbnail" />
+                                            </div>
+                                        </div>
+                                        <div class="col-md-9">
+                                            <div class="alert alert-primary" role="alert">
+                                                Additional Images
+                                                <hr />
+                                                <!-- productAddImgs -->
+                                                <div class="row">
+                                                    <div class="col-md-2" v-for="(data, index) in productAddImgs"
+                                                        :key="index">
+                                                        <img :src="data.images" alt="N/A"
+                                                            class="img-fluid max-width-100 img-thumbnail" />
+                                                    </div>
                                                 </div>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>Download Link</td>
-                                            <td><strong>:</strong></td>
-                                            <td>{{ productData.download_link }}</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Status</td>
-                                            <td><strong>:</strong></td>
-                                            <td>
-                                                <div v-if="productData.status === 0" class="marleft">Draft</div>
-                                                <div v-if="productData.status === 1" class="marleft">Publish</div>
-                                            </td>
-                                        </tr>
-                                    </table>
+
+                                            </div>
+                                        </div>
+
+                                    </div>
+
                                 </div>
+                                <!-- END -->
+
+                                <hr />
+                                <!-- start demo -->
 
                                 <div class="row">
-
-                                    <div class="col-md-3">
-                                        <div class="alert alert-primary" role="alert">
-                                            <center><small>Thumbnail Images</small></center>
-                                            <hr />
-                                            <img :src="productImg" alt="N/A" class="img-fluid max-width-100 img-thumbnail" />
-                                        </div>
+                                    <div class="col-md-4">
+                                        Color:
+                                        <select v-model="color" class="form-control w-100" @change="showAttrVal()">
+                                            <option disabled value="" selected>Select</option>
+                                            <option v-for="(item, index) in colorGroup" :key="index" :value="item.color"
+                                                :selected="item.selected">
+                                                {{ item.color }}
+                                            </option>
+                                        </select>
                                     </div>
-                                    <div class="col-md-9">
-                                        <div class="alert alert-primary" role="alert">
-                                            Additional Images
-                                            <hr />
-                                            <!-- productAddImgs -->
-                                            <div class="row">
-                                                <div class="col-md-2" v-for="(data, index) in productAddImgs" :key="index">
-                                                    <img :src="data.images" alt="N/A" class="img-fluid max-width-100 img-thumbnail" />
-                                                </div>
-                                            </div>
+                                    <div class="col-md-4">Size:
 
-                                        </div>
+                                        <button v-for="(varient, index) in varientList" :key="index"
+                                            @click="handleButtonClick(varient)">
+                                            {{ varient.size }}
+                                        </button>
+
                                     </div>
+                                    <div class="col-md-4">
+                                        Show<br/>
+                                        ID: {{ varientData.id }}<br/>
+                                        color: {{ varientData.color }}<br/>
+                                        Size: {{ varientData.size }}<br/>
+                                        sku: {{ varientData.sku }}<br/>
+                                        qty: {{ varientData.qty }}<br/>
+                                        price: {{ varientData.price }}<br/>
+                                        price: {{ varientData.image }}<br/>
+
+                                    </div>
+
+
 
                                 </div>
 
+
+                                <!-- END demo -->
+                                <hr />
                                 <div class="row" v-if="historVarient.length > 0">
                                     <hr />
                                     <div class="alert-dark border-0 bg-dark alert-dismissible fade show">
                                         <div class="text-white">Varient History</div>
                                     </div>
-                                    <!-- <div class="d-flex align-items-center my-3">
-                                        <div class="me-2" style="min-width: 100px;" >
-                                            <button type="button" class="btn-success w-100 my-2">Color</button>
-                                            <select name="" class="form-control" id="">
-                                                <option value="">White</option>
-                                                <option value="">Red</option>
-                                                <option value="">Green</option>
-                                                <option value="">Blue</option>
-                                            </select>
-                                        </div>
-                                        <div class="me-2" style="min-width: 100px;">
-                                            <button type="button" class="btn-success w-100 my-2">Size</button>
-                                            <select name="" class="form-control" id="">
-                                                <option value="">S</option>
-                                                <option value="">M</option>
-                                                <option value="">L</option>
-                                                <option value="">XL</option>
-                                            </select>
-                                        </div>
-                                    </div> -->
                                     <table class="table mb-0">
                                         <thead>
                                             <tr>
                                                 <th scope="col">#</th>
-                                                <th scope="col"></th>
+                                                <th scope="col">Color</th>
+                                                <th scope="col">Size</th>
                                                 <th scope="col">SKU</th>
                                                 <th scope="col">Qty</th>
                                                 <th scope="col">Price</th>
-                                                <th scope="col">Product Images</th>
+                                                <th scope="col">Images</th>
+                                                <th scope="col">Action</th>
+
 
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr v-for="(data, index) in historVarient" :key="data.varient_id">
+                                            <tr v-for="(data, index) in historVarient" :key="data.id">
                                                 <th scope="row">{{ index + 1 }}.</th>
-                                                <td>{{ data.path }}</td>
+                                                <td>{{ data.color }}</td>
+                                                <td>{{ data.size }}</td>
                                                 <td>{{ data.sku }}</td>
                                                 <td>{{ data.qty }}</td>
                                                 <td>{{ data.price }}</td>
-
-                                                <td><img :src="data.showfile" alt="N/A" style="height: 50px; width: 60px;" class="img-fluid max-width-100 img-thumbnail" />
+                                                <td><img :src="data.image" alt="N/A" style="height: 50px; width: 60px;"
+                                                        class="img-fluid max-width-100 img-thumbnail" />
                                                 </td>
-
+                                                <td><button type="button">EDIT</button><button
+                                                        type="button">DEL</button></td>
                                             </tr>
                                         </tbody>
                                     </table>
@@ -293,7 +333,7 @@
         </div>
         <!--end row-->
     </div>
-</div>
+    </div>
 </template>
 
 <script>
@@ -335,23 +375,32 @@ export default {
                 download_link: '',
 
             },
-            product_cat: [],
-            arr_his_val: [],
-            selectedItem: [],
-            historVarient: [{
-                varient_id: '',
+            varientData: {
+                id: '',
+                color: '',
+                size: '',
                 sku: '',
                 qty: '',
                 price: '',
-                file: ''
-            }],
+                image: '',
+            },
+            color_id: '',
+            product_cat: [],
+            arr_his_val: [],
+            attributedata: [],
+            selectedItem: [],
+            historVarient: [],
+            colorGroup: [],
             arr_val: [],
             attributeslist: [],
             attrValList: [],
             pro_arr_val_history: [],
+            attrData: [],
             productImg: "",
             productAddImgs: [],
+            varientList: [],
             notifmsg: '',
+            color: '',
             errors: {},
         }
     },
@@ -361,7 +410,32 @@ export default {
         // await this.fetchAttributeList();
     },
     methods: {
+        handleButtonClick(varient) {
+            this.varientData = varient;
+            // Handle button click event for the selected variant
+            console.log('Button clicked for color:', varient.color);
+            console.log('Button clicked for size:', varient.size);
+            console.log('Button clicked for qty:', varient.qty);
+            console.log('Button clicked for price:', varient.price);
+            console.log('Button clicked for image:', varient.image);
+        },
+        showAttrVal() {
+            this.varientList = [];
+            //console.log("value:" + this.color);
+            const color = this.color;
+            let product_id = this.$route.query.parameter;
 
+            this.$axios.get(`/product/checkAttribue`, {
+                params: {
+                    product_id: product_id,
+                    color: color
+                }
+            }).then(response => {
+                this.varientList = response.data.attribute;
+            });
+
+
+        },
         varientHistory() {
             let product_id = this.$route.query.parameter;
             this.$axios.get(`/product/getVarientHistory`, {
@@ -369,8 +443,8 @@ export default {
                     product_id: product_id
                 }
             }).then(response => {
-                //console.log(`Varient History: ${response.data}`);
-                this.historVarient = response.data;
+                this.historVarient = response.data.varient;
+                this.colorGroup = response.data.colorGroup;
             });
         },
 
