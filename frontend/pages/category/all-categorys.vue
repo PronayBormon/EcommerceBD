@@ -62,7 +62,7 @@
                         </div>
 
                         <div class="row">
-                            <div class="col-3 " v-for="category in categories" :key="category.id">
+                            <div class="col-md-3 col-6 " v-for="category in categories" :key="category.id">
                                 <h6>{{ category.name }}</h6>
                                 <ul v-for="childCategory in category.children" :key="childCategory.id">
                                     <li><a href="#" @click="redirectCategory(childCategory.slug)">{{ childCategory.name }}</a></li>

@@ -32,6 +32,7 @@ export default {
       { rel: "stylesheet", href: "/css/owl.carousel.min.css" },
       { rel: "stylesheet", href: "/css/owl.theme.default.min.css" },
       { rel: "stylesheet", href: "/css/customslider.css" },
+      { rel: 'stylesheet', href: 'https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css' },
     ],
     script: [
       { src: "https://code.jquery.com/jquery-3.7.0.js" },
@@ -56,6 +57,9 @@ export default {
       { src: "/js/addActiveClass.js" },
       { src: "/js/owl.carousel.min.js" },
       { src: "/js/owl_carousel_plugin.js" },
+      {
+        src: "https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js",
+      },
     ],
   },
   // Global CSS: https://go.nuxtjs.dev/config-css

@@ -66,7 +66,7 @@ export default {
 }
 
 .mainContent {
-    background-image: url('/images/ECOMMERCE-cover-you-bg.jpeg');
+    /* background-image: url('/images/ECOMMERCE-cover-you-bg.jpeg'); */
     background-size: contain;
     background-position: top center;
     background-repeat: no-repeat;

@@ -393,7 +393,7 @@ a {
   border-radius: 5px;
   transition: .4s all ease-in-out;
   margin: 5px 0px;
-  box-shadow: 0px 3px 10px #dddddd;
+  /* box-shadow: 0px 3px 10px #dddddd; */
   padding: 5px;
   /* max-height: 120px; */
 }
@@ -401,7 +401,8 @@ a {
 .cat_div img {
   border-radius: 5px;
   /*! max-height: 108px; */
-  height: 120px;
+  /*! height: 120px; */
+  /*! object-fit: contain; */
 }
 
 .cat_div p {
@@ -1217,7 +1218,7 @@ footer {
 }
 
 .product_grid p {
-  font-size: 14px;
+  font-size: 13px;
   color: #000;
 }
 
@@ -2994,7 +2995,8 @@ width: fit-content;
   border: none;
   outline: 0;
   font-family: 'Roboto';
-  font-size: 12px;
+  font-size: 14px;
+  padding: 0px 5px;
 }
 
 .bar_search button {

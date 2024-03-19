@@ -185,15 +185,14 @@
                                     <div class="col-xl-4 col-lg-4 col-md-4 col-sm-6 col-6" v-for="item in prouducts"
                                         :key="item.id">
                                         <div class="product_grid" v-if="prouducts.length > 0">
-                                            <nuxt-link :to="`/product-details/${item.pro_slug}`"
-                                                v-if="prouducts.length > 0">
+                                            <nuxt-link :to="`/product-details/${item.pro_slug}`">
                                                 <img :src="item.thumnail_img" class="img-fluid" loading="lazy">
                                             </Nuxt-link>
                                             <span v-if="item.free_shopping == 1">Free Delivery</span>
                                             <!-- <strong>Official Store </strong> -->
                                             <h1 class="mt-1">{{ item.product_name }}</h1>
                                             
-                                            <div  v-if="someValue !== null">
+                                            <div  >
                                                 <div class="d-flex align-items-center" v-if="item.discount_status == 1">
                                                     <!-- <p class="me-1" v-if="item.discount !== 0">${{ (price = item.price - (item.price * item.discount / 100)).toFixed(2) }}</p> -->
                                                     <p class="me-1" v-if="item.discount !== 0">${{ item.percentPrice }}</p>
@@ -290,7 +289,7 @@ export default {
             const existingItem = this.cart.find((item) => item.product.id === productId);
 
             if (existingItem) {
-                //existingItem.quantity += 1;
+                existingItem.quantity += 1;
             } else {
                 this.cart.push({
                     product: productToAdd,
@@ -343,11 +342,8 @@ export default {
                 } else {
                     console.error('Invalid quantity or price:', item.quantity, product.price);
                 }
-                // console.log(`Intermediate Subtotal: ${subtotal}`);
             });
-            //console.log(`Final Subtotal: ${subtotal}`);
             return this.subtotal = subtotal;
-            //return subtotal;
         },
         categoryGrid() {
             const slug = this.$route.query.slug;
@@ -374,7 +370,7 @@ export default {
                 this.prouducts = response.data.result;
                 this.pro_count = response.data.pro_count;
                 this.categoryname = response.data.categoryname;
-                console.log(response.data.result);
+                
 
             })
                 .catch(error => {

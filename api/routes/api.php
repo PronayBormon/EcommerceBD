@@ -263,9 +263,9 @@ Route::group([
     Route::get('brandproductList/{slug}', [UnauthenticatedController::class, 'getbrandproductList']);
     Route::get('speacialCategory', [UnauthenticatedController::class, 'getSpeacialCatList']);
     Route::get('checkAttribueDetails', [UnauthenticatedController::class, 'checkAttribueDetails']);
-
-
+    Route::get('products/search', [UnauthenticatedController::class, 'search']);
 });
+
 
 
 Route::group([

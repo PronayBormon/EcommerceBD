@@ -23,6 +23,7 @@
                         </div>
                         <div class="slider-container">
                             <div class="slider" ref="slider">
+                                <!-- {{ category.products }} -->
                                 <div class="slide" v-for="item in category.products" :key="item.product_id">
                                     <div class="product_grid text-start">
                                         <nuxt-link :to="`/product-details/${item.slug}`">
@@ -31,16 +32,24 @@
                                             <span v-if="item.free_shopping == 1">Free Delivery</span>
                                             <!-- <strong>Official Store </strong>` -->
                                             <h1>{{ item.name }}</h1>
-                                            <div v-if="item.discount_status == 1">
-                                                <p  v-if="item.discount !== 0">${{ item.price - (item.price * item.discount / 100) }}</p>
-                                                <p v-else >${{ item.price }}</p>
-                                                <p v-if="item.discount !== 0"><strike>${{ item.price }}</strike> <span>{{ item.discount }}%</span> </p>
+                                            <div v-if="item.discount_status == 1" class="d-flex aligh-items-center">
+                                                <p v-if="item.discount !== 0">${{ item.price - (item.price *
+                    item.discount / 100) }}</p>
+                                                <p v-else>${{ item.price }}</p>
+                                                <p class="ms-1" v-if="item.discount !== 0"><strike>${{ item.price
+                                                        }}</strike>
+                                                    <span>{{ item.discount }}%</span>
+                                                </p>
                                             </div>
-                                            <div v-else-if="item.discount_status == 2">
+                                            <div v-else-if="item.discount_status == 2"
+                                                class="d-flex aligh-items-center">
                                                 <p v-if="item.discount !== 0">${{ item.price - item.discount }}</p>
-                                                <p v-else >${{ item.price }}</p>
+                                                <p v-else>${{ item.price }}</p>
 
-                                                <p  v-if="item.discount !== 0"><strike>${{ item.price }}</strike> <span>${{ item.discount }}</span></p> 
+                                                <p class="ms-1" v-if="item.discount !== 0"><strike>${{ item.price
+                                                        }}</strike>
+                                                    <span>${{ item.discount }}</span>
+                                                </p>
                                             </div>
                                             <div v-else>
                                                 <p>${{ item.price }}</p>
@@ -59,20 +68,10 @@
                                             </div>
                                             <h6>(200)</h6>
                                         </div>
-                                        <button  type="button" class="btn_cart" @click="addToCart(item.id)">Add to
-                                                cart </button>
-                                            <!-- <button type="button" class="btn_sold">SoldOut</button> -->
+                                        <button type="button" class="btn_cart" @click="addToCart(item)">Add to cart
+                                        </button>
+                                        <!-- <button type="button" class="btn_sold">SoldOut</button> -->
                                     </div>
-
-                                    <!-- <nuxt-link :to="`/product-details/${item.slug}`">
-                                        <div class="sell_itm text-start" bis_skin_checked="1">
-                                            <img :src="item.thumnail_img" class="img-fluid" alt="product-image">
-                                            <span>{{ item.discount }}%</span>
-                                            <h5>{{ item.name }}</h5>
-                                            <h6> {{ item.price - (item.price * item.discount / 100) }} USD</h6>
-                                            <h6><strike> {{ item.price }} USD</strike></h6>
-                                        </div>
-                                    </Nuxt-link> -->
 
                                 </div>
                                 <div class="prev-slide" @click="scrollLeft(index)">&lsaquo;</div>
@@ -99,14 +98,18 @@ export default {
             categories: [],
             // slider: [],
             cart: [],
+            loading: false,
+            products_details: [],
+
             products: [],
-            product: [],
+            loading: false,
             categories: [],
             pro_count: 0,
             categoryname: '',
         };
     },
     async mounted() {
+
 
         this.calculateSubtotal();
         this.loadCart();
@@ -121,9 +124,6 @@ export default {
 
     methods: {
 
-        calculateSubtotal() {
-            return 0;
-        },
         cartItemCount() {
             let itemCount = 0;
             this.cart.forEach((item) => {
@@ -143,22 +143,41 @@ export default {
                 this.calculateSubtotal(); // Optionally recalculate subtotal after updating quantity
             }
         },
-        addToCart(productId) {
-            const productToAdd = this.products.find((products) => products.product_id === productId);
-            
-            console.log(productToAdd);
-            const existingItem = this.cart.find((item) => item.product.id === productId);
-
-            if (productToAdd) {
+        addToCart(product) {
+            console.log("Adding product to cart:", product);
+            const existingCartItemIndex = this.cart.findIndex(item => item.product.id === product.id);
+            if (existingCartItemIndex !== -1) {
+                console.log("Product already exists in cart, increasing quantity.");
+                this.cart[existingCartItemIndex].quantity++;
+            } else {
+                console.log("Product does not exist in cart, adding it.");
                 this.cart.push({
-                    product: productToAdd,
+                    product: product,
                     quantity: 1
                 });
             }
 
+            console.log("Updated cart:", this.cart);
             this.saveCart();
+            this.cartItemCount();
+            this.calculateSubtotal();
         },
 
+        removeFromCart(product) {
+            const index = this.cart.findIndex((item) => item.product.id === product.id);
+
+            if (index !== -1) {
+                if (this.cart[index].quantity > 1) {
+                    this.cart[index].quantity -= 1;
+                } else {
+                    this.cart.splice(index, 1);
+                }
+
+                this.saveCart();
+                this.calculateSubtotal();
+                this.cartItemCount();
+            }
+        },
         loadCart() {
             const savedCart = localStorage.getItem('cart');
 
@@ -174,6 +193,25 @@ export default {
             }, 2000);
 
         },
+
+        calculateSubtotal() {
+
+            // let subtotal = 0;
+            // this.cart.forEach((item) => {
+            //     const product = item.products;
+            //     console.log(`Quantity: ${item.quantity}, Price: ${product.price}`);
+            //     const priceAsNumber = parseFloat(product.price.replace(/[^\d.]/g, '')); //510;//product.price;
+            //     if (!isNaN(item.quantity) && !isNaN(priceAsNumber)) {
+            //         subtotal += item.quantity * priceAsNumber;
+            //     } else {
+            //         console.error('Invalid quantity or price:', item.quantity, product.price);
+            //     }
+            //     // console.log(`Intermediate Subtotal: ${subtotal}`);
+            // });
+            //console.log(`Final Subtotal: ${subtotal}`);
+            return 0;
+            //return subtotal;
+        },
         async fetchDefaultProduct() {
             this.loading = true;
             const category_id = 25;
@@ -184,10 +222,11 @@ export default {
                 }
             }).then(response => {
                 // console.log("======" + response.data.result);
-                this.products = response.data.result;
-                this.product = response.data.result;
+                this.products_details = response.data.result;
+                this.products = response.data.products;
                 this.categories = response.data.result;
-                console.log(response.data.result);
+                // console.log(this.products);
+
             })
                 .catch(error => {
                     // Handle error

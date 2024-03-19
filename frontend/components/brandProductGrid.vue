@@ -45,7 +45,7 @@
                                         </li>
                                     </ul>
                                 </div>
-                                <div class="delivery_list">
+                                <!-- <div class="delivery_list">
                                     <h6>Shipped from </h6>
                                     <ul>
                                         <li>
@@ -57,7 +57,7 @@
                                             </label>
                                         </li>
                                     </ul>
-                                </div>
+                                </div> -->
                                 <div class="brands_list">
                                     <h6>Brand</h6>
                                     <div class="search_side">
@@ -569,9 +569,11 @@ export default {
         },
         addToCart(productId) {
             const productToAdd = this.products.find((product) => product.id === productId);
-            //const existingItem = this.cart.find((item) => item.product.id === productId);
+            const existingItem = this.cart.find((item) => item.product.id === productId);
 
-            if(productToAdd){
+            if(existingItem){                
+                existingItem.quantity += 1;                
+            }else{
                 this.cart.push({
                     product: productToAdd,
                     quantity: 1
@@ -640,11 +642,7 @@ export default {
                     // console.log("=-===" + response.data.products);
                     this.products = response.data.products;
                     this.product  = response.data.products;
-
-
-
-                    
-                    
+                    // console.log(response.data.products);
                 })
             } catch (error) {
                 // Handle error

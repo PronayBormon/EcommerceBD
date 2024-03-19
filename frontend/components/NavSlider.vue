@@ -47,7 +47,7 @@
                         <ul>
                             <li>
                                 <Nuxt-link to="/category/all-categorys" class="d-flex justify-content-between">
-                                    <div><img src="images/cat_svg/more-100.png" alt="">Other Categories</div>
+                                    <div><img src="images/cat_svg/more-100.png" alt="">All Categories</div>
                                     <div><i class="fa-solid fa-angle-right"></i></div>
                                 </Nuxt-link>
                             </li>

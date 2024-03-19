@@ -116,7 +116,7 @@ class UnauthenticatedController extends Controller
         $topSellingProducts = OrderHistory::selectRaw('product_id, SUM(quantity) as total_quantity')->groupBy('product_id')->orderBy('total_quantity', 'desc')->limit(20)->get();
 
         foreach ($topSellingProducts as $product) {
-            $productDetails = Product::select('name', 'slug', 'thumnail_img', 'price', 'discount', 'flat_rate_price', 'free_shopping')
+            $productDetails = Product::select('name', 'slug', 'thumnail_img', 'price', 'discount','discount_status','vat_status','vat', 'flat_rate_price', 'free_shopping')
                 ->where('id', $product->product_id)
                 ->first();
 
@@ -126,8 +126,12 @@ class UnauthenticatedController extends Controller
 
             $product->price                 = $productDetails->price;
             $product->discount              = $productDetails->discount;
-            $product->flat_rate_price      = $productDetails->flat_rate_price;
+            $product->discount_status       = $productDetails->discount_status;
+            $product->flat_rate_price       = $productDetails->flat_rate_price;
+            $product->vat_status            = $productDetails->vat_status;
+            $product->vat                   = $productDetails->vat;
             $product->free_shopping         = $productDetails->free_shopping;
+
             // $product->name          = $productDetails->name;
             // $product->slug          = $productDetails->slug;
         }
@@ -151,8 +155,6 @@ class UnauthenticatedController extends Controller
 
     public function productCategory(Request $request)
     {
-
-
         $catIds = HomeAroductSliderCategory::where('status', 1)->pluck('category_id')->toArray();
         $commaSeparatedIds = implode(',', $catIds);
         // dd($commaSeparatedIds);
@@ -175,6 +177,7 @@ class UnauthenticatedController extends Controller
                     'product_id'        => $v->product_id,
                     'id'                => $v->product_id,
                     'name'              => substr($v->name, 0, 12) . '...',
+                    'product_name'      => substr($v->name, 0, 12) . '...',
                     'thumnail_img'      => !empty($v->thumnail_img) ? url($v->thumnail_img) : "",
                     'thumnail'          => !empty($v->thumnail_img) ? url($v->thumnail_img) : "",
                     'slug'              => $v->slug,
@@ -201,7 +204,10 @@ class UnauthenticatedController extends Controller
                 'products' => $products,
             ];
         }
+        // dd($products);
+        // return false;
         $data['result']  = !empty($categories) ? $categories : "";
+        $data['product']  = !empty($products) ? $products : "";
         return response()->json($data, 200);
     }
 
@@ -588,22 +594,23 @@ class UnauthenticatedController extends Controller
         foreach ($proCategorys as $key => $v) {
             $percentPrice = $v->price - ($v->price * $v->discount / 100);
             $dis_price = $v->price - $v->discount;
+            
             $result[] = [
-                'id'           => $v->id,
-                'product_id'   => $v->product_id,
-                'product_name' => $v->pro_name,
-                'category_id'  => $v->category_id,
-                'discount'     => $v->discount,
-                'price'        => number_format($v->price, 2),
-                'percentPrice' => number_format($percentPrice, 2),
-                'dis_price'    => number_format($dis_price, 2),
-                'thumnail_img' => url($v->thumnail_img),
-                'pro_slug'     => $v->pro_slug,
-                'discount_status'     => $v->discount_status,
-                'free_shopping'     => $v->free_shopping,
-                'description'     => $v->description,
-                'short_description'     => $v->short_description,
-                'stock_qty'     => $v->stock_qty,
+                'id'                    => !empty($v->id)? $v->id: '',
+                'product_id'            => !empty($v->product_id)? $v->product_id: '',
+                'product_name'          => !empty($v->pro_name)? $v->pro_name : '',
+                'category_id'           => !empty($v->category_id)? $v->category_id: '',
+                'discount'              => !empty($v->discount)? $v->discount: '',
+                'price'                 => number_format($v->price, 2),
+                'percentPrice'          => number_format($percentPrice, 2),
+                'dis_price'             => number_format($dis_price, 2),
+                'thumnail_img'          => !empty($v->thumnail_img)? url($v->thumnail_img) : "",
+                'pro_slug'              => !empty($v->pro_slug)? $v->pro_slug : "",
+                'discount_status'       => !empty($v->discount_status)? $v->discount_status: "",
+                'free_shopping'         => !empty($v->free_shopping)? $v->free_shopping: "",
+                'description'           => !empty($v->description)? $v->description: "",
+                'short_description'     => !empty($v->short_description)? $v->short_description : "",
+                'stock_qty'             => !empty($v->stock_qty)? $v->stock_qty : "",
 
             ];
         }
@@ -612,8 +619,6 @@ class UnauthenticatedController extends Controller
         $data['pro_count']     = count($result);
         $data['categoryname']  = $chkCategory->name;
 
-        // dd($product['pro_row']);
-        // return false;
         return response()->json($data, 200);
     }
     public function countrylist()
@@ -855,5 +860,30 @@ class UnauthenticatedController extends Controller
             return response()->json(['error' => 'Query exception occurred'], 500);
         }
 
+    }
+    public function search(Request $request)
+    {
+        $searchTerm = $request->input('term');
+        $categoryResults = Categorys::where('name', 'like', '%' . $searchTerm . '%')
+            ->take(20) // Limit the number of category results to 10
+            ->pluck('name', 'slug')
+            ->map(function ($name, $slug) {
+                return ['label' => Str::limit($name, 100), 'catslug' => $slug, 'type' => 'category'];
+            });
+        
+        $productResults = Product::join('produc_categories', 'product.id', '=', 'produc_categories.product_id')
+            ->join('categorys', 'produc_categories.category_id', '=', 'categorys.id')
+            ->where('product.name', 'like', '%' . $searchTerm . '%')
+            ->orWhere('categorys.name', 'like', '%' . $searchTerm . '%')
+            ->take(20) // Limit the number of product results to 10
+            ->pluck('product.name', 'product.slug')
+            ->map(function ($name, $slug) {
+                return ['label' => Str::limit($name, 80), 'slug' => $slug, 'type' => 'product'];
+            });
+        // Merge and limit the results
+        $mergedResults = $categoryResults->concat($productResults)->take(10);
+        
+        return response()->json($mergedResults);
+        
     }
 }
