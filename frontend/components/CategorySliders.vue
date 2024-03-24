@@ -21,20 +21,18 @@
                                 <img src="/loader/loader.gif" alt="Loader" />
                             </div>
                         </div>
-                        <div class="slider-container">
-                            <div class="slider" ref="slider">
-                                <!-- {{ category.products }} -->
-                                <div class="slide" v-for="item in category.products" :key="item.product_id">
+
+                        <div class="swiper mySwiper pro_slider">
+                            <div class="swiper-wrapper">
+                                <div class="swiper-slide" v-for="item in category.products" :key="item.product_id">
                                     <div class="product_grid text-start">
                                         <nuxt-link :to="`/product-details/${item.slug}`">
                                             <img :src="item.thumnail" class="img-fluid" loading="lazy">
 
                                             <span v-if="item.free_shopping == 1">Free Delivery</span>
-                                            <!-- <strong>Official Store </strong>` -->
                                             <h1>{{ item.name }}</h1>
                                             <div v-if="item.discount_status == 1" class="d-flex aligh-items-center">
-                                                <p v-if="item.discount !== 0">${{ item.price - (item.price *
-                    item.discount / 100) }}</p>
+                                                <p v-if="item.discount !== 0">${{ item.price - (item.price * item.discount / 100) }}</p>
                                                 <p v-else>${{ item.price }}</p>
                                                 <p class="ms-1" v-if="item.discount !== 0"><strike>${{ item.price
                                                         }}</strike>
@@ -53,7 +51,6 @@
                                             </div>
                                             <div v-else>
                                                 <p>${{ item.price }}</p>
-                                                <!-- <p><strike>${{ item.price }}</strike></p> -->
                                             </div>
 
                                         </Nuxt-link>
@@ -70,13 +67,11 @@
                                         </div>
                                         <button type="button" class="btn_cart" @click="addToCart(item)">Add to cart
                                         </button>
-                                        <!-- <button type="button" class="btn_sold">SoldOut</button> -->
                                     </div>
-
                                 </div>
-                                <div class="prev-slide" @click="scrollLeft(index)">&lsaquo;</div>
-                                <div class="next-slide" @click="scrollRight(index)">&rsaquo;</div>
                             </div>
+                            <div class="swiper-button-next"></div>
+                            <div class="swiper-button-prev"></div>
                         </div>
                     </div>
                 </div>
@@ -115,14 +110,50 @@ export default {
         this.loadCart();
         this.cartItemCount();
 
-        await this.initOwlCarousel();
+        
         await this.fetchDefaultProduct();
-        this.$nextTick(() => {
-            const slider = this.$refs.slider;
-        });
+        this.ssliderTest();
     },
 
     methods: {
+
+        ssliderTest() {
+            // Product slider 
+            const swiper = new Swiper('.pro_slider', {
+                slidesPerView: 6,
+                breakpoints: {
+                    0: {
+                        slidesPerView: 2
+                    },
+                    // when window width is >= 320px
+                    320: {
+                        slidesPerView: 2
+                    },
+                    // when window width is >= 480px
+                    480: {
+                        slidesPerView: 3
+                    },
+                    // when window width is >= 640px
+                    640: {
+                        slidesPerView: 3
+                    },
+                    768: {
+                        slidesPerView: 4
+                    },
+                    992: {
+                        slidesPerView: 6
+                    }
+                },
+                navigation: {
+                    nextEl: ".swiper-button-next",
+                    prevEl: ".swiper-button-prev",
+                },
+                pagination: {
+                    el: ".swiper-pagination",
+                    clickable: true,
+                },
+            });
+        },
 
         cartItemCount() {
             let itemCount = 0;
@@ -154,6 +185,21 @@ export default {
                 this.cart.push({
                     product: product,
                     quantity: 1
+                });
+                const Toast = Swal.mixin({
+                    toast: true,
+                    position: "top-end",
+                    showConfirmButton: false,
+                    timer: 3000,
+                    timerProgressBar: true,
+                    didOpen: (toast) => {
+                        toast.onmouseenter = Swal.stopTimer;
+                        toast.onmouseleave = Swal.resumeTimer;
+                    }
+                });
+                Toast.fire({
+                    icon: "success",
+                    title: "Product successfully Added to cart"
                 });
             }
 
@@ -195,22 +241,7 @@ export default {
         },
 
         calculateSubtotal() {
-
-            // let subtotal = 0;
-            // this.cart.forEach((item) => {
-            //     const product = item.products;
-            //     console.log(`Quantity: ${item.quantity}, Price: ${product.price}`);
-            //     const priceAsNumber = parseFloat(product.price.replace(/[^\d.]/g, '')); //510;//product.price;
-            //     if (!isNaN(item.quantity) && !isNaN(priceAsNumber)) {
-            //         subtotal += item.quantity * priceAsNumber;
-            //     } else {
-            //         console.error('Invalid quantity or price:', item.quantity, product.price);
-            //     }
-            //     // console.log(`Intermediate Subtotal: ${subtotal}`);
-            // });
-            //console.log(`Final Subtotal: ${subtotal}`);
             return 0;
-            //return subtotal;
         },
         async fetchDefaultProduct() {
             this.loading = true;
@@ -236,58 +267,6 @@ export default {
                 });;
 
         },
-
-
-        scrollLeft() {
-
-            if (this.currentSlide > 0) {
-                this.currentSlide--;
-                this.scrollToCurrentSlide();
-            }
-        },
-        scrollRight() {
-            if (this.currentSlide < this.products.length - 1) {
-                this.currentSlide++;
-                this.scrollToCurrentSlide();
-            }
-
-        },
-        scrollToCurrentSlide() {
-            const slidesContainer = this.$refs.slider;
-            slidesContainer.scrollLeft = this.currentSlide * (150 + 10); // Adjust for slide width and margin
-        },
-        async initOwlCarousel() {
-            const slider = this.$el.querySelector('.slider');
-            if (!slider) {
-                console.error('Slider element not found');
-                return;
-            }
-            let isDown = false;
-            let startX;
-            let scrollLeft;
-
-            slider.addEventListener('mousedown', (e) => {
-                isDown = true;
-                startX = e.pageX;
-                scrollLeft = slider.scrollLeft;
-            });
-
-            slider.addEventListener('mouseleave', () => {
-                isDown = false;
-            });
-
-            slider.addEventListener('mouseup', () => {
-                isDown = false;
-            });
-
-            slider.addEventListener('mousemove', (e) => {
-                if (!isDown) return;
-                e.preventDefault();
-                const x = e.pageX;
-                const walk = (x - startX) * 3; // Adjust this value for smoother scrolling
-                slider.scrollLeft = scrollLeft - walk;
-            });
-        },
     },
 };
 </script>
@@ -296,7 +275,6 @@ export default {
     font-size: 14px;
 
 }
-
 .catLink i {
     margin-left: 5px;
 }

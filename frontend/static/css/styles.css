@@ -2,7 +2,9 @@
   margin: 0px;
   padding: 0px;
 }
-
+html {
+  scroll-behavior: smooth;
+}
 body {
   overflow-x: hidden;
   /* font-family: serif; */
@@ -28,7 +30,9 @@ a {
   text-decoration: none;
   color: #989898;
 }
-
+.navLogo{
+  
+}
 /* top bannar  */
 .top_bannar {
   background-color: #9a38dd;
@@ -908,7 +912,7 @@ footer {
   z-index: 9;
   left: 8%;
   top: 70%;
-  box-shadow: 0 0 20px #dadada;
+  box-shadow: 0 0 20px #00000057;
 }
 
 .nav_bar:hover .nav_op {
@@ -1420,7 +1424,7 @@ width: fit-content;
 
   color: #fff;
 
-  padding: 0px 5px;
+  padding: 3px 5px;
 
   border-radius: 3px;
 
@@ -2603,7 +2607,7 @@ width: fit-content;
 .address p {}
 
 .address p {
-  font-size: 12px;
+  font-size: 13px;
   padding: 0px 10px;
   min-width: 90px;
 }
@@ -4056,7 +4060,7 @@ width: fit-content;
 }
 
 .add_address:hover {
-  background-color: rgb(204, 16, 16);
+  background-color: rgb(144, 12, 63);
   color: #fff;
 }
 

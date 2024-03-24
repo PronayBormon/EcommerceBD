@@ -35,6 +35,9 @@
   "CategorySliders": {
     "description": "Auto imported from components/CategorySliders.vue"
   },
+  "CategorySlidersTest": {
+    "description": "Auto imported from components/CategorySlidersTest.vue"
+  },
   "CategoryThree": {
     "description": "Auto imported from components/CategoryThree.vue"
   },
@@ -133,6 +136,9 @@
   },
   "TopSellingItemBackup": {
     "description": "Auto imported from components/TopSellingItemBackup.vue"
+  },
+  "TopSellingItemCopy": {
+    "description": "Auto imported from components/TopSellingItem_copy.vue"
   },
   "Tutorial": {
     "description": "Auto imported from components/Tutorial.vue"

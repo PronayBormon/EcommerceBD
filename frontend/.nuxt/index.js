@@ -18,6 +18,7 @@ import nuxt_plugin_axios_eca352ca from 'nuxt_plugin_axios_eca352ca' // Source: .
 import nuxt_plugin_eventbus_2faefc80 from 'nuxt_plugin_eventbus_2faefc80' // Source: ..\\plugins\\event-bus.js (mode: 'all')
 import nuxt_plugin_jquery_b59486bc from 'nuxt_plugin_jquery_b59486bc' // Source: ..\\plugins\\jquery.js (mode: 'client')
 import nuxt_plugin_vueowlcarousel_4da6f850 from 'nuxt_plugin_vueowlcarousel_4da6f850' // Source: ..\\plugins\\vue-owl-carousel.js (mode: 'client')
+import nuxt_plugin_scrolltop_88433868 from 'nuxt_plugin_scrolltop_88433868' // Source: ..\\plugins\\scroll-top.js (mode: 'client')
 import nuxt_plugin_auth_b5dad996 from 'nuxt_plugin_auth_b5dad996' // Source: .\\auth.js (mode: 'all')
 
 // Component: <ClientOnly>
@@ -234,6 +235,10 @@ async function createApp(ssrContext, config = {}) {
 
   if (process.client && typeof nuxt_plugin_vueowlcarousel_4da6f850 === 'function') {
     await nuxt_plugin_vueowlcarousel_4da6f850(app.context, inject)
+  }
+
+  if (process.client && typeof nuxt_plugin_scrolltop_88433868 === 'function') {
+    await nuxt_plugin_scrolltop_88433868(app.context, inject)
   }
 
   if (typeof nuxt_plugin_auth_b5dad996 === 'function') {

@@ -72,6 +72,7 @@ export default {
     "~/plugins/event-bus.js",
     { src: "~plugins/jquery.js", ssr: false }, // Import jQuery
     { src: "~plugins/vue-owl-carousel.js", ssr: false },
+    { src: '~/plugins/scroll-top.js', mode: 'client' },
   ],
   // Auto import components: https://go.nuxtjs.dev/config-components
   components: true,
@@ -105,8 +106,8 @@ export default {
   },
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
   axios: {
-    baseURL: "http://127.0.0.1:8000/api",
-    // baseURL: "https://api.ekroybd.com/api/",
+    // baseURL: "http://127.0.0.1:8000/api",
+    baseURL: "https://api.ekroybd.com/api/",
   },
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
@@ -123,4 +124,10 @@ export default {
       },
     },
   },
+  router: {
+    scrollBehavior(to, from, savedPosition) {
+      return { x: 0, y: 0 };
+    }
+  }
+
 };

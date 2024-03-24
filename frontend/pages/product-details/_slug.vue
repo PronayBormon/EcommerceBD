@@ -2,54 +2,7 @@
     <div>
         <LogoAndPayment />
         <!-- navbar section start here  -->
-        <section class="search_bar">
-            <div class="container">
-                <div class="row justify-content-between align-items-center">
-                    <div class="col-lg-3 col-md-4 col-4">
-                        <div class="logo nav_tab">
-                            <!-- mobile view sidebar  -->
-                            <button type="button" class="btn_menu mobile_view" data-bs-toggle="offcanvas"
-                                data-bs-target="#offcanvasExample" aria-controls="offcanvasExample"><i
-                                    class="fa-solid fa-bars-staggered"></i></button>
-                            <!-- sidebar offcanvas  -->
-                            <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasExample"
-                                aria-labelledby="offcanvasExampleLabel">
-                                <div class="offcanvas-header">
-                                    <button type="button" class="btn-close" data-bs-dismiss="offcanvas"
-                                        aria-label="Close"></button>
-                                    <h5 class="offcanvas-title" id="offcanvasExampleLabel">Ecommerce</h5>
-                                </div>
-                                <div class="offcanvas-body">
-                                    <!-- offf canvas start here  -->
-                                    <Common_MobileSidebar />
-                                </div>
-                            </div>
-                            <!-- mini tab view navbar here  -->
-                            <Common_MiniTabNavbar />
-                            <!-- nav end  -->
-                            <Nuxt-link to="/">Ecommerce <i class=" fa-regular fa-star"></i></Nuxt-link>
-                        </div>
-                    </div>
-                    <div class="col-6 desktop_view mini_tab_hide">
-                        <form action="" class="">
-                            <i class="fa-solid fa-magnifying-glass"></i>
-                            <input type="text" name="" id="" placeholder="Search Product" class="form-control"> <button
-                                type="button">Search</button>
-                        </form>
-                    </div>
-                    <!-- desktop_view options  -->
-                    <DesktopViewOption />
-                    <!-- mobile view options  -->
-                    <div class="col-4 ms-auto  mobile_view">
-                        <div class="mobile_nav_option">
-                            <a class="search_form"><i class="fa-solid fa-magnifying-glass"></i></a>
-                        </div>
-                    </div>
-                    <!-- search modal  -->
-                    <Common_MobileSearchProduct />
-                </div>
-            </div>
-        </section>
+        <navbarSecond />
 
         <section class="main_content">
             <div class="container">
@@ -106,7 +59,8 @@
                                     <div class="pro_info">
                                         <div class="badgeses">
                                             <div>
-                                                <span v-if="seller.business_name !== null">{{seller.business_name}}</span>
+                                                <span v-if="seller.business_name !== null">{{ seller.business_name
+                                                    }}</span>
                                                 <strong v-if="pro_row.free_shopping == 1">free delivery</strong>
                                                 <!-- <span style="background-color: red;"><a href="affiliate.html" style="color: #fff;">Click to Get Your affiliate link</a></span> -->
                                             </div>
@@ -138,23 +92,27 @@
                                             <h5 v-if="pro_row.discount_status == 2">
                                                 <div class="d-flex align-items-center">
                                                     Now: ${{ price = (pro_row.price - pro_row.discount) }}
-                                                    <p v-if="pro_row.vat_status == 0" style="color: gray;font-size: 12px;"> +Inclusing VAT.</p>
+                                                    <p v-if="pro_row.vat_status == 0"
+                                                        style="color: gray;font-size: 12px;"> +Inclusing VAT.</p>
                                                 </div>
                                                 <p class="ms-0 d-block"><strike v-if="pro_row.discount !== 0">Was: ${{
                                         pro_row.price }} </strike></p>
                                             </h5>
                                             <h5 v-else-if="pro_row.discount_status == 1">
                                                 <div class="d-flex align-items-center">
-                                                    Now: ${{ price = pro_row.price - (pro_row.price * pro_row.discount / 100) }} 
-                                                    <p v-if="pro_row.vat_status == 0" style="color: gray;font-size: 12px;"> +Inclusing VAT.</p>
+                                                    Now: ${{ price = pro_row.price - (pro_row.price * pro_row.discount /
+                                        100) }}
+                                                    <p v-if="pro_row.vat_status == 0"
+                                                        style="color: gray;font-size: 12px;"> +Inclusing VAT.</p>
                                                 </div>
                                                 <p class="ms-0 d-block"><strike v-if="pro_row.discount !== 0">Was: ${{
                                         pro_row.price }}</strike></p>
                                             </h5>
                                             <h5 v-else>${{ pro_row.price }}</h5>
 
-                                            <p v-if="pro_row.stock_status == 1 && pro_row.stock_qty >=1 ">In stock</p>
-                                            <p v-else-if="pro_row.stock_status == 2 && pro_row.stock_qty >=1">in stock</p>
+                                            <p v-if="pro_row.stock_status == 1 && pro_row.stock_qty >= 1">In stock</p>
+                                            <p v-else-if="pro_row.stock_status == 2 && pro_row.stock_qty >= 1">in stock
+                                            </p>
                                             <p v-else-if="pro_row.stock_status == 3">Out of stock</p>
                                             <p v-else-if="pro_row.stock_status == 4">Preorder</p>
                                             <p v-else-if="pro_row.stock_qty == 0">Out Of stock</p>
@@ -175,26 +133,29 @@
                                                 </h6>
                                             </div>
                                             <div class="d-flex align-items-end">
-                                                <div class="size_attr" v-if="colorGroup">
+                                                <!-- <div class="size_attr" v-if="colorGroup !== null">
                                                     <label for="">Color:</label>
-                                                    <select v-model="color" class="form-control w-100" @change="showAttrVal()">
+                                                    <select v-model="color" class="form-control w-100"
+                                                        @change="showAttrVal()">
                                                         <option disabled value="" selected>Select</option>
-                                                        <option v-for="(item, index) in colorGroup" :key="index" :value="item.color"
-                                                            :selected="item.selected">
+                                                        <option v-for="(item, index) in colorGroup" :key="index"
+                                                            :value="item.color" :selected="item.selected">
                                                             {{ item.color }}
                                                         </option>
                                                     </select>
-                                                </div>
+                                                </div> -->
                                                 <!-- {{ attibute }} -->
                                                 <!-- ===================================  -->
-                                                <div class="size_attr" v-if="varientList !== null">
+                                                <!-- <div class="size_attr" v-if="varientList !== ''">
                                                     <label for="">Size:</label>
-                                                    <select  required class="form-control">
+                                                    <select v-model="size" required class="form-control">
                                                         <option disabled value="" selected>Select</option>
-                                                        <option v-for="(varient, index) in varientList" :key="index" @click="handleButtonClick(varient)" :value="varient.size"> {{varient.size}}</option>
+                                                        <option v-for="(varient, index) in varientList" :key="index"
+                                                            @click="handleButtonClick(varient)" :value="varient.size">
+                                                            {{ varient.size }}</option>
                                                     </select>
-                                                </div>
-                                                <div class="number">
+                                                </div> -->
+                                                <div class="number my-1">
                                                     <span class="minus" @click="decrement">-</span>
                                                     <input v-model="updatedQuantity" type="number"
                                                         @input="sanitizeInput" />
@@ -203,14 +164,27 @@
                                                 <!-- ==============================  -->
                                             </div>
 
-                                            <button type="button" class="btn_cart"
-                                                style="visibility: unset; max-width: 120px;"
-                                                @click="addToCart(pro_row.id)"><i
-                                                    class="fa-solid fa-cart-shopping"></i>Add to Cart </button>
+                                            <div class="d-flex align-items-center">
+                                                <button type="button" class="btn_cart "
+                                                    style="visibility: unset; max-width: 120px;"
+                                                    @click="addToCart(pro_row.id)"><i
+                                                        class="fa-solid fa-cart-shopping"></i>Add to Cart </button>
+                                                <!-- <div class="size_attr" v-if="colorGroup">
+                                                    <label for="">Warrenty:</label>
+                                                    <select v-model="color" class="form-control w-100"
+                                                        @change="showAttrVal()">
+                                                        <option disabled value="" selected>Select</option>
+                                                        <option v-for="(item, index) in colorGroup" :key="index"
+                                                            :value="item.color" :selected="item.selected">
+                                                            {{ item.color }}
+                                                        </option>
+                                                    </select>
+                                                </div> -->
+                                            </div>
                                             <p v-if="pro_row.free_shopping !== 1" class="m-0">Delivery by <strong>{{
                                         futureDate }}</strong></p>
                                             <p v-if="pro_row.free_shopping == 1" class="m-0">Free Delivery by <strong>{{
-                                                    futureDate }}</strong></p>
+                                        futureDate }}</strong></p>
                                         </div>
                                         <div class="shortDescPro">
 
@@ -437,7 +411,7 @@
                 </div>
             </div>
         </section>
-        <Footer/>
+        <Footer />
 
     </div>
 </template>
@@ -447,8 +421,10 @@ import $ from 'jquery';
 import Common_MobileSidebar from '~/components/Common_MobileSidebar.vue';
 import Common_MiniTabNavbar from '~/components/Common_MiniTabNavbar.vue';
 import Common_MobileSearchProduct from '~/components/Common_MobileSearchProduct.vue';
+import navbarSecond from '../../components/navbarSecond.vue';
 export default {
     components: {
+        navbarSecond,
         Common_MobileSidebar,
         Common_MiniTabNavbar,
         Common_MobileSearchProduct,
@@ -495,6 +471,8 @@ export default {
             historVarient: [],
             colorGroup: [],
             varientList: [],
+            color: '',
+            size: '',
 
         };
     },
@@ -510,8 +488,8 @@ export default {
             return this.$auth.loggedIn;
         },
     },
-    methods: {        
-        
+    methods: {
+
         handleButtonClick(varient) {
             this.varientData = varient;
             this.pro_row.price = varient.price;
@@ -647,10 +625,14 @@ export default {
         },
         addToCart(productId) {
             const productToAdd = this.product.find((product) => product.id === productId);
+
+            productToAdd.color = this.color;
+            productToAdd.size = this.size;
+
             const existingItem = this.cart.find((item) => item.product.id === productId);
 
-            //console.log("------" + productToAdd.product_name);
-            //return false;
+            // console.log("------" + productToAdd.color+"------" + productToAdd.size);
+            // //return false;
 
             if (existingItem) {
                 existingItem.quantity += 1;

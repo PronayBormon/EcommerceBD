@@ -154,10 +154,9 @@
                                                                 <tr v-for="productCats in productCat"
                                                                     :key="productCats.id">
                                                                     <td>{{ productCats.name }}</td>
-                                                                    <td>{{ productCats.status === 1 ? 'Active' :
-                                'Inactive' }}</td>
+                                                                    <td>{{ productCats.status === 1 ? 'Active' : 'Inactive' }}</td>
                                                                     <td><button
-                                                                            @click="removeProSliderCat(productCats.id)">DEL</button>
+                                                                            @click="removeProSliderCat(productCats.id)" class="btn-danger btn">DEL</button>
                                                                     </td>
                                                                 </tr>
                                                             </tbody>
@@ -224,7 +223,7 @@
                                                                 </tr>
                                                             </thead>
                                                             <tbody>
-                                                                <tr v-for="productCats in speacialCat"
+                                                                <tr  v-for="productCats in speacialCat"
                                                                     :key="productCats.id">
                                                                     <td>{{ productCats.name }}</td>
                                                                     <td>
@@ -233,13 +232,13 @@
                                                                     </td>
                                                                     <td>
                                                                         <span v-if="productCats.speacial_status === 1"
-                                                                            class='badge bg-success'>Active</span>
+                                                                            class='badge bg-success'>Speacial</span>
                                                                         <span v-else
-                                                                            class='badge bg-danger'>Inactive</span>
+                                                                            class='badge bg-danger'>Normal</span>
                                                                     </td>
-                                                                    <!-- <td><button
-                                                                            @click="editSPCat(productCats.id)">Edit</button>
-                                                                    </td> -->
+                                                                    <td><button
+                                                                            @click="editSPCat(productCats)" class="btn btn-warning">Edit</button>
+                                                                    </td>
                                                                 </tr>
                                                             </tbody>
                                                         </table>
@@ -359,7 +358,7 @@ export default {
             },
             speacilCatInsert: {
                 speacialCat_id: '',
-                speacial_status: '',
+                speacial_status: '0',
                 file: '',
             },
 
@@ -389,8 +388,16 @@ export default {
 
     },
     methods: {
-
-
+        editSPCat(productCats){
+            this.speacilCatInsert.speacialCat_id = productCats.id;
+            this.speacilCatInsert.file = productCats.image;
+            this.speacilCatInsert.speacial_status = productCats.speacial_status;
+            // console.log(id);
+            // this.$axios.post('/category/speacialCatEdit', { id: id })
+            //     .then(response => {
+            //         console.log(response.data);
+            //     })
+        },
         onFileSelected() {
             this.file = this.$refs.file.files[0];
             this.images_ = URL.createObjectURL(this.file);

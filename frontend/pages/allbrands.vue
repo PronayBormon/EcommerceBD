@@ -2,7 +2,7 @@
     <div>
         <LogoAndPayment />
         <!-- navbar section start here  -->
-        <navbarSecond/>
+        <navbarSecond />
         <!-- Main section start here  -->
 
         <section class="container">
@@ -15,11 +15,12 @@
                 <div class="col-md-12">
                     <!-- {{ brands }} -->
                     <div class="brandContainer">
-                        <a v-for="(brand, index) in brands" :key="index"   @click="redirectbrandlist(brand.slug)"  class="brandBox">
+                        <a v-for="(brand, index) in brands" :key="index" @click="redirectbrandlist(brand.slug)"
+                            class="brandBox">
                             <!-- <img :src="`/images/brands/brand(${brand.id}).webp`" :alt="brand.name" class="img-fluid"> -->
                             <img :src="brand.image" :alt="brand.name" class="img-fluid">
                             <p>{{ brand.name }}</p>
-                    </a>
+                        </a>
                     </div>
                 </div>
             </div>
@@ -32,7 +33,7 @@
         <Footer />
     </div>
 </template>
-    
+
 <script>
 import $ from 'jquery';
 import navbarSecond from '~/components/navbarSecond.vue';
@@ -73,13 +74,11 @@ export default {
 
             } catch (error) {
                 // Handle error
-            } finally {
-                this.loading = false; // Hide loader after response
-            }
+            } 
+            
         },
     },
 }
 </script>
 
 <style></style>
-    

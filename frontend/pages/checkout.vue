@@ -2,54 +2,7 @@
     <div>
         <LogoAndPayment />
         <!-- navbar section start here  -->
-        <section class="search_bar">
-            <div class="container">
-                <div class="row justify-content-between align-items-center">
-                    <div class="col-lg-3 col-md-4 col-4">
-                        <div class="logo nav_tab">
-                            <!-- mobile view sidebar  -->
-                            <button type="button" class="btn_menu mobile_view" data-bs-toggle="offcanvas"
-                                data-bs-target="#offcanvasExample" aria-controls="offcanvasExample"><i
-                                    class="fa-solid fa-bars-staggered"></i></button>
-                            <!-- sidebar offcanvas  -->
-                            <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasExample"
-                                aria-labelledby="offcanvasExampleLabel">
-                                <div class="offcanvas-header">
-                                    <button type="button" class="btn-close" data-bs-dismiss="offcanvas"
-                                        aria-label="Close"></button>
-                                    <h5 class="offcanvas-title" id="offcanvasExampleLabel">Ecommerce</h5>
-                                </div>
-                                <div class="offcanvas-body">
-                                    <!-- offf canvas start here  -->
-                                    <Common_MobileSidebar />
-                                </div>
-                            </div>
-                            <!-- mini tab view navbar here  -->
-                            <Common_MiniTabNavbar />
-                            <!-- nav end  -->
-                            <Nuxt-link to="/">Ecommerce <i class=" fa-regular fa-star"></i></Nuxt-link>
-                        </div>
-                    </div>
-                    <div class="col-6 desktop_view mini_tab_hide">
-                        <form action="" class="">
-                            <i class="fa-solid fa-magnifying-glass"></i>
-                            <input type="text" name="" id="" placeholder="Search Product" class="form-control"> <button
-                                type="button">Search</button>
-                        </form>
-                    </div>
-                    <!-- desktop_view options  -->
-                    <DesktopViewOption />
-                    <!-- mobile view options  -->
-                    <div class="col-4 ms-auto  mobile_view">
-                        <div class="mobile_nav_option">
-                            <a class="search_form"><i class="fa-solid fa-magnifying-glass"></i></a>
-                        </div>
-                    </div>
-                    <!-- search modal  -->
-                    <Common_MobileSearchProduct />
-                </div>
-            </div>
-        </section>
+        <navbarSecond />
         <!-- Main section start here  -->
 
         <section class="main_content">
@@ -60,83 +13,31 @@
                         <div class="col-md-8">
 
                             <div class="delivery_addreess">
-                                <h6>Delivery To : Jhone Due </h6>
+                                <h6>Delivery To : {{ insertdata.name }} </h6>
                                 <div class="address">
-                                    <div class="d-flex align-items-center">
+                                    <!-- <div class="d-flex align-items-center">
                                         <span>Home</span>
-                                        <p>User Name </p>
+                                        <p>{{ insertdata.name }}</p>
+                                    </div> -->
+                                    <div>
+                                        <p v-if="getDatas.address_1 !== null">{{
+                    shipp_address }} </p>
+                                        <p v-else>Please add your address</p>
                                     </div>
                                     <div>
-                                        <p>
-                                            ga-129, Hajari bari road, Mohakhali, Dhaka, Mohakhali TB Gate Jame Mosjid,
-                                            Dhaka - North, Dhaka, Oposite side of titumir college
-                                        </p>
-                                    </div>
-                                    <div>
-                                        <a href="#" class="chage_Daddress">Change</a>
-                                        <button type="button" class="add_address"> <i class="fa-solid fa-plus"></i>Add
-                                            New address</button>
-                                        <!-- address modal here  -->
-                                        <div class="modal_address_here address_div">
-                                            <div class="address_form_modal">
-                                                <div class="d-flex justify-content-between">
-                                                    <p>Add New address</p>
-                                                    <button type="button" class="btn-close btn_address_close"></button>
-                                                </div>
-                                                <form action="">
-                                                    <div class="adds_type_radio">
-                                                        <div class="adds_box">
-                                                            <label for="adds_type1">Home</label>
-                                                            <input type="radio" id="adds_type1" name="adds_type" checked
-                                                                class="red">
-                                                        </div>
-                                                        <div class="adds_box">
-                                                            <label for="adds_type">Office </label>
-                                                            <input type="radio" id="adds_type" name="adds_type"
-                                                                class="">
-                                                        </div>
-                                                    </div>
-                                                    <div>
-                                                        <label for="City">City </label>
-                                                        <select class="form-control" name="" id="city">
-                                                            <option value="" selected disabled>Select Your City</option>
-                                                            <option value="">Dhaka</option>
-                                                            <option value="">Tangail</option>
-                                                            <option value="">Gazipur</option>
-                                                            <option value="">Manikganj</option>
-                                                        </select>
-                                                    </div>
-                                                    <div>
-                                                        <label for="area">Area</label>
-                                                        <input type="text" name="area" id="area" class="form-control">
-                                                    </div>
-                                                    <div>
-                                                        <label for="">Address </label>
-                                                        <input type="text" class="form-control">
-                                                    </div>
-                                                    <div>
-                                                        <label for="">Land Mark </label>
-                                                        <input type="text" class="form-control">
-                                                    </div>
-                                                    <div class="">
-                                                        <label for="">Phone </label> <br>
-                                                        <input type="text" class="form-control mobile_code"
-                                                            placeholder="Phone Number" name="name">
-                                                    </div>
-                                                    <div>
-                                                        <button type="button" class="btn_cart mt-3"
-                                                            style="visibility: unset;">Save</button>
-                                                    </div>
-
-                                                </form>
-                                            </div>
-
-
-                                        </div>
-                                        <!-- address modal end here  -->
+                                        <select v-if="getDatas.address_1 !== null" v-model="shipp_address"
+                                            @change="updateSelectedData()"
+                                            style="padding: 3px; font-size: 14px; height: 30px;">
+                                            <option v-for="(data, index) in dataArray" :key="index" :value="data">
+                                                Address {{ index + 1 }}</option>
+                                        </select>
+                                        <!-- <a href="#" class="chage_Daddress">Change</a> -->
+                                        <nuxt-link to="/user/user-profile" class="add_address" type="button"><i
+                                                class="fa-solid fa-plus"></i>Add
+                                            New address</nuxt-link>
                                     </div>
                                     <!-- modal start  -->
-                                    <div class="modal_checkoutpage billing">
+                                    <div class="modal_checkoutpage billing ">
                                         <div class="modal_box">
                                             <div class="row">
                                                 <div class="col-6 ms-auto text-end"><button
@@ -155,14 +56,14 @@
                                     </div>
                                     <!-- modal end  -->
                                 </div>
-                                <div class="pickUp_address">
-                                    <h6>Collect your parcel from the nearest Ecommerce Pick-up Point with a reduced
+                                <div class="pickUp_address d-none">
+                                    <!-- <h6>Collect your parcel from the nearest Ecommerce Pick-up Point with a reduced
                                         shipping fee</h6>
                                     <p>20 suggested collection point(s) nearbyCheck <a href="#"
-                                            class="btn_picup">Pick-up Points</a></p>
+                                            class="btn_picup">Pick-up Points</a></p> -->
 
                                     <!-- modal start  -->
-                                    <div class="modal_checkoutpage pickup_point">
+                                    <!--  
                                         <div class="modal_box">
                                             <div class="row">
                                                 <div class="col-6 ms-auto text-end"><button
@@ -178,77 +79,95 @@
                                                 <button class="btn_confirm mt-2">Submit</button>
                                             </form>
                                         </div>
-                                    </div>
+                                    </div> -->
                                     <!-- modal end  -->
                                 </div>
-                                <p>Bill to same address <a href="#" class="billing_address">Edit</a></p>
-                                <!-- modal start  -->
-                                <div class="modal_checkoutpage bill_address">
-                                    <div class="modal_box">
-                                        <div class="row">
-                                            <div class="col-6 ms-auto text-end"><button class="btn_edit modal_close"><i
-                                                        class="fa-solid fa-x"></i></button></div>
-                                        </div>
-                                        <form action="">
-                                            <select name="" class="form-control">
-                                                <option value="" disabled selected> Select One </option>
-                                                <option value="">Address 1</option>
-                                                <option value="">Address 2</option>
-                                            </select>
-                                            <button class="btn_confirm mt-2">Submit</button>
-                                        </form>
-                                    </div>
-                                </div>
-                                <!-- modal end  -->
-                                <p>Email to useremail@mail.com <a href="../user/user-profile.html">Edit</a></p>
+                                <p>Bill to:{{ }}
+                                    <select v-if="getDatas.address_1 !== null"
+                                        v-model="billAddress" style="padding: 3px; font-size: 14px; height: 30px;">
+                                        <option v-for="(data, index) in dataArray" :key="index" :value="data">
+                                            Address {{ index + 1 }}</option>
+                                    </select>
+                                    <nuxt-link to="/user/user-profile" v-else class="btn_edit">Add address</nuxt-link>
+                                </p>
                             </div>
 
                             <div class="items_details">
-                                <h5>Official Store</h5>
-                                <div class="row"  v-for="item in cart" :key="item.product.id">
-                                    <div class="col-8">
-                                        <!-- {{ cart }} -->
-                                        <div class="item">
-                                            <nuxt-link :to="`/product-details/${item.product.pro_slug}`" class="d-flex align-items-center text-dark" style="max-width: 70%;">
-                                                <div><img :src="item.product.thumnail_img" class="img-fluid" alt=""></div>
-                                                <div class="" style="width: 45%;">
-                                                    <h5>{{ item.product.product_name }}</h5>
-                                                    <p>No Brand, Color Family: Red </p>
-                                                </div>
-                                            </nuxt-link>
+                                <h5>Items</h5>
+                                <div class="checkItem" v-for="item in cart" :key="item.product.id">
+                                    <div class="row">
+                                        <div class="col-md-8">
+                                            <!-- {{ cart }} -->
+                                            <div class="item">
+                                                <nuxt-link style="max-width: 320px; min-width: 290px;"
+                                                    :to="`/product-details/${item.product.pro_slug}`"
+                                                    class="d-flex align-items-center text-dark">
+                                                    <div><img :src="item.product.thumnail_img" class="img-fluid" alt="">
+                                                    </div>
+                                                    <div class="" style="width: 45%;">
+                                                        <h5><b>{{ item.product.product_name }} </b></h5>
+                                                        <p>
+                                                            <span v-if="item.product.brand_name" class="p-0 m-0">{{
+                    item.product.brand_name }}</span>
+                                                            <span v-else class="p-0 m-0">No Brand</span>
+                                                            <span
+                                                                v-if="item.product.color !== null && item.product.color !== '' && item.product.color !== undefined"
+                                                                class="p-0 m-0">,
+                                                                Color: <b>{{ item.product.color }}</b></span>
+                                                            <span
+                                                                v-if="item.product.size !== null && item.product.size !== '' && item.product.size !== undefined"
+                                                                class="p-0 m-0">,
+                                                                Size:<b>{{ item.product.size }}</b> </span>
+                                                        </p>
+                                                    </div>
+                                                </nuxt-link>
                                                 <div class="">
-                                                    <span>QTY: {{ item.quantity }}</span>
+                                                    <span class="d-flex align-items-center"
+                                                        style="min-width: 80px;">QTY: {{ item.quantity }}</span>
                                                 </div>
                                                 <div>
-                                                    <button type="button" @click="removeFromCart(item.product)"><i class="fa-solid fa-trash-can"></i></button>
+                                                    <button type="button" @click="removeFromCart(item.product)"><i
+                                                            class="fa-solid fa-trash-can"></i></button>
                                                 </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-4">
-                                        <div class="d-flex justify-content-end align-items-center">
-                                            <span class="badges">350TK -75%</span>
-                                            <p>${{ item.product.price }}</p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="sub_total">
-                                    <div class="row">
-                                        <div class="col-8">
-                                            <div class="delivery_section">
-                                                <h5>standard delivery | 55TK</h5>
-                                                <p>Receive by 19 Aug - 23 Aug</p>
                                             </div>
                                         </div>
-                                        <div class="col-4">
-                                            <div class="s_item_sub">
-                                                <p>1 item(s). Subtotal: 143Tk</p>
-                                                <span>Save 262 TK</span>
+                                        <div class="col-md-4">
+                                            <div class="d-flex justify-content-end align-items-center">
+                                                <span class="badges px-1"
+                                                    v-if="item.product.discount_status == 1 && item.product.discount !== 0">{{
+                    item.product.discount }}%</span>
+                                                <span class="badges px-1"
+                                                    v-if="item.product.discount_status == 2 && item.product.discount !== 0">${{
+                    item.product.discount }}</span>
+                                                <p><del class="me-1" v-if="item.product.discount !== 0">${{
+                    item.product.price }}</del>${{ item.product.last_price }}</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="sub_total">
+                                        <div class="row">
+                                            <div class="col-8">
+                                                <div class="delivery_section">
+                                                    <h5>Standard delivery | <span
+                                                            v-if="item.product.flat_rate_price">${{
+                    item.product.flat_rate_price }}</span> <span v-else>Free
+                                                            Delivery</span> </h5>
+                                                    <p>Receive by {{ calculateShippingDate(item.product.shipping_days)
+                                                        }}</p>
+                                                </div>
+                                            </div>
+                                            <div class="col-4">
+                                                <div class="s_item_sub">
+
+                                                    <p>{{ item.quantity }} item(s). Subtotal: ${{ getPrice(item) }}</p>
+                                                    <span>Save: ${{ getSave(item) }}</span>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            <div class="items_details">
+                            <!-- <div class="items_details">
                                 <h5>Happy Shopping</h5>
                                 <div class="row">
                                     <div class="col-12">
@@ -260,7 +179,7 @@
                                                 </div>
                                             </div>
                                         </center>
-                                        <!-- start -->
+                                        start
 
                                         <table class="table w-100" style="width: 100%; font-size: 12px;">
                                             <thead>
@@ -275,7 +194,8 @@
                                             <tbody>
                                                 <tr v-for="item in cart" :key="item.product.id">
                                                     <td>
-                                                        <nuxt-link :to="`/product-details/${item.product.pro_slug}`">{{ item.product.product_name }}</nuxt-link>
+                                                        <nuxt-link :to="`/product-details/${item.product.pro_slug}`">{{
+                    item.product.product_name }}</nuxt-link>
                                                     </td>
                                                     <td><img :src="item.product.thumnail_img" class="img-thumbnail"
                                                             style="width: 50px; height:10%;"></td>
@@ -287,7 +207,7 @@
                                             </tbody>
                                         </table>
 
-                                        <!-- end  -->
+                                        end 
 
                                     </div>
 
@@ -298,12 +218,12 @@
                                         <div class="col-12">
                                             <div class="s_item_sub">
                                                 <p>{{ itemCount }} item(s). Subtotal: {{ subtotal }} TK</p>
-                                                <!-- <span>Save 262 TK</span> -->
+                                                <span>Save 262 TK</span>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                            </div> -->
                             <!-- <div class="delivery_addreess">
                                 <strong>BILLING DETAILS</strong>
                                 <div v-if="errors" style="text-align: center;">
@@ -493,15 +413,15 @@
                                             </tr>
                                             <tr>
                                                 <td><strong>Items Total</strong></td>
-                                                <td>{{ itemCount }}</td>
+                                                <td class="text-end">${{ sumOfLastPrices }}</td>
                                             </tr>
                                             <tr>
                                                 <td><strong>Delivery Fee </strong></td>
-                                                <td>100 TK</td>
+                                                <td class="text-end">${{sumOfFlatRatePrices}}</td>
                                             </tr>
                                             <tr>
                                                 <td><strong>Total Payment</strong></td>
-                                                <td>{{ subtotal + 100 }} TK</td>
+                                                <td class="text-end">${{ totalSum }}</td>
                                             </tr>
                                         </tbody>
                                     </table>
@@ -538,10 +458,12 @@ import Common_MobileSidebar from '~/components/Common_MobileSidebar.vue';
 import Common_MiniTabNavbar from '~/components/Common_MiniTabNavbar.vue';
 import Common_MobileSearchProduct from '~/components/Common_MobileSearchProduct.vue';
 import RecentView from '~/components/RecentView.vue';
+import navbarSecond from '../components/navbarSecond.vue';
 
 export default {
     middleware: "auth",
     components: {
+        navbarSecond,
         Common_MobileSidebar,
         Common_MiniTabNavbar,
         Common_MobileSearchProduct,
@@ -552,6 +474,28 @@ export default {
     },
     data() {
         return {
+            billAddress: '',
+            shipp_address: null,
+            userdata: {
+                name: '',
+                email: '',
+                phone_number: '',
+                gender: '',
+                birthdate: '',
+                address: '',
+                address_1: '',
+                country_1: '',
+                landmark_1: '',
+                city_1: '',
+                phone_1: '',
+                address_2: '',
+                country_2: '',
+                landmark_2: '',
+                city_2: '',
+                phone_2: '',
+                created_at: null,
+            },
+            getDatas: [],
             insertdata: {
                 name: '',
                 address: '',
@@ -566,6 +510,18 @@ export default {
                 shipper_address: '',
                 shipper_country: '',
                 shipper_city: '',
+
+                address_1: '',
+                country_1: '',
+                city_1: '',
+                landmark_1: '',
+
+                address_2: '',
+                country_2: '',
+                city_2: '',
+                landmark_2: '',
+
+                addresses: [],
 
             },
             coupons: {
@@ -584,6 +540,10 @@ export default {
             updatedQuantity: 0,
             customer_id: '',
             coupon: '',
+            dataArray: [],
+            sumOfLastPrices: 0,
+            sumOfFlatRatePrices: 0,
+            totalSum: 0,
         };
     },
 
@@ -605,6 +565,9 @@ export default {
         this.cartItemCount();
         this.subtotal = this.calculateSubtotal();
         this.openPromo();
+        this.cart.forEach(item => {
+            item.shippingDate = this.calculateShippingDate(item.product.shipping_days);
+        });
 
         if (process.client) {
             $(document).ready(function () {
@@ -616,10 +579,60 @@ export default {
                 });
             })
             // Now you can work with myElement
-        }
+        };
+        this.calculateSumOfLastPrices();
     },
     methods: {
+        calculateSumOfLastPrices() {
+            const cartData = localStorage.getItem('cart');
+            if (cartData) {
+                const cart = JSON.parse(cartData);
+                let sumOfLastPrices = 0;
+                let sumOfFlatRatePrices = 0;
 
+                cart.forEach(item => {
+                    sumOfLastPrices += parseFloat(item.product.last_price) * item.quantity;
+                    sumOfFlatRatePrices += parseFloat(item.product.flat_rate_price) * item.quantity;
+                });
+
+                const totalSum = sumOfLastPrices + sumOfFlatRatePrices;
+
+                this.sumOfLastPrices = sumOfLastPrices.toFixed(2);
+                this.sumOfFlatRatePrices = sumOfFlatRatePrices.toFixed(2);
+                this.totalSum = totalSum.toFixed(2);
+            }
+        },
+
+        updateSelectedData() {
+            console.log("Selected data:", this.shipp_address, "BilTo:", this.billAddress);
+        },
+
+        getPrice(item) {
+            const price = item.quantity * item.product.last_price;
+            console.log(price);
+            return price.toFixed(2);
+        },
+        getSave(item) {
+            const save = (item.quantity * item.product.price) - (item.quantity * item.product.last_price);
+            console.log(save);
+            return save.toFixed(2);
+        },
+        calculateShippingDate(shippingDays) {
+            const currentDate = new Date();
+            const currentHour = currentDate.getHours();
+            const nextDay = currentHour >= 17 ? 1 : 0;
+
+            const shippingDate = new Date();
+            shippingDate.setDate(currentDate.getDate() + shippingDays + nextDay);
+
+            const formattedDate = shippingDate.toLocaleDateString('en-US', {
+                weekday: 'short',
+                day: 'numeric',
+                year: 'numeric'
+            });
+
+            return formattedDate;
+        },
         getCouponData() {
             const formData = new FormData();
             formData.append('couponCode', this.coupons.couponCode);
@@ -650,11 +663,28 @@ export default {
         },
         defaultLoadingData() {
             this.$axios.get('/auth/showProfileData').then(response => {
-                console.log(response.data.data.fname)
+                console.log(response.data.data.name)
                 this.insertdata.id = response.data.data.id;
                 this.insertdata.name = response.data.data.name;
+                this.getDatas = response.data.data;
+                this.getDatasAddressOne = response.data.data.address_1;
                 this.insertdata.email = response.data.data.email;
                 this.insertdata.phone_number = response.data.data.phone_number;
+
+                let address1 = this.getDatasAddressOne ? `${response.data.data.landmark_1},${response.data.data.address_1}, ${response.data.data.city_1}, ${response.data.data.country_1}` : "";
+
+                let address2 = this.getDatasAddressOne ? `${response.data.data.landmark_2},${response.data.data.address_2}, ${response.data.data.city_2}, ${response.data.data.country_2} ` : "";
+
+                console.log("==="+this.getDatasAddressOne);
+
+                // if (getDatas.address_1 == null) {
+                //     this.shipp_address = getDatas.address_1;
+                // } else  {
+                //     this.shipp_address = address1;
+                // }
+                this.shipp_address = address1;
+                this.billAddress = address1;
+                this.dataArray.push(address1, address2);
             });
         },
 
@@ -666,58 +696,87 @@ export default {
             setTimeout(() => {
                 this.loading = false;
             }, 2000);
-
         },
         placeOrder() {
 
             const formData = new FormData();
             formData.append('cart', JSON.stringify(this.cart));
             //Billing
-            formData.append('billing_name', this.insertdata.name);
-            formData.append('billing_address', this.insertdata.address);
-            formData.append('billing_email', this.insertdata.email);
-            formData.append('billing_phone_number', this.insertdata.phone_number);
-            formData.append('billing_country', this.insertdata.country);
-            formData.append('billing_city', this.insertdata.city);
+            // formData.append('billing_name', this.insertdata.name);
+            // formData.append('billing_address', this.insertdata.address);
+            // formData.append('billing_email', this.insertdata.email);
+            // formData.append('billing_phone_number', this.insertdata.phone_number);
+            // formData.append('billing_country', this.insertdata.country);
+            // formData.append('billing_city', this.insertdata.city);
             //Shipping
-            formData.append('shipper_name', this.insertdata.shipper_name);
-            formData.append('shipper_email', this.insertdata.shipper_email);
-            formData.append('shipper_phone_number', this.insertdata.shipper_phone_number);
-            formData.append('shipper_address', this.insertdata.shipper_address);
-            formData.append('shipper_country', this.insertdata.shipper_country);
-            formData.append('shipper_city', this.insertdata.shipper_city);
+            // formData.append('shipper_name', this.insertdata.shipper_name);
+            // formData.append('shipper_email', this.insertdata.shipper_email);
+            // formData.append('shipper_phone_number', this.insertdata.shipper_phone_number);
+            // formData.append('shipper_address', this.insertdata.shipper_address);
+            // formData.append('shipper_country', this.insertdata.shipper_country);
+            // formData.append('shipper_city', this.insertdata.shipper_city);
+            formData.append('subTotal', this.totalSum);
+            formData.append('item_total', this.sumOfLastPrices);
+            formData.append('shipp_address', this.shipp_address);
+            formData.append('billAddress', this.billAddress);
+            formData.append('Cutomer_name', this.insertdata.name);
+            formData.append('Cutomer_email', this.insertdata.email);
+            formData.append('Cutomer_phone_number', this.insertdata.phone_number);
+            // console.log(formData);
             const headers = {
                 'Content-Type': 'multipart/form-data'
             };
             this.$axios.post('/order/submitOrder',
                 formData, {
                 headers,
-            }).then((response) => {
-                const token = response.data.access_token;
-                this.$auth.setUserToken(token);
-                const Toast = Swal.mixin({
-                    toast: true,
-                    position: "top-end",
-                    showConfirmButton: false,
-                    timer: 3000,
-                    timerProgressBar: true,
-                    didOpen: (toast) => {
-                        toast.onmouseenter = Swal.stopTimer;
-                        toast.onmouseleave = Swal.resumeTimer;
+            })
+                .then((response) => {
+                    // const token = response.data.access_token;
+                    // this.$auth.setUserToken(token);
+                    const Toast = Swal.mixin({
+                        toast: true,
+                        position: "top-end",
+                        showConfirmButton: false,
+                        timer: 3000,
+                        timerProgressBar: true,
+                        didOpen: (toast) => {
+                            toast.onmouseenter = Swal.stopTimer;
+                            toast.onmouseleave = Swal.resumeTimer;
+                        }
+                    });
+                    this.clearCart();
+                    Toast.fire({
+                        icon: "success",
+                        title: "Order submitted successfully!"
+                    });
+                    this.$router.push('/');
+
+                }).catch(error => {
+                    if (error.response.status === 422) {
+                        this.errors = error.response.data.errors;
+                        console.log(this.errors); // Log the errors to check its content
+                        // Extract error messages from the errors object
+                        const errorMessages = Object.values(this.errors).flat();
+
+                        // Concatenate error messages into a single string
+                        const errorMessage = errorMessages.join('<br>');
+                        const Toast = Swal.mixin({
+                            toast: true,
+                            position: "top-end",
+                            showConfirmButton: false,
+                            timer: 3000,
+                            timerProgressBar: true,
+                            didOpen: (toast) => {
+                                toast.onmouseenter = Swal.stopTimer;
+                                toast.onmouseleave = Swal.resumeTimer;
+                            }
+                        });
+                        Toast.fire({
+                            icon: "error",
+                            title: errorMessage
+                        });
                     }
                 });
-                this.clearCart();
-                Toast.fire({
-                    icon: "success",
-                    title: "Order submitted successfully!"
-                });
-                this.$router.push('/');
-
-            }).catch(error => {
-                if (error.response.status === 422) {
-                    this.errors = error.response.data.errors;
-                }
-            });
 
         },
         clearCart() {
@@ -826,7 +885,7 @@ export default {
             let subtotal = 0;
             this.cart.forEach((item) => {
                 const product = item.product;
-                console.log(`Quantity: ${item.quantity}, Price: ${product.price}`);
+                // console.log(`Quantity: ${item.quantity}, Price: ${product.price}`);
                 // const priceWithoutCommas = product.price.replace(/,/g, '');
                 const priceWithoutCommas = product.price;
                 const priceAsNumber = parseFloat(priceWithoutCommas);
@@ -845,3 +904,13 @@ export default {
     },
 };
 </script>
+<style>
+.checkItem {
+    border-bottom: 1px solid #e1e1e1;
+    padding-top: 15px;
+}
+
+.checkItem:last-child {
+    border: none;
+}
+</style>

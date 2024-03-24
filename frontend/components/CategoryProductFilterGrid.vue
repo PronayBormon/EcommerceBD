@@ -70,8 +70,7 @@
                                                             <h6>Category</h6>
                                                             <ul>
                                                                 <li v-for="category in categories" :key="category.id"><a
-                                                                        href="#" @click="fetchData(category.slug)">{{
-                    category.name }}</a></li>
+                                                                        href="#" @click="fetchData(category.slug)">{{ category.name }}</a></li>
                                                             </ul>
                                                         </div>
                                                         <div class="delivery_list">
@@ -188,20 +187,19 @@
                                             <nuxt-link :to="`/product-details/${item.pro_slug}`">
                                                 <img :src="item.thumnail_img" class="img-fluid" loading="lazy">
                                             </Nuxt-link>
-                                            <span v-if="item.free_shopping == 1">Free Delivery</span>
-                                            <!-- <strong>Official Store </strong> -->
+                                            <span v-if="item.free_shopping == 1">Free Delivery</span>                                            
+                                            <strong v-if="item.seller_name">{{item.seller_name}}</strong>                                      
+                                            <strong v-else >Admin Seller</strong>
                                             <h1 class="mt-1">{{ item.product_name }}</h1>
                                             
-                                            <div  >
+                                            <div >
                                                 <div class="d-flex align-items-center" v-if="item.discount_status == 1">
-                                                    <!-- <p class="me-1" v-if="item.discount !== 0">${{ (price = item.price - (item.price * item.discount / 100)).toFixed(2) }}</p> -->
-                                                    <p class="me-1" v-if="item.discount !== 0">${{ item.percentPrice }}</p>
+                                                    <p class="me-1" v-if="item.discount !== 0">${{ item.percent_discount }}</p>
                                                     <p v-else class="me-1">${{ item.price }}</p>
                                                     <p v-if="item.discount !== 0"><strike>${{ item.price }}</strike> <span>{{ item.discount }}%</span></p>
                                                 </div>                                            
                                                 <div class="d-flex align-items-center" v-else-if="item.discount_status == 2">
-                                                    <!-- <p v-if="item.discount !== 0" class="me-1">${{ (item.price - item.discount).toFixed(2) }}</p> -->
-                                                    <p class="me-1" v-if="item.discount !== 0">${{ item.dis_price }}</p>
+                                                    <p class="me-1" v-if="item.discount !== 0">${{ item.fixed_discount }}</p>
                                                     <p v-else  class="me-1">${{ item.price }}</p>
                                                     <p  v-if="item.discount !== 0"><strike>${{ item.price }}</strike> <span>${{ item.discount }}</span></p>
                                                 </div>                                            
@@ -295,6 +293,21 @@ export default {
                     product: productToAdd,
                     quantity: 1
                 });
+                const Toast = Swal.mixin({
+                    toast: true,
+                    position: "top-end",
+                    showConfirmButton: false,
+                    timer: 3000,
+                    timerProgressBar: true,
+                    didOpen: (toast) => {
+                        toast.onmouseenter = Swal.stopTimer;
+                        toast.onmouseleave = Swal.resumeTimer;
+                    }
+                });
+                Toast.fire({
+                    icon: "success",
+                    title: "Product successfully Added to cart"
+                });
             }
 
             this.saveCart();
@@ -332,18 +345,19 @@ export default {
 
         },
         calculateSubtotal() {
-            let subtotal = 0;
-            this.cart.forEach((item) => {
-                const product = item.product;
-                console.log(`Quantity: ${item.quantity}, Price: ${product.price}`);
-                const priceAsNumber = parseFloat(product.price.replace(/[^\d.]/g, '')); //510;//product.price;
-                if (!isNaN(item.quantity) && !isNaN(priceAsNumber)) {
-                    subtotal += item.quantity * priceAsNumber;
-                } else {
-                    console.error('Invalid quantity or price:', item.quantity, product.price);
-                }
-            });
-            return this.subtotal = subtotal;
+            // let subtotal = 0;
+            // this.cart.forEach((item) => {
+            //     const product = item.product;
+            //     console.log(`Quantity: ${item.quantity}, Price: ${product.last_price}`);
+            //     const priceAsNumber = parseFloat(product.last_price.replace(/[^\d.]/g, '')); //510;//product.price;
+            //     if (!isNaN(item.quantity) && !isNaN(priceAsNumber)) {
+            //         subtotal += item.quantity * priceAsNumber;
+            //     } else {
+            //         console.error('Invalid quantity or price:', item.quantity, product.last_price);
+            //     }
+            // });
+            // return this.subtotal = subtotal;
+            return 0;
         },
         categoryGrid() {
             const slug = this.$route.query.slug;

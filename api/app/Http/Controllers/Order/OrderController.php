@@ -16,6 +16,7 @@ use App\Models\ProductCategory;
 use App\Models\CategoryCommissionHistory;
 use App\Models\WishList;
 use App\Models\User;
+use Illuminate\Support\Facades\Validator as FacadesValidator;
 
 class OrderController extends Controller
 {
@@ -259,25 +260,41 @@ class OrderController extends Controller
     public function submitOrder(Request $request)
     {
         
-       //dd($request->all());
-        $validator = Validator::make(
+    //    dd($request->all());
+    //    return false;
+    
+    // formData.append('subTotal', this.totalSum);
+    // formData.append('shipp_address', this.shipp_address);
+    // formData.append('billAddress', this.billAddress);
+    // formData.append('Cutomer_name', this.insertdata.name);
+    // formData.append('Cutomer_email', this.insertdata.email);
+    // formData.append('Cutomer_phone_number', this.insertdata.phone_number);
+
+        $validator = FacadesValidator::make(
             $request->all(),
             [
-                'billing_name'          => 'required',
-                'billing_email'         => 'required',
-                'billing_phone_number'  => 'required',
-                'billing_address'       => 'required',
-                'billing_country'       => 'required',
-                'billing_city'       => 'required',
-            ],
-            [
-                'billing_name'         => 'Billing Name is required',
-                'billing_email'        => 'Billing email is required',
-                'billing_phone_number' => 'Billing Phone is required',
-                'billing_address'      => 'Billing address is required',
-                'billing_country'      => 'Billing country is required',
-                'billing_city'         => 'Billing city is required',
+                'subTotal'              => 'required',
+                'item_total'            => 'required',
+                'shipp_address'         => 'required',
+                'billAddress'           => 'required',
+                'Cutomer_name'          => 'required',
+                'Cutomer_email'         => 'required',
+                'Cutomer_phone_number'  => 'required',
+            ],[
+                'item_total'            => 'Errors in Total amount',
+                'shipp_address'         => 'Please add your address',
+                'billAddress'           => 'Please add your billing address',
+
             ]
+            // ,
+            // [
+            //     'billing_name'         => 'Billing Name is required',
+            //     'billing_email'        => 'Billing email is required',
+            //     'billing_phone_number' => 'Billing Phone is required',
+            //     'billing_address'      => 'Billing address is required',
+            //     'billing_country'      => 'Billing country is required',
+            //     'billing_city'         => 'Billing city is required',
+            // ]
         );
 
         if ($validator->fails()) {
@@ -285,19 +302,27 @@ class OrderController extends Controller
         }
 
         //Billing Info.
-        $billing_name         = $request->billing_name;
-        $billing_email        = $request->billing_email;
-        $billing_phone_number = $request->billing_phone_number;
-        $billing_address      = $request->billing_address;
-        $billing_country      = $request->billing_country;
-        $billing_city         = $request->billing_city;
+        // $billing_name         = $request->billing_name;
+        // $billing_email        = $request->billing_email;
+        // $billing_phone_number = $request->billing_phone_number;
+        // $billing_address      = $request->billing_address;
+        // $billing_country      = $request->billing_country;
+        // $billing_city         = $request->billing_city;
         //Shipping Info.
-        $shipper_name         = !empty($request->shipper_name) ? $request->shipper_name : "";
-        $shipper_email        = !empty($request->shipper_email) ? $request->shipper_email : "";
-        $shipper_phone_number = !empty($request->shipper_phone_number) ? $request->shipper_phone_number : "";
-        $shipper_address      = !empty($request->shipper_address) ? $request->shipper_address : "";
-        $shipper_country      = !empty($request->shipper_country) ? $request->shipper_country : "";
-        $shipper_city         = !empty($request->shipper_city) ? $request->shipper_city : "";
+        // $shipper_name         = !empty($request->shipper_name) ? $request->shipper_name : "";
+        // $shipper_email        = !empty($request->shipper_email) ? $request->shipper_email : "";
+        // $shipper_phone_number = !empty($request->shipper_phone_number) ? $request->shipper_phone_number : "";
+        // $shipper_address      = !empty($request->shipper_address) ? $request->shipper_address : "";
+        // $shipper_country      = !empty($request->shipper_country) ? $request->shipper_country : "";
+        // $shipper_city         = !empty($request->shipper_city) ? $request->shipper_city : "";
+        
+        $subTotal               = $request->subTotal;
+        $item_total               = $request->item_total;
+        $shipp_address          = $request->shipp_address;
+        $billAddress            = $request->billAddress;
+        $Cutomer_name           = $request->Cutomer_name;
+        $Cutomer_email          = $request->Cutomer_email;
+        $Cutomer_phone_number   = $request->Cutomer_phone_number;
 
         $randomNum = $this->userid . $this->generateUniqueRandomNumber() . "-" . date("y");
 
@@ -327,22 +352,31 @@ class OrderController extends Controller
 
         $order                  = new Order();
         $order->orderId         = $randomNum;
-        $order->total           = $total;
-        $order->subtotal        = $total;
+        $order->total           = $item_total;
+        $order->subtotal        = $subTotal;
+
+        $order->shipper_name          = $Cutomer_name;
+        $order->shipper_email         = $Cutomer_email;
+        $order->shipper_phone_number  = $Cutomer_phone_number;
+        $order->shipper_address       = $shipp_address;
+        $order->billing_name          = $Cutomer_name;
+        $order->billing_email         = $Cutomer_email;
+        $order->billing_phone_number  = $Cutomer_phone_number;
+        $order->billing_address       = $billAddress;
         //Billing Info
-        $order->billing_name          = $billing_name;
-        $order->billing_email         = $billing_email;
-        $order->billing_phone_number  = $billing_phone_number;
-        $order->billing_address       = $billing_address;
-        $order->billing_country       = $billing_country;
-        $order->billing_city          = $billing_city;
+        // $order->billing_name          = $billing_name;
+        // $order->billing_email         = $billing_email;
+        // $order->billing_phone_number  = $billing_phone_number;
+        // $order->billing_address       = $billing_address;
+        // $order->billing_country       = $billing_country;
+        // $order->billing_city          = $billing_city;
         //Shipping Info
-        $order->shipper_name          = $shipper_name;
-        $order->shipper_email         = $shipper_email;
-        $order->shipper_phone_number  = $shipper_phone_number;
-        $order->shipper_address       = $shipper_address;
-        $order->shipper_country       = $shipper_country;
-        $order->shipper_city          = $shipper_city;
+        // $order->shipper_name          = $shipper_name;
+        // $order->shipper_email         = $shipper_email;
+        // $order->shipper_phone_number  = $shipper_phone_number;
+        // $order->shipper_address       = $shipper_address;
+        // $order->shipper_country       = $shipper_country;
+        // $order->shipper_city          = $shipper_city;
         //END
 
         $order->customer_id     = $this->userid;

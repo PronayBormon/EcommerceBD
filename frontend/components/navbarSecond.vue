@@ -1,7 +1,7 @@
 <template>
-    <div>
+    <!-- <div> -->
         <!-- navbar section start here  -->
-        <section class="search_bar">
+        <section class="search_bar ">
             <div class="container">
                 <div class="row justify-content-between align-items-center">
                     <div class="col-lg-3 col-md-4 col-4">
@@ -27,7 +27,7 @@
 
                             <Common_MiniTabNavbar />
                             <!-- nav end  -->
-                            <Nuxt-link to="/"><img src="/images/brandLogo.jpg" alt="" class="img-fluid"> Ecommerce <i class=" fa-regular fa-star"></i></Nuxt-link>
+                            <Nuxt-link to="/" ><img src="/images/logo.png" alt="" class="img-fluid navLogo" width="200px"></Nuxt-link>
                         </div>
                     </div>
                     <div class="col-6 desktop_view mini_tab_hide">
@@ -72,7 +72,7 @@
             </div>
         </section>
         <!-- Main section start here  -->
-    </div>
+    <!-- </div> -->
 </template>
 
 <script>

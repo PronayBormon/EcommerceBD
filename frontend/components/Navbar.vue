@@ -1,6 +1,6 @@
 <template>
-    <div>
-        <section class="search_bar">
+    <!-- <div> -->
+        <section class="search_bar position-sticky top-0">
             <div class="container">
                 <div class="row justify-content-between align-items-center">
                     <div class="col-lg-3 col-md-4 col-8">
@@ -142,7 +142,7 @@
                             </div>
                             <!-- nav end  -->
 
-                            <Nuxt-link to="/">Ecommerce <i class=" fa-regular fa-star"></i></Nuxt-link>
+                            <Nuxt-link to="/" ><img src="/images/logo.png" alt="" class="img-fluid navLogo" width="200px"></Nuxt-link>
                         </div>
                     </div>
 
@@ -247,7 +247,7 @@
                 </div>
             </div>
         </section>
-    </div>
+    <!-- </div> -->
 </template>
 
 <script>

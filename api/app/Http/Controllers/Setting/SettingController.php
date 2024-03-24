@@ -6,17 +6,18 @@ use DB;
 use Auth;
 use Helper;
 use App\Models\User;
+use App\Models\coupons;
 use App\Models\Profile;
 use App\Models\Setting;
+use App\Models\Sliders;
 use App\Models\students;
+use App\Models\dealsbanner;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Models\topHeaderBanner;
 use App\Rules\MatchOldPassword;
-use App\Http\Controllers\Controller;
-use App\Models\coupons;
-use App\Models\dealsbanner;
 use App\Models\sliderSideAdsModel;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
@@ -628,9 +629,7 @@ class SettingController extends Controller
                 $dealsBanner->update(["imageOne" => $imageName]);
                 $dealsBanner->update(["imageTwo" => $imageNameTwo]);
             }
-        }
-
-        else if ($request->hasFile('imageTwo')) {
+        } else if ($request->hasFile('imageTwo')) {
             $imageTwo = $request->imageTwo;
             $imageNameTwo = "/bannerImage/" . time() . "." . $imageTwo->getClientOriginalExtension();
             $imageTwo->move(public_path("bannerImage"), $imageNameTwo);
@@ -638,7 +637,7 @@ class SettingController extends Controller
             if (!empty($dealsBanner->imageTwo) && File::exists(public_path($dealsBanner->imageTwo))) {
                 File::delete(public_path($dealsBanner->imageTwo));
             }
-            if (!$request->hasFile('imageOne')){
+            if (!$request->hasFile('imageOne')) {
                 $dealsBanner->update(["imageTwo" => $imageNameTwo]);
             }
         }
@@ -936,7 +935,8 @@ class SettingController extends Controller
         }
     }
 
-    public function editseller($id){
+    public function editseller($id)
+    {
         $id = (int) $id;
         $data = User::where('id', $id)->first();
         $response = [
@@ -945,7 +945,8 @@ class SettingController extends Controller
         ];
         return response()->json($response, 200);
     }
-    public function updateSeller(request $request){
+    public function updateSeller(request $request)
+    {
 
         $id = $request->id;
 
@@ -968,7 +969,7 @@ class SettingController extends Controller
         ];
         $sql = $updateCoupon->update($updateData);
 
-        if($sql){
+        if ($sql) {
             return response()->json([
                 'status'    => true,
                 'message'   => "Successful",
@@ -979,6 +980,48 @@ class SettingController extends Controller
                 'message'   => "Failed to update.",
             ]);
         }
-        
+    }
+
+    public function saveslidersImages(Request $request)
+    {
+        // dd($request->image);
+        $validator = Validator::make($request->all(), [
+            'image' => 'required|image|mimes:jpg,png,jpeg,gif,webp|dimensions:min_width=600,min_height=400,max_width=600,max_height=400',
+            'status' => 'required'
+        ], [
+            'image.dimensions' => 'The image must be 600x400 pixels.',
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json(['errors' => $validator->errors()], 422);
+        }
+
+        if ($request->hasFile('image')) {
+
+            $image = $request->file('image');
+            $imageName = "/backend/slider_images/" . time() . '.' . $image->getClientOriginalExtension();
+            $image->move(public_path("/backend/slider_images/"), $imageName);
+            // dd($imageName);
+            // return false;
+            $slider = Sliders::create([
+                'images' => $imageName,
+                'status' => $request->status, // Assuming status is part of the sliders table
+            ]);
+
+            if ($slider) {
+                return response()->json(["message" => "Successfully Added"], 200);
+            } else {
+                return response()->json(["message" => "Failed to add slider"], 500);
+            }
+        }
+    }
+    public function deleteSliderimage(Request $request)
+    {
+        $id = $request->id;
+        $slider = Sliders::findOrFail($id);
+
+        $slider->delete();
+
+        return response()->json(['message' => 'Slider image deleted successfully'], 200);
     }
 }

@@ -134,7 +134,7 @@ Route::group([
     Route::get('attributes', [CategoryController::class, 'getAttribute']);
     Route::get('attributes-list', [CategoryController::class, 'getAttributeList']);
     Route::get('attributes-val-list', [CategoryController::class, 'getAttributeValList']);    
-    Route::post('speacialCatSave', [CategoryController::class, 'speacialCatSave']);
+    Route::post('speacialCatSave', [CategoryController::class, 'speacialCatSave']); 
 });
 
 Route::group([
@@ -323,9 +323,11 @@ Route::group([
     Route::get('getcoupons/{id}', [SettingController::class, 'getcoupons']);
 
     // seller status 
-    
     Route::get('editseller/{id}', [SettingController::class, 'editseller']);
     Route::post('updateSeller', [SettingController::class, 'updateSeller']);
+    // sliders     
+    Route::post('addslidersImages', [SettingController::class, 'saveslidersImages']);
+    Route::post('deleteSlider', [SettingController::class, 'deleteSliderimage']);
 
     
 });
