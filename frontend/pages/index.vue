@@ -1,5 +1,5 @@
 <template>
-<div>
+<!-- <div> -->
 
     <body class="bgBackground mainContent">
         <TopBannarDesktopView />
@@ -27,7 +27,7 @@
         <!-- login popup  -->
         <LoginPopup />
     </body>
-</div>
+<!-- </div> -->
 </template>
 
 <script>

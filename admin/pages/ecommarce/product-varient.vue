@@ -51,7 +51,6 @@
                                         </div>
                                         <div>
                                         </div>
-
                                         <hr />
                                         <!-- Generate -->
                                         <div class="attribute-container">
@@ -89,7 +88,7 @@
                                             </table>
 
                                         </div>
-                                        <button @click="generateCombinations">Generate</button>
+                                        <button @click="generateCombinations" class="btn btn-success">Generate</button>
 
                                         <hr />
                                         <form @submit.prevent="insertVarientHistory()" id="formrest"
@@ -128,18 +127,18 @@
                                                                 placeholder="0.00" style="width: 50px;" />
                                                         </td>
                                                         <td>
-                                                            <input type="file" @change="onFileChange(index, $event)"
+                                                            <input value="" type="file" @change="onFileChange(index, $event)"
                                                                 accept="image/*" />
                                                         </td>
                                                         <td>
-                                                            <button type="button"
+                                                            <button type="button" class="btn btn-outline-danger"
                                                                 @click="deleteVariantRow(combination.id)">DEL</button>
                                                         </td>
                                                     </tr>
                                                 </tbody>
                                             </table>
 
-                                            <button class="btn btn-dark btn-sm w-100 btnsize"
+                                            <button class="btn btn-success btn-sm w-100 btnsize"
                                                 type="submit">Submit</button>
                                         </form>
                                         <!-- Start -->
@@ -306,11 +305,31 @@ export default {
                         }
                     });
                     // Handle success response
-                    console.log(response.data);
+                    // console.log(response.data);
                 })
-                .catch(error => {
-                    // Handle error
-                    console.error(error);
+                .catch((error) => {
+                    if (error.response.status === 422) {
+                        this.errors = error.response.data.errors;
+                        const errorMessages = Object.values(this.errors).flat();
+
+                        // Concatenate error messages into a single string
+                        const errorMessage = errorMessages.join("<br>");
+                        const Toast = Swal.mixin({
+                            toast: true,
+                            position: "top-end",
+                            showConfirmButton: false,
+                            timer: 3000,
+                            timerProgressBar: true,
+                            didOpen: (toast) => {
+                                toast.onmouseenter = Swal.stopTimer;
+                                toast.onmouseleave = Swal.resumeTimer;
+                            },
+                        });
+                        Toast.fire({
+                            icon: "error",
+                            title: errorMessage,
+                        });
+                    }
                 });
         },
 
@@ -549,7 +568,7 @@ export default {
                 const response = await this.$axios.get(`/product/varient-list/${product_id}`);
                 this.varientData = response.data.varient;
             } catch (error) {
-                console.error(error);
+                console.error("===============");
             }
         },
 

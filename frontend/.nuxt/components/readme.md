@@ -6,9 +6,11 @@ You can directly use them in pages and other components without the need to impo
 
 **Tip:** If a component is conditionally rendered with `v-if` and is big, it is better to use `Lazy` or `lazy-` prefix to lazy load.
 
+- `<AddNewCard>` | `<add-new-card>` (components/addNewCard.vue)
 - `<BestPrice>` | `<best-price>` (components/BestPrice.vue)
 - `<BrandiOfficialStore>` | `<brandi-official-store>` (components/BrandiOfficialStore.vue)
 - `<BrandProductGrid>` | `<brand-product-grid>` (components/brandProductGrid.vue)
+- `<CardPayment>` | `<card-payment>` (components/cardPayment.vue)
 - `<CategoryFive>` | `<category-five>` (components/CategoryFive.vue)
 - `<CategoryFour>` | `<category-four>` (components/CategoryFour.vue)
 - `<CategoryMultipleProduct>` | `<category-multiple-product>` (components/CategoryMultipleProduct.vue)
@@ -31,6 +33,7 @@ You can directly use them in pages and other components without the need to impo
 - `<FlashSelling>` | `<flash-selling>` (components/FlashSelling.vue)
 - `<Footer>` | `<footer>` (components/Footer.vue)
 - `<LimitedStokDetails>` | `<limited-stok-details>` (components/LimitedStokDetails.vue)
+- `<LoginCartpage>` | `<login-cartpage>` (components/loginCartpage.vue)
 - `<LoginPopup>` | `<login-popup>` (components/LoginPopup.vue)
 - `<LogoAndPayment>` | `<logo-and-payment>` (components/LogoAndPayment.vue)
 - `<MoreCollection>` | `<more-collection>` (components/MoreCollection.vue)

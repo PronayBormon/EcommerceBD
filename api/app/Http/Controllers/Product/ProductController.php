@@ -506,6 +506,21 @@ class ProductController extends Controller
 
     public function insertVarient(Request $request)
     {
+        $validator = Validator::make($request->all(), [
+            'id' => 'required|array',
+            'id.*' => 'required',
+            'sku' => 'required|array',
+            'sku.*' => 'required',
+            'qty' => 'required|array',
+            'qty.*' => 'required|numeric',
+            'price' => 'required|array',
+            'price.*' => 'required|numeric',
+            'images.*' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048', // Adjust file validation as needed
+        ]);
+    
+        if ($validator->fails()) {
+            return response()->json(['errors' => $validator->errors()], 422);
+        }
 
         $data = [
             'id' => $request->id,

@@ -70,7 +70,8 @@
                                                             <h6>Category</h6>
                                                             <ul>
                                                                 <li v-for="category in categories" :key="category.id"><a
-                                                                        href="#" @click="fetchData(category.slug)">{{ category.name }}</a></li>
+                                                                        href="#" @click="fetchData(category.slug)">{{
+                    category.name }}</a></li>
                                                             </ul>
                                                         </div>
                                                         <div class="delivery_list">
@@ -187,23 +188,28 @@
                                             <nuxt-link :to="`/product-details/${item.pro_slug}`">
                                                 <img :src="item.thumnail_img" class="img-fluid" loading="lazy">
                                             </Nuxt-link>
-                                            <span v-if="item.free_shopping == 1">Free Delivery</span>                                            
-                                            <strong v-if="item.seller_name">{{item.seller_name}}</strong>                                      
-                                            <strong v-else >Admin Seller</strong>
+                                            <span v-if="item.free_shopping == 1">Free Delivery</span>
+                                            <strong v-if="item.seller_name">{{ item.seller_name }}</strong>
+                                            <strong v-else>Admin Seller</strong>
                                             <h1 class="mt-1">{{ item.product_name }}</h1>
-                                            
-                                            <div >
+
+                                            <div>
                                                 <div class="d-flex align-items-center" v-if="item.discount_status == 1">
-                                                    <p class="me-1" v-if="item.discount !== 0">${{ item.percent_discount }}</p>
-                                                    <p v-else class="me-1">${{ item.price }}</p>
-                                                    <p v-if="item.discount !== 0"><strike>${{ item.price }}</strike> <span>{{ item.discount }}%</span></p>
-                                                </div>                                            
-                                                <div class="d-flex align-items-center" v-else-if="item.discount_status == 2">
-                                                    <p class="me-1" v-if="item.discount !== 0">${{ item.fixed_discount }}</p>
-                                                    <p v-else  class="me-1">${{ item.price }}</p>
-                                                    <p  v-if="item.discount !== 0"><strike>${{ item.price }}</strike> <span>${{ item.discount }}</span></p>
-                                                </div>                                            
-                                                <p v-else>${{ item.price }}</p>
+                                                    <p class="me-1" v-if="item.discount !== 0">${{
+                    item.percent_discount.toFixed(2) }}</p>
+                                                    <p v-else class="me-1">${{ (item.price).toFixed(2) }}</p>
+                                                    <p v-if="item.discount !== 0  && item.discount !== ''"><strike>${{ item.price }}</strike>
+                                                        <span>{{ item.discount }}%</span></p>
+                                                </div>
+                                                <div class="d-flex align-items-center"
+                                                    v-else-if="item.discount_status == 2">
+                                                    <p class="me-1" v-if="item.discount !== 0">${{
+                    item.fixed_discount.toFixed(2) }}</p>
+                                                    <p v-else class="me-1">${{ (item.price).toFixed(2) }}</p>
+                                                    <p v-if="item.discount !== 0 && item.discount !== ''"><strike>${{ item.price }}</strike>
+                                                        <span>${{ item.discount }}</span></p>
+                                                </div>
+                                                <p v-else>${{ (item.price).toFixed(2) }}</p>
                                             </div>
 
 
@@ -219,9 +225,10 @@
                                                 </div>
                                                 <h6>(200)</h6>
                                             </div>
-                                            <button v-if="item.stock_qty >= 1" type="button" class="btn_cart" @click="addToCart(item.id)">Add to
+                                            <button v-if="item.stock_qty >= 1" type="button" class="btn_cart"
+                                                @click="addToCart(item.id)">Add to
                                                 cart </button>
-                                            <button v-else  type="button" class="btn_sold">SoldOut</button>
+                                            <button v-else type="button" class="btn_sold">SoldOut</button>
                                         </div>
                                     </div>
                                     <!-- ================= Loop ===================  -->
@@ -384,7 +391,7 @@ export default {
                 this.prouducts = response.data.result;
                 this.pro_count = response.data.pro_count;
                 this.categoryname = response.data.categoryname;
-                
+
 
             })
                 .catch(error => {

@@ -1,44 +1,44 @@
-exports.ids = [79,16,17,18,20,24,26,27,31];
+exports.ids = [82,18,19,20,22,26,29,30,34];
 exports.modules = {
 
-/***/ 126:
+/***/ 127:
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(205);
+var content = __webpack_require__(209);
 if(content.__esModule) content = content.default;
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add CSS to SSR context
 var add = __webpack_require__(9).default
 module.exports.__inject__ = function (context) {
-  add("844f7076", content, true, context)
+  add("7b648440", content, true, context)
 };
 
 /***/ }),
 
-/***/ 204:
+/***/ 208:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_vue_style_loader_index_js_ref_3_oneOf_1_0_node_modules_css_loader_dist_cjs_js_ref_3_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_ref_3_oneOf_1_2_node_modules_nuxt_components_dist_loader_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_slug_vue_vue_type_style_index_0_id_4ebda218_prod_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(126);
-/* harmony import */ var _node_modules_vue_style_loader_index_js_ref_3_oneOf_1_0_node_modules_css_loader_dist_cjs_js_ref_3_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_ref_3_oneOf_1_2_node_modules_nuxt_components_dist_loader_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_slug_vue_vue_type_style_index_0_id_4ebda218_prod_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_vue_style_loader_index_js_ref_3_oneOf_1_0_node_modules_css_loader_dist_cjs_js_ref_3_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_ref_3_oneOf_1_2_node_modules_nuxt_components_dist_loader_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_slug_vue_vue_type_style_index_0_id_4ebda218_prod_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__);
-/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _node_modules_vue_style_loader_index_js_ref_3_oneOf_1_0_node_modules_css_loader_dist_cjs_js_ref_3_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_ref_3_oneOf_1_2_node_modules_nuxt_components_dist_loader_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_slug_vue_vue_type_style_index_0_id_4ebda218_prod_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__) if(["default"].indexOf(__WEBPACK_IMPORT_KEY__) < 0) (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _node_modules_vue_style_loader_index_js_ref_3_oneOf_1_0_node_modules_css_loader_dist_cjs_js_ref_3_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_ref_3_oneOf_1_2_node_modules_nuxt_components_dist_loader_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_slug_vue_vue_type_style_index_0_id_4ebda218_prod_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__[key]; }) }(__WEBPACK_IMPORT_KEY__));
+/* harmony import */ var _node_modules_vue_style_loader_index_js_ref_3_oneOf_1_0_node_modules_css_loader_dist_cjs_js_ref_3_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_ref_3_oneOf_1_2_node_modules_nuxt_components_dist_loader_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_slug_vue_vue_type_style_index_0_id_039500d5_prod_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(127);
+/* harmony import */ var _node_modules_vue_style_loader_index_js_ref_3_oneOf_1_0_node_modules_css_loader_dist_cjs_js_ref_3_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_ref_3_oneOf_1_2_node_modules_nuxt_components_dist_loader_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_slug_vue_vue_type_style_index_0_id_039500d5_prod_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_vue_style_loader_index_js_ref_3_oneOf_1_0_node_modules_css_loader_dist_cjs_js_ref_3_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_ref_3_oneOf_1_2_node_modules_nuxt_components_dist_loader_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_slug_vue_vue_type_style_index_0_id_039500d5_prod_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__);
+/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _node_modules_vue_style_loader_index_js_ref_3_oneOf_1_0_node_modules_css_loader_dist_cjs_js_ref_3_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_ref_3_oneOf_1_2_node_modules_nuxt_components_dist_loader_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_slug_vue_vue_type_style_index_0_id_039500d5_prod_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__) if(["default"].indexOf(__WEBPACK_IMPORT_KEY__) < 0) (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _node_modules_vue_style_loader_index_js_ref_3_oneOf_1_0_node_modules_css_loader_dist_cjs_js_ref_3_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_ref_3_oneOf_1_2_node_modules_nuxt_components_dist_loader_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_slug_vue_vue_type_style_index_0_id_039500d5_prod_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__[key]; }) }(__WEBPACK_IMPORT_KEY__));
 
 
 /***/ }),
 
-/***/ 205:
+/***/ 209:
 /***/ (function(module, exports, __webpack_require__) {
 
 // Imports
 var ___CSS_LOADER_API_IMPORT___ = __webpack_require__(8);
 var ___CSS_LOADER_EXPORT___ = ___CSS_LOADER_API_IMPORT___(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.i, ".scrollimg[data-v-4ebda218]{height:40px;width:20px}.sliderimg[data-v-4ebda218]{display:block;width:100%}.Slider[data-v-4ebda218]{margin:0 auto;max-width:80vw}.Slider-featuredImage[data-v-4ebda218]{padding:4px}.Slider-thumbnails[data-v-4ebda218]{margin-right:16px;margin-top:4px;padding:4px;width:100%}.Slider-thumbnail[data-v-4ebda218]{cursor:pointer;opacity:.7}.Slider-thumbnail img[data-v-4ebda218]{width:200px}.Slider-thumbnail .active[data-v-4ebda218]{opacity:1}.Slider-thumbnail[data-v-4ebda218]:active,.Slider-thumbnail[data-v-4ebda218]:hover,.Slider-thumbnail[data-v-4ebda218]:not(:first-of-type){margin-left:10px}", ""]);
+___CSS_LOADER_EXPORT___.push([module.i, ".scrollimg[data-v-039500d5]{height:40px;width:20px}.sliderimg[data-v-039500d5]{display:block;width:100%}.Slider[data-v-039500d5]{margin:0 auto;max-width:80vw}.Slider-featuredImage[data-v-039500d5]{padding:4px}.Slider-thumbnails[data-v-039500d5]{margin-right:16px;margin-top:4px;padding:4px;width:100%}.Slider-thumbnail[data-v-039500d5]{cursor:pointer;opacity:.7}.Slider-thumbnail img[data-v-039500d5]{width:200px}.Slider-thumbnail .active[data-v-039500d5]{opacity:1}.Slider-thumbnail[data-v-039500d5]:active,.Slider-thumbnail[data-v-039500d5]:hover,.Slider-thumbnail[data-v-039500d5]:not(:first-of-type){margin-left:10px}", ""]);
 // Exports
 ___CSS_LOADER_EXPORT___.locals = {};
 module.exports = ___CSS_LOADER_EXPORT___;
@@ -46,41 +46,116 @@ module.exports = ___CSS_LOADER_EXPORT___;
 
 /***/ }),
 
-/***/ 278:
+/***/ 282:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 // ESM COMPAT FLAG
 __webpack_require__.r(__webpack_exports__);
 
-// CONCATENATED MODULE: ./node_modules/babel-loader/lib??ref--2-0!./node_modules/vue-loader/lib/loaders/templateLoader.js??ref--6!./node_modules/@nuxt/components/dist/loader.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./pages/product-details/_slug.vue?vue&type=template&id=4ebda218&scoped=true&
+// CONCATENATED MODULE: ./node_modules/babel-loader/lib??ref--2-0!./node_modules/vue-loader/lib/loaders/templateLoader.js??ref--6!./node_modules/@nuxt/components/dist/loader.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./pages/product-details/_slug.vue?vue&type=template&id=039500d5&scoped=true&
 var render = function render() {
   var _vm = this,
     _c = _vm._self._c;
-  return _c('div', [_c('LogoAndPayment'), _vm._ssrNode(" "), _c('navbarSecond'), _vm._ssrNode(" "), _vm._ssrNode("<section class=\"main_content\" data-v-4ebda218>", "</section>", [_vm._ssrNode("<div class=\"container\" data-v-4ebda218>", "</div>", [_vm._ssrNode("<div class=\"row\" data-v-4ebda218>", "</div>", [_vm._ssrNode("<div class=\"col-xl-12 col-lg-12 col-md-12 col-sm-12\" data-v-4ebda218>", "</div>", [_vm._ssrNode("<div class=\"product_details_part\" data-v-4ebda218>", "</div>", [_vm._ssrNode("<div class=\"row\" data-v-4ebda218>", "</div>", [_vm._ssrNode("<div class=\"col-md-5\" data-v-4ebda218>", "</div>", [_vm.loading ? _vm._ssrNode("<div class=\"loading-indicator\" style=\"text-align: center;\" data-v-4ebda218>", "</div>", [_vm._ssrNode("<div class=\"loader-container\" data-v-4ebda218>", "</div>", [_c('center', {
+  return _c('div', [_c('LogoAndPayment'), _vm._ssrNode(" "), _c('navbarSecond'), _vm._ssrNode(" "), _vm._ssrNode("<section class=\"main_content\" data-v-039500d5>", "</section>", [_vm._ssrNode("<div class=\"container\" data-v-039500d5>", "</div>", [_vm._ssrNode("<div class=\"row\" data-v-039500d5>", "</div>", [_vm._ssrNode("<div class=\"col-xl-12 col-lg-12 col-md-12 col-sm-12\" data-v-039500d5>", "</div>", [_vm._ssrNode("<div class=\"product_details_part\" data-v-039500d5>", "</div>", [_vm._ssrNode("<div class=\"row\" data-v-039500d5>", "</div>", [_vm._ssrNode("<div class=\"col-md-5\" data-v-039500d5>", "</div>", [_vm.loading ? _vm._ssrNode("<div class=\"loading-indicator\" style=\"text-align: center;\" data-v-039500d5>", "</div>", [_vm._ssrNode("<div class=\"loader-container\" data-v-039500d5>", "</div>", [_c('center', {
     staticClass: "loader-text"
-  }, [_vm._v("Loading...")]), _vm._ssrNode(" <img src=\"/loader/loader.gif\" loading=\"lazy\" alt=\"Loader\" data-v-4ebda218>")], 2)]) : _vm._e(), _vm._ssrNode(" <section class=\"Slider\" data-v-4ebda218><div data-v-4ebda218><img id=\"featuredImage\" loading=\"lazy\"" + _vm._ssrAttr("src", _vm.featuresimgs) + " class=\"Slider-featuredImage sliderimg\" data-v-4ebda218></div> <div class=\"Slider-thumbnails\" data-v-4ebda218>" + _vm._ssrList(_vm.slider_img, function (image, index) {
+  }, [_vm._v("Loading...")]), _vm._ssrNode(" <img src=\"/loader/loader.gif\" loading=\"lazy\" alt=\"Loader\" data-v-039500d5>")], 2)]) : _vm._e(), _vm._ssrNode(" <section class=\"Slider\" data-v-039500d5><div data-v-039500d5><img id=\"featuredImage\" loading=\"lazy\"" + _vm._ssrAttr("src", _vm.featuresimgs) + " class=\"Slider-featuredImage sliderimg\" data-v-039500d5></div> <div class=\"Slider-thumbnails\" data-v-039500d5>" + _vm._ssrList(_vm.slider_img, function (image, index) {
     return "<a" + _vm._ssrAttr("href", image.thumnail) + _vm._ssrClass(null, {
       'Slider-thumbnail': true,
       'active': index === 0
-    }) + " data-v-4ebda218><img" + _vm._ssrAttr("src", image.thumnail) + _vm._ssrAttr("alt", image.alt) + " class=\"border border-1 rounded\" style=\"height: 80px; width: 70px;\" data-v-4ebda218></a>";
-  }) + "</div></section> <div class=\"social_share\" data-v-4ebda218><h5 data-v-4ebda218>Share This Product</h5> <ul data-v-4ebda218><li data-v-4ebda218><a href=\"#\" data-v-4ebda218><i class=\"fa-brands fa-facebook-f\" data-v-4ebda218></i></a></li> <li data-v-4ebda218><a href=\"#\" data-v-4ebda218><i class=\"fa-brands fa-instagram\" data-v-4ebda218></i></a></li> <li data-v-4ebda218><a href=\"#\" data-v-4ebda218><i class=\"fa-brands fa-twitter\" data-v-4ebda218></i></a></li></ul></div>")], 2), _vm._ssrNode(" "), _vm._ssrNode("<div class=\"col-md-7\" data-v-4ebda218>", "</div>", [_vm._ssrNode("<div class=\"pro_info\" data-v-4ebda218>", "</div>", [_vm._ssrNode("<div class=\"badgeses\" data-v-4ebda218><div data-v-4ebda218>" + (_vm.seller.business_name !== null ? "<span data-v-4ebda218>" + _vm._ssrEscape(_vm._s(_vm.seller.business_name)) + "</span>" : "<!---->") + " " + (_vm.pro_row.free_shopping == 1 ? "<strong data-v-4ebda218>free delivery</strong>" : "<!---->") + "</div> " + (_vm.loggedIn ? "<div data-v-4ebda218><a href=\"#\" data-v-4ebda218><i class=\"fa-regular fa-heart\" data-v-4ebda218></i></a></div>" : "<div data-v-4ebda218><a href=\"#\" data-v-4ebda218><i class=\"fa-regular fa-heart\" data-v-4ebda218></i></a></div>") + "</div> "), _vm._ssrNode("<div class=\"details_title\" data-v-4ebda218>", "</div>", [_vm._ssrNode("<h1 data-v-4ebda218>" + _vm._ssrEscape(_vm._s(_vm.pro_row.product_name)) + "</h1> "), _vm._l(_vm.brands_details, function (brand) {
-    return _vm._ssrNode("<h6 data-v-4ebda218>", "</h6>", [_vm._ssrNode("\n                                            Brand:\n                                            "), brand.name !== undefined && brand.name !== '' ? _c('nuxt-link', {
+    }) + " data-v-039500d5><img" + _vm._ssrAttr("src", image.thumnail) + _vm._ssrAttr("alt", image.alt) + " class=\"border border-1 rounded\" style=\"height: 80px; width: 70px;\" data-v-039500d5></a>";
+  }) + "</div></section> <div class=\"social_share\" data-v-039500d5><h5 data-v-039500d5>Share This Product</h5> <ul data-v-039500d5><li data-v-039500d5><a href=\"#\" data-v-039500d5><i class=\"fa-brands fa-facebook-f\" data-v-039500d5></i></a></li> <li data-v-039500d5><a href=\"#\" data-v-039500d5><i class=\"fa-brands fa-instagram\" data-v-039500d5></i></a></li> <li data-v-039500d5><a href=\"#\" data-v-039500d5><i class=\"fa-brands fa-twitter\" data-v-039500d5></i></a></li></ul></div>")], 2), _vm._ssrNode(" "), _vm._ssrNode("<div class=\"col-md-7\" data-v-039500d5>", "</div>", [_vm._ssrNode("<div class=\"pro_info\" data-v-039500d5>", "</div>", [_vm._ssrNode("<div class=\"badgeses\" data-v-039500d5><div data-v-039500d5>" + (_vm.seller.business_name !== null ? "<span data-v-039500d5>" + _vm._ssrEscape(_vm._s(_vm.seller.business_name)) + "</span>" : "<!---->") + " " + (_vm.pro_row.free_shopping == 1 ? "<strong data-v-039500d5>free delivery</strong>" : "<!---->") + "</div> " + (_vm.loggedIn ? "<div data-v-039500d5><a href=\"#\" data-v-039500d5><i class=\"fa-regular fa-heart\" data-v-039500d5></i></a></div>" : "<div data-v-039500d5><a href=\"#\" data-v-039500d5><i class=\"fa-regular fa-heart\" data-v-039500d5></i></a></div>") + "</div> "), _vm._ssrNode("<div class=\"details_title\" data-v-039500d5>", "</div>", [_vm._ssrNode("<h1 data-v-039500d5>" + _vm._ssrEscape(_vm._s(_vm.pro_row.product_name)) + "</h1> "), _vm._l(_vm.brands_details, function (brand) {
+    return _vm._ssrNode("<h6 data-v-039500d5>", "</h6>", [_vm._ssrNode("\n                                            Brand:\n                                            "), brand.name !== undefined && brand.name !== '' ? _c('nuxt-link', {
       attrs: {
         "to": `/brand-product/brand-grid?slug=${brand.slug}`
       }
     }, [_vm._v("\n                                                " + _vm._s(brand.name) + "\n                                            ")]) : _c('span', [_vm._v("No Brand")])], 2);
-  })], 2), _vm._ssrNode(" "), _vm._ssrNode("<div class=\"price_div\" data-v-4ebda218>", "</div>", [_vm.pro_row.discount_status == 2 ? _vm._ssrNode("<h5 data-v-4ebda218>", "</h5>", [_vm._ssrNode("<div class=\"d-flex align-items-center\" data-v-4ebda218>" + _vm._ssrEscape("\n                                                Now: $" + _vm._s(_vm.price = _vm.pro_row.price - _vm.pro_row.discount) + "\n                                                ") + (_vm.pro_row.vat_status == 0 ? "<p style=\"color: gray;font-size: 12px;\" data-v-4ebda218> +Inclusing VAT.</p>" : "<!---->") + "</div> "), _vm._ssrNode("<p class=\"ms-0 d-block\" data-v-4ebda218>", "</p>", [_vm.pro_row.discount !== 0 ? _c('strike', [_vm._v("Was: $" + _vm._s(_vm.pro_row.price) + " ")]) : _vm._e()], 1)], 2) : _vm.pro_row.discount_status == 1 ? _vm._ssrNode("<h5 data-v-4ebda218>", "</h5>", [_vm._ssrNode("<div class=\"d-flex align-items-center\" data-v-4ebda218>" + _vm._ssrEscape("\n                                                Now: $" + _vm._s(_vm.price = _vm.pro_row.price - _vm.pro_row.price * _vm.pro_row.discount / 100) + "\n                                                ") + (_vm.pro_row.vat_status == 0 ? "<p style=\"color: gray;font-size: 12px;\" data-v-4ebda218> +Inclusing VAT.</p>" : "<!---->") + "</div> "), _vm._ssrNode("<p class=\"ms-0 d-block\" data-v-4ebda218>", "</p>", [_vm.pro_row.discount !== 0 ? _c('strike', [_vm._v("Was: $" + _vm._s(_vm.pro_row.price))]) : _vm._e()], 1)], 2) : _vm._ssrNode("<h5 data-v-4ebda218>" + _vm._ssrEscape("$" + _vm._s(_vm.pro_row.price)) + "</h5>"), _vm._ssrNode(" " + (_vm.pro_row.stock_status == 1 && _vm.pro_row.stock_qty >= 1 ? "<p data-v-4ebda218>In stock</p>" : _vm.pro_row.stock_status == 2 && _vm.pro_row.stock_qty >= 1 ? "<p data-v-4ebda218>in stock\n                                        </p>" : _vm.pro_row.stock_status == 3 ? "<p data-v-4ebda218>Out of stock</p>" : _vm.pro_row.stock_status == 4 ? "<p data-v-4ebda218>Preorder</p>" : _vm.pro_row.stock_qty == 0 ? "<p data-v-4ebda218>Out Of stock</p>" : "<p data-v-4ebda218>Out Of stock</p>"))], 2), _vm._ssrNode(" <div class=\"ratings_pro\" data-v-4ebda218>" + (_vm.pro_row.free_shopping == 0 ? "<p data-v-4ebda218>" + _vm._ssrEscape("+shipping ($" + _vm._s(_vm.pro_row.flat_rate_price) + " in per " + _vm._s(_vm.pro_row.unit) + ")") + "</p>" : "<!---->") + " <div class=\"d-flex align-items-center\" data-v-4ebda218><div class=\"d-flex align-items-center\" data-v-4ebda218><i class=\"fa-solid fa-star active\" data-v-4ebda218></i> <i class=\"fa-solid fa-star active\" data-v-4ebda218></i> <i class=\"fa-solid fa-star active\" data-v-4ebda218></i> <i class=\"fa-solid fa-star\" data-v-4ebda218></i> <i class=\"fa-solid fa-star\" data-v-4ebda218></i></div> <h6 class=\"mb-0 ms-2\" data-v-4ebda218>( <a href=\"#feedback\" data-v-4ebda218>188 verified ratings</a>)\n                                            </h6></div> <div class=\"d-flex align-items-end\" data-v-4ebda218><div class=\"number my-1\" data-v-4ebda218><span class=\"minus\" data-v-4ebda218>-</span> <input type=\"number\"" + _vm._ssrAttr("value", _vm.updatedQuantity) + " data-v-4ebda218> <span class=\"plus\" data-v-4ebda218>+</span></div></div> <div class=\"d-flex align-items-center\" data-v-4ebda218><button type=\"button\" class=\"btn_cart\" style=\"visibility: unset; max-width: 120px;\" data-v-4ebda218><i class=\"fa-solid fa-cart-shopping\" data-v-4ebda218></i>Add to Cart </button></div> " + (_vm.pro_row.free_shopping !== 1 ? "<p class=\"m-0\" data-v-4ebda218>Delivery by <strong data-v-4ebda218>" + _vm._ssrEscape(_vm._s(_vm.futureDate)) + "</strong></p>" : "<!---->") + " " + (_vm.pro_row.free_shopping == 1 ? "<p class=\"m-0\" data-v-4ebda218>Free Delivery by <strong data-v-4ebda218>" + _vm._ssrEscape(_vm._s(_vm.futureDate)) + "</strong></p>" : "<!---->") + "</div> <div class=\"shortDescPro\" data-v-4ebda218></div> "), _vm._ssrNode("<div class=\"promotion\" data-v-4ebda218>", "</div>", [_vm._ssrNode("<h4 data-v-4ebda218>Promotions</h4> "), _vm._ssrNode("<ul data-v-4ebda218>", "</ul>", [_vm._ssrNode("<li data-v-4ebda218>", "</li>", [_c('nuxt-link', {
+  })], 2), _vm._ssrNode(" "), _vm._ssrNode("<div class=\"price_div\" data-v-039500d5>", "</div>", [_vm.pro_row.discount_status == 1 ? _vm._ssrNode("<h5 data-v-039500d5>", "</h5>", [_vm._ssrNode("<div class=\"d-flex align-items-center\" data-v-039500d5>" + _vm._ssrEscape("\n                                                Now: $" + _vm._s(_vm.pro_row.last_price.toFixed(2)) + "\n                                                ") + "<p style=\"color: gray;font-size: 12px;\" data-v-039500d5>  +Inclusing VAT.</p></div> "), _vm._ssrNode("<p class=\"ms-0 d-block\" data-v-039500d5>", "</p>", [_vm.pro_row.discount !== 0 ? _c('strike', [_vm._v("Was: $" + _vm._s(_vm.pro_row.price.toFixed(2)) + " ")]) : _vm._e(), _vm._ssrNode("<span data-v-039500d5>" + _vm._ssrEscape(_vm._s(_vm.pro_row.discount) + "%") + "</span>")], 2)], 2) : _vm.pro_row.discount_status == 2 ? _vm._ssrNode("<h5 data-v-039500d5>", "</h5>", [_vm._ssrNode("<div class=\"d-flex align-items-center\" data-v-039500d5>" + _vm._ssrEscape("\n                                                Now: $" + _vm._s(_vm.pro_row.last_price.toFixed(2)) + "\n                                                ") + "<p style=\"color: gray;font-size: 12px;\" data-v-039500d5>  +Inclusing VAT.</p></div> "), _vm._ssrNode("<p class=\"ms-0 d-block\" data-v-039500d5>", "</p>", [_vm.pro_row.discount !== 0 ? _c('strike', [_vm._v("Was: $" + _vm._s(_vm.pro_row.price.toFixed(2)) + " ")]) : _vm._e(), _vm._ssrNode("<span data-v-039500d5>" + _vm._ssrEscape("$" + _vm._s(_vm.pro_row.discount)) + "</span>")], 2)], 2) : _vm._ssrNode("<h5 data-v-039500d5>" + _vm._ssrEscape("$" + _vm._s(_vm.pro_row.last_price) + " ") + "</h5>"), _vm._ssrNode(" " + (_vm.pro_row.stock_status == 1 && _vm.pro_row.stock_qty >= 1 ? "<p data-v-039500d5>In stock</p>" : _vm.pro_row.stock_status == 2 && _vm.pro_row.stock_qty >= 1 ? "<p data-v-039500d5>in stock\n                                        </p>" : _vm.pro_row.stock_status == 3 ? "<p data-v-039500d5>Out of stock</p>" : _vm.pro_row.stock_status == 4 ? "<p data-v-039500d5>Preorder</p>" : _vm.pro_row.stock_qty == 0 ? "<p data-v-039500d5>Out Of stock</p>" : "<p data-v-039500d5>Out Of stock</p>"))], 2), _vm._ssrNode(" "), _vm._ssrNode("<div class=\"ratings_pro\" data-v-039500d5>", "</div>", [_vm._ssrNode((_vm.pro_row.free_shopping == 0 ? "<p data-v-039500d5>" + _vm._ssrEscape("+shipping ($" + _vm._s(_vm.pro_row.flat_rate_price) + " in per " + _vm._s(_vm.pro_row.unit) + ")") + "</p>" : "<!---->") + " <div class=\"d-flex align-items-center\" data-v-039500d5><div class=\"d-flex align-items-center\" data-v-039500d5><i class=\"fa-solid fa-star active\" data-v-039500d5></i> <i class=\"fa-solid fa-star active\" data-v-039500d5></i> <i class=\"fa-solid fa-star active\" data-v-039500d5></i> <i class=\"fa-solid fa-star\" data-v-039500d5></i> <i class=\"fa-solid fa-star\" data-v-039500d5></i></div> <h6 class=\"mb-0 ms-2\" data-v-039500d5>( <a href=\"#feedback\" data-v-039500d5>188 verified ratings</a>)\n                                            </h6></div> "), _vm._ssrNode("<div class=\"d-flex align-items-end\" data-v-039500d5>", "</div>", [_vm.colorGroup !== null && _vm.colorGroup.length > 0 ? _vm._ssrNode("<div class=\"size_attr\" data-v-039500d5>", "</div>", [_vm._ssrNode("<label for data-v-039500d5>Color:</label> "), _c('select', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: _vm.color,
+      expression: "color"
+    }],
+    staticClass: "form-control w-100",
+    on: {
+      "change": [function ($event) {
+        var $$selectedVal = Array.prototype.filter.call($event.target.options, function (o) {
+          return o.selected;
+        }).map(function (o) {
+          var val = "_value" in o ? o._value : o.value;
+          return val;
+        });
+        _vm.color = $event.target.multiple ? $$selectedVal : $$selectedVal[0];
+      }, function ($event) {
+        return _vm.showAttrVal();
+      }]
+    }
+  }, [_c('option', {
+    attrs: {
+      "disabled": "",
+      "value": "",
+      "selected": ""
+    }
+  }, [_vm._v("Select")]), _vm._v(" "), _vm._l(_vm.colorGroup, function (item, index) {
+    return _c('option', {
+      key: index,
+      domProps: {
+        "value": item.color,
+        "selected": item.selected
+      }
+    }, [_vm._v("\n                                                        " + _vm._s(item.color) + "\n                                                    ")]);
+  })], 2)], 2) : _vm._e(), _vm._ssrNode(" "), _vm.varientList !== null && _vm.varientList.length > 0 ? _vm._ssrNode("<div class=\"size_attr\" data-v-039500d5>", "</div>", [_vm._ssrNode("<label for data-v-039500d5>Size:</label> "), _c('select', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: _vm.size,
+      expression: "size"
+    }],
+    staticClass: "form-control",
+    attrs: {
+      "required": ""
+    },
+    on: {
+      "change": function ($event) {
+        var $$selectedVal = Array.prototype.filter.call($event.target.options, function (o) {
+          return o.selected;
+        }).map(function (o) {
+          var val = "_value" in o ? o._value : o.value;
+          return val;
+        });
+        _vm.size = $event.target.multiple ? $$selectedVal : $$selectedVal[0];
+      }
+    }
+  }, [_c('option', {
+    attrs: {
+      "disabled": "",
+      "value": "",
+      "selected": ""
+    }
+  }, [_vm._v("Select")]), _vm._v(" "), _vm._l(_vm.varientList, function (varient, index) {
+    return _c('option', {
+      key: index,
+      domProps: {
+        "value": varient.size
+      },
+      on: {
+        "click": function ($event) {
+          return _vm.handleButtonClick(varient);
+        }
+      }
+    }, [_vm._v("\n                                                        " + _vm._s(varient.size))]);
+  })], 2)], 2) : _vm._e(), _vm._ssrNode(" <div class=\"number my-1\" data-v-039500d5><span class=\"minus\" data-v-039500d5>-</span> <input type=\"number\"" + _vm._ssrAttr("value", _vm.updatedQuantity) + " data-v-039500d5> <span class=\"plus\" data-v-039500d5>+</span></div>")], 2), _vm._ssrNode(" <div class=\"d-flex align-items-center\" data-v-039500d5>" + (_vm.pro_row.stock_qty !== 0 ? "<button type=\"button\" class=\"btn_cart\" style=\"visibility: unset; max-width: 120px;\" data-v-039500d5><i class=\"fa-solid fa-cart-shopping\" data-v-039500d5></i>Add to Cart </button>" : "<button class=\"btn_sold\" style=\"max-width: 120px;\" data-v-039500d5>Sold\n                                                out</button>") + "</div> " + (_vm.pro_row.free_shopping !== 1 ? "<p class=\"m-0\" data-v-039500d5>Delivery by <strong data-v-039500d5>" + _vm._ssrEscape(_vm._s(_vm.futureDate)) + "</strong></p>" : "<!---->") + " " + (_vm.pro_row.free_shopping == 1 ? "<p class=\"m-0\" data-v-039500d5>Free Delivery by <strong data-v-039500d5>" + _vm._ssrEscape(_vm._s(_vm.futureDate)) + "</strong></p>" : "<!---->"))], 2), _vm._ssrNode(" <div class=\"shortDescPro\" data-v-039500d5></div> "), _vm._ssrNode("<div class=\"promotion\" data-v-039500d5>", "</div>", [_vm._ssrNode("<h4 data-v-039500d5>Promotions</h4> "), _vm._ssrNode("<ul data-v-039500d5>", "</ul>", [_vm._ssrNode("<li data-v-039500d5>", "</li>", [_c('nuxt-link', {
     attrs: {
       "to": "/sell-on-ecommerce"
     }
   }, [_c('i', {
     staticClass: "fa-solid fa-shield-halved"
-  }), _vm._v("Become a seller and\n                                                    start sell your product in ECOMMERCE ")])], 1)])], 2)], 2)]), _vm._ssrNode(" <div class=\"report\" data-v-4ebda218></div>")], 2)])])])])]), _vm._ssrNode(" "), _vm._ssrNode("<section class=\"details_scrollspay\" data-v-4ebda218>", "</section>", [_vm._ssrNode("<div class=\"container\" data-v-4ebda218>", "</div>", [_vm._ssrNode("<div class=\"row\" data-v-4ebda218>", "</div>", [_vm._ssrNode("<div class=\"col-12\" data-v-4ebda218>", "</div>", [_vm._ssrNode("<div class=\"row\" data-v-4ebda218>", "</div>", [_vm._ssrNode("<div class=\"col-12\" data-v-4ebda218><div data-bs-spy=\"scroll\" data-bs-target=\"#list-example\" data-bs-offset=\"0\" tabindex=\"0\" class=\"scrollspy-example\" data-v-4ebda218><div id=\"details\" class=\"product_details\" data-v-4ebda218></div> <div id=\"feedback\" class=\"feedback\" data-v-4ebda218><div class=\"side_title\" data-v-4ebda218><h5 data-v-4ebda218>Varified Customer Feedback</h5> <a href=\"customer-review.html\" data-v-4ebda218>See All <i class=\"fa-solid fa-arrow-right\" data-v-4ebda218></i></a></div> <div class=\"row\" data-v-4ebda218><div class=\"col-md-4\" data-v-4ebda218><h2 data-v-4ebda218>Varified ratings(147)</h2> <div class=\"box_rating\" data-v-4ebda218><h3 data-v-4ebda218>4.5/5</h3> <div class=\"ratings\" data-v-4ebda218><span class=\"fa fa-star checked\" data-v-4ebda218></span> <span class=\"fa fa-star checked\" data-v-4ebda218></span> <span class=\"fa fa-star checked\" data-v-4ebda218></span> <span class=\"fa fa-star\" data-v-4ebda218></span> <span class=\"fa fa-star\" data-v-4ebda218></span></div> <p data-v-4ebda218>147 verified ratings</p></div> <div class=\"rate_count\" data-v-4ebda218><p data-v-4ebda218>5</p> <i class=\"fa fa-star checked\" data-v-4ebda218></i> <span data-v-4ebda218>(106)</span> <div class=\"progress\" data-v-4ebda218><div role=\"progressbar\" aria-valuenow=\"25\" aria-valuemin=\"0\" aria-valuemax=\"100\" class=\"progress-bar\" style=\"width: 25%;\" data-v-4ebda218></div></div></div> <div class=\"rate_count\" data-v-4ebda218><p data-v-4ebda218>4</p> <i class=\"fa fa-star checked\" data-v-4ebda218></i> <span data-v-4ebda218>(106)</span> <div class=\"progress\" data-v-4ebda218><div role=\"progressbar\" aria-valuenow=\"25\" aria-valuemin=\"0\" aria-valuemax=\"100\" class=\"progress-bar\" style=\"width: 25%;\" data-v-4ebda218></div></div></div> <div class=\"rate_count\" data-v-4ebda218><p data-v-4ebda218>3</p> <i class=\"fa fa-star checked\" data-v-4ebda218></i> <span data-v-4ebda218>(106)</span> <div class=\"progress\" data-v-4ebda218><div role=\"progressbar\" aria-valuenow=\"25\" aria-valuemin=\"0\" aria-valuemax=\"100\" class=\"progress-bar\" style=\"width: 25%;\" data-v-4ebda218></div></div></div> <div class=\"rate_count\" data-v-4ebda218><p data-v-4ebda218>2</p> <i class=\"fa fa-star checked\" data-v-4ebda218></i> <span data-v-4ebda218>(106)</span> <div class=\"progress\" data-v-4ebda218><div role=\"progressbar\" aria-valuenow=\"25\" aria-valuemin=\"0\" aria-valuemax=\"100\" class=\"progress-bar\" style=\"width: 25%;\" data-v-4ebda218></div></div></div> <div class=\"rate_count\" data-v-4ebda218><p data-v-4ebda218>1</p> <i class=\"fa fa-star checked\" data-v-4ebda218></i> <span data-v-4ebda218>(106)</span> <div class=\"progress\" data-v-4ebda218><div role=\"progressbar\" aria-valuenow=\"25\" aria-valuemin=\"0\" aria-valuemax=\"100\" class=\"progress-bar\" style=\"width: 25%;\" data-v-4ebda218></div></div></div></div> <div class=\"col-md-8 right_side_rate\" data-v-4ebda218><h2 data-v-4ebda218>COMMENTS FROM VERIFIED PURCHASES(51)</h2> <div data-v-4ebda218><div class=\"ratings\" data-v-4ebda218><span class=\"fa fa-star checked\" data-v-4ebda218></span> <span class=\"fa fa-star checked\" data-v-4ebda218></span> <span class=\"fa fa-star checked\" data-v-4ebda218></span> <span class=\"fa fa-star\" data-v-4ebda218></span> <span class=\"fa fa-star\" data-v-4ebda218></span></div> <h5 data-v-4ebda218>Awsome</h5> <p data-v-4ebda218>awesome</p> <div class=\"d-flex justify-content-between\" data-v-4ebda218><p data-v-4ebda218>04-08-2023 By <a href=\"#\" data-v-4ebda218>User </a></p> <p class=\"varify_tag\" data-v-4ebda218><i class=\"fa fa-check\" data-v-4ebda218></i>Varified\n                                                        Customer</p></div></div> <div data-v-4ebda218><div class=\"ratings\" data-v-4ebda218><span class=\"fa fa-star checked\" data-v-4ebda218></span> <span class=\"fa fa-star checked\" data-v-4ebda218></span> <span class=\"fa fa-star checked\" data-v-4ebda218></span> <span class=\"fa fa-star\" data-v-4ebda218></span> <span class=\"fa fa-star\" data-v-4ebda218></span></div> <h5 data-v-4ebda218>Awsome</h5> <p data-v-4ebda218>awesome</p> <div class=\"d-flex justify-content-between\" data-v-4ebda218><p data-v-4ebda218>04-08-2023 By <a href=\"#\" data-v-4ebda218>User </a></p> <p class=\"varify_tag\" data-v-4ebda218><i class=\"fa fa-check\" data-v-4ebda218></i>Varified\n                                                        Customer</p></div></div> <div data-v-4ebda218><div class=\"ratings\" data-v-4ebda218><span class=\"fa fa-star checked\" data-v-4ebda218></span> <span class=\"fa fa-star checked\" data-v-4ebda218></span> <span class=\"fa fa-star checked\" data-v-4ebda218></span> <span class=\"fa fa-star\" data-v-4ebda218></span> <span class=\"fa fa-star\" data-v-4ebda218></span></div> <h5 data-v-4ebda218>Awsome</h5> <p data-v-4ebda218>awesome</p> <div class=\"d-flex justify-content-between\" data-v-4ebda218><p data-v-4ebda218>04-08-2023 By <a href=\"#\" data-v-4ebda218>User </a></p> <p class=\"varify_tag\" data-v-4ebda218><i class=\"fa fa-check\" data-v-4ebda218></i>Varified\n                                                        Customer</p></div></div></div></div></div></div></div> "), _vm._ssrNode("<div class=\"col-xl-4 col-lg-4 col-md-4 col-sm-12 d-none\" data-v-4ebda218>", "</div>", [_vm._ssrNode("<div class=\"sidebar_here\" data-v-4ebda218>", "</div>", [_vm._ssrNode("<div id=\"list-example\" class=\"list-group id_list\" data-v-4ebda218><a href=\"#details\" class=\"list-group-item list-group-item-action active\" data-v-4ebda218><i class=\"fa-regular fa-file-lines\" data-v-4ebda218></i>Product details </a> <a href=\"#spacification\" class=\"list-group-item list-group-item-action\" data-v-4ebda218><i class=\"fa-solid fa-list\" data-v-4ebda218></i>Specification</a> <a href=\"#feedback\" class=\"list-group-item list-group-item-action\" data-v-4ebda218><i class=\"fa-regular fa-message\" data-v-4ebda218></i>Varified Customer Feedback</a></div> "), _vm._ssrNode("<div class=\"pro_cart\" data-v-4ebda218>", "</div>", [_vm._ssrNode("<div class=\"d-flex\" data-v-4ebda218>", "</div>", [_vm._ssrNode("<div data-v-4ebda218><img" + _vm._ssrAttr("src", _vm.featuresimgs) + " alt data-v-4ebda218></div> "), _vm._ssrNode("<div data-v-4ebda218>", "</div>", [_vm._ssrNode("<p data-v-4ebda218>" + _vm._ssrEscape("TK " + _vm._s(_vm.pro_row.price)) + "</p> "), _vm._ssrNode("<p data-v-4ebda218>", "</p>", [_c('strike', [_vm._v("TK " + _vm._s(_vm.pro_row.discount))])], 1)], 2)], 2), _vm._ssrNode(" <button type=\"button\" class=\"btn_cart\" data-v-4ebda218><i class=\"fa-solid fa-cart-shopping\" data-v-4ebda218></i>Add to Cart </button>")], 2)], 2)])], 2)])]), _vm._ssrNode(" <div class=\"row\" data-v-4ebda218><div class=\"col-12\" data-v-4ebda218></div></div>")], 2)]), _vm._ssrNode(" "), _c('Footer')], 2);
+  }), _vm._v("Become a seller and\n                                                    start sell your product in ECOMMERCE ")])], 1)])], 2)], 2)]), _vm._ssrNode(" <div class=\"report\" data-v-039500d5></div>")], 2)])])])])]), _vm._ssrNode(" "), _vm._ssrNode("<section class=\"details_scrollspay\" data-v-039500d5>", "</section>", [_vm._ssrNode("<div class=\"container\" data-v-039500d5>", "</div>", [_vm._ssrNode("<div class=\"row\" data-v-039500d5>", "</div>", [_vm._ssrNode("<div class=\"col-12\" data-v-039500d5>", "</div>", [_vm._ssrNode("<div class=\"row\" data-v-039500d5>", "</div>", [_vm._ssrNode("<div class=\"col-12\" data-v-039500d5><div data-bs-spy=\"scroll\" data-bs-target=\"#list-example\" data-bs-offset=\"0\" tabindex=\"0\" class=\"scrollspy-example\" data-v-039500d5><div id=\"details\" class=\"product_details\" data-v-039500d5></div> <div id=\"feedback\" class=\"feedback\" data-v-039500d5><div class=\"side_title\" data-v-039500d5><h5 data-v-039500d5>Varified Customer Feedback</h5> <a href=\"customer-review.html\" data-v-039500d5>See All <i class=\"fa-solid fa-arrow-right\" data-v-039500d5></i></a></div> <div class=\"row\" data-v-039500d5><div class=\"col-md-4\" data-v-039500d5><h2 data-v-039500d5>Varified ratings(147)</h2> <div class=\"box_rating\" data-v-039500d5><h3 data-v-039500d5>4.5/5</h3> <div class=\"ratings\" data-v-039500d5><span class=\"fa fa-star checked\" data-v-039500d5></span> <span class=\"fa fa-star checked\" data-v-039500d5></span> <span class=\"fa fa-star checked\" data-v-039500d5></span> <span class=\"fa fa-star\" data-v-039500d5></span> <span class=\"fa fa-star\" data-v-039500d5></span></div> <p data-v-039500d5>147 verified ratings</p></div> <div class=\"rate_count\" data-v-039500d5><p data-v-039500d5>5</p> <i class=\"fa fa-star checked\" data-v-039500d5></i> <span data-v-039500d5>(106)</span> <div class=\"progress\" data-v-039500d5><div role=\"progressbar\" aria-valuenow=\"25\" aria-valuemin=\"0\" aria-valuemax=\"100\" class=\"progress-bar\" style=\"width: 25%;\" data-v-039500d5></div></div></div> <div class=\"rate_count\" data-v-039500d5><p data-v-039500d5>4</p> <i class=\"fa fa-star checked\" data-v-039500d5></i> <span data-v-039500d5>(106)</span> <div class=\"progress\" data-v-039500d5><div role=\"progressbar\" aria-valuenow=\"25\" aria-valuemin=\"0\" aria-valuemax=\"100\" class=\"progress-bar\" style=\"width: 25%;\" data-v-039500d5></div></div></div> <div class=\"rate_count\" data-v-039500d5><p data-v-039500d5>3</p> <i class=\"fa fa-star checked\" data-v-039500d5></i> <span data-v-039500d5>(106)</span> <div class=\"progress\" data-v-039500d5><div role=\"progressbar\" aria-valuenow=\"25\" aria-valuemin=\"0\" aria-valuemax=\"100\" class=\"progress-bar\" style=\"width: 25%;\" data-v-039500d5></div></div></div> <div class=\"rate_count\" data-v-039500d5><p data-v-039500d5>2</p> <i class=\"fa fa-star checked\" data-v-039500d5></i> <span data-v-039500d5>(106)</span> <div class=\"progress\" data-v-039500d5><div role=\"progressbar\" aria-valuenow=\"25\" aria-valuemin=\"0\" aria-valuemax=\"100\" class=\"progress-bar\" style=\"width: 25%;\" data-v-039500d5></div></div></div> <div class=\"rate_count\" data-v-039500d5><p data-v-039500d5>1</p> <i class=\"fa fa-star checked\" data-v-039500d5></i> <span data-v-039500d5>(106)</span> <div class=\"progress\" data-v-039500d5><div role=\"progressbar\" aria-valuenow=\"25\" aria-valuemin=\"0\" aria-valuemax=\"100\" class=\"progress-bar\" style=\"width: 25%;\" data-v-039500d5></div></div></div></div> <div class=\"col-md-8 right_side_rate\" data-v-039500d5><h2 data-v-039500d5>COMMENTS FROM VERIFIED PURCHASES(51)</h2> <div data-v-039500d5><div class=\"ratings\" data-v-039500d5><span class=\"fa fa-star checked\" data-v-039500d5></span> <span class=\"fa fa-star checked\" data-v-039500d5></span> <span class=\"fa fa-star checked\" data-v-039500d5></span> <span class=\"fa fa-star\" data-v-039500d5></span> <span class=\"fa fa-star\" data-v-039500d5></span></div> <h5 data-v-039500d5>Awsome</h5> <p data-v-039500d5>awesome</p> <div class=\"d-flex justify-content-between\" data-v-039500d5><p data-v-039500d5>04-08-2023 By <a href=\"#\" data-v-039500d5>User </a></p> <p class=\"varify_tag\" data-v-039500d5><i class=\"fa fa-check\" data-v-039500d5></i>Varified\n                                                        Customer</p></div></div> <div data-v-039500d5><div class=\"ratings\" data-v-039500d5><span class=\"fa fa-star checked\" data-v-039500d5></span> <span class=\"fa fa-star checked\" data-v-039500d5></span> <span class=\"fa fa-star checked\" data-v-039500d5></span> <span class=\"fa fa-star\" data-v-039500d5></span> <span class=\"fa fa-star\" data-v-039500d5></span></div> <h5 data-v-039500d5>Awsome</h5> <p data-v-039500d5>awesome</p> <div class=\"d-flex justify-content-between\" data-v-039500d5><p data-v-039500d5>04-08-2023 By <a href=\"#\" data-v-039500d5>User </a></p> <p class=\"varify_tag\" data-v-039500d5><i class=\"fa fa-check\" data-v-039500d5></i>Varified\n                                                        Customer</p></div></div> <div data-v-039500d5><div class=\"ratings\" data-v-039500d5><span class=\"fa fa-star checked\" data-v-039500d5></span> <span class=\"fa fa-star checked\" data-v-039500d5></span> <span class=\"fa fa-star checked\" data-v-039500d5></span> <span class=\"fa fa-star\" data-v-039500d5></span> <span class=\"fa fa-star\" data-v-039500d5></span></div> <h5 data-v-039500d5>Awsome</h5> <p data-v-039500d5>awesome</p> <div class=\"d-flex justify-content-between\" data-v-039500d5><p data-v-039500d5>04-08-2023 By <a href=\"#\" data-v-039500d5>User </a></p> <p class=\"varify_tag\" data-v-039500d5><i class=\"fa fa-check\" data-v-039500d5></i>Varified\n                                                        Customer</p></div></div></div></div></div></div></div> "), _vm._ssrNode("<div class=\"col-xl-4 col-lg-4 col-md-4 col-sm-12 d-none\" data-v-039500d5>", "</div>", [_vm._ssrNode("<div class=\"sidebar_here\" data-v-039500d5>", "</div>", [_vm._ssrNode("<div id=\"list-example\" class=\"list-group id_list\" data-v-039500d5><a href=\"#details\" class=\"list-group-item list-group-item-action active\" data-v-039500d5><i class=\"fa-regular fa-file-lines\" data-v-039500d5></i>Product details </a> <a href=\"#spacification\" class=\"list-group-item list-group-item-action\" data-v-039500d5><i class=\"fa-solid fa-list\" data-v-039500d5></i>Specification</a> <a href=\"#feedback\" class=\"list-group-item list-group-item-action\" data-v-039500d5><i class=\"fa-regular fa-message\" data-v-039500d5></i>Varified Customer Feedback</a></div> "), _vm._ssrNode("<div class=\"pro_cart\" data-v-039500d5>", "</div>", [_vm._ssrNode("<div class=\"d-flex\" data-v-039500d5>", "</div>", [_vm._ssrNode("<div data-v-039500d5><img" + _vm._ssrAttr("src", _vm.featuresimgs) + " alt data-v-039500d5></div> "), _vm._ssrNode("<div data-v-039500d5>", "</div>", [_vm._ssrNode("<p data-v-039500d5>" + _vm._ssrEscape("TK " + _vm._s(_vm.pro_row.price)) + "</p> "), _vm._ssrNode("<p data-v-039500d5>", "</p>", [_c('strike', [_vm._v("TK " + _vm._s(_vm.pro_row.discount))])], 1)], 2)], 2), _vm._ssrNode(" <button type=\"button\" class=\"btn_cart\" data-v-039500d5><i class=\"fa-solid fa-cart-shopping\" data-v-039500d5></i>Add to Cart </button>")], 2)], 2)])], 2)])]), _vm._ssrNode(" <div class=\"row\" data-v-039500d5><div class=\"col-12\" data-v-039500d5></div></div>")], 2)]), _vm._ssrNode(" "), _c('Footer')], 2);
 };
 var staticRenderFns = [];
 
-// CONCATENATED MODULE: ./pages/product-details/_slug.vue?vue&type=template&id=4ebda218&scoped=true&
+// CONCATENATED MODULE: ./pages/product-details/_slug.vue?vue&type=template&id=039500d5&scoped=true&
 
 // EXTERNAL MODULE: external "jquery"
 var external_jquery_ = __webpack_require__(32);
@@ -130,7 +205,7 @@ var navbarSecond = __webpack_require__(63);
       currentIndex: 0,
       featuresimgs: '',
       slider_img: [],
-      pro_row: '',
+      pro_row: [],
       productSlug,
       historVarient: [{
         varient_id: '',
@@ -166,10 +241,33 @@ var navbarSecond = __webpack_require__(63);
     }
   },
   methods: {
+    checkqty() {
+      const qty = this.pro_row.stock_qty;
+      const upqty = this.updatedQuantity;
+      if (upqty >= qty) {
+        this.updatedQuantity = qty;
+        const Toast = Swal.mixin({
+          toast: true,
+          position: "top-end",
+          showConfirmButton: false,
+          timer: 3000,
+          timerProgressBar: true,
+          didOpen: toast => {
+            toast.onmouseenter = Swal.stopTimer;
+            toast.onmouseleave = Swal.resumeTimer;
+          }
+        });
+        Toast.fire({
+          icon: "error",
+          title: "You've reached the stock limit"
+        });
+      }
+    },
     handleButtonClick(varient) {
       this.varientData = varient;
-      this.pro_row.price = varient.price;
-      this.featuresimgs = varient.image;
+      this.pro_row.last_price = varient.price;
+      this.pro_row.stock_qty = varient.qty;
+      this.featuresimgs = varient.image ? varient.image : this.pro_mainimage;
       // Handle button click event for the selected variant
       // console.log('Button clicked for color:', varient.color);
       // console.log('Button clicked for size:', varient.size);
@@ -189,7 +287,8 @@ var navbarSecond = __webpack_require__(63);
           color: color
         }
       }).then(response => {
-        this.varientList = response.data.attribute;
+        this.varientList = response.data;
+        console.log(response.data);
       });
     },
     // =================================================
@@ -243,8 +342,27 @@ var navbarSecond = __webpack_require__(63);
     },
 
     increment() {
+      // console.log(this.pro_row.stock_qty);
       // Increase the quantity value
-      this.updatedQuantity++;
+      if (this.updatedQuantity < this.pro_row.stock_qty) {
+        this.updatedQuantity++;
+      } else {
+        const Toast = Swal.mixin({
+          toast: true,
+          position: "top-end",
+          showConfirmButton: false,
+          timer: 3000,
+          timerProgressBar: true,
+          didOpen: toast => {
+            toast.onmouseenter = Swal.stopTimer;
+            toast.onmouseleave = Swal.resumeTimer;
+          }
+        });
+        Toast.fire({
+          icon: "error",
+          title: "You've reached the stock limit"
+        });
+      }
     },
     decrement() {
       // Decrease the quantity value, but ensure it doesn't go below 1
@@ -292,25 +410,98 @@ var navbarSecond = __webpack_require__(63);
         this.saveCart();
       }
     },
-    addToCart(productId) {
-      const productToAdd = this.product.find(product => product.id === productId);
-      productToAdd.color = this.color;
-      productToAdd.size = this.size;
-      const existingItem = this.cart.find(item => item.product.id === productId);
+    async addToCart(productId) {
+      // console.log(this.pro_row.last_price);
+      const up_price = this.pro_row.last_price;
+      try {
+        const productToAdd = this.product.find(product => product.id === productId);
 
-      // console.log("------" + productToAdd.color+"------" + productToAdd.size);
-      // //return false;
-
-      if (existingItem) {
-        existingItem.quantity += 1;
-      } else {
-        this.cart.push({
-          product: productToAdd,
-          quantity: this.updatedQuantity
+        // Ensure product and quantity are valid
+        if (!productToAdd || !this.updatedQuantity) {
+          // console.error('Product or quantity is invalid.');
+          const Toast = Swal.mixin({
+            toast: true,
+            position: "top-end",
+            showConfirmButton: false,
+            timer: 3000,
+            timerProgressBar: true,
+            didOpen: toast => {
+              toast.onmouseenter = Swal.stopTimer;
+              toast.onmouseleave = Swal.resumeTimer;
+            }
+          });
+          Toast.fire({
+            icon: "error",
+            title: "Product or quantity is invalid."
+          });
+          return;
+        }
+        productToAdd.last_price = up_price;
+        if (this.color == '' && this.size == '') {
+          const Toast = Swal.mixin({
+            toast: true,
+            position: "top-end",
+            showConfirmButton: false,
+            timer: 3000,
+            timerProgressBar: true,
+            didOpen: toast => {
+              toast.onmouseenter = Swal.stopTimer;
+              toast.onmouseleave = Swal.resumeTimer;
+            }
+          });
+          Toast.fire({
+            icon: "error",
+            title: "Please select Color and size"
+          });
+        } else {
+          productToAdd.color = this.color;
+          productToAdd.size = this.size;
+          const existingItem = this.cart.find(item => item.product.id === productId);
+          if (existingItem) {
+            existingItem.quantity += this.updatedQuantity;
+          } else {
+            this.cart.push({
+              product: productToAdd,
+              quantity: this.updatedQuantity
+            });
+            const Toast = Swal.mixin({
+              toast: true,
+              position: "top-end",
+              showConfirmButton: false,
+              timer: 3000,
+              timerProgressBar: true,
+              didOpen: toast => {
+                toast.onmouseenter = Swal.stopTimer;
+                toast.onmouseleave = Swal.resumeTimer;
+              }
+            });
+            Toast.fire({
+              icon: "success",
+              title: "Product successfully Added to cart"
+            });
+          }
+          this.saveCart();
+          this.cartItemCount();
+          console.log('Item added to cart successfully.');
+        }
+      } catch (error) {
+        console.error('Error adding item to cart:', error);
+        const Toast = Swal.mixin({
+          toast: true,
+          position: "top-end",
+          showConfirmButton: false,
+          timer: 3000,
+          timerProgressBar: true,
+          didOpen: toast => {
+            toast.onmouseenter = Swal.stopTimer;
+            toast.onmouseleave = Swal.resumeTimer;
+          }
+        });
+        Toast.fire({
+          icon: "error",
+          title: "Product not Added to cart"
         });
       }
-      this.saveCart();
-      this.cartItemCount();
     },
     //end cart
     initLightSlider() {
@@ -339,6 +530,7 @@ var navbarSecond = __webpack_require__(63);
       this.loading = false;
       const response = await this.$axios.get(`/unauthenticate/productSlug/${prosulg}`);
       this.featuresimgs = response.data.data.featuredImage;
+      this.pro_mainimage = response.data.data.featuredImage;
       this.slider_img = response.data.data.slider_img;
       this.pro_row = response.data.data.pro_row;
       this.pro_Id = response.data.data.pro_row.id;
@@ -367,7 +559,7 @@ var componentNormalizer = __webpack_require__(2);
 
 function injectStyles (context) {
   
-  var style0 = __webpack_require__(204)
+  var style0 = __webpack_require__(208)
 if (style0.__inject__) style0.__inject__(context)
 
 }
@@ -380,7 +572,7 @@ var component = Object(componentNormalizer["a" /* default */])(
   staticRenderFns,
   false,
   injectStyles,
-  "4ebda218",
+  "039500d5",
   "35f05751"
   
 )
@@ -1076,7 +1268,7 @@ var component = Object(componentNormalizer["a" /* default */])(
 // ESM COMPAT FLAG
 __webpack_require__.r(__webpack_exports__);
 
-// CONCATENATED MODULE: ./node_modules/babel-loader/lib??ref--2-0!./node_modules/vue-loader/lib/loaders/templateLoader.js??ref--6!./node_modules/@nuxt/components/dist/loader.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./components/LoginPopup.vue?vue&type=template&id=3e58ccba&
+// CONCATENATED MODULE: ./node_modules/babel-loader/lib??ref--2-0!./node_modules/vue-loader/lib/loaders/templateLoader.js??ref--6!./node_modules/@nuxt/components/dist/loader.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./components/LoginPopup.vue?vue&type=template&id=d67dd6c8&
 var render = function render() {
   var _vm = this,
     _c = _vm._self._c;
@@ -1096,7 +1288,7 @@ var render = function render() {
 };
 var staticRenderFns = [];
 
-// CONCATENATED MODULE: ./components/LoginPopup.vue?vue&type=template&id=3e58ccba&
+// CONCATENATED MODULE: ./components/LoginPopup.vue?vue&type=template&id=d67dd6c8&
 
 // EXTERNAL MODULE: external "jquery"
 var external_jquery_ = __webpack_require__(32);
@@ -1149,6 +1341,7 @@ var external_jquery_default = /*#__PURE__*/__webpack_require__.n(external_jquery
         } else {
           console.warn('Unsupported role_id:', data.role_id);
         }
+        this.closePopup();
         Swal.fire({
           position: "top-end",
           icon: "success",

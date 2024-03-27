@@ -14,7 +14,8 @@
                                     <h6>Category</h6>
                                     <ul>
                                         <li v-for="category in categories" :key="category.id">
-                                            <nuxt-link :to="`/category/category-grid?slug=${category.slug}`">{{ category.name }}</nuxt-link>
+                                            <nuxt-link :to="`/category/category-grid?slug=${category.slug}`">{{
+                                            category.name }}</nuxt-link>
                                         </li>
                                     </ul>
                                 </div>
@@ -63,7 +64,10 @@
                                                         <div class="category_list">
                                                             <h6>Category</h6>
                                                             <ul>
-                                                                <li v-for="category in categories" :key="category.id"><nuxt-link :to="`category/category-grid?slug=${category.slug}`">{{ category.name }}</nuxt-link></li>
+                                                                <li v-for="category in categories" :key="category.id">
+                                                                    <nuxt-link
+                                                                        :to="`category/category-grid?slug=${category.slug}`">{{
+                                            category.name }}</nuxt-link></li>
                                                             </ul>
                                                         </div>
                                                         <div class="delivery_list">
@@ -186,24 +190,24 @@
                                                     <div class="d-flex align-items-center"
                                                         v-if="item.discount_status == 1">
                                                         <p class="me-1" v-if="item.discount !== 0">${{
-                                            item.percent_discount
-                                        }}</p>
-                                                        <p v-else class="me-1">${{ item.price }}</p>
-                                                        <p v-if="item.discount !== 0"><strike>${{ item.price }}</strike>
+                                            item.percent_discount.toFixed(2) }}</p>
+                                                        <p v-else class="me-1">${{ (item.price).toFixed(2) }}</p>
+                                                        <p v-if="item.discount !== 0 && item.discount !== ''">
+                                                            <strike>${{ item.price }}</strike>
                                                             <span>{{ item.discount }}%</span>
                                                         </p>
                                                     </div>
                                                     <div class="d-flex align-items-center"
                                                         v-else-if="item.discount_status == 2">
                                                         <p class="me-1" v-if="item.discount !== 0">${{
-                                                            item.fixed_discount }}
-                                                        </p>
-                                                        <p v-else class="me-1">${{ item.price }}</p>
-                                                        <p v-if="item.discount !== 0"><strike>${{ item.price }}</strike>
+                                            item.fixed_discount.toFixed(2) }}</p>
+                                                        <p v-else class="me-1">${{ (item.price).toFixed(2) }}</p>
+                                                        <p v-if="item.discount !== 0 && item.discount !== ''">
+                                                            <strike>${{ item.price }}</strike>
                                                             <span>${{ item.discount }}</span>
                                                         </p>
                                                     </div>
-                                                    <p v-else>${{ item.price }}</p>
+                                                    <p v-else>${{ (item.price).toFixed(2) }}</p>
                                                 </div>
                                             </nuxt-link>
 

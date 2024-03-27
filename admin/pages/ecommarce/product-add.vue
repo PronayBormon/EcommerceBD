@@ -20,6 +20,19 @@
                     </div>
                 </div>
                 <!--end breadcrumb-->
+                <!-- Basic information part start here  -->
+                <div class="row">
+                    <div class="col-md-8">
+                        <div class="card">
+                            <div class="card-header">
+                                <h5>Basic information</h5>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- basic information part end here  -->
+
+
                 <!--end row-->
                 <div class="row">
                     <div class="col-xl-12 mx-auto">
@@ -219,13 +232,6 @@
                                                                 </div>
                                                                 <div class="row mb-3 required" >
                                                                     <label for="input-meta-title-1" class="col-sm-4 col-form-label sflatRate">Flat Rate</label>
-                                                                    <!-- <div class="col-sm-4">
-                                                                        <select class="form-select sflatRate" aria-label=".form-select-sm example" v-model="insertdata.flat_rate_status">
-                                                                            <option selected>Select</option>
-                                                                            <option value="0">No</option>
-                                                                            <option value="1">Yes</option>
-                                                                        </select>
-                                                                    </div> -->
                                                                     <div class="col-sm-8 sflatRate">
                                                                         <input type="text" v-model="insertdata.flat_rate_price" class="form-control" @input="validateInput" />
                                                                     </div>
@@ -403,7 +409,7 @@ export default {
                 unit: '',
                 stock_qty: 1,
                 stock_mini_qty: 1,
-                stock_status: 1,
+                stock_status: 2,
                 manufacturer: '',
                 download_link: '',
                 discount: 0,

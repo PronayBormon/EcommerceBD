@@ -1,7 +1,7 @@
-exports.ids = [86,16,17,18,20,24,26,27,31,87];
+exports.ids = [89,18,19,20,22,26,29,30,34,90];
 exports.modules = {
 
-/***/ 130:
+/***/ 131:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -264,7 +264,7 @@ var component = Object(componentNormalizer["a" /* default */])(
 
 /***/ }),
 
-/***/ 234:
+/***/ 238:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -315,7 +315,7 @@ var Common_MiniTabNavbar = __webpack_require__(56);
 var Common_MobileSearchProduct = __webpack_require__(64);
 
 // EXTERNAL MODULE: ./pages/sell-on-filter.vue + 4 modules
-var sell_on_filter = __webpack_require__(130);
+var sell_on_filter = __webpack_require__(131);
 
 // EXTERNAL MODULE: ./components/navbarSecond.vue + 4 modules
 var navbarSecond = __webpack_require__(63);
@@ -1054,7 +1054,7 @@ var component = Object(componentNormalizer["a" /* default */])(
 // ESM COMPAT FLAG
 __webpack_require__.r(__webpack_exports__);
 
-// CONCATENATED MODULE: ./node_modules/babel-loader/lib??ref--2-0!./node_modules/vue-loader/lib/loaders/templateLoader.js??ref--6!./node_modules/@nuxt/components/dist/loader.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./components/LoginPopup.vue?vue&type=template&id=3e58ccba&
+// CONCATENATED MODULE: ./node_modules/babel-loader/lib??ref--2-0!./node_modules/vue-loader/lib/loaders/templateLoader.js??ref--6!./node_modules/@nuxt/components/dist/loader.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./components/LoginPopup.vue?vue&type=template&id=d67dd6c8&
 var render = function render() {
   var _vm = this,
     _c = _vm._self._c;
@@ -1074,7 +1074,7 @@ var render = function render() {
 };
 var staticRenderFns = [];
 
-// CONCATENATED MODULE: ./components/LoginPopup.vue?vue&type=template&id=3e58ccba&
+// CONCATENATED MODULE: ./components/LoginPopup.vue?vue&type=template&id=d67dd6c8&
 
 // EXTERNAL MODULE: external "jquery"
 var external_jquery_ = __webpack_require__(32);
@@ -1127,6 +1127,7 @@ var external_jquery_default = /*#__PURE__*/__webpack_require__.n(external_jquery
         } else {
           console.warn('Unsupported role_id:', data.role_id);
         }
+        this.closePopup();
         Swal.fire({
           position: "top-end",
           icon: "success",

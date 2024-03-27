@@ -10,27 +10,40 @@
                             </div>
                         </div>
                     </div>
-                    <div class="loading-indicator" v-if="loading" style="text-align: center;">
-                        <div class="loader-container">
-                            <center class="loader-text">Loading...</center>
-                            <img src="/loader/loader.gif" alt="Loader" />
-                        </div>
-                    </div>
+
                     <div class="swiper mySwiper pro_slider">
                         <!-- {{ toproducts }} -->
                         <div class="swiper-wrapper">
                             <div class="swiper-slide" v-for="item in toproducts" :key="item.id">
                                 <div class="product_grid text-start">
+                                    <div class="loading-indicator" v-if="loading" style="text-align: center;position: absolute; z-index: 2; left: 0; top: 0; background: #ffffff5c; height: 100%; width: 100%; object-fit: contain;">
+                                        <div class="loader-container">
+                                            <!-- <center class="loader-text">Loading...</center> -->
+                                            <img src="/loader/loader.gif" alt="Loader" />
+                                        </div>
+                                    </div>
                                     <nuxt-link :to="`/product-details/${item.slug}`">
                                         <img :src="item.thumnail_img" class="img-fluid" loading="lazy">
 
                                         <span v-if="item.free_shopping == 1">Free Delivery</span>
                                         <!-- <strong>Official Store </strong> -->
                                         <h1>{{ item.name }}</h1>
-                                        <p>${{ item.price - (item.price * item.discount / 100) }}</p>
-                                        <p><strike>${{ item.price }}</strike>
-                                            <span>{{ item.discount }}%</span>
-                                        </p>
+                                        <div v-if="item.discount_status == 1" class="d-flex aligh-items-center">
+                                            <p>${{ item.last_price.toFixed(2) }}</p>
+                                            <p class="ms-1" v-if="item.discount !== 0"><strike>${{ item.price.toFixed(2)
+                                                    }}</strike> <span>{{ item.discount }}%</span> </p>
+                                        </div>
+                                        <div v-else-if="item.discount_status == 2" class="d-flex aligh-items-center">
+                                            <p>${{ item.last_price.toFixed(2) }}</p>
+
+                                            <p class="ms-1" v-if="item.discount !== 0"><strike>${{ item.price.toFixed(2)
+                                                    }}</strike>
+                                                <span>${{ item.discount.toFixed(2) }}</span>
+                                            </p>
+                                        </div>
+                                        <div v-else>
+                                            <p>${{ item.last_price.toFixed(2) }}</p>
+                                        </div>
                                     </Nuxt-link>
 
                                     <div class="d-flex align-items-center">
@@ -52,41 +65,6 @@
                         <div class="swiper-button-next"></div>
                         <div class="swiper-button-prev"></div>
                     </div>
-                    <!-- <div class="slider-container">
-                        <div class="slider" ref="slider">
-                            <div class="slide" v-for="item in toproducts" :key="item.id">
-                                <div class="product_grid text-start">
-                                    <nuxt-link :to="`/product-details/${item.slug}`">
-                                        <img :src="item.thumnail_img" class="img-fluid" loading="lazy">
-
-                                        <span v-if="item.free_shopping == 1">Free Delivery</span>
-                                        <h1>{{ item.name }}</h1>
-                                        <p>${{ item.price - (item.price * item.discount / 100) }}</p>
-                                        <p><strike>${{ item.price }}</strike>
-                                            <span>{{ item.discount }}%</span>
-                                        </p>
-                                    </Nuxt-link>
-
-                                    <div class="d-flex align-items-center">
-                                        <div class="rating">
-                                            <i class="fa fa-star checked"></i>
-                                            <i class="fa fa-star checked"></i>
-                                            <i class="fa fa-star checked"></i>
-                                            <i class="fa fa-star checked"></i>
-                                            <i class="fa fa-star "></i>
-                                        </div>
-                                        <h6>(200)</h6>
-                                    </div>
-                                    <button type="button" class="btn_cart" @click="addToCart(item)">Add to cart
-                                    </button>
-                                </div>
-                            </div>
-
-                            <div class="prev-slide" @click="scrollLeft">&lsaquo;</div>
-                            <div class="next-slide" @click="scrollRight">&rsaquo;</div>
-
-                        </div>
-                    </div> -->
                 </div>
             </div>
         </div>
@@ -183,6 +161,22 @@ export default {
 
             if (existingItem) {
                 existingItem.quantity += 1;
+
+                const Toast = Swal.mixin({
+                    toast: true,
+                    position: "top-end",
+                    showConfirmButton: false,
+                    timer: 3000,
+                    timerProgressBar: true,
+                    didOpen: (toast) => {
+                        toast.onmouseenter = Swal.stopTimer;
+                        toast.onmouseleave = Swal.resumeTimer;
+                    }
+                });
+                Toast.fire({
+                    icon: "success",
+                    title: "Product successfully Added to cart"
+                });
             } else {
                 this.cart.push({
                     product: productToAdd,
@@ -209,8 +203,6 @@ export default {
             this.cartItemCount();
             this.calculateSubtotal();
         },
-
-
         removeFromCart(product) {
             const index = this.cart.findIndex((item) => item.product.id === product.id);
 

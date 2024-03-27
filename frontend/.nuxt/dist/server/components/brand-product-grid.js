@@ -1,14 +1,14 @@
-exports.ids = [2];
+exports.ids = [3];
 exports.modules = {
 
-/***/ 131:
+/***/ 133:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 // ESM COMPAT FLAG
 __webpack_require__.r(__webpack_exports__);
 
-// CONCATENATED MODULE: ./node_modules/babel-loader/lib??ref--2-0!./node_modules/vue-loader/lib/loaders/templateLoader.js??ref--6!./node_modules/@nuxt/components/dist/loader.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./components/brandProductGrid.vue?vue&type=template&id=329e3c8a&
+// CONCATENATED MODULE: ./node_modules/babel-loader/lib??ref--2-0!./node_modules/vue-loader/lib/loaders/templateLoader.js??ref--6!./node_modules/@nuxt/components/dist/loader.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./components/brandProductGrid.vue?vue&type=template&id=93684b8a&
 var render = function render() {
   var _vm = this,
     _c = _vm._self._c;
@@ -46,20 +46,20 @@ var render = function render() {
       staticClass: "d-flex align-items-center"
     }, [item.discount !== 0 ? _c('p', {
       staticClass: "me-1"
-    }, [_vm._v("$" + _vm._s(item.percent_discount))]) : _c('p', {
+    }, [_vm._v("$" + _vm._s(item.percent_discount.toFixed(2)))]) : _c('p', {
       staticClass: "me-1"
-    }, [_vm._v("$" + _vm._s(item.price))]), _vm._v(" "), item.discount !== 0 ? _c('p', [_c('strike', [_vm._v("$" + _vm._s(item.price))]), _vm._v(" "), _c('span', [_vm._v(_vm._s(item.discount) + "%")])], 1) : _vm._e()]) : item.discount_status == 2 ? _c('div', {
+    }, [_vm._v("$" + _vm._s(item.price.toFixed(2)))]), _vm._v(" "), item.discount !== 0 && item.discount !== '' ? _c('p', [_c('strike', [_vm._v("$" + _vm._s(item.price))]), _vm._v(" "), _c('span', [_vm._v(_vm._s(item.discount) + "%")])], 1) : _vm._e()]) : item.discount_status == 2 ? _c('div', {
       staticClass: "d-flex align-items-center"
     }, [item.discount !== 0 ? _c('p', {
       staticClass: "me-1"
-    }, [_vm._v("$" + _vm._s(item.fixed_discount) + "\n                                                    ")]) : _c('p', {
+    }, [_vm._v("$" + _vm._s(item.fixed_discount.toFixed(2)))]) : _c('p', {
       staticClass: "me-1"
-    }, [_vm._v("$" + _vm._s(item.price))]), _vm._v(" "), item.discount !== 0 ? _c('p', [_c('strike', [_vm._v("$" + _vm._s(item.price))]), _vm._v(" "), _c('span', [_vm._v("$" + _vm._s(item.discount))])], 1) : _vm._e()]) : _c('p', [_vm._v("$" + _vm._s(item.price))])])]), _vm._ssrNode(" <div class=\"d-flex align-items-center\"><div class=\"rating\"><i class=\"fa fa-star checked\"></i> <i class=\"fa fa-star checked\"></i> <i class=\"fa fa-star checked\"></i> <i class=\"fa fa-star checked\"></i> <i class=\"fa fa-star\"></i></div> <h6>(200)</h6></div> <button type=\"button\" class=\"btn_cart\">Add to\n                                            cart</button>")], 2)]);
+    }, [_vm._v("$" + _vm._s(item.price.toFixed(2)))]), _vm._v(" "), item.discount !== 0 && item.discount !== '' ? _c('p', [_c('strike', [_vm._v("$" + _vm._s(item.price))]), _vm._v(" "), _c('span', [_vm._v("$" + _vm._s(item.discount))])], 1) : _vm._e()]) : _c('p', [_vm._v("$" + _vm._s(item.price.toFixed(2)))])])]), _vm._ssrNode(" <div class=\"d-flex align-items-center\"><div class=\"rating\"><i class=\"fa fa-star checked\"></i> <i class=\"fa fa-star checked\"></i> <i class=\"fa fa-star checked\"></i> <i class=\"fa fa-star checked\"></i> <i class=\"fa fa-star\"></i></div> <h6>(200)</h6></div> <button type=\"button\" class=\"btn_cart\">Add to\n                                            cart</button>")], 2)]);
   }), 0), _vm._ssrNode(" <div class=\"row\"><div class=\"col-12\"></div></div>")], 2)])], 2)])])])]);
 };
 var staticRenderFns = [];
 
-// CONCATENATED MODULE: ./components/brandProductGrid.vue?vue&type=template&id=329e3c8a&
+// CONCATENATED MODULE: ./components/brandProductGrid.vue?vue&type=template&id=93684b8a&
 
 // CONCATENATED MODULE: ./node_modules/babel-loader/lib??ref--2-0!./node_modules/@nuxt/components/dist/loader.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./components/brandProductGrid.vue?vue&type=script&lang=js&
 /* harmony default export */ var brandProductGridvue_type_script_lang_js_ = ({

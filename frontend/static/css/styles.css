@@ -15,7 +15,9 @@ body {
 :root {
   --color_Primary: #900C3F;
 }
-
+a{
+  color: #900c3f;
+}
 p {
   margin: 0;
 }
@@ -48,6 +50,7 @@ a {
 .links {
   background: #f1f1f2;
   padding: 5px 0px;
+  box-shadow: 0px 0px 20px #00000029;
 }
 
 .web_part {}
@@ -93,7 +96,7 @@ a {
   position: sticky;
   top: 0;
   z-index: 2;
-  box-shadow: 0 0 10px #d4d0d0;
+  box-shadow: 2px 3px 5px #00000029;
 }
 
 .logo {
@@ -296,7 +299,8 @@ a {
   animation: slideright .4s linear;
   border-top-right-radius: 10px;
   border-bottom-right-radius: 10px;
-  box-shadow: 2px 2px 3px #dadada;
+  box-shadow: 2px 2px 3px #00000057;
+  height: 100%;
 }
 
 @keyframes slideright {
@@ -452,7 +456,7 @@ a {
   border-radius: 5px;
   margin-top: 10px;
   padding-top: 0px;
-  box-shadow: 0px 0px 20px #e0e0e0ab;
+  box-shadow: 0px 0px 20px #00000029;
 }
 
 .top_selling .col-2 {
@@ -604,7 +608,7 @@ a {
   background: #fff;
   padding: 10px 20px;
   border-radius: 5px;
-  box-shadow: 0px 0px 20px #e0e0e0ab;
+  box-shadow: 0px 0px 20px #00000029;
   margin-top: 12px;
 }
 
@@ -1185,6 +1189,7 @@ footer {
   border-radius: 5px;
   transition: .4s all ease-in-out;
   margin-top: 5px;
+  margin: 5px 2px;
 }
 
 .product_grid img {}
@@ -4495,7 +4500,7 @@ width: fit-content;
 }
 
 .nav-item {
-  border-right: 1px solid #900c3f;
+  border-right: 1px solid #900c3f6e;
 }
 
 .nav-item:last-child {
@@ -9608,4 +9613,23 @@ color: #900c3f;
   margin: 3px 0px;
   font-size: 13px;
   padding: 0;
+}
+
+.paymentMethod_tabs .nav-item{
+
+}
+.paymentMethod_tabs .nav-link{
+
+border: none;
+}
+.paymentMethod_tabs .nav-link.active{
+    
+border: none;
+    
+border-bottom: 2px solid #900c3f;
+}
+.paymentMethod_tabs  .nav-tabs{
+  border: 1px solid #adadad;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
 }

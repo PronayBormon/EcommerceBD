@@ -1,9 +1,11 @@
 {
   "entry": "server.js",
   "files": {
+    "components/add-new-card.js": "components/add-new-card.js",
     "components/best-price.js": "components/best-price.js",
     "components/brand-product-grid.js": "components/brand-product-grid.js",
     "components/brandi-official-store.js": "components/brandi-official-store.js",
+    "components/card-payment.js": "components/card-payment.js",
     "components/category-five.js": "components/category-five.js",
     "components/category-four.js": "components/category-four.js",
     "components/category-multiple-product.js": "components/category-multiple-product.js",
@@ -26,6 +28,7 @@
     "components/flash-selling.js": "components/flash-selling.js",
     "components/footer.js": "components/footer.js",
     "components/limited-stok-details.js": "components/limited-stok-details.js",
+    "components/login-cartpage.js": "components/login-cartpage.js",
     "components/login-popup.js": "components/login-popup.js",
     "components/logo-and-payment.js": "components/logo-and-payment.js",
     "components/more-collection.js": "components/more-collection.js",
@@ -127,9 +130,11 @@
     "server.js": "server.js"
   },
   "maps": {
+    "components/add-new-card.js": "components/add-new-card.js.map",
     "components/best-price.js": "components/best-price.js.map",
     "components/brand-product-grid.js": "components/brand-product-grid.js.map",
     "components/brandi-official-store.js": "components/brandi-official-store.js.map",
+    "components/card-payment.js": "components/card-payment.js.map",
     "components/category-five.js": "components/category-five.js.map",
     "components/category-four.js": "components/category-four.js.map",
     "components/category-multiple-product.js": "components/category-multiple-product.js.map",
@@ -152,6 +157,7 @@
     "components/flash-selling.js": "components/flash-selling.js.map",
     "components/footer.js": "components/footer.js.map",
     "components/limited-stok-details.js": "components/limited-stok-details.js.map",
+    "components/login-cartpage.js": "components/login-cartpage.js.map",
     "components/login-popup.js": "components/login-popup.js.map",
     "components/logo-and-payment.js": "components/logo-and-payment.js.map",
     "components/more-collection.js": "components/more-collection.js.map",

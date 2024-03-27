@@ -35,6 +35,7 @@ use PhpParser\Node\Stmt\TryCatch;
 use App\Models\sliderSideAdsModel;
 use App\Models\User as ModelsUser;
 use App\Http\Controllers\Controller;
+use App\Models\couponUseHistory;
 use App\Models\ProductAdditionalImg;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
@@ -134,15 +135,20 @@ class UnauthenticatedController extends Controller
                 ->where('product.id', $product->product_id)
                 ->first();
 
-            $percent_discount = $productDetails->price - ($productDetails->price * $productDetails->discount / 100);
-            $fixed_discount = $productDetails->price - $productDetails->discount;
+            $vat = $productDetails->vat ? $productDetails->vat : '0';
+            $price = $productDetails->price + ($productDetails->price * $vat / 100);
 
-            $last_price = $productDetails->price;
+            $percent_discount = $price - ($price * $productDetails->discount / 100);
+            $fixed_discount = $price - $productDetails->discount;
+
+
 
             if ($productDetails->discount_status == 1) {
                 $last_price = $percent_discount;
             } elseif ($productDetails->discount_status == 2) {
                 $last_price = $fixed_discount;
+            } else {
+                $last_price = $price;
             }
 
             $product->id                    = $product->product_id;
@@ -163,8 +169,8 @@ class UnauthenticatedController extends Controller
             $product->vat                   = $productDetails->vat;
 
             $product->brand_name            = $productDetails->brand_name;
-            $product->last_price            = $last_price;//number_format($last_price, 2);
-            
+            $product->last_price            = $last_price; //number_format($last_price, 2);
+
             $product->stock_qty             = $productDetails->stock_qty;
             $product->stock_status          = $productDetails->stock_status;
         }
@@ -233,8 +239,14 @@ class UnauthenticatedController extends Controller
             $products = [];
             foreach ($categoryGroup as $v) {
 
-                $percent_discount = $v->price - ($v->price * $v->discount / 100);
-                $fixed_discount = $v->price - $v->discount;
+
+                $last_price = 0;
+
+                $vat = $v->vat ? $v->vat : '0';
+                $price = $v->price + ($v->price * $vat / 100);
+
+                $percent_discount = $price - ($price * $v->discount / 100);
+                $fixed_discount = $price - $v->discount;
 
                 if ($v->discount_status == 1) {
                     $last_price = $percent_discount;
@@ -244,6 +256,7 @@ class UnauthenticatedController extends Controller
                     $last_price = $v->price;
                 }
 
+
                 $products[] = [
                     'product_id'        => $v->product_id,
                     'id'                => $v->product_id,
@@ -252,8 +265,8 @@ class UnauthenticatedController extends Controller
                     'thumnail_img'      => !empty($v->thumnail_img) ? url($v->thumnail_img) : "",
                     'thumnail'          => !empty($v->thumnail_img) ? url($v->thumnail_img) : "",
                     'slug'              => $v->slug,
-                    'pro_slug'              => $v->slug,
-                    'price'             => $v->price,
+                    'pro_slug'          => $v->slug,
+                    'price'             => $price,
                     'discount'          => $v->discount,
                     'discount_status'   => $v->discount_status,
                     'flat_rate_status'  => $v->flat_rate_status,
@@ -273,11 +286,12 @@ class UnauthenticatedController extends Controller
                     'brand'             => $v->brand_name,
 
                     'seller_name'       => $v->seller_name,
-                    'seller_name_slug'  => $v->seller_name_slug,
+                    'seller_slug'  => $v->seller_slug,
                     'shipping_days'     => $v->shipping_days,
-                    'last_price'        => $last_price, 
+                    'last_price'        => $last_price,
                     'stock_qty'         => $v->stock_qty,
                     'stock_status'      => $v->stock_status,
+                    // 'vat_include' => $last_price,
                 ];
             }
             // Add the category and its products to the final result
@@ -401,17 +415,11 @@ class UnauthenticatedController extends Controller
         $iv = openssl_random_pseudo_bytes(openssl_cipher_iv_length("aes-256-cbc"));
         $encryptedText = $this->encryptText($originalText, $encryptionKey, $iv);
         $cleanedEncryptedText = str_replace(['\\', '/'], '', $encryptedText);
-        //echo "Cleaned Encrypted Text: " . $cleanedEncryptedText . "\n";
-
-        //echo $encryptedText;exit; 
         $resetlink = "$hostname/resetpassword/$cleanedEncryptedText";
 
         $user = User::where('email', $email)->first();
         if (!empty($user)) {
-            // Update the email
             $user->update(['remember_token' => $cleanedEncryptedText]);
-            // Optionally, you can retrieve the updated user data
-            //$updatedUser = User::find($user->id);
         }
 
         // You can pass data to the email view if needed
@@ -538,6 +546,8 @@ class UnauthenticatedController extends Controller
     public function findProductSlug($slug)
     {
         $data['pro_row'] = Product::where('product.slug', $slug)
+            ->leftJoin('users', 'users.id', '=', 'product.seller_id')
+            ->leftJoin('brands', 'product.brand', '=', 'brands.id')
             ->select(
                 'product.id',
                 'product.id as product_id',
@@ -546,6 +556,7 @@ class UnauthenticatedController extends Controller
                 'product.slug as pro_slug',
                 'product.thumnail_img',
                 'description',
+                'product.brand',
                 'short_description',
                 DB::raw('CAST(product.price AS SIGNED) as price'), // Cast product.price as decimal
                 'product.discount',
@@ -555,32 +566,88 @@ class UnauthenticatedController extends Controller
                 'product.free_shopping',
                 'product.flat_rate_price',
                 'product.brand',
-                "product.stock_status",
-                "product.shipping_days",
-                "product.unit",
-                "product.vat",
-                "product.vat_status",
+                'product.stock_status',
+                'product.shipping_days',
+                'product.unit',
+                'product.vat',
+                'product.vat_status',
+                'users.business_name as seller_name',
+                'users.business_name_slug as seller_slug',
+                'brands.name as brand_name',
+                'brands.slug as brand_slug'
             )
             ->first();
+
+            
+            $last_price = 0;
+        $v = $data['pro_row'];
+        $vat = $v->vat ? $v->vat : '0';
+        $price = $v->price + ($v->price * $vat / 100);
+
+        $percent_discount = $price - ($price * $v->discount / 100);
+        $fixed_discount = $price - $v->discount;
+
+        if ($v->discount_status == 1) {
+            $last_price = $percent_discount;
+        } elseif ($v->discount_status == 2) {
+            $last_price = $fixed_discount;
+        } else {
+            $last_price = $price;
+        }
+
+        // Add last_price to the pro_row array
+        $data['pro_row']->last_price = $last_price;
+
         //dd($data['pro_row']);
-        $product_chk       = Product::where('product.slug', $slug)
-            ->select('product.id', 'product.id as product_id', 'product.name as pro_name', 'product.slug as pro_slug', 'product.thumnail_img', 'description', 'product.price','seller_id','discount_status','flat_rate_price', 'product.discount', 'product.stock_qty', 'product.stock_mini_qty', 'product.free_shopping','vat_status','vat','shipping_days','brand','stock_qty', 'brands.name as brand_name', 'brands.slug as brand_slug')
+        $product_chk = Product::where('product.slug', $slug)
+            ->select(
+                'product.id',
+                'product.id as product_id',
+                'product.name as pro_name',
+                'product.slug as pro_slug',
+                'product.thumnail_img',
+                'description',
+                'product.price',
+                'product.seller_id',
+                'product.discount_status',
+                'product.flat_rate_price',
+                'product.discount',
+                'product.stock_qty',
+                'product.stock_mini_qty',
+                'product.free_shopping',
+                'product.vat_status',
+                'product.vat',
+                'product.shipping_days',
+                'product.brand',
+                'product.stock_qty',
+                'brands.name as brand_name',
+                'brands.slug as brand_slug',
+                'users.business_name as seller_name',
+                'users.business_name_slug as seller_slug'
+            )
             ->leftJoin('brands', 'product.brand', '=', 'brands.id')
+            ->leftJoin('users', 'users.id', '=', 'product.seller_id')
             ->get();
+
         $products = [];
         // dd($product_chk);
         // return false;
         foreach ($product_chk as $key => $v) {
             
-            $percent_discount = $v->price - ($v->price * $v->discount / 100);
-            $fixed_discount = $v->price - $v->discount;
+            $last_price = 0;
+
+            $vat = $v->vat ? $v->vat : '0';
+            $price = $v->price + ($v->price * $vat / 100);
+
+            $percent_discount = $price - ($price * $v->discount / 100);
+            $fixed_discount = $price - $v->discount;
 
             if ($v->discount_status == 1) {
                 $last_price = $percent_discount;
             } elseif ($v->discount_status == 2) {
                 $last_price = $fixed_discount;
             } else {
-                $last_price = $v->price;
+                $last_price = $price;
             }
 
             $products[] = [
@@ -590,7 +657,7 @@ class UnauthenticatedController extends Controller
                 'product_name'          => $v->pro_name,
                 'discount'              => $v->discount,
                 'discount_status'       => $v->discount_status,
-                'price'                 => number_format($v->price, 2),
+                'price'                 => $v->price,
                 'thumnail_img'          => url($v->thumnail_img),
                 'pro_slug'              => $v->pro_slug,
                 'free_shopping'         => $v->free_shopping,
@@ -600,8 +667,8 @@ class UnauthenticatedController extends Controller
                 'shipping_days'         => $v->shipping_days,
                 'brand_name'            => $v->brand_name,
                 'brand_slug'            => $v->brand_slug,
-                'last_price'            => number_format($last_price,2),
-                'stock_qty'             => $v->stock_qty
+                'stock_qty'             => $v->stock_qty,
+                'last_price'            => $last_price,
 
             ];
         }
@@ -689,6 +756,7 @@ class UnauthenticatedController extends Controller
                 'short_description',
                 'product.free_shopping',
                 'price',
+                'vat',
                 'product.brand',
                 'stock_qty',
                 'thumnail_img',
@@ -706,15 +774,20 @@ class UnauthenticatedController extends Controller
         // return false;
         $result = [];
         foreach ($proCategorys as $key => $v) {
-            $percent_discount = $v->price - ($v->price * $v->discount / 100);
-            $fixed_discount = $v->price - $v->discount;
+            
+            $last_price = 0;
+            $vat = $v->vat ? $v->vat : '0';
+            $price = $v->price + ($v->price * $vat / 100);
+
+            $percent_discount = $price - ($price * $v->discount / 100);
+            $fixed_discount = $price - $v->discount;
 
             if ($v->discount_status == 1) {
                 $last_price = $percent_discount;
             } elseif ($v->discount_status == 2) {
                 $last_price = $fixed_discount;
             } else {
-                $last_price = $v->price;
+                $last_price = $price;
             }
 
             $result[] = [
@@ -723,9 +796,9 @@ class UnauthenticatedController extends Controller
                 'product_name'          => !empty($v->pro_name) ? $v->pro_name : '',
                 'category_id'           => !empty($v->category_id) ? $v->category_id : '',
                 'discount'              => !empty($v->discount) ? $v->discount : '',
-                'price'                 => number_format($v->price, 2),
-                'percent_discount'          => number_format($percent_discount, 2),
-                'fixed_discount'             => number_format($fixed_discount, 2),
+                'price'                 => $price,
+                'percent_discount'      => $percent_discount,
+                'fixed_discount'        => $fixed_discount,
                 'thumnail_img'          => !empty($v->thumnail_img) ? url($v->thumnail_img) : "",
                 'pro_slug'              => !empty($v->pro_slug) ? $v->pro_slug : "",
                 'discount_status'       => !empty($v->discount_status) ? $v->discount_status : "",
@@ -882,6 +955,68 @@ class UnauthenticatedController extends Controller
 
         ]);
     }
+    public function getcouponDiscount(request $request)
+    {
+        // dd($request->couponCode,$request->price,$request->user_id);
+        $validator = Validator::make($request->all(), [
+            'user_id'       => 'required',
+            'couponCode'    => 'required',
+            'price'         => 'required',
+        ], [
+            'user_id.required'      => 'User id is Invalid.',
+            'couponCode.required'   => 'Coupon code is Invalid.',
+            'price.required'        => 'Price is Invalid.',
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json(['errors' => $validator->errors()], 422);
+        }
+
+        $couponCode = $request->couponCode;
+        $pro_price = $request->price;
+        $user_id = $request->user_id;
+
+        $coupon = coupons::where('promocode', $couponCode)->where('status', 1)->first();
+
+        if ($coupon) {
+            $usageCheck = CouponUseHistory::where('user_id', $user_id)->where('coupon_id', $coupon->id)->first();
+
+            if ($usageCheck) {
+                return response()->json(['errors' => ['coupon' => ['This coupon has already been used.']]], 422);
+            } else {
+                if ($pro_price >= $coupon->min_shopping) {
+                    $dis_value = 0;
+                    $last_price =0;
+                    if ($coupon->code_type == 'percentage') {
+                        $last_price = $pro_price - ($pro_price * $coupon->d_percent / 100);
+                        $dis_value = $pro_price * $coupon->d_percent / 100;
+                    } else if ($coupon->code_type == 'fixed') {
+                        $last_price = $pro_price - $coupon->d_fvalue;
+                        $dis_value = $coupon->d_fvalue;
+                    }
+                    $couponData = [
+                        'id'                    => $coupon->id,
+                        'name'                  => $coupon->name,
+                        'PRICE'                 =>  $pro_price,
+                        'discount'              => $dis_value,
+                        'last_discount_price'   => $last_price,
+                        'promocode'             => $coupon->promocode,
+                        'code_type'             => $coupon->code_type,
+                        'min_shopping'          => $coupon->min_shopping,
+                        'd_percent'             => $coupon->d_percent,
+                        'd_fvalue'              => $coupon->d_fvalue,
+                        'status'                => $coupon->status,
+                        'user_id'               => $request->user_id,
+                    ];
+                    return response()->json(['coupon_data' => $couponData], 200);
+                } else {
+                    return response()->json(['errors' => ['coupon' => ['Please shop for a minimum amount.']]], 422);
+                }
+            }
+        } else {
+            return response()->json(['errors' => ['coupon' => ['Coupon not found.']]], 422);
+        }
+    }
     public function getbanner()
     {
 
@@ -963,8 +1098,13 @@ class UnauthenticatedController extends Controller
 
         $products = [];
         foreach ($getProduct as $v) {
-            $percent_discount = $v->price - ($v->price * $v->discount / 100);
-            $fixed_discount = $v->price - $v->discount;
+            $last_price = 0;
+            $vat = $v->vat ? $v->vat : '0';
+            $price = $v->price + ($v->price * $vat / 100);
+
+
+            $percent_discount = $v->price - ($price * $v->discount / 100);
+            $fixed_discount = $price - $v->discount;
 
             if ($v->discount_status == 1) {
                 $last_price = $percent_discount;
@@ -984,7 +1124,7 @@ class UnauthenticatedController extends Controller
                 'image'             => url($v->thumnail_img),
                 'thumnail_img'      => url($v->thumnail_img),
                 'business_name'     => $v->business_name,
-                'price'             => $v->price,
+                'price'             => $price,
                 'discount'          => $v->discount,
                 'stock_quantity'    => $v->stock_qty,
                 'mini_quantity'     => $v->stock_mini_qty,
@@ -998,8 +1138,8 @@ class UnauthenticatedController extends Controller
 
                 'seller_name'       => !empty($v->seller_name) ? $v->seller_name : '',
                 'seller_slug'       => !empty($v->seller_slug) ? $v->seller_slug : '',
-                'percent_discount'  => number_format($percent_discount, 2),
-                'fixed_discount'    => number_format($fixed_discount, 2),
+                'percent_discount'  => $percent_discount,
+                'fixed_discount'    => $fixed_discount,
                 'last_price'        => $last_price,
                 'stock_qty'         => $v->stock_qty,
                 'stock_status'      => $v->stock_status,
@@ -1048,7 +1188,22 @@ class UnauthenticatedController extends Controller
             $data['attribute'] = ProductVarrientHistory::where('color', $request->color)
                 ->where('product_id', $request->product_id)
                 ->get();
-            return response()->json($data);
+            $variantData = $data['attribute'];
+            $formatedData = [];
+            foreach ($variantData as $Key => $value) {
+                $formatedData[] = [
+                    'id'               => $value->id,
+                    'color'            => $value->color,
+                    'size'             => $value->size,
+                    'sku'              => $value->sku,
+                    'qty'              => $value->qty,
+                    'rprice'            => number_format($value->price, 2),
+                    'price'            => $value->price,
+                    'image'            => !empty($value->image) ? url($value->image) : "",
+                    'product_id'       => $value->product_id,
+                ];
+            }
+            return response()->json($formatedData);
         } catch (QueryException $e) {
             // Handle query exception
             return response()->json(['error' => 'Query exception occurred'], 500);
@@ -1077,9 +1232,5 @@ class UnauthenticatedController extends Controller
         $mergedResults = $categoryResults->concat($productResults)->take(10);
 
         return response()->json($mergedResults);
-    }
-
-    public function EditspeacialCats(Request $request){
-        dd($request->id);
     }
 }

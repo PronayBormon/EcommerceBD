@@ -1,26 +1,26 @@
-exports.ids = [69,16,17,18,20,24,26,27,31,40];
+exports.ids = [72,18,19,20,22,26,29,30,34,43];
 exports.modules = {
 
-/***/ 148:
+/***/ 152:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_vue_style_loader_index_js_ref_3_oneOf_1_0_node_modules_css_loader_dist_cjs_js_ref_3_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_ref_3_oneOf_1_2_node_modules_nuxt_components_dist_loader_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_checkout_vue_vue_type_style_index_0_id_10568860_prod_lang_css___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(98);
-/* harmony import */ var _node_modules_vue_style_loader_index_js_ref_3_oneOf_1_0_node_modules_css_loader_dist_cjs_js_ref_3_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_ref_3_oneOf_1_2_node_modules_nuxt_components_dist_loader_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_checkout_vue_vue_type_style_index_0_id_10568860_prod_lang_css___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_vue_style_loader_index_js_ref_3_oneOf_1_0_node_modules_css_loader_dist_cjs_js_ref_3_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_ref_3_oneOf_1_2_node_modules_nuxt_components_dist_loader_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_checkout_vue_vue_type_style_index_0_id_10568860_prod_lang_css___WEBPACK_IMPORTED_MODULE_0__);
-/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _node_modules_vue_style_loader_index_js_ref_3_oneOf_1_0_node_modules_css_loader_dist_cjs_js_ref_3_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_ref_3_oneOf_1_2_node_modules_nuxt_components_dist_loader_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_checkout_vue_vue_type_style_index_0_id_10568860_prod_lang_css___WEBPACK_IMPORTED_MODULE_0__) if(["default"].indexOf(__WEBPACK_IMPORT_KEY__) < 0) (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _node_modules_vue_style_loader_index_js_ref_3_oneOf_1_0_node_modules_css_loader_dist_cjs_js_ref_3_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_ref_3_oneOf_1_2_node_modules_nuxt_components_dist_loader_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_checkout_vue_vue_type_style_index_0_id_10568860_prod_lang_css___WEBPACK_IMPORTED_MODULE_0__[key]; }) }(__WEBPACK_IMPORT_KEY__));
+/* harmony import */ var _node_modules_vue_style_loader_index_js_ref_3_oneOf_1_0_node_modules_css_loader_dist_cjs_js_ref_3_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_ref_3_oneOf_1_2_node_modules_nuxt_components_dist_loader_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_checkout_vue_vue_type_style_index_0_id_33aa857c_prod_lang_css___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(99);
+/* harmony import */ var _node_modules_vue_style_loader_index_js_ref_3_oneOf_1_0_node_modules_css_loader_dist_cjs_js_ref_3_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_ref_3_oneOf_1_2_node_modules_nuxt_components_dist_loader_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_checkout_vue_vue_type_style_index_0_id_33aa857c_prod_lang_css___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_vue_style_loader_index_js_ref_3_oneOf_1_0_node_modules_css_loader_dist_cjs_js_ref_3_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_ref_3_oneOf_1_2_node_modules_nuxt_components_dist_loader_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_checkout_vue_vue_type_style_index_0_id_33aa857c_prod_lang_css___WEBPACK_IMPORTED_MODULE_0__);
+/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _node_modules_vue_style_loader_index_js_ref_3_oneOf_1_0_node_modules_css_loader_dist_cjs_js_ref_3_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_ref_3_oneOf_1_2_node_modules_nuxt_components_dist_loader_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_checkout_vue_vue_type_style_index_0_id_33aa857c_prod_lang_css___WEBPACK_IMPORTED_MODULE_0__) if(["default"].indexOf(__WEBPACK_IMPORT_KEY__) < 0) (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _node_modules_vue_style_loader_index_js_ref_3_oneOf_1_0_node_modules_css_loader_dist_cjs_js_ref_3_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_ref_3_oneOf_1_2_node_modules_nuxt_components_dist_loader_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_checkout_vue_vue_type_style_index_0_id_33aa857c_prod_lang_css___WEBPACK_IMPORTED_MODULE_0__[key]; }) }(__WEBPACK_IMPORT_KEY__));
 
 
 /***/ }),
 
-/***/ 149:
+/***/ 153:
 /***/ (function(module, exports, __webpack_require__) {
 
 // Imports
 var ___CSS_LOADER_API_IMPORT___ = __webpack_require__(8);
 var ___CSS_LOADER_EXPORT___ = ___CSS_LOADER_API_IMPORT___(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.i, ".checkItem{border-bottom:1px solid #e1e1e1;padding-top:15px}.checkItem:last-child{border:none}", ""]);
+___CSS_LOADER_EXPORT___.push([module.i, ".btn-check:checked+.btn,.btn.active,.btn.show,.btn:first-child:active,:not(.btn-check)+.btn:active{background-color:rgba(147,60,94,.231)}.checkItem{border-bottom:1px solid #e1e1e1;padding-top:15px}.checkItem:last-child{border:none}#discount{display:none}.paymentMethod_tabs .btn-check:checked,.paymentMethod_tabs h3,.paymentMethod_tabs h6,.paymentMethod_tabs p,.paymentMethod_tabs span{color:#000}.addNewCard{display:none}.checkIProtem{width:310px}", ""]);
 // Exports
 ___CSS_LOADER_EXPORT___.locals = {};
 module.exports = ___CSS_LOADER_EXPORT___;
@@ -28,18 +28,18 @@ module.exports = ___CSS_LOADER_EXPORT___;
 
 /***/ }),
 
-/***/ 220:
+/***/ 224:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 // ESM COMPAT FLAG
 __webpack_require__.r(__webpack_exports__);
 
-// CONCATENATED MODULE: ./node_modules/babel-loader/lib??ref--2-0!./node_modules/vue-loader/lib/loaders/templateLoader.js??ref--6!./node_modules/@nuxt/components/dist/loader.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./pages/checkout.vue?vue&type=template&id=10568860&
+// CONCATENATED MODULE: ./node_modules/babel-loader/lib??ref--2-0!./node_modules/vue-loader/lib/loaders/templateLoader.js??ref--6!./node_modules/@nuxt/components/dist/loader.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./pages/checkout.vue?vue&type=template&id=33aa857c&
 var render = function render() {
   var _vm = this,
     _c = _vm._self._c;
-  return _c('div', [_c('LogoAndPayment'), _vm._ssrNode(" "), _c('navbarSecond'), _vm._ssrNode(" "), _vm._ssrNode("<section class=\"main_content\">", "</section>", [_vm._ssrNode("<div class=\"container\">", "</div>", [_vm._ssrNode("<form id=\"formrest\" enctype=\"multipart/form-data\" class=\"forms-sample\">", "</form>", [_vm._ssrNode("<div class=\"row\">", "</div>", [_vm._ssrNode("<div class=\"col-md-8\">", "</div>", [_vm._ssrNode("<div class=\"delivery_addreess\">", "</div>", [_vm._ssrNode("<h6>" + _vm._ssrEscape("Delivery To : " + _vm._s(_vm.insertdata.name) + " ") + "</h6> "), _vm._ssrNode("<div class=\"address\">", "</div>", [_vm._ssrNode("<div>" + (_vm.getDatas.address_1 !== null ? "<p>" + _vm._ssrEscape(_vm._s(_vm.shipp_address) + " ") + "</p>" : "<p>Please add your address</p>") + "</div> "), _vm._ssrNode("<div>", "</div>", [_vm.getDatas.address_1 !== null ? _c('select', {
+  return _c('div', [_c('LogoAndPayment'), _vm._ssrNode(" "), _c('navbarSecond'), _vm._ssrNode(" "), _vm._ssrNode("<section class=\"main_content\">", "</section>", [_vm._ssrNode("<div class=\"container\">", "</div>", [_vm._ssrNode("<form id=\"formrest\" enctype=\"multipart/form-data\" class=\"forms-sample\">", "</form>", [_vm._ssrNode("<div class=\"row\">", "</div>", [_vm._ssrNode("<div class=\"col-md-8\">", "</div>", [_vm._ssrNode("<div class=\"delivery_addreess\">", "</div>", [_vm._ssrNode("<h6>" + _vm._ssrEscape("Delivery To : " + _vm._s(_vm.insertdata.name)) + "</h6> "), _vm._ssrNode("<div class=\"address\">", "</div>", [_vm._ssrNode("<div>" + (_vm.getDatas.address_1 !== null ? "<p>" + _vm._ssrEscape(_vm._s(_vm.shipp_address)) + "</p>" : "<p>Please add your address</p>") + "</div> "), _vm._ssrNode("<div>", "</div>", [_vm.getDatas.address_1 !== null && _vm.getDatas.address_1 !== '' ? _c('select', {
     directives: [{
       name: "model",
       rawName: "v-model",
@@ -48,8 +48,8 @@ var render = function render() {
     }],
     staticStyle: {
       "padding": "3px",
-      "font-size": "14px",
-      "height": "30px"
+      "font-size": "12px",
+      "height": "20px"
     },
     on: {
       "change": [function ($event) {
@@ -70,7 +70,7 @@ var render = function render() {
       domProps: {
         "value": data
       }
-    }, [_vm._v("\n                                            Address " + _vm._s(index + 1))]);
+    }, [_vm._v("\n                      Address " + _vm._s(index + 1) + "\n                    ")]);
   }), 0) : _vm._e(), _vm._ssrNode(" "), _c('nuxt-link', {
     staticClass: "add_address",
     attrs: {
@@ -79,7 +79,7 @@ var render = function render() {
     }
   }, [_c('i', {
     staticClass: "fa-solid fa-plus"
-  }), _vm._v("Add\n                                        New address")])], 2), _vm._ssrNode(" <div class=\"modal_checkoutpage billing\"><div class=\"modal_box\"><div class=\"row\"><div class=\"col-6 ms-auto text-end\"><button class=\"btn_edit modal_close\"><i class=\"fa-solid fa-x\"></i></button></div></div> <form action><select name class=\"form-control\"><option value disabled=\"disabled\" selected=\"selected\"> Select One </option> <option value>Address 1</option> <option value>Address 2</option></select> <button class=\"btn_confirm mt-2\">Submit</button></form></div></div>")], 2), _vm._ssrNode(" <div class=\"pickUp_address d-none\"></div> "), _vm._ssrNode("<p>", "</p>", [_vm._ssrNode(_vm._ssrEscape("Bill to:" + _vm._s() + "\n                                ")), _vm.getDatas.address_1 !== null ? _c('select', {
+  }), _vm._v("Add New")])], 2)], 2), _vm._ssrNode(" <div class=\"pickUp_address d-none\"></div> "), _vm._ssrNode("<p>", "</p>", [_vm._ssrNode("\n                Bill to:" + (_vm.getDatas.address_1 !== null ? "<span>" + _vm._ssrEscape(_vm._s(_vm.billAddress)) + "</span>" : "<!---->") + " "), _vm.getDatas.address_1 !== null && _vm.getDatas.address_1 !== '' ? _c('select', {
     directives: [{
       name: "model",
       rawName: "v-model",
@@ -88,8 +88,8 @@ var render = function render() {
     }],
     staticStyle: {
       "padding": "3px",
-      "font-size": "14px",
-      "height": "30px"
+      "font-size": "12px",
+      "height": "20px"
     },
     on: {
       "change": function ($event) {
@@ -108,7 +108,7 @@ var render = function render() {
       domProps: {
         "value": data
       }
-    }, [_vm._v("\n                                        Address " + _vm._s(index + 1))]);
+    }, [_vm._v("\n                    Address " + _vm._s(index + 1) + "\n                  ")]);
   }), 0) : _c('nuxt-link', {
     staticClass: "btn_edit",
     attrs: {
@@ -116,11 +116,7 @@ var render = function render() {
     }
   }, [_vm._v("Add address")])], 2)], 2), _vm._ssrNode(" "), _vm._ssrNode("<div class=\"items_details\">", "</div>", [_vm._ssrNode("<h5>Items</h5> "), _vm._l(_vm.cart, function (item) {
     return _vm._ssrNode("<div class=\"checkItem\">", "</div>", [_vm._ssrNode("<div class=\"row\">", "</div>", [_vm._ssrNode("<div class=\"col-md-8\">", "</div>", [_vm._ssrNode("<div class=\"item\">", "</div>", [_c('nuxt-link', {
-      staticClass: "d-flex align-items-center text-dark",
-      staticStyle: {
-        "max-width": "320px",
-        "min-width": "290px"
-      },
+      staticClass: "d-flex align-items-center text-dark checkIProtem",
       attrs: {
         "to": `/product-details/${item.product.pro_slug}`
       }
@@ -140,14 +136,14 @@ var render = function render() {
       staticClass: "p-0 m-0"
     }, [_vm._v("No Brand")]), _vm._v(" "), item.product.color !== null && item.product.color !== '' && item.product.color !== undefined ? _c('span', {
       staticClass: "p-0 m-0"
-    }, [_vm._v(",\n                                                            Color: "), _c('b', [_vm._v(_vm._s(item.product.color))])]) : _vm._e(), _vm._v(" "), item.product.size !== null && item.product.size !== '' && item.product.size !== undefined ? _c('span', {
+    }, [_vm._v(", Color: "), _c('b', [_vm._v(_vm._s(item.product.color))])]) : _vm._e(), _vm._v(" "), item.product.size !== null && item.product.size !== '' && item.product.size !== undefined ? _c('span', {
       staticClass: "p-0 m-0"
-    }, [_vm._v(",\n                                                            Size:"), _c('b', [_vm._v(_vm._s(item.product.size))])]) : _vm._e()])])]), _vm._ssrNode(" <div><span class=\"d-flex align-items-center\" style=\"min-width: 80px;\">" + _vm._ssrEscape("QTY: " + _vm._s(item.quantity)) + "</span></div> <div><button type=\"button\"><i class=\"fa-solid fa-trash-can\"></i></button></div>")], 2)]), _vm._ssrNode(" <div class=\"col-md-4\"><div class=\"d-flex justify-content-end align-items-center\">" + (item.product.discount_status == 1 && item.product.discount !== 0 ? "<span class=\"badges px-1\">" + _vm._ssrEscape(_vm._s(item.product.discount) + "%") + "</span>" : "<!---->") + " " + (item.product.discount_status == 2 && item.product.discount !== 0 ? "<span class=\"badges px-1\">" + _vm._ssrEscape("$" + _vm._s(item.product.discount)) + "</span>" : "<!---->") + " <p>" + (item.product.discount !== 0 ? "<del class=\"me-1\">" + _vm._ssrEscape("$" + _vm._s(item.product.price)) + "</del>" : "<!---->") + _vm._ssrEscape("$" + _vm._s(item.product.last_price)) + "</p></div></div>")], 2), _vm._ssrNode(" <div class=\"sub_total\"><div class=\"row\"><div class=\"col-8\"><div class=\"delivery_section\"><h5>Standard delivery | " + (item.product.flat_rate_price ? "<span>" + _vm._ssrEscape("$" + _vm._s(item.product.flat_rate_price)) + "</span>" : "<span>Free\n                                                        Delivery</span>") + "</h5> <p>" + _vm._ssrEscape("Receive by " + _vm._s(_vm.calculateShippingDate(item.product.shipping_days))) + "</p></div></div> <div class=\"col-4\"><div class=\"s_item_sub\"><p>" + _vm._ssrEscape(_vm._s(item.quantity) + " item(s). Subtotal: $" + _vm._s(_vm.getPrice(item))) + "</p> <span>" + _vm._ssrEscape("Save: $" + _vm._s(_vm.getSave(item))) + "</span></div></div></div></div>")], 2);
-  })], 2)], 2), _vm._ssrNode(" "), _vm._ssrNode("<div class=\"col-md-4\">", "</div>", [_vm._ssrNode("<div class=\"cart_sidebar\">", "</div>", [_vm._ssrNode("<div class=\"d-flex align-items-center justify-content-between\"><p>Ecommerce Voucher</p></div> <form id=\"coupon\" action><div class=\"d-flex align-items-center\"><input type=\"text\" placeholder=\"Enter Your Promo Code \"" + _vm._ssrAttr("value", _vm.coupons.couponCode) + " class=\"form-control me-2 rounded-0\" style=\"font-size: 12px;border: none !important; border-bottom: 1px solid #900C3F !important;\"> <button class=\"btn_confirm h-100 rounded-0\" style=\"border: 1px solid;\">Submit</button></div> <p class=\"text-success msg mt-2\" style=\"font-size: 12px;\">Valid</p></form> "), _vm._ssrNode("<div class=\"pirce_summary\">", "</div>", [_vm._ssrNode("<table class=\"table\"><tbody><tr><td><strong>Order Summary</strong></td> <td></td></tr> <tr><td><strong>Items Total</strong></td> <td class=\"text-end\">" + _vm._ssrEscape("$" + _vm._s(_vm.sumOfLastPrices)) + "</td></tr> <tr><td><strong>Delivery Fee </strong></td> <td class=\"text-end\">" + _vm._ssrEscape("$" + _vm._s(_vm.sumOfFlatRatePrices)) + "</td></tr> <tr><td><strong>Total Payment</strong></td> <td class=\"text-end\">" + _vm._ssrEscape("$" + _vm._s(_vm.totalSum)) + "</td></tr></tbody></table> "), _vm.cart.length > 0 ? _vm._ssrNode("<span>", "</span>", [_vm._ssrNode("<button type=\"submit\" class=\"btn_cart text-center\" style=\"visibility: unset; background-color: #900C3F; color: #fff; margin-top: 10px;\">Place\n                                        Order</button>")], 2) : _vm._ssrNode("<span>", "</span>", [_c('center', [_vm._v("Please add to cart.")])], 1)], 2)], 2)])], 2)])])]), _vm._ssrNode(" <div class=\"back_top\"><a href=\"#top\"><i class=\"fa-solid fa-angle-up\"></i></a></div> "), _c('Footer')], 2);
+    }, [_vm._v(", Size:"), _c('b', [_vm._v(_vm._s(item.product.size))])]) : _vm._e()])])]), _vm._ssrNode(" <div><span class=\"d-flex align-items-center\" style=\"min-width: 80px\">" + _vm._ssrEscape("QTY: " + _vm._s(item.quantity)) + "</span></div> <div><button type=\"button\"><i class=\"fa-solid fa-trash-can\"></i></button></div>")], 2)]), _vm._ssrNode(" <div class=\"col-md-4\"><div class=\"d-flex justify-content-end align-items-center\">" + (item.product.discount_status == 1 && item.product.discount !== 0 ? "<span class=\"badges px-1\">" + _vm._ssrEscape(_vm._s(item.product.discount) + "%") + "</span>" : "<!---->") + " " + (item.product.discount_status == 2 && item.product.discount !== 0 ? "<span class=\"badges px-1\">" + _vm._ssrEscape("$" + _vm._s(item.product.discount.toFixed(2))) + "</span>" : "<!---->") + " <p>" + (item.product.discount !== 0 ? "<del class=\"me-1\">" + _vm._ssrEscape("$" + _vm._s(item.product.price.toFixed(2))) + "</del>" : "<!---->") + _vm._ssrEscape("$" + _vm._s(item.product.last_price.toFixed(2)) + "\n                      ") + "</p></div></div>")], 2), _vm._ssrNode(" <div class=\"sub_total\"><div class=\"row\"><div class=\"col-8\"><div class=\"delivery_section\"><h5>\n                          Standard delivery |\n                          " + (item.product.flat_rate_price ? "<span>" + _vm._ssrEscape("$" + _vm._s(item.product.flat_rate_price.toFixed(2))) + "</span>" : "<span>Free Delivery</span>") + "</h5> <p>" + _vm._ssrEscape("\n                          Receive by\n                          " + _vm._s(_vm.calculateShippingDate(item.product.shipping_days)) + "\n                        ") + "</p></div></div> <div class=\"col-4\"><div class=\"s_item_sub\"><p>" + _vm._ssrEscape("\n                          " + _vm._s(item.quantity) + " item(s). Subtotal: $" + _vm._s(_vm.getPrice(item).toFixed(2)) + "\n                        ") + "</p> <span class=\"text-success\">" + _vm._ssrEscape("Save: $" + _vm._s(_vm.getSave(item).toFixed(2))) + "</span></div></div></div></div>")], 2);
+  })], 2), _vm._ssrNode(" <div class=\"delivery_addreess paymentMethod_tabs\"><ul id=\"myTab\" role=\"tablist\" class=\"nav nav-tabs\"><li role=\"presentation\" class=\"nav-item\"><button id=\"Card-tab\" data-bs-toggle=\"tab\" data-bs-target=\"#Card-tab-pane\" type=\"button\" role=\"tab\" aria-controls=\"Card-tab-pane\" aria-selected=\"true\" class=\"nav-link active\">\n                    Card\n                  </button></li> <li role=\"presentation\" class=\"nav-item\"><button id=\"profile-tab\" data-bs-toggle=\"tab\" data-bs-target=\"#profile-tab-pane\" type=\"button\" role=\"tab\" aria-controls=\"profile-tab-pane\" aria-selected=\"false\" class=\"nav-link\">\n                    Cash On Delivery\n                  </button></li></ul> <div id=\"myTabContent\" class=\"tab-content\"><div id=\"Card-tab-pane\" role=\"tabpanel\" aria-labelledby=\"Card-tab\" tabindex=\"0\" class=\"tab-pane fade show active py-1\"><div class=\"d-flex flex-column mb-3\"><div role=\"group\" aria-label=\"Vertical button group\" class=\"btn-group-vertical\"><div class=\"cardPay w-100\"><div class=\"mb-2 w-100\"><input type=\"radio\" name=\"paymentMethod\" id=\"option1\" autocomplete=\"off\" class=\"btn-check\"> <label for=\"option1\" class=\"btn btn-outline-primary border-0 px-2 py-1 w-100 btn-lg\" style=\"max-width: 350px\"><div class=\"mt-0 d-flex justify-content-between align-items-center\"><div class=\"d-flex flex-row align-items-center\"><img src=\"/images/qHX7vY1.webp\" width=\"50px\" class=\"rounded\"> <div class=\"d-flex flex-column ms-3\"><span class=\"h5 mb-1 text-start\" style=\"font-size: 14px\">VISA</span> <span class=\"small text-muted\" style=\"font-size: 12px\">**** 5436</span></div></div> <div><input type=\"text\" placeholder=\"CVV\" class=\"form-control\" style=\"width: 70px; font-size: 12px\"></div></div></label></div> <div class=\"mb-2 w-100\"><input type=\"radio\" name=\"paymentMethod\" id=\"option2\" autocomplete=\"off\" class=\"btn-check\"> <label for=\"option2\" class=\"btn btn-outline-primary border-0 w-100 px-2 py-1 btn-lg\" style=\"max-width: 350px\"><div class=\"mt-0 d-flex justify-content-between align-items-center\"><div class=\"d-flex flex-row align-items-center\"><img src=\"/images/qHX7vY1.webp\" width=\"50px\" class=\"rounded\"> <div class=\"d-flex flex-column ms-3\"><span class=\"h5 mb-1 text-start\" style=\"font-size: 14px\">VISA</span> <span class=\"small text-muted\" style=\"font-size: 12px\">**** 5436</span></div></div> <div><input type=\"text\" placeholder=\"CVV\" class=\"form-control\" style=\"width: 70px; font-size: 12px\"></div></div></label></div> <a type=\"button\" class=\"btn addNewCardBT p-0\" style=\"width: fit-content; color: #900c3f\">Add\n                          new card</a></div> <div class=\"addNewCard w-100\"><a type=\"button\" class=\"btn backBT btn-edit p-0\"><i class=\"fa-solid fa-arrow-left\"></i></a> <form action><div class=\"row mb-4\"><div class=\"col-md-12\"><div class=\"form-group mb-2\"><label for>Card holder name</label> <input type=\"text\" placeholder=\"Jhon Due\" autocomplete=\"off\" class=\"form-control\"></div></div> <div class=\"col-7\"><div class=\"form-group mb-2\"><label for>Card Number</label> <input type=\"text\" placeholder=\"**** **** ****\" autocomplete=\"off\" class=\"form-control\"></div></div> <div class=\"col-3\"><div class=\"form-group mb-2\"><label for>Expire</label> <input type=\"text\" placeholder=\"MM/YY\" autocomplete=\"off\" class=\"form-control\"></div></div> <div class=\"col-2\"><div class=\"form-group mb-2\"><label for>CVV</label> <input type=\"text\" placeholder=\"CVV\" autocomplete=\"off\" class=\"form-control\"></div></div> <div class=\"col-12\"><a type=\"submit\" class=\"btn btn_edit\" style=\"border: 1px solid; width: fit-content\">Add\n                                Card</a></div></div></form></div></div></div></div> <div id=\"profile-tab-pane\" role=\"tabpanel\" aria-labelledby=\"profile-tab\" tabindex=\"0\" class=\"tab-pane fade py-1\"><div class=\"my-2 w-100\"><input type=\"radio\" name=\"paymentMethod\" id=\"COD\" autocomplete=\"off\" checked=\"checked\" class=\"btn-check\"> <label for=\"COD\" class=\"btn btn-outline-primary border-0 w-100 px-2 py-1 btn-lg\" style=\"max-width: 350px\"><div class=\"d-flex align-items-center justify-content-between w-100\"><div><h6 class=\"mb-0\">Cash on delivery</h6> <p>Extra charge: $10.00</p></div> <div><p class=\"badge bg-success\" style=\"color: #fff !important\">\n                            Cash\n                          </p></div></div></label></div></div></div></div>")], 2), _vm._ssrNode(" "), _vm._ssrNode("<div class=\"col-md-4\">", "</div>", [_vm._ssrNode("<div class=\"cart_sidebar\">", "</div>", [_vm._ssrNode("<div class=\"d-flex align-items-center justify-content-between\"><p>Ecommerce Voucher</p> <strong>" + _vm._ssrEscape(_vm._s(_vm.coupon.name)) + "</strong></div> <form id=\"coupon\" action><div class=\"d-flex align-items-center\"><input type=\"text\" hidden=\"hidden\"" + _vm._ssrAttr("value", _vm.insertdata.id) + "> <input type=\"text\" hidden=\"hidden\"" + _vm._ssrAttr("value", _vm.coupons.price) + "> <input type=\"text\" placeholder=\"Enter Your Promo Code \"" + _vm._ssrAttr("value", _vm.coupons.couponCode) + " class=\"form-control me-2 rounded-0\" style=\"\\n                      font-size: 12px;\\n                      border: none !important;\\n                      border-bottom: 1px solid #900c3f !important;\\n                    \"> <button class=\"btn_confirm h-100 rounded-0\" style=\"border: 1px solid\">\n                    Submit\n                  </button></div></form> "), _vm._ssrNode("<div class=\"pirce_summary\">", "</div>", [_vm._ssrNode("<table class=\"table\"><tbody><tr><td><strong>Order Summary</strong></td> <td></td></tr> <tr><td><strong>Items Total</strong></td> <td class=\"text-end\">" + _vm._ssrEscape("$" + _vm._s(_vm.sumOfLastPrices.toFixed(2))) + "</td></tr> <tr id=\"discount\"><td><strong class=\"text-success\">Discount</strong></td> <td class=\"text-end text-success\">" + _vm._ssrEscape("-$" + _vm._s(typeof _vm.discount === 'number' ? _vm.discount.toFixed(2) : '')) + "</td></tr> <tr><td><strong>Delivery Fee </strong></td> <td class=\"text-end\">" + _vm._ssrEscape("$" + _vm._s(_vm.sumOfFlatRatePrices.toFixed(2))) + "</td></tr> <tr><td><strong>Total Payment</strong></td> <td class=\"text-end\">" + _vm._ssrEscape("$" + _vm._s(_vm.totalSum.toFixed(2))) + "</td></tr></tbody></table> <div class=\"text-end\"><p>VAT included, Where applicable </p></div> "), _vm.cart.length > 0 ? _vm._ssrNode("<span>", "</span>", [_vm._ssrNode("<button type=\"submit\" class=\"btn_cart text-center\" style=\"\\n                      visibility: unset;\\n                      background-color: #900c3f;\\n                      color: #fff;\\n                      margin-top: 10px;\\n                    \">\n                    Place Order\n                  </button>")], 2) : _vm._ssrNode("<span>", "</span>", [_c('center', [_vm._v("Please add to cart.")])], 1)], 2)], 2)])], 2)])])]), _vm._ssrNode(" <div class=\"back_top\"><a href=\"#top\"><i class=\"fa-solid fa-angle-up\"></i></a></div> "), _c('Footer')], 2);
 };
 var staticRenderFns = [];
 
-// CONCATENATED MODULE: ./pages/checkout.vue?vue&type=template&id=10568860&
+// CONCATENATED MODULE: ./pages/checkout.vue?vue&type=template&id=33aa857c&
 
 // EXTERNAL MODULE: external "jquery"
 var external_jquery_ = __webpack_require__(32);
@@ -185,152 +181,192 @@ var navbarSecond = __webpack_require__(63);
     RecentView: RecentView["default"]
   },
   head: {
-    title: 'Checkout'
+    title: "Checkout"
   },
   data() {
     return {
-      billAddress: '',
+      billAddress: "",
       shipp_address: null,
       userdata: {
-        name: '',
-        email: '',
-        phone_number: '',
-        gender: '',
-        birthdate: '',
-        address: '',
-        address_1: '',
-        country_1: '',
-        landmark_1: '',
-        city_1: '',
-        phone_1: '',
-        address_2: '',
-        country_2: '',
-        landmark_2: '',
-        city_2: '',
-        phone_2: '',
+        name: "",
+        email: "",
+        phone_number: "",
+        gender: "",
+        birthdate: "",
+        address: "",
+        address_1: "",
+        country_1: "",
+        landmark_1: "",
+        city_1: "",
+        phone_1: "",
+        address_2: "",
+        country_2: "",
+        landmark_2: "",
+        city_2: "",
+        phone_2: "",
         created_at: null
       },
       getDatas: [],
       insertdata: {
-        name: '',
-        address: '',
-        email: '',
-        phone_number: '',
-        country: '',
-        city: '',
+        id: "",
+        name: "",
+        address: "",
+        email: "",
+        phone_number: "",
+        country: "",
+        city: "",
         //ship
-        shipper_name: '',
-        shipper_email: '',
-        shipper_phone_number: '',
-        shipper_address: '',
-        shipper_country: '',
-        shipper_city: '',
-        address_1: '',
-        country_1: '',
-        city_1: '',
-        landmark_1: '',
-        address_2: '',
-        country_2: '',
-        city_2: '',
-        landmark_2: '',
+        shipper_name: "",
+        shipper_email: "",
+        shipper_phone_number: "",
+        shipper_address: "",
+        shipper_country: "",
+        shipper_city: "",
+        address_1: "",
+        country_1: "",
+        city_1: "",
+        landmark_1: "",
+        address_2: "",
+        country_2: "",
+        city_2: "",
+        landmark_2: "",
         addresses: []
       },
       coupons: {
-        couponCode: ''
+        couponCode: "",
+        price: this.sumOfLastPrices
       },
       loading: false,
-      email: '',
+      email: "",
       showDifferentAddress: false,
-      differentAddressField: '',
+      differentAddressField: "",
       // Initialize different address field if needed
       cart: [],
-      notifmsg: '',
-      invidecodeError: '',
+      notifmsg: "",
+      invidecodeError: "",
       errors: {},
       itemCount: 0,
       subtotal: 0,
       updatedQuantity: 0,
-      customer_id: '',
-      coupon: '',
+      customer_id: "",
+      coupon: "",
       dataArray: [],
       sumOfLastPrices: 0,
       sumOfFlatRatePrices: 0,
-      totalSum: 0
+      totalSum: 0,
+      discount: ""
     };
   },
   computed: {
     loggedIn() {
       if (!$auth.loggedIn) {
-        this.$router.push('/checkout');
+        this.$router.push("/checkout");
       } else {
-        this.$router.push('/');
+        this.$router.push("/");
       }
       return this.$auth.loggedIn;
     }
   },
   mounted() {
-    this.defaultLoadingData();
-    this.calculateSubtotal();
-    this.loadCart();
-    this.cartItemCount();
-    this.subtotal = this.calculateSubtotal();
     this.openPromo();
     this.cart.forEach(item => {
       item.shippingDate = this.calculateShippingDate(item.product.shipping_days);
     });
     if (false) {}
-    ;
+
     this.calculateSumOfLastPrices();
   },
   methods: {
+    addCard() {
+      external_jquery_default()(".addNewCardBT").click(function () {
+        external_jquery_default()(".addNewCard").fadeIn();
+        // $(".cardPay").fadeOut();
+      });
+
+      external_jquery_default()(".backBT").click(function () {
+        external_jquery_default()(".addNewCard").fadeOut();
+        // $(".cardPay").fadeIn();
+      });
+    },
+
     calculateSumOfLastPrices() {
-      const cartData = localStorage.getItem('cart');
+      const cartData = localStorage.getItem("cart");
       if (cartData) {
         const cart = JSON.parse(cartData);
         let sumOfLastPrices = 0;
         let sumOfFlatRatePrices = 0;
         cart.forEach(item => {
           sumOfLastPrices += parseFloat(item.product.last_price) * item.quantity;
-          sumOfFlatRatePrices += parseFloat(item.product.flat_rate_price) * item.quantity;
+          sumOfFlatRatePrices += parseFloat(item.product.flat_rate_price ? item.product.flat_rate_price : '0') * item.quantity;
         });
         const totalSum = sumOfLastPrices + sumOfFlatRatePrices;
-        this.sumOfLastPrices = sumOfLastPrices.toFixed(2);
-        this.sumOfFlatRatePrices = sumOfFlatRatePrices.toFixed(2);
-        this.totalSum = totalSum.toFixed(2);
+        this.coupons.price = totalSum;
+        this.sumOfLastPrices = sumOfLastPrices;
+        this.sumOfFlatRatePrices = sumOfFlatRatePrices;
+        this.totalSum = totalSum;
       }
     },
     updateSelectedData() {
-      console.log("Selected data:", this.shipp_address, "BilTo:", this.billAddress);
+      // console.log("Selected data:", this.shipp_address, "BilTo:", this.billAddress);
     },
     getPrice(item) {
       const price = item.quantity * item.product.last_price;
-      console.log(price);
-      return price.toFixed(2);
+      // console.log(price);
+      return price;
     },
     getSave(item) {
       const save = item.quantity * item.product.price - item.quantity * item.product.last_price;
-      console.log(save);
-      return save.toFixed(2);
+      // console.log(save);
+      return save;
     },
     calculateShippingDate(shippingDays) {
       const currentDate = new Date();
       const currentHour = currentDate.getHours();
       const nextDay = currentHour >= 17 ? 1 : 0;
       const shippingDate = new Date();
-      shippingDate.setDate(currentDate.getDate() + shippingDays + nextDay);
-      const formattedDate = shippingDate.toLocaleDateString('en-US', {
-        weekday: 'short',
-        day: 'numeric',
-        year: 'numeric'
-      });
+      shippingDate.setDate(currentDate.getDate() + (shippingDays ? shippingDays : nextDay));
+      const options = {
+        weekday: "short",
+        month: "short",
+        day: "numeric",
+        year: "numeric"
+      };
+      const formattedDate = shippingDate.toLocaleDateString("en-US", options);
       return formattedDate;
     },
-    getCouponData() {
-      const formData = new FormData();
-      formData.append('couponCode', this.coupons.couponCode);
-      this.$axios.get(`/unauthenticate/readcoupons/${this.coupons.couponCode}`).then(response => {
-        this.coupon = response.data.data;
-        external_jquery_default()('.msg').fadeIn();
+    async getCouponData() {
+      const formData = {
+        couponCode: this.coupons.couponCode,
+        price: this.coupons.price,
+        user_id: this.insertdata.id
+      };
+      console.log(formData);
+      this.$axios.post(`/unauthenticate/couponDiscount`, formData).then(response => {
+        this.coupon = response.data.coupon_data;
+        this.totalSum = response.data.coupon_data.last_discount_price;
+        this.discount = this.coupon.discount;
+        this.coupon_id = response.data.coupon_data.id;
+        external_jquery_default()("#discount").fadeIn();
+        // console.log(response.data.coupon_data.last_discount_price);
+      }).catch(error => {
+        console.error("Error fetching coupon data:", error);
+        this.errors = error.response.data.errors;
+        const errorMessages = Object.values(this.errors).flat();
+        const Toast = Swal.mixin({
+          toast: true,
+          position: "top-end",
+          showConfirmButton: false,
+          timer: 3000,
+          timerProgressBar: true,
+          didOpen: toast => {
+            toast.onmouseenter = Swal.stopTimer;
+            toast.onmouseleave = Swal.resumeTimer;
+          }
+        });
+        Toast.fire({
+          icon: "error",
+          title: errorMessages
+        });
       });
     },
     openPromo() {
@@ -350,7 +386,7 @@ var navbarSecond = __webpack_require__(63);
       this.insertdata.shipper_city = this.insertdata.city;
     },
     defaultLoadingData() {
-      this.$axios.get('/auth/showProfileData').then(response => {
+      this.$axios.get("/auth/showProfileData").then(response => {
         console.log(response.data.data.name);
         this.insertdata.id = response.data.data.id;
         this.insertdata.name = response.data.data.name;
@@ -358,8 +394,8 @@ var navbarSecond = __webpack_require__(63);
         this.getDatasAddressOne = response.data.data.address_1;
         this.insertdata.email = response.data.data.email;
         this.insertdata.phone_number = response.data.data.phone_number;
-        let address1 = this.getDatasAddressOne ? `${response.data.data.landmark_1},${response.data.data.address_1}, ${response.data.data.city_1}, ${response.data.data.country_1}` : "";
-        let address2 = this.getDatasAddressOne ? `${response.data.data.landmark_2},${response.data.data.address_2}, ${response.data.data.city_2}, ${response.data.data.country_2} ` : "";
+        let address1 = this.getDatasAddressOne ? `${response.data.data.landmark_1 ? response.data.data.landmark_1 : ''} ${response.data.data.address_1 ? response.data.data.address_1 : ''} ${response.data.data.city_1 ? response.data.data.city_1 : ''} ${response.data.data.country_1 ? response.data.data.country_1 : ''}` : "";
+        let address2 = this.getDatasAddressOne ? `${response.data.data.landmark_2 ? response.data.data.landmark_2 : ''} ${response.data.data.address_2 ? response.data.data.address_2 : ''} ${response.data.data.city_2 ? response.data.data.city_2 : ''} ${response.data.data.country_2 ? response.data.data.country_2 : ''} ` : "";
         console.log("===" + this.getDatasAddressOne);
 
         // if (getDatas.address_1 == null) {
@@ -374,7 +410,7 @@ var navbarSecond = __webpack_require__(63);
     },
     clearCart() {
       this.loading = true;
-      localStorage.removeItem('cart');
+      localStorage.removeItem("cart");
       this.cart = [];
       this.cartItemCount();
       setTimeout(() => {
@@ -383,7 +419,7 @@ var navbarSecond = __webpack_require__(63);
     },
     placeOrder() {
       const formData = new FormData();
-      formData.append('cart', JSON.stringify(this.cart));
+      formData.append("cart", JSON.stringify(this.cart));
       //Billing
       // formData.append('billing_name', this.insertdata.name);
       // formData.append('billing_address', this.insertdata.address);
@@ -398,18 +434,20 @@ var navbarSecond = __webpack_require__(63);
       // formData.append('shipper_address', this.insertdata.shipper_address);
       // formData.append('shipper_country', this.insertdata.shipper_country);
       // formData.append('shipper_city', this.insertdata.shipper_city);
-      formData.append('subTotal', this.totalSum);
-      formData.append('item_total', this.sumOfLastPrices);
-      formData.append('shipp_address', this.shipp_address);
-      formData.append('billAddress', this.billAddress);
-      formData.append('Cutomer_name', this.insertdata.name);
-      formData.append('Cutomer_email', this.insertdata.email);
-      formData.append('Cutomer_phone_number', this.insertdata.phone_number);
+      formData.append("subTotal", this.totalSum);
+      formData.append("item_total", this.sumOfLastPrices);
+      formData.append("shipp_address", this.shipp_address);
+      formData.append("billAddress", this.billAddress);
+      formData.append("Cutomer_name", this.insertdata.name);
+      formData.append("Cutomer_email", this.insertdata.email);
+      formData.append("Cutomer_phone_number", this.insertdata.phone_number);
+      formData.append("coupon_id", this.coupon_id ? this.coupon_id : '');
+      formData.append("user_id", this.insertdata.id);
       // console.log(formData);
       const headers = {
-        'Content-Type': 'multipart/form-data'
+        "Content-Type": "multipart/form-data"
       };
-      this.$axios.post('/order/submitOrder', formData, {
+      this.$axios.post("/order/submitOrder", formData, {
         headers
       }).then(response => {
         // const token = response.data.access_token;
@@ -430,16 +468,14 @@ var navbarSecond = __webpack_require__(63);
           icon: "success",
           title: "Order submitted successfully!"
         });
-        this.$router.push('/');
+        this.$router.push("/");
       }).catch(error => {
         if (error.response.status === 422) {
           this.errors = error.response.data.errors;
-          console.log(this.errors); // Log the errors to check its content
-          // Extract error messages from the errors object
           const errorMessages = Object.values(this.errors).flat();
 
           // Concatenate error messages into a single string
-          const errorMessage = errorMessages.join('<br>');
+          const errorMessage = errorMessages.join("<br>");
           const Toast = Swal.mixin({
             toast: true,
             position: "top-end",
@@ -460,7 +496,7 @@ var navbarSecond = __webpack_require__(63);
     },
     clearCart() {
       this.loading = true;
-      localStorage.removeItem('cart');
+      localStorage.removeItem("cart");
       this.cart = [];
       this.cartItemCount();
       setTimeout(() => {
@@ -487,7 +523,10 @@ var navbarSecond = __webpack_require__(63);
       }
       let itemCount = 0;
       this.cart.forEach(item => {
-        itemCount += parseInt(item.quantity);
+        if (item.product) {
+          // Add a check to ensure item.product is defined
+          itemCount += parseInt(item.quantity);
+        }
       });
       this.itemCount = itemCount;
       setTimeout(() => {
@@ -496,7 +535,7 @@ var navbarSecond = __webpack_require__(63);
     },
     handleCartItemCountUpdated(itemCount) {
       // This method will be called when the event is emitted from ComponentA
-      console.log('Received  DesktopViewOptions Com.:', itemCount);
+      // console.log('Received  DesktopViewOptions Com.:', itemCount);
       // Update the local data property with the received itemCount
       this.itemCount = itemCount;
     },
@@ -512,13 +551,14 @@ var navbarSecond = __webpack_require__(63);
         this.saveCart();
         this.calculateSubtotal();
         this.cartItemCount();
+        this.calculateSumOfLastPrices();
         setTimeout(() => {
           this.loading = false;
         }, 1000);
       }
     },
     saveCart() {
-      localStorage.setItem('cart', JSON.stringify(this.cart));
+      localStorage.setItem("cart", JSON.stringify(this.cart));
     },
     addToCart(productId) {
       const productToAdd = this.prouducts.find(product => product.id === productId);
@@ -542,8 +582,8 @@ var navbarSecond = __webpack_require__(63);
         itemCount += parseInt(item.quantity);
       });
       this.itemCount = itemCount;
-      console.log('Emitting cartItemCountUpdated event with itemCount:', this.itemCount);
-      this.$eventBus.$emit('cartItemCountUpdated', this.itemCount);
+      console.log("Emitting cartItemCountUpdated event with itemCount:", this.itemCount);
+      this.$eventBus.$emit("cartItemCountUpdated", this.itemCount);
     },
     calculateSubtotal() {
       //  this.loading = true;
@@ -557,7 +597,7 @@ var navbarSecond = __webpack_require__(63);
         if (!isNaN(item.quantity) && !isNaN(priceAsNumber)) {
           subtotal += item.quantity * priceAsNumber;
         } else {
-          console.error('Invalid quantity or price:', item.quantity, product.price);
+          console.error("Invalid quantity or price:", item.quantity, product.price);
         }
         // console.log(`Intermediate Subtotal: ${subtotal}`);
       });
@@ -579,7 +619,7 @@ var componentNormalizer = __webpack_require__(2);
 
 function injectStyles (context) {
   
-  var style0 = __webpack_require__(148)
+  var style0 = __webpack_require__(152)
 if (style0.__inject__) style0.__inject__(context)
 
 }
@@ -1288,7 +1328,7 @@ var component = Object(componentNormalizer["a" /* default */])(
 // ESM COMPAT FLAG
 __webpack_require__.r(__webpack_exports__);
 
-// CONCATENATED MODULE: ./node_modules/babel-loader/lib??ref--2-0!./node_modules/vue-loader/lib/loaders/templateLoader.js??ref--6!./node_modules/@nuxt/components/dist/loader.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./components/LoginPopup.vue?vue&type=template&id=3e58ccba&
+// CONCATENATED MODULE: ./node_modules/babel-loader/lib??ref--2-0!./node_modules/vue-loader/lib/loaders/templateLoader.js??ref--6!./node_modules/@nuxt/components/dist/loader.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./components/LoginPopup.vue?vue&type=template&id=d67dd6c8&
 var render = function render() {
   var _vm = this,
     _c = _vm._self._c;
@@ -1308,7 +1348,7 @@ var render = function render() {
 };
 var staticRenderFns = [];
 
-// CONCATENATED MODULE: ./components/LoginPopup.vue?vue&type=template&id=3e58ccba&
+// CONCATENATED MODULE: ./components/LoginPopup.vue?vue&type=template&id=d67dd6c8&
 
 // EXTERNAL MODULE: external "jquery"
 var external_jquery_ = __webpack_require__(32);
@@ -1361,6 +1401,7 @@ var external_jquery_default = /*#__PURE__*/__webpack_require__.n(external_jquery
         } else {
           console.warn('Unsupported role_id:', data.role_id);
         }
+        this.closePopup();
         Swal.fire({
           position: "top-end",
           icon: "success",
@@ -1781,20 +1822,20 @@ var component = Object(componentNormalizer["a" /* default */])(
 
 /***/ }),
 
-/***/ 98:
+/***/ 99:
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(149);
+var content = __webpack_require__(153);
 if(content.__esModule) content = content.default;
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add CSS to SSR context
 var add = __webpack_require__(9).default
 module.exports.__inject__ = function (context) {
-  add("7ebe208e", content, true, context)
+  add("6c89b970", content, true, context)
 };
 
 /***/ })

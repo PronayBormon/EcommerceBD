@@ -88,27 +88,26 @@
 
                                         </div>
                                         <div class="price_div">
-
-                                            <h5 v-if="pro_row.discount_status == 2">
+                                            <!-- {{ pro_row }} -->
+                                            <h5 v-if="pro_row.discount_status == 1">
                                                 <div class="d-flex align-items-center">
-                                                    Now: ${{ price = (pro_row.price - pro_row.discount) }}
-                                                    <p v-if="pro_row.vat_status == 0"
-                                                        style="color: gray;font-size: 12px;"> +Inclusing VAT.</p>
+                                                    Now: ${{ (pro_row.last_price).toFixed(2) }}
+                                                    <p style="color: gray;font-size: 12px;"> &nbsp;+Inclusing VAT.</p>
                                                 </div>
                                                 <p class="ms-0 d-block"><strike v-if="pro_row.discount !== 0">Was: ${{
-                                        pro_row.price }} </strike></p>
+                                        pro_row.price.toFixed(2) }} </strike><span>{{ pro_row.discount
+                                                        }}%</span></p>
                                             </h5>
-                                            <h5 v-else-if="pro_row.discount_status == 1">
+                                            <h5 v-else-if="pro_row.discount_status == 2">
                                                 <div class="d-flex align-items-center">
-                                                    Now: ${{ price = pro_row.price - (pro_row.price * pro_row.discount /
-                                        100) }}
-                                                    <p v-if="pro_row.vat_status == 0"
-                                                        style="color: gray;font-size: 12px;"> +Inclusing VAT.</p>
+                                                    Now: ${{ (pro_row.last_price).toFixed(2) }}
+                                                    <p style="color: gray;font-size: 12px;"> &nbsp;+Inclusing VAT.</p>
                                                 </div>
                                                 <p class="ms-0 d-block"><strike v-if="pro_row.discount !== 0">Was: ${{
-                                        pro_row.price }}</strike></p>
+                                        pro_row.price.toFixed(2) }} </strike><span>${{ pro_row.discount
+                                                        }}</span></p>
                                             </h5>
-                                            <h5 v-else>${{ pro_row.price }}</h5>
+                                            <h5 v-else>${{ pro_row.last_price }} </h5>
 
                                             <p v-if="pro_row.stock_status == 1 && pro_row.stock_qty >= 1">In stock</p>
                                             <p v-else-if="pro_row.stock_status == 2 && pro_row.stock_qty >= 1">in stock
@@ -133,7 +132,8 @@
                                                 </h6>
                                             </div>
                                             <div class="d-flex align-items-end">
-                                                <!-- <div class="size_attr" v-if="colorGroup !== null">
+                                                <div class="size_attr"
+                                                    v-if="colorGroup !== null && colorGroup.length > 0">
                                                     <label for="">Color:</label>
                                                     <select v-model="color" class="form-control w-100"
                                                         @change="showAttrVal()">
@@ -143,10 +143,11 @@
                                                             {{ item.color }}
                                                         </option>
                                                     </select>
-                                                </div> -->
+                                                </div>
                                                 <!-- {{ attibute }} -->
                                                 <!-- ===================================  -->
-                                                <!-- <div class="size_attr" v-if="varientList !== ''">
+                                                <div class="size_attr"
+                                                    v-if="varientList !== null && varientList.length > 0">
                                                     <label for="">Size:</label>
                                                     <select v-model="size" required class="form-control">
                                                         <option disabled value="" selected>Select</option>
@@ -154,10 +155,10 @@
                                                             @click="handleButtonClick(varient)" :value="varient.size">
                                                             {{ varient.size }}</option>
                                                     </select>
-                                                </div> -->
+                                                </div>
                                                 <div class="number my-1">
                                                     <span class="minus" @click="decrement">-</span>
-                                                    <input v-model="updatedQuantity" type="number"
+                                                    <input v-model="updatedQuantity" type="number" @change="checkqty()"
                                                         @input="sanitizeInput" />
                                                     <span class="plus" @click="increment">+</span>
                                                 </div>
@@ -165,21 +166,12 @@
                                             </div>
 
                                             <div class="d-flex align-items-center">
-                                                <button type="button" class="btn_cart "
+                                                <button type="button" v-if="pro_row.stock_qty !== 0" class="btn_cart "
                                                     style="visibility: unset; max-width: 120px;"
                                                     @click="addToCart(pro_row.id)"><i
                                                         class="fa-solid fa-cart-shopping"></i>Add to Cart </button>
-                                                <!-- <div class="size_attr" v-if="colorGroup">
-                                                    <label for="">Warrenty:</label>
-                                                    <select v-model="color" class="form-control w-100"
-                                                        @change="showAttrVal()">
-                                                        <option disabled value="" selected>Select</option>
-                                                        <option v-for="(item, index) in colorGroup" :key="index"
-                                                            :value="item.color" :selected="item.selected">
-                                                            {{ item.color }}
-                                                        </option>
-                                                    </select>
-                                                </div> -->
+                                                <button style="max-width: 120px;" v-else class="btn_sold">Sold
+                                                    out</button>
                                             </div>
                                             <p v-if="pro_row.free_shopping !== 1" class="m-0">Delivery by <strong>{{
                                         futureDate }}</strong></p>
@@ -207,10 +199,7 @@
                             </div>
                         </div>
                     </div>
-
-
                 </div>
-
             </div>
         </section>
 
@@ -452,7 +441,7 @@ export default {
             currentIndex: 0,
             featuresimgs: '',
             slider_img: [],
-            pro_row: '',
+            pro_row: [],
             productSlug,
             historVarient: [{
                 varient_id: '',
@@ -482,6 +471,7 @@ export default {
         this.initLightSlider();
         this.fetchData();
         this.updateDateTime();
+
     },
     computed: {
         loggedIn() {
@@ -489,11 +479,33 @@ export default {
         },
     },
     methods: {
-
+        checkqty() {
+            const qty = this.pro_row.stock_qty;
+            const upqty = this.updatedQuantity;
+            if (upqty >= qty) {
+                this.updatedQuantity = qty;
+                const Toast = Swal.mixin({
+                    toast: true,
+                    position: "top-end",
+                    showConfirmButton: false,
+                    timer: 3000,
+                    timerProgressBar: true,
+                    didOpen: (toast) => {
+                        toast.onmouseenter = Swal.stopTimer;
+                        toast.onmouseleave = Swal.resumeTimer;
+                    }
+                });
+                Toast.fire({
+                    icon: "error",
+                    title: "You've reached the stock limit"
+                });
+            }
+        },
         handleButtonClick(varient) {
             this.varientData = varient;
-            this.pro_row.price = varient.price;
-            this.featuresimgs = varient.image;
+            this.pro_row.last_price = varient.price;
+            this.pro_row.stock_qty = varient.qty;
+            this.featuresimgs = varient.image ? varient.image : this.pro_mainimage;
             // Handle button click event for the selected variant
             // console.log('Button clicked for color:', varient.color);
             // console.log('Button clicked for size:', varient.size);
@@ -513,7 +525,8 @@ export default {
                     color: color
                 }
             }).then(response => {
-                this.varientList = response.data.attribute;
+                this.varientList = response.data;
+                console.log(response.data);
             });
 
 
@@ -571,8 +584,27 @@ export default {
 
         },
         increment() {
+            // console.log(this.pro_row.stock_qty);
             // Increase the quantity value
-            this.updatedQuantity++;
+            if (this.updatedQuantity < this.pro_row.stock_qty) {
+                this.updatedQuantity++;
+            } else {
+                const Toast = Swal.mixin({
+                    toast: true,
+                    position: "top-end",
+                    showConfirmButton: false,
+                    timer: 3000,
+                    timerProgressBar: true,
+                    didOpen: (toast) => {
+                        toast.onmouseenter = Swal.stopTimer;
+                        toast.onmouseleave = Swal.resumeTimer;
+                    }
+                });
+                Toast.fire({
+                    icon: "error",
+                    title: "You've reached the stock limit"
+                });
+            }
         },
         decrement() {
             // Decrease the quantity value, but ensure it doesn't go below 1
@@ -623,30 +655,107 @@ export default {
                 this.saveCart();
             }
         },
-        addToCart(productId) {
-            const productToAdd = this.product.find((product) => product.id === productId);
+        async addToCart(productId) {
+            // console.log(this.pro_row.last_price);
+            const up_price = this.pro_row.last_price;
+            try {
+                const productToAdd = this.product.find((product) => product.id === productId);
 
-            productToAdd.color = this.color;
-            productToAdd.size = this.size;
+                // Ensure product and quantity are valid
+                if (!productToAdd || !this.updatedQuantity) {
+                    // console.error('Product or quantity is invalid.');
+                    const Toast = Swal.mixin({
+                        toast: true,
+                        position: "top-end",
+                        showConfirmButton: false,
+                        timer: 3000,
+                        timerProgressBar: true,
+                        didOpen: (toast) => {
+                            toast.onmouseenter = Swal.stopTimer;
+                            toast.onmouseleave = Swal.resumeTimer;
+                        }
+                    });
+                    Toast.fire({
+                        icon: "error",
+                        title: "Product or quantity is invalid."
+                    });
+                    return;
+                }
 
-            const existingItem = this.cart.find((item) => item.product.id === productId);
+                productToAdd.last_price = up_price;
+                if (this.color == '' && this.size == '') {
+                    const Toast = Swal.mixin({
+                        toast: true,
+                        position: "top-end",
+                        showConfirmButton: false,
+                        timer: 3000,
+                        timerProgressBar: true,
+                        didOpen: (toast) => {
+                            toast.onmouseenter = Swal.stopTimer;
+                            toast.onmouseleave = Swal.resumeTimer;
+                        }
+                    });
+                    Toast.fire({
+                        icon: "error",
+                        title: "Please select Color and size"
+                    });
+                } else {
+                    productToAdd.color = this.color;
+                    productToAdd.size = this.size;
 
-            // console.log("------" + productToAdd.color+"------" + productToAdd.size);
-            // //return false;
+                    const existingItem = this.cart.find((item) => item.product.id === productId);
 
-            if (existingItem) {
-                existingItem.quantity += 1;
-            } else {
-                this.cart.push({
-                    product: productToAdd,
-                    quantity: this.updatedQuantity,
+                    if (existingItem) {
+                        existingItem.quantity += this.updatedQuantity;
+                    } else {
+                        this.cart.push({
+                            product: productToAdd,
+                            quantity: this.updatedQuantity,
+                        });
+
+                        const Toast = Swal.mixin({
+                            toast: true,
+                            position: "top-end",
+                            showConfirmButton: false,
+                            timer: 3000,
+                            timerProgressBar: true,
+                            didOpen: (toast) => {
+                                toast.onmouseenter = Swal.stopTimer;
+                                toast.onmouseleave = Swal.resumeTimer;
+                            }
+                        });
+                        Toast.fire({
+                            icon: "success",
+                            title: "Product successfully Added to cart"
+                        });
+                    }
+
+                    this.saveCart();
+                    this.cartItemCount();
+                    console.log('Item added to cart successfully.');
+                }
+
+
+            } catch (error) {
+                console.error('Error adding item to cart:', error);
+
+                const Toast = Swal.mixin({
+                    toast: true,
+                    position: "top-end",
+                    showConfirmButton: false,
+                    timer: 3000,
+                    timerProgressBar: true,
+                    didOpen: (toast) => {
+                        toast.onmouseenter = Swal.stopTimer;
+                        toast.onmouseleave = Swal.resumeTimer;
+                    }
+                });
+                Toast.fire({
+                    icon: "error",
+                    title: "Product not Added to cart"
                 });
             }
-
-            this.saveCart();
-            this.cartItemCount();
         },
-
         //end cart
         initLightSlider() {
             let thumbnails = document.getElementsByClassName('Slider-thumbnail');
@@ -678,6 +787,7 @@ export default {
             this.loading = false;
             const response = await this.$axios.get(`/unauthenticate/productSlug/${prosulg}`);
             this.featuresimgs = response.data.data.featuredImage;
+            this.pro_mainimage = response.data.data.featuredImage;
             this.slider_img = response.data.data.slider_img;
             this.pro_row = response.data.data.pro_row;
             this.pro_Id = response.data.data.pro_row.id;

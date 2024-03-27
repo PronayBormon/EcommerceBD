@@ -15,42 +15,47 @@
                         </div>
                     </div>
                     <div class="container text-center my-3">
-                        <div class="loading-indicator" v-if="loading" style="text-align: center;">
+                        <!-- <div class="loading-indicator" v-if="loading" style="text-align: center;">
                             <div class="loader-container">
                                 <center class="loader-text">Loading...</center>
                                 <img src="/loader/loader.gif" alt="Loader" />
                             </div>
-                        </div>
+                        </div> -->
 
                         <div class="swiper mySwiper pro_slider">
                             <div class="swiper-wrapper">
                                 <div class="swiper-slide" v-for="item in category.products" :key="item.product_id">
                                     <div class="product_grid text-start">
+                                        <div class="loading-indicator" v-if="loading"
+                                            style="text-align: center;position: absolute; z-index: 2; left: 0; top: 0; background: #ffffff5c; height: 100%; width: 100%; object-fit: contain;">
+                                            <div class="loader-container">
+                                                <!-- <center class="loader-text">Loading...</center> -->
+                                                <img src="/loader/loader.gif" alt="Loader" />
+                                            </div>
+                                        </div>
                                         <nuxt-link :to="`/product-details/${item.slug}`">
                                             <img :src="item.thumnail" class="img-fluid" loading="lazy">
 
                                             <span v-if="item.free_shopping == 1">Free Delivery</span>
                                             <h1>{{ item.name }}</h1>
                                             <div v-if="item.discount_status == 1" class="d-flex aligh-items-center">
-                                                <p v-if="item.discount !== 0">${{ item.price - (item.price * item.discount / 100) }}</p>
-                                                <p v-else>${{ item.price }}</p>
-                                                <p class="ms-1" v-if="item.discount !== 0"><strike>${{ item.price
-                                                        }}</strike>
-                                                    <span>{{ item.discount }}%</span>
-                                                </p>
+                                                <p>${{ item.last_price.toFixed(2) }}</p>
+                                                <p class="ms-1" v-if="item.discount !== 0"><strike>${{
+                    item.price.toFixed(2) }}</strike> <span>{{ item.discount
+                                                        }}%</span> </p>
                                             </div>
                                             <div v-else-if="item.discount_status == 2"
                                                 class="d-flex aligh-items-center">
-                                                <p v-if="item.discount !== 0">${{ item.price - item.discount }}</p>
-                                                <p v-else>${{ item.price }}</p>
+                                                <p>${{ item.last_price.toFixed(2) }}</p>
 
-                                                <p class="ms-1" v-if="item.discount !== 0"><strike>${{ item.price
+                                                <p class="ms-1" v-if="item.discount !== 0"><strike>${{
+                    item.price.toFixed(2)
                                                         }}</strike>
-                                                    <span>${{ item.discount }}</span>
+                                                    <span>${{ item.discount.toFixed(2) }}</span>
                                                 </p>
                                             </div>
                                             <div v-else>
-                                                <p>${{ item.price }}</p>
+                                                <p>${{ item.last_price.toFixed(2) }}</p>
                                             </div>
 
                                         </Nuxt-link>
@@ -110,7 +115,7 @@ export default {
         this.loadCart();
         this.cartItemCount();
 
-        
+
         await this.fetchDefaultProduct();
         this.ssliderTest();
     },
@@ -180,6 +185,22 @@ export default {
             if (existingCartItemIndex !== -1) {
                 console.log("Product already exists in cart, increasing quantity.");
                 this.cart[existingCartItemIndex].quantity++;
+
+                const Toast = Swal.mixin({
+                    toast: true,
+                    position: "top-end",
+                    showConfirmButton: false,
+                    timer: 3000,
+                    timerProgressBar: true,
+                    didOpen: (toast) => {
+                        toast.onmouseenter = Swal.stopTimer;
+                        toast.onmouseleave = Swal.resumeTimer;
+                    }
+                });
+                Toast.fire({
+                    icon: "success",
+                    title: "Product successfully Added to cart"
+                });
             } else {
                 console.log("Product does not exist in cart, adding it.");
                 this.cart.push({
@@ -275,6 +296,7 @@ export default {
     font-size: 14px;
 
 }
+
 .catLink i {
     margin-left: 5px;
 }

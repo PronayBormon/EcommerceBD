@@ -14,6 +14,7 @@ use App\Models\OrderStatus;
 use App\Models\OrderHistory;
 use App\Models\ProductCategory;
 use App\Models\CategoryCommissionHistory;
+use App\Models\couponUseHistory;
 use App\Models\WishList;
 use App\Models\User;
 use Illuminate\Support\Facades\Validator as FacadesValidator;
@@ -108,7 +109,7 @@ class OrderController extends Controller
 
 
 
-        $rows = WishList::join('product', 'product.id', '=', 'wishlist.product_id')->where('wishlist.customer_id', $this->userid)->select('wishlist.id as wishid', 'product.thumnail_img', 'product.slug', 'product.name', 'price','product.discount', 'product.id')->get();
+        $rows = WishList::join('product', 'product.id', '=', 'wishlist.product_id')->where('wishlist.customer_id', $this->userid)->select('wishlist.id as wishid', 'product.thumnail_img', 'product.slug', 'product.name', 'price', 'product.discount', 'product.id')->get();
         $products = [];
         foreach ($rows as $key => $v) {
             $products[] = [
@@ -149,7 +150,7 @@ class OrderController extends Controller
     public function getOrder()
     {
 
-        $orders=[];
+        $orders = [];
 
         $data['orders']  = Order::where('customer_id', $this->userid)->where('order_status', 1)->limit(2)->get();
         foreach ($data['orders'] as $v) {
@@ -207,7 +208,7 @@ class OrderController extends Controller
         $order['orderdata']     = $orders;
         $order['orderrow']      = !empty($findorder->orderstatus) ? $findorder->orderstatus : "";
         $order['order_status']  = !empty($findorder->order_status) ? $findorder->order_status : "";
-        $order['orderstatus_id']= !empty($findorder->orderstatus_id) ? $findorder->orderstatus_id : "";
+        $order['orderstatus_id'] = !empty($findorder->orderstatus_id) ? $findorder->orderstatus_id : "";
         $order['orderData']     = !empty($findorder) ? $findorder : "";
         $order['OrderStatus']   = $orderStatus;
         // dd($order['order_status']);
@@ -259,16 +260,15 @@ class OrderController extends Controller
 
     public function submitOrder(Request $request)
     {
-        
-    //    dd($request->all());
-    //    return false;
-    
-    // formData.append('subTotal', this.totalSum);
-    // formData.append('shipp_address', this.shipp_address);
-    // formData.append('billAddress', this.billAddress);
-    // formData.append('Cutomer_name', this.insertdata.name);
-    // formData.append('Cutomer_email', this.insertdata.email);
-    // formData.append('Cutomer_phone_number', this.insertdata.phone_number);
+
+        //    dd($request->all());
+        //    return false;
+        // formData.append('subTotal', this.totalSum);
+        // formData.append('shipp_address', this.shipp_address);
+        // formData.append('billAddress', this.billAddress);
+        // formData.append('Cutomer_name', this.insertdata.name);
+        // formData.append('Cutomer_email', this.insertdata.email);
+        // formData.append('Cutomer_phone_number', this.insertdata.phone_number);
 
         $validator = FacadesValidator::make(
             $request->all(),
@@ -280,7 +280,8 @@ class OrderController extends Controller
                 'Cutomer_name'          => 'required',
                 'Cutomer_email'         => 'required',
                 'Cutomer_phone_number'  => 'required',
-            ],[
+            ],
+            [
                 'item_total'            => 'Errors in Total amount',
                 'shipp_address'         => 'Please add your address',
                 'billAddress'           => 'Please add your billing address',
@@ -315,7 +316,7 @@ class OrderController extends Controller
         // $shipper_address      = !empty($request->shipper_address) ? $request->shipper_address : "";
         // $shipper_country      = !empty($request->shipper_country) ? $request->shipper_country : "";
         // $shipper_city         = !empty($request->shipper_city) ? $request->shipper_city : "";
-        
+
         $subTotal               = $request->subTotal;
         $item_total               = $request->item_total;
         $shipp_address          = $request->shipp_address;
@@ -331,12 +332,12 @@ class OrderController extends Controller
             // Convert the stdClass object to an array
             $cartData = [$cartData];
         }
-       //dd($cartData);
+        //dd($cartData);
         $total = 0;
         foreach ($cartData as $cartItem) {
-            $productid = $cartItem->product->id;//$cartItem['product']['id'];
-            $quantity  = $cartItem->quantity;//$cartItem['quantity'];
-            $price     = str_replace(',', '', $cartItem->product->price);//$cartItem['product']['price']); // Remove commas
+            $productid = $cartItem->product->id; //$cartItem['product']['id'];
+            $quantity  = $cartItem->quantity; //$cartItem['quantity'];
+            $price     = str_replace(',', '', $cartItem->product->price); //$cartItem['product']['price']); // Remove commas
             $price     = floatval($price); // Convert to float
 
             if (!is_numeric($quantity) || !is_numeric($price)) {
@@ -381,19 +382,19 @@ class OrderController extends Controller
 
         $order->customer_id     = $this->userid;
         $order->order_status    = 1; // Order Placed 
-        $order->save();
+        // $order->save();
         // Get the last inserted order ID
         $lastOrderId = $order->id;
         // Update orderId with the last inserted order ID
 
         $itemtotal = 0;
         foreach ($cartData as $cartItem) {
-            $pid = $cartItem->product->id;//$cartItem['product']['id'];
+            $pid = $cartItem->product->id; //$cartItem['product']['id'];
             $chkpost = Product::where('id', $pid)->select('seller_id')->first();
             $seller_id = !empty($chkpost) ? $chkpost->seller_id : 1;
             $productid = $pid;
-            $quantity  = $cartItem->quantity;//$cartItem['quantity'];
-            $price     = str_replace(',', '', $cartItem->product->price);//$cartItem['product']['price']); // Remove commas
+            $quantity  = $cartItem->quantity; //$cartItem['quantity'];
+            $price     = str_replace(',', '', $cartItem->product->price); //$cartItem['product']['price']); // Remove commas
             $price     = floatval($price); // Convert to float
             $chkCat    = ProductCategory::where('product_id', $productid)->first();
             $categories = !empty($chkCat->parent_id) ? explode(',', $chkCat->parent_id) : "";
@@ -424,8 +425,16 @@ class OrderController extends Controller
             $order_history->total           = $itemtotal;
             $order_history->save();
         }
-
-
+        $couponUse = $request->coupon_id ?? '';
+        if ($couponUse !== '') {
+            // dd($request->coupon_id,$request->user_id);
+            $couponUseadd = couponUseHistory::create([
+                'user_id' => $request->user_id,
+                'coupon_id' =>$request->coupon_id,
+            ]);
+            
         return response()->json("Your order successfully done!", 200);
+        }
+        // return response()->json("Your order successfully done!", 200);
     }
 }

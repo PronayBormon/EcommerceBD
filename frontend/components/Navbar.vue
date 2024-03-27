@@ -1,6 +1,6 @@
 <template>
     <!-- <div> -->
-        <section class="search_bar position-sticky top-0">
+        <section class="search_bar ">
             <div class="container">
                 <div class="row justify-content-between align-items-center">
                     <div class="col-lg-3 col-md-4 col-8">

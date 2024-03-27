@@ -1,4 +1,4 @@
-exports.ids = [22];
+exports.ids = [24];
 exports.modules = {
 
 /***/ 73:

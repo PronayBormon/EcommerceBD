@@ -1,4 +1,7 @@
 {
+  "AddNewCard": {
+    "description": "Auto imported from components/addNewCard.vue"
+  },
   "BestPrice": {
     "description": "Auto imported from components/BestPrice.vue"
   },
@@ -7,6 +10,9 @@
   },
   "BrandProductGrid": {
     "description": "Auto imported from components/brandProductGrid.vue"
+  },
+  "CardPayment": {
+    "description": "Auto imported from components/cardPayment.vue"
   },
   "CategoryFive": {
     "description": "Auto imported from components/CategoryFive.vue"
@@ -73,6 +79,9 @@
   },
   "LimitedStokDetails": {
     "description": "Auto imported from components/LimitedStokDetails.vue"
+  },
+  "LoginCartpage": {
+    "description": "Auto imported from components/loginCartpage.vue"
   },
   "LoginPopup": {
     "description": "Auto imported from components/LoginPopup.vue"

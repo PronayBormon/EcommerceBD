@@ -213,19 +213,18 @@
                                             </div>
                                         </div>
                                         <div class="col pad_ding">
-                                            <div class=""  v-if="item.discount_status == 1">
-                                                
-                                                <h4  v-if="item.discount !== 0">${{ item.percent_discount }}</h4>
-                                                <h4 v-else class="me-1">${{ item.price }}</h4>
-                                                <h4 class="disabled" v-if="item.discount !==0"><strike>${{ item.price }}</strike><span>{{ item.discount }}%</span></h4>
+                                            <div class=""  v-if="item.discount_status == 1">                                                
+                                                <h4  class="me-1">${{ (item.last_price).toFixed(2) }}</h4>
+                                                <h4 class="disabled" v-if="item.discount !==0 && item.discount !== ''"><strike>${{ item.price }}</strike><span>{{ item.discount }}%</span></h4>
                                             </div>
+
+
                                             <div class=""  v-else-if="item.discount_status == 2">
-                                                <h4  v-if="item.discount !== 0">${{ item.fixed_discount }}</h4>
-                                                <h4 v-else class="me-1">${{ item.price }}</h4>
-                                                <h4 class="disabled" v-if="item.discount !==0"><strike>${{ item.price }}</strike><span>${{ item.discount }}</span></h4>
+                                                <h4  class="me-1">${{ (item.last_price).toFixed(2) }}</h4>
+                                                <h4 class="disabled" v-if="item.discount !==0 && item.discount !== ''"><strike>${{ item.price }}</strike><span>${{ item.discount }}</span></h4>
                                             </div>
                                             <div class=""  v-else>
-                                                <h4 class="me-1">${{ item.price }}</h4>
+                                                <h4 class="me-1">${{ (item.last_price).toFixed(2) }}</h4>
                                             </div>
 
 

@@ -256,6 +256,7 @@ Route::group([
 
     Route::get('readcoupons', [UnauthenticatedController::class, 'featchcoupon']);
     Route::get('readcoupons/{code}', [UnauthenticatedController::class, 'getCoupon']);
+    Route::post('couponDiscount', [UnauthenticatedController::class, 'getcouponDiscount']);
     Route::get('alldealsads', [UnauthenticatedController::class, 'getdealsbannersads']);
     Route::get('headerbanner', [UnauthenticatedController::class, 'getbanner']);  
     

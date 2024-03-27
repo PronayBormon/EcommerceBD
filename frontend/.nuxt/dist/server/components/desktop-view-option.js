@@ -1,4 +1,4 @@
-exports.ids = [20,26];
+exports.ids = [22,29];
 exports.modules = {
 
 /***/ 53:
@@ -251,7 +251,7 @@ var component = Object(componentNormalizer["a" /* default */])(
 // ESM COMPAT FLAG
 __webpack_require__.r(__webpack_exports__);
 
-// CONCATENATED MODULE: ./node_modules/babel-loader/lib??ref--2-0!./node_modules/vue-loader/lib/loaders/templateLoader.js??ref--6!./node_modules/@nuxt/components/dist/loader.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./components/LoginPopup.vue?vue&type=template&id=3e58ccba&
+// CONCATENATED MODULE: ./node_modules/babel-loader/lib??ref--2-0!./node_modules/vue-loader/lib/loaders/templateLoader.js??ref--6!./node_modules/@nuxt/components/dist/loader.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./components/LoginPopup.vue?vue&type=template&id=d67dd6c8&
 var render = function render() {
   var _vm = this,
     _c = _vm._self._c;
@@ -271,7 +271,7 @@ var render = function render() {
 };
 var staticRenderFns = [];
 
-// CONCATENATED MODULE: ./components/LoginPopup.vue?vue&type=template&id=3e58ccba&
+// CONCATENATED MODULE: ./components/LoginPopup.vue?vue&type=template&id=d67dd6c8&
 
 // EXTERNAL MODULE: external "jquery"
 var external_jquery_ = __webpack_require__(32);
@@ -324,6 +324,7 @@ var external_jquery_default = /*#__PURE__*/__webpack_require__.n(external_jquery
         } else {
           console.warn('Unsupported role_id:', data.role_id);
         }
+        this.closePopup();
         Swal.fire({
           position: "top-end",
           icon: "success",

@@ -33,17 +33,20 @@
                             item.product.product_name }}</Nuxt-Link>
                                                         </h1>
                                                         <p v-if="item.product.seller_name">Seller:
-                                                            {{ item.product.seller_name }}</p>
+                                                            <nuxt-link style="color: #900c3f;" :to="`/business/${item.product.seller_slug}`">{{ item.product.seller_name }}</nuxt-link> </p>
                                                         <p v-else>Seller: Ecommerce</p>
-                                                        <span v-if="item.product.stock_qty >= 1">In stock </span>
-                                                        <span v-else>Out of stock </span>
+                                                        <span class="mt-0 text-success" v-if="item.product.stock_qty >= 1">In stock </span>
+                                                        <span class="mt-0 text-danger" v-else>Out of stock </span>
+                                                        <p class="mt-0 " v-if="item.product.flat_rate_price !== 0 && item.product.free_shopping == 0" >Delivery Charge ${{ item.product.flat_rate_price }}</p>
+                                                        <p class="mt-0 freeBadge" style="" v-else-if="item.product.freeshopping == 1" >Free Shipping</p>
+                                                        <p class="mt-0 freeBadge" style="" v-else >Free Shipping</p>
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="col-4">
                                                 <div class="cart_price">
                                                     <small>(Qty: {{ item.quantity }})</small> x
-                                                    <strong >${{ item.product.last_price }}</strong>
+                                                    <strong>${{parseFloat(item.product.last_price).toFixed(2)}}</strong>
                                                 </div>
                                             </div>
                                         </div>
@@ -95,19 +98,19 @@
                             </div>
                             <div class="d-flex justify-content-between">
                                 <h3>Subtotal</h3>
-                                <h2>${{ subtotal }}</h2>
+                                <h2>${{ subtotal.toFixed(2) }}</h2>
                             </div>
                             <p>Delivery fees not included yet.</p>
 
                             <span v-if="loggedIn">
                                 <a class="btn_cart"
                                     style="visibility: unset;width: 100%; display: block;text-align: center;"
-                                    @click="gotoCheckOut">CheckOut (${{ subtotal }})</a>
+                                    @click="gotoCheckOut">CheckOut (${{ subtotal.toFixed(2) }})</a>
                             </span>
                             <span v-else>
                                 <a class="btn_cart"
                                     style="visibility: unset;width: 100%; display: block;text-align: center;"
-                                    @click="openLoginModal">CheckOut (${{ subtotal }})</a>
+                                    @click="openLoginModal">CheckOut (${{ subtotal.toFixed(2) }})</a>
                             </span>
 
                         </div>
@@ -130,7 +133,7 @@
             <a href="#top"><i class="fa-solid fa-angle-up"></i></a>
         </div>
         <Footer />
-
+        <login_popup/>
 
     </div>
 </template>
@@ -142,8 +145,11 @@ import Common_MiniTabNavbar from '~/components/Common_MiniTabNavbar.vue';
 import Common_MobileSearchProduct from '~/components/Common_MobileSearchProduct.vue';
 import RecentView from '~/components/RecentView.vue';
 import navbarSecond from '../components/navbarSecond.vue';
+import login_popup from '~/components/loginCartpage.vue';
+
 export default {
     components: {
+        login_popup,
         Common_MobileSidebar,
         Common_MiniTabNavbar,
         Common_MobileSearchProduct,
@@ -231,7 +237,7 @@ export default {
             }
         },
         openLoginModal() {
-            $(".login_popup").fadeIn();
+            $(".login_popup_two").fadeIn();
         },
         allowOnlyNumbers(event) {
             var charCode = (event.which) ? event.which : event.keyCode;
@@ -374,3 +380,14 @@ export default {
     },
 }
 </script>
+<style>
+.freeBadge{
+    font-size: 10px !important; 
+    /* background: #ff9901;
+    padding: 2px 5px;
+    border-radius: 3px;
+    font-weight: 600; */
+    color: #ff9901 !important;
+    /* width: fit-content; */
+}
+</style>
