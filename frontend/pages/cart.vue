@@ -29,24 +29,36 @@
                                                     <img :src="item.product.thumnail_img" class="img-fluid" alt="">
                                                     <div>
                                                         <h1>
-                                                            <Nuxt-Link :to="`/product-details/${item.product.pro_slug}`">{{
+                                                            <Nuxt-Link
+                                                                :to="`/product-details/${item.product.pro_slug}`">{{
                             item.product.product_name }}</Nuxt-Link>
                                                         </h1>
                                                         <p v-if="item.product.seller_name">Seller:
-                                                            <nuxt-link style="color: #900c3f;" :to="`/business/${item.product.seller_slug}`">{{ item.product.seller_name }}</nuxt-link> </p>
+                                                            <nuxt-link style="color: #900c3f;"
+                                                                :to="`/business/${item.product.seller_slug}`">{{
+                            item.product.seller_name }}</nuxt-link>
+                                                        </p>
                                                         <p v-else>Seller: Ecommerce</p>
-                                                        <span class="mt-0 text-success" v-if="item.product.stock_qty >= 1">In stock </span>
+                                                        <span class="mt-0 text-success"
+                                                            v-if="item.product.stock_qty >= 1">In stock </span>
                                                         <span class="mt-0 text-danger" v-else>Out of stock </span>
-                                                        <p class="mt-0 " v-if="item.product.flat_rate_price !== 0 && item.product.free_shopping == 0" >Delivery Charge ${{ item.product.flat_rate_price }}</p>
-                                                        <p class="mt-0 freeBadge" style="" v-else-if="item.product.freeshopping == 1" >Free Shipping</p>
-                                                        <p class="mt-0 freeBadge" style="" v-else >Free Shipping</p>
+                                                        <p class="mt-0 "
+                                                            v-if="item.product.flat_rate_price !== 0 && item.product.free_shopping == 0">
+                                                            Delivery Charge ${{ item.product.flat_rate_price }}</p>
+                                                        <p class="mt-0 freeBadge" style=""
+                                                            v-else-if="item.product.freeshopping == 1">Free Shipping</p>
+                                                        <p class="mt-0 freeBadge" style="" v-else>Free Shipping</p>
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="col-4">
                                                 <div class="cart_price">
                                                     <small>(Qty: {{ item.quantity }})</small> x
-                                                    <strong>${{parseFloat(item.product.last_price).toFixed(2)}}</strong>
+                                                    <strong>${{ parseFloat(item.product.last_price).toFixed(2)
+                                                        }}</strong>
+                                                    <strong class="d-block" style="color:#adadad;">Was:<del>${{
+                            parseFloat(item.product.price).toFixed(2) }}</del></strong>
+
                                                 </div>
                                             </div>
                                         </div>
@@ -58,18 +70,17 @@
                                             </div>
                                             <div>
                                                 <div class="number">
-                                                    <!-- <span class="minus" @click="decrement">-</span> -->
-                                                    <input v-model="item.quantity" class="quantity" type="number"
-                                                        @keypress="allowOnlyNumbers" />
-                                                    <!-- <span class="plus" @click="increment">+</span> -->
+                                                    <input v-model="item.quantity" :max="item.product.stock_qty"
+                                                        @change="checkqty(item.product.stock_qty, item.quantity)"
+                                                        class="quantity" type="number" @keypress="allowOnlyNumbers" />
                                                 </div>
-                                                <Button class="btn_cart mt-2"
+                                                <Button class="btn_cart mt-2" :disabled="item.quantity>=item.product.stock_qty"
                                                     style="visibility: unset; background-color: #0C356A;"
                                                     @click="updateQuantity(item.product.id, item.quantity)">Update</Button>
+
                                             </div>
                                         </div>
                                     </li>
-
                                 </ul>
 
                                 <div v-if="itemCount !== 0">
@@ -133,7 +144,7 @@
             <a href="#top"><i class="fa-solid fa-angle-up"></i></a>
         </div>
         <Footer />
-        <login_popup/>
+        <login_popup />
 
     </div>
 </template>
@@ -159,6 +170,7 @@ export default {
     data() {
         return {
             loading: false,
+            qty_limite: '',
             cart: [],
             //    product:[],
             itemCount: 0,
@@ -167,6 +179,9 @@ export default {
             login: {
                 email: '',
                 password: '',
+            },
+            item: {
+                quantity: '',
             },
             notifmsg: '',
             errors: {},
@@ -205,6 +220,29 @@ export default {
 
     },
     methods: {
+        checkqty(sqty, s_qty) {
+            const qty = sqty;
+            const upqty = s_qty;
+            if (upqty >= qty) {
+                // Show a toast message
+                const Toast = Swal.mixin({
+                    toast: true,
+                    position: "top-end",
+                    showConfirmButton: false,
+                    timer: 3000,
+                    timerProgressBar: true,
+                    didOpen: (toast) => {
+                        toast.onmouseenter = Swal.stopTimer;
+                        toast.onmouseleave = Swal.resumeTimer;
+                    }
+                });
+                Toast.fire({
+                    icon: "error",
+                    title: "You've reached the stock limit"
+                });
+            }
+        },
+
         gotoCheckOut() {
             this.$router.push('/checkout');
         },
@@ -262,11 +300,27 @@ export default {
             const index = this.cart.findIndex((item) => item.product.id === productId);
             if (index !== -1) {
                 this.cart[index].quantity = newQuantity;
+                this.updateQuantity = newQuantity;
                 this.saveCart();
                 this.calculateSubtotal(); // Optionally recalculate subtotal after updating quantity
                 setTimeout(() => {
                     this.loading = false;
                 }, 2000);
+                const Toast = Swal.mixin({
+                    toast: true,
+                    position: "top-end",
+                    showConfirmButton: false,
+                    timer: 3000,
+                    timerProgressBar: true,
+                    didOpen: (toast) => {
+                        toast.onmouseenter = Swal.stopTimer;
+                        toast.onmouseleave = Swal.resumeTimer;
+                    }
+                });
+                Toast.fire({
+                    icon: "success",
+                    title: "Successfull update quantity"
+                });
 
             }
 
@@ -354,7 +408,7 @@ export default {
             let subtotal = 0;
             this.cart.forEach((item) => {
                 const product = item.product;
-                console.log("Last Price"+product.last_price);
+                console.log("Last Price" + product.last_price);
 
                 let priceWithoutCommas;
                 if (typeof product.last_price === 'string') {
@@ -381,8 +435,8 @@ export default {
 }
 </script>
 <style>
-.freeBadge{
-    font-size: 10px !important; 
+.freeBadge {
+    font-size: 10px !important;
     /* background: #ff9901;
     padding: 2px 5px;
     border-radius: 3px;

@@ -280,11 +280,13 @@ class OrderController extends Controller
                 'Cutomer_name'          => 'required',
                 'Cutomer_email'         => 'required',
                 'Cutomer_phone_number'  => 'required',
+                'payment_staus'         => 'required',
             ],
             [
                 'item_total'            => 'Errors in Total amount',
                 'shipp_address'         => 'Please add your address',
                 'billAddress'           => 'Please add your billing address',
+                'payment_staus'         => 'Please select payment method',
 
             ]
             // ,
@@ -324,6 +326,7 @@ class OrderController extends Controller
         $Cutomer_name           = $request->Cutomer_name;
         $Cutomer_email          = $request->Cutomer_email;
         $Cutomer_phone_number   = $request->Cutomer_phone_number;
+        $payment_staus          = $request->payment_staus;
 
         $randomNum = $this->userid . $this->generateUniqueRandomNumber() . "-" . date("y");
 
@@ -364,21 +367,7 @@ class OrderController extends Controller
         $order->billing_email         = $Cutomer_email;
         $order->billing_phone_number  = $Cutomer_phone_number;
         $order->billing_address       = $billAddress;
-        //Billing Info
-        // $order->billing_name          = $billing_name;
-        // $order->billing_email         = $billing_email;
-        // $order->billing_phone_number  = $billing_phone_number;
-        // $order->billing_address       = $billing_address;
-        // $order->billing_country       = $billing_country;
-        // $order->billing_city          = $billing_city;
-        //Shipping Info
-        // $order->shipper_name          = $shipper_name;
-        // $order->shipper_email         = $shipper_email;
-        // $order->shipper_phone_number  = $shipper_phone_number;
-        // $order->shipper_address       = $shipper_address;
-        // $order->shipper_country       = $shipper_country;
-        // $order->shipper_city          = $shipper_city;
-        //END
+        $order->payment_type        = $payment_staus;
 
         $order->customer_id     = $this->userid;
         $order->order_status    = 1; // Order Placed 

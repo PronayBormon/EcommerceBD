@@ -540,12 +540,12 @@ export default {
                 console.log("Formatted created_at: " + formattedCreatedAt);
 
             })
-                .catch(error => {
-                    // Handle error
-                })
-                .finally(() => {
-                    this.loading = false; // Hide loader after response
-                });
+            .catch(error => {
+                // Handle error
+            })
+            .finally(() => {
+                this.loading = false; // Hide loader after response
+            });
 
         },
 

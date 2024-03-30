@@ -136,35 +136,40 @@
               <div class="delivery_addreess paymentMethod_tabs">
                 <ul class="nav nav-tabs" id="myTab" role="tablist">
                   <li class="nav-item" role="presentation">
-                    <button class="nav-link active" id="Card-tab" data-bs-toggle="tab" data-bs-target="#Card-tab-pane"
+                    <button class="nav-link" id="Card-tab" data-bs-toggle="tab" data-bs-target="#Card-tab-pane"
                       type="button" role="tab" aria-controls="Card-tab-pane" aria-selected="true">
                       Card
                     </button>
                   </li>
                   <li class="nav-item" role="presentation">
-                    <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile-tab-pane"
-                      type="button" role="tab" aria-controls="profile-tab-pane" aria-selected="false">
+                    <button class="nav-link active" id="profile-tab" data-bs-toggle="tab"
+                      data-bs-target="#profile-tab-pane" type="button" role="tab" aria-controls="profile-tab-pane"
+                      aria-selected="false">
                       Cash On Delivery
                     </button>
                   </li>
                 </ul>
                 <div class="tab-content" id="myTabContent">
-                  <div class="tab-pane fade show active py-1" id="Card-tab-pane" role="tabpanel"
-                    aria-labelledby="Card-tab" tabindex="0">
+                  <div class="tab-pane fade py-1" id="Card-tab-pane" role="tabpanel" aria-labelledby="Card-tab"
+                    tabindex="0">
                     <div class="d-flex flex-column mb-3">
                       <div class="btn-group-vertical" role="group" aria-label="Vertical button group">
                         <div class="cardPay w-100">
-                          <div class="mb-2 w-100">
-                            <input type="radio" class="btn-check" name="paymentMethod" id="option1"
+                          <!-- {{ cardList }} -->
+                          <div v-if="cardList !== ''" v-for="(card, index) in cardList.paymentCard" :key="index" class="mb-2 w-100">
+                            <input type="radio" @change="handlePaymentSelection()" class="btn-check" :value="card.id"
+                              v-model="selectedPayment" name="paymentMethod" :id="'option' + index"
                               autocomplete="off" />
-                            <label class="btn btn-outline-primary border-0 px-2 py-1 w-100 btn-lg"
-                              style="max-width: 350px" for="option1">
+                            <label :for="'option' + index"
+                              class="btn btn-outline-primary border-0 px-2 py-1 w-100 btn-lg" style="max-width: 350px">
                               <div class="mt-0 d-flex justify-content-between align-items-center">
                                 <div class="d-flex flex-row align-items-center">
                                   <img src="/images/qHX7vY1.webp" class="rounded" width="50px" />
                                   <div class="d-flex flex-column ms-3">
-                                    <span class="h5 mb-1 text-start" style="font-size: 14px">VISA</span>
-                                    <span class="small text-muted" style="font-size: 12px">**** 5436</span>
+                                    <span class="h5 mb-1 text-start" style="font-size: 14px">{{ card.holder_name
+                                      }}</span>
+                                    <span class="small text-muted" style="font-size: 12px"> **** {{ card.card_number
+                                      }}</span>
                                   </div>
                                 </div>
                                 <div>
@@ -174,51 +179,35 @@
                               </div>
                             </label>
                           </div>
-                          <div class="mb-2 w-100">
-                            <input type="radio" class="btn-check" name="paymentMethod" id="option2"
-                              autocomplete="off" />
-                            <label class="btn btn-outline-primary border-0 w-100 px-2 py-1 btn-lg"
-                              style="max-width: 350px" for="option2">
-                              <div class="mt-0 d-flex justify-content-between align-items-center">
-                                <div class="d-flex flex-row align-items-center">
-                                  <img src="/images/qHX7vY1.webp" class="rounded" width="50px" />
-                                  <div class="d-flex flex-column ms-3">
-                                    <span class="h5 mb-1 text-start" style="font-size: 14px">VISA</span>
-                                    <span class="small text-muted" style="font-size: 12px">**** 5436</span>
-                                  </div>
-                                </div>
-                                <div>
-                                  <input type="text" class="form-control" placeholder="CVV"
-                                    style="width: 70px; font-size: 12px" />
-                                </div>
-                              </div>
-                            </label>
-                          </div>
+
                           <a type="button" class="btn addNewCardBT p-0" style="width: fit-content; color: #900c3f">Add
                             new card</a>
                         </div>
                         <!-- add card section -->
                         <div class="addNewCard w-100">
                           <a type="button" class="btn backBT btn-edit p-0"><i class="fa-solid fa-arrow-left"></i></a>
-                          <form action="">
+                          <form action="" @submit.prevent="saveCard()" id="cardInput">
                             <div class="row mb-4">
                               <div class="col-md-12">
+                                <input type="text" v-model="user_id" class="form-control">
                                 <div class="form-group mb-2">
                                   <label for="">Card holder name</label>
-                                  <input type="text" placeholder="Jhon Due" autocomplete="off" class="form-control" />
+                                  <input type="text" v-model="cardData.holder_name" placeholder="Jhon Due"
+                                    autocomplete="off" class="form-control" />
                                 </div>
                               </div>
                               <div class="col-7">
                                 <div class="form-group mb-2">
                                   <label for="">Card Number</label>
-                                  <input type="text" placeholder="**** **** ****" autocomplete="off"
-                                    class="form-control" />
+                                  <input type="text" v-model="cardData.card_number" placeholder="**** **** ****"
+                                    autocomplete="off" class="form-control" />
                                 </div>
                               </div>
                               <div class="col-3">
                                 <div class="form-group mb-2">
                                   <label for="">Expire</label>
-                                  <input type="text" placeholder="MM/YY" autocomplete="off" class="form-control" />
+                                  <input type="text" v-model="cardData.expiry_date" placeholder="MM/YY"
+                                    autocomplete="off" class="form-control" />
                                 </div>
                               </div>
                               <div class="col-2">
@@ -228,8 +217,9 @@
                                 </div>
                               </div>
                               <div class="col-12">
-                                <a type="submit" class="btn btn_edit" style="border: 1px solid; width: fit-content">Add
-                                  Card</a>
+                                <button type="submit" class="btn btn_edit"
+                                  style="border: 1px solid; width: fit-content">Add
+                                  Card</button>
                               </div>
                             </div>
                           </form>
@@ -237,16 +227,17 @@
                       </div>
                     </div>
                   </div>
-                  <div class="tab-pane fade py-1" id="profile-tab-pane" role="tabpanel" aria-labelledby="profile-tab"
-                    tabindex="0">
+                  <div class="tab-pane fade show active py-1" id="profile-tab-pane" role="tabpanel"
+                    aria-labelledby="profile-tab" tabindex="0">
                     <div class="my-2 w-100">
-                      <input type="radio" class="btn-check" name="paymentMethod" id="COD" autocomplete="off" checked />
+                      <input type="radio" class="btn-check" name="paymentMethod" id="COD" value="COD" autocomplete="off"
+                        v-model="selectedPayment" @change="handlePaymentSelection" />
                       <label class="btn btn-outline-primary border-0 w-100 px-2 py-1 btn-lg" style="max-width: 350px"
                         for="COD">
                         <div class="d-flex align-items-center justify-content-between w-100">
                           <div>
                             <h6 class="mb-0">Cash on delivery</h6>
-                            <p>Extra charge: $10.00</p>
+                            <p>Extra charge: ${{ companyData.transaction_fee }}</p>
                           </div>
                           <div>
                             <p class="badge bg-success" style="color: #fff !important">
@@ -264,7 +255,7 @@
               <div class="cart_sidebar">
                 <div class="d-flex align-items-center justify-content-between">
                   <p>Ecommerce Voucher</p>
-                  <strong>{{ coupon.name }}</strong>
+                  <!-- <strong>{{ coupon.name }}</strong> -->
                 </div>
 
                 <form @submit.prevent="getCouponData()" id="coupon" action="">
@@ -295,6 +286,11 @@
                       <tr>
                         <td><strong>Items Total</strong></td>
                         <td class="text-end">${{ sumOfLastPrices.toFixed(2) }}</td>
+
+                      </tr>
+                      <tr v-if="COD_fee !== 0 && selectedPayment == 'COD'">
+                        <td><strong>Cash on delivery Fee </strong></td>
+                        <td class="text-end">${{ COD_fee }}</td>
                       </tr>
                       <tr id="discount">
                         <td><strong class="text-success">Discount</strong></td>
@@ -308,12 +304,15 @@
                       </tr>
                       <tr>
                         <td><strong>Total Payment</strong></td>
-                        <td class="text-end">${{ (totalSum).toFixed(2) }}</td>
+                        <td class="text-end">${{ totalSum.toFixed(2) }}</td>
                       </tr>
                     </tbody>
                   </table>
-                  <div class="text-end">
-                    <p>VAT included, Where applicable </p>
+
+                  <div class="">
+                    <p class="text-start badge bg-danger-light" style="width: fit-content;" id="errorDiscount">Wrong coupon code </p>
+                    <p class="text-start badge bg-success-light"  style="width: fit-content;" id="discount_msg">Checkout with Coupon Cashback</p>
+                    <p class="text-end">VAT included, Where applicable </p>
                   </div>
 
                   <span v-if="cart.length > 0">
@@ -333,6 +332,7 @@
               </div>
             </div>
           </div>
+          <input type="text" v-model="selectedPayment" hidden>
         </form>
       </div>
     </section>
@@ -342,12 +342,14 @@
     <div class="back_top">
       <a href="#top"><i class="fa-solid fa-angle-up"></i></a>
     </div>
+    <!-- {{ companyData.transaction_fee }} -->
     <Footer />
   </div>
 </template>
 
 <script>
 import $ from "jquery";
+import axios from "axios";
 import Common_MobileSidebar from "~/components/Common_MobileSidebar.vue";
 import Common_MiniTabNavbar from "~/components/Common_MiniTabNavbar.vue";
 import Common_MobileSearchProduct from "~/components/Common_MobileSearchProduct.vue";
@@ -368,8 +370,15 @@ export default {
   },
   data() {
     return {
+      cardList: [],
+      cardData: {
+        holder_name: '',
+        card_number: '',
+        expiry_date: '',
+      },
       billAddress: "",
       shipp_address: null,
+      user_id: 0,
       userdata: {
         name: "",
         email: "",
@@ -440,6 +449,9 @@ export default {
       sumOfFlatRatePrices: 0,
       totalSum: 0,
       discount: "",
+      selectedPayment: '',
+      companyData: [],
+      COD_fee: 0,
     };
   },
 
@@ -460,7 +472,6 @@ export default {
     });
 
     if (process.client) {
-
       this.addCard();
       this.defaultLoadingData();
       this.calculateSubtotal();
@@ -479,19 +490,80 @@ export default {
       // Now you can work with myElement
     }
     this.calculateSumOfLastPrices();
+    this.getcompanyData();
   },
   methods: {
+    handlePaymentSelection() {
+      if (this.selectedPayment === 'COD') {
+        this.calculateSumOfLastPrices();
+      } else {
+        this.calculateSumOfLastPrices();
+      }
+    },
+    saveCard() {
+      const formData = new FormData();
+      formData.append('user_id', this.user_id);
+      formData.append('holder_name', this.cardData.holder_name);
+      formData.append('card_number', this.cardData.card_number);
+      formData.append('expiry_date', this.cardData.expiry_date);
+      // console.log(formData);
+      this.$axios.post('/user/saveCard', formData)
+        .then(response => {
+          // console.log(response.data);
+          const Toast = Swal.mixin({
+            toast: true,
+            position: "top-end",
+            showConfirmButton: false,
+            timer: 3000,
+            timerProgressBar: true,
+            didOpen: (toast) => {
+              toast.onmouseenter = Swal.stopTimer;
+              toast.onmouseleave = Swal.resumeTimer;
+            },
+          });
+          Toast.fire({
+            icon: "success",
+            title: "Order submitted successfully!",
+          });
+          $("#cardInput")[0].reset();
+        })
+        .catch((error) => {
+          if (error.response.status === 422) {
+            this.errors = error.response.data.errors;
+            const errorMessages = Object.values(this.errors).flat();
+
+            // Concatenate error messages into a single string
+            const errorMessage = errorMessages.join("<br>");
+            const Toast = Swal.mixin({
+              toast: true,
+              position: "top-end",
+              showConfirmButton: false,
+              timer: 3000,
+              timerProgressBar: true,
+              didOpen: (toast) => {
+                toast.onmouseenter = Swal.stopTimer;
+                toast.onmouseleave = Swal.resumeTimer;
+              },
+            });
+            Toast.fire({
+              icon: "error",
+              title: errorMessage,
+            });
+          }
+        });
+    },
     addCard() {
       $(".addNewCardBT").click(function () {
         $(".addNewCard").fadeIn();
-        // $(".cardPay").fadeOut();
       });
       $(".backBT").click(function () {
         $(".addNewCard").fadeOut();
-        // $(".cardPay").fadeIn();
       });
     },
     calculateSumOfLastPrices() {
+      let selectedPayment = this.selectedPayment ? this.selectedPayment : '0';
+      let COD_fee = this.COD_fee;
+      // console.log(COD_fee);
       const cartData = localStorage.getItem("cart");
       if (cartData) {
         const cart = JSON.parse(cartData);
@@ -502,12 +574,22 @@ export default {
           sumOfLastPrices += parseFloat(item.product.last_price) * item.quantity;
           sumOfFlatRatePrices += parseFloat(item.product.flat_rate_price ? item.product.flat_rate_price : '0') * item.quantity;
         });
+        let allsum;
+        let subsum = sumOfLastPrices + sumOfFlatRatePrices;
 
-        const totalSum = sumOfLastPrices + sumOfFlatRatePrices;
-        this.coupons.price = totalSum;
+        // console.log(subsum);
+
+        if(selectedPayment == "COD"){
+          allsum = parseFloat(subsum) + parseFloat(COD_fee);
+          // console.log(allsum);
+        }else{
+          allsum = subsum;
+        }
+
+        this.coupons.price = allsum;
         this.sumOfLastPrices = sumOfLastPrices;
         this.sumOfFlatRatePrices = sumOfFlatRatePrices;
-        this.totalSum = totalSum;
+        this.totalSum = allsum;
       }
     },
 
@@ -560,10 +642,13 @@ export default {
           this.discount = this.coupon.discount;
           this.coupon_id = response.data.coupon_data.id;
           $("#discount").fadeIn();
+          $("#discount_msg").fadeIn();
+          $("#errorDiscount").fadeOut();
           // console.log(response.data.coupon_data.last_discount_price);
         })
         .catch((error) => {
-          console.error("Error fetching coupon data:", error);
+          // console.error("Error fetching coupon data:", error);
+          $("#errorDiscount").fadeIn();
 
           this.errors = error.response.data.errors;
           const errorMessages = Object.values(this.errors).flat();
@@ -604,8 +689,9 @@ export default {
     },
     defaultLoadingData() {
       this.$axios.get("/auth/showProfileData").then((response) => {
-        console.log(response.data.data.name);
+        // console.log(response.data.data.card_number);
         this.insertdata.id = response.data.data.id;
+        // this.user_id = response.data.data.id;
         this.insertdata.name = response.data.data.name;
         this.getDatas = response.data.data;
         this.getDatasAddressOne = response.data.data.address_1;
@@ -615,21 +701,33 @@ export default {
         let address1 = this.getDatasAddressOne
           ? `${response.data.data.landmark_1 ? response.data.data.landmark_1 : ''} ${response.data.data.address_1 ? response.data.data.address_1 : ''} ${response.data.data.city_1 ? response.data.data.city_1 : ''} ${response.data.data.country_1 ? response.data.data.country_1 : ''}`
           : "";
-
         let address2 = this.getDatasAddressOne
           ? `${response.data.data.landmark_2 ? response.data.data.landmark_2 : ''} ${response.data.data.address_2 ? response.data.data.address_2 : ''} ${response.data.data.city_2 ? response.data.data.city_2 : ''} ${response.data.data.country_2 ? response.data.data.country_2 : ''} `
           : "";
-
-        console.log("===" + this.getDatasAddressOne);
-
-        // if (getDatas.address_1 == null) {
-        //     this.shipp_address = getDatas.address_1;
-        // } else  {
-        //     this.shipp_address = address1;
-        // }
         this.shipp_address = address1;
         this.billAddress = address1;
         this.dataArray.push(address1, address2);
+
+        this.user_id = response.data.data.id;
+        this.defaultLoading();
+      });
+    },
+    getcompanyData() {
+      this.$axios.get('/setting/getCompanyData')
+        .then(response => {
+          this.companyData = response.data;
+          this.COD_fee = response.data.transaction_fee;
+        });
+    },
+
+    defaultLoading() {
+      // console.log(this.insertdata.id);
+      const id = this.insertdata.id;
+      this.$axios.get(`/user/cardlist/${id}`).then(response => {
+        this.cardList = response.data;
+        // console.log(response.data);
+      }).catch(error => {
+        // console.error('Error fetching card list:', error);
       });
     },
     clearCart() {
@@ -644,20 +742,6 @@ export default {
     placeOrder() {
       const formData = new FormData();
       formData.append("cart", JSON.stringify(this.cart));
-      //Billing
-      // formData.append('billing_name', this.insertdata.name);
-      // formData.append('billing_address', this.insertdata.address);
-      // formData.append('billing_email', this.insertdata.email);
-      // formData.append('billing_phone_number', this.insertdata.phone_number);
-      // formData.append('billing_country', this.insertdata.country);
-      // formData.append('billing_city', this.insertdata.city);
-      //Shipping
-      // formData.append('shipper_name', this.insertdata.shipper_name);
-      // formData.append('shipper_email', this.insertdata.shipper_email);
-      // formData.append('shipper_phone_number', this.insertdata.shipper_phone_number);
-      // formData.append('shipper_address', this.insertdata.shipper_address);
-      // formData.append('shipper_country', this.insertdata.shipper_country);
-      // formData.append('shipper_city', this.insertdata.shipper_city);
       formData.append("subTotal", this.totalSum);
       formData.append("item_total", this.sumOfLastPrices);
       formData.append("shipp_address", this.shipp_address);
@@ -667,6 +751,7 @@ export default {
       formData.append("Cutomer_phone_number", this.insertdata.phone_number);
       formData.append("coupon_id", this.coupon_id ? this.coupon_id : '');
       formData.append("user_id", this.insertdata.id);
+      formData.append("payment_staus", this.selectedPayment);
       // console.log(formData);
       const headers = {
         "Content-Type": "multipart/form-data",
@@ -689,11 +774,11 @@ export default {
               toast.onmouseleave = Swal.resumeTimer;
             },
           });
-          this.clearCart();
           Toast.fire({
             icon: "success",
             title: "Order submitted successfully!",
           });
+          this.clearCart();
           this.$router.push("/");
         })
         .catch((error) => {
@@ -882,5 +967,8 @@ export default {
 
 .checkIProtem {
   width: 310px;
+}
+#errorDiscount,#discount_msg{
+  display: none;
 }
 </style>

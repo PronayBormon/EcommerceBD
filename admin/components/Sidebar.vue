@@ -73,7 +73,7 @@
                     </ul>
                 </li>
 
-                <li>
+                <!-- <li>
                     <a href="#" class="has-arrow nav-link dropdown-toggle" id="submenuDropdown_32" role="button"
                         data-bs-toggle="dropdown" aria-expanded="false">
                         <i class="bx bx-category"></i>
@@ -99,9 +99,9 @@
                             <Nuxt-link to="#"><i class="bx bx-right-arrow-alt"></i>Cancel Request</Nuxt-link>
                         </li>
                     </ul>
-                </li>
+                </li> -->
 
-                <li>
+                <!-- <li>
                     <a href="#" class="has-arrow nav-link dropdown-toggle" id="submenuDropdown_33" role="button"
                         data-bs-toggle="dropdown" aria-expanded="false">
                         <i class="bx bx-category"></i>
@@ -120,7 +120,7 @@
                         </li>
 
                     </ul>
-                </li>
+                </li> -->
 
                 <li>
                     <a href="#" class="has-arrow nav-link dropdown-toggle" id="submenuDropdown_34" role="button"
@@ -144,9 +144,10 @@
                         <div class="menu-title">Sellers</div>
                     </a>
                     <ul class="menu dropdown-menu" aria-labelledby="submenuDropdown_34" style="width:100%;">
-                        <!-- <li>
-                            <Nuxt-link to="/seller/allseller"><i class="bx bx-right-arrow-alt"></i>All Sellers</Nuxt-link>
-                        </li> -->
+                        <li>
+                            <Nuxt-link to="/seller/allseller"><i class="bx bx-right-arrow-alt"></i>All
+                                Sellers</Nuxt-link>
+                        </li>
                         <!-- <li>
                             <Nuxt-link to="#"><i class="bx bx-right-arrow-alt"></i>Payouts</Nuxt-link>
                         </li>
@@ -187,7 +188,7 @@
                     </ul>
                 </li>
 
-                <li>
+                <!-- <li>
                     <a href="#" class="has-arrow nav-link dropdown-toggle" id="submenuDropdown_34" role="button"
                         data-bs-toggle="dropdown" aria-expanded="false">
                         <i class="bx bx-category"></i>
@@ -217,9 +218,9 @@
                         </li>
 
                     </ul>
-                </li>
+                </li> -->
 
-                <li>
+                <!-- <li>
                     <a href="#" class="has-arrow nav-link dropdown-toggle" id="submenuDropdown_34" role="button"
                         data-bs-toggle="dropdown" aria-expanded="false">
                         <i class="bx bx-category"></i>
@@ -233,9 +234,9 @@
                             <Nuxt-link to="#"><i class="bx bx-right-arrow-alt"></i>Posts</Nuxt-link>
                         </li>
                     </ul>
-                </li>
+                </li> -->
 
-                <li>
+                <!-- <li>
                     <a href="#" class="has-arrow nav-link dropdown-toggle" id="submenuDropdown_34" role="button"
                         data-bs-toggle="dropdown" aria-expanded="false">
                         <i class="bx bx-category"></i>
@@ -252,7 +253,7 @@
                             <Nuxt-link to="#"><i class="bx bx-right-arrow-alt"></i>Product Queries</Nuxt-link>
                         </li>
                     </ul>
-                </li>
+                </li> -->
 
                 <li>
                     <a href="#" class="has-arrow nav-link dropdown-toggle" id="submenuDropdown_34" role="button"
@@ -348,6 +349,10 @@
                     </ul>
                 </li>
                 <li>
+                    <Nuxt-link to="/company-profile" class="menu-title"><i
+                            class="bx bx-category"></i>Company Profile</Nuxt-link>
+                </li>
+                <li>
                     <a href="#" class="has-arrow nav-link dropdown-toggle" id="submenuDropdown_4" role="button"
                         data-bs-toggle="dropdown" aria-expanded="false">
                         <i class="bx bx-category"></i>
@@ -358,12 +363,12 @@
                             <Nuxt-link to="/setting/ads-management"><i class="bx bx-right-arrow-alt"></i>Ads
                                 Management</Nuxt-link>
                         </li>
-
                         <li>
-                            <Nuxt-link to="/seller/allseller"><i class="bx bx-right-arrow-alt"></i>Top {{ count }} Store List</Nuxt-link>
+                            <Nuxt-link to="/seller/allseller"><i class="bx bx-right-arrow-alt"></i>Top {{ count }} Store
+                                List</Nuxt-link>
                         </li>
                         <!-- <li>
-                            <Nuxt-link to="/ecommarce/category-list#productsliders"><i class="bx bx-right-arrow-alt"></i>Speacial Category</Nuxt-link>
+                            <Nuxt-link to="/ecommarce/category-list#productsliders"><i class="bx bx-right-arrow-alt"></i>Company Profile</Nuxt-link>
                         </li> -->
 
                     </ul>
@@ -384,7 +389,7 @@
                             <Nuxt-link to="/employee/leave-approval-list"><i class="bx bx-right-arrow-alt"></i>Leave
                                 Approval List</Nuxt-link>
                         </li>
-                        
+
                     </ul>
                 </li>
             </span>

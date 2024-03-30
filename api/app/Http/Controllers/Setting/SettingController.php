@@ -18,6 +18,7 @@ use App\Models\topHeaderBanner;
 use App\Rules\MatchOldPassword;
 use App\Models\sliderSideAdsModel;
 use App\Http\Controllers\Controller;
+use App\Models\companyProfile;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
@@ -1023,5 +1024,81 @@ class SettingController extends Controller
         $slider->delete();
 
         return response()->json(['message' => 'Slider image deleted successfully'], 200);
+    }
+    public function updateCompanyProfile(request $request)
+    {
+        // dd($request);
+        // return false;
+        $validator = Validator::make($request->all(), [
+            'company_name' => 'required|string|max:255',
+            'address' => 'nullable|string|max:255',
+            'setup_charge' => 'nullable|numeric',
+            'transaction_fee' => 'nullable|numeric',
+            'other_charges' => 'nullable|string',
+            'phone' => 'nullable|string|max:20',
+            'email' => 'nullable|email|max:255',
+            'industry' => 'nullable|max:255',
+            'about' => 'nullable|string',
+        ],[
+            'transaction_fee' => 'Cash on delivery fee must be only number',
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json([ 'errors' => $validator->errors()->toArray() ], 422);
+        }
+
+        $companyId = $request->id;
+        // dd($companyId);
+        // return false;
+        $companyProfile = CompanyProfile::find($companyId);
+
+        if (!$companyProfile) {
+            return response()->json([
+                'error' => 'Company profile not found.'
+            ], 404);
+        }
+
+        $updateData = [
+            'company_name' => $request->company_name,
+            'address' => $request->address,
+            'setup_charge' => $request->setup_charge,
+            'transaction_fee' => $request->transaction_fee,
+            'other_charges' => $request->other_charges,
+            'phone' => $request->phone,
+            'email' => $request->email,
+            'founded_year' => $request->found_year,
+            'industry' => $request->industry,
+            'about' => $request->about,
+        ];
+
+        // Handle logo file upload if present
+        if ($request->hasFile('logo')) {
+            $validator = Validator::make($request->all(), [
+                'logo' => 'nullable|mimes:jpg,png,jpeg,gif,webp|max:2048',
+            ]);
+            if ($validator->fails()) {
+                return response()->json([ 'errors' => $validator->errors()->toArray() ], 422);
+            }
+    
+            $image = $request->file('logo');
+            $imageName = time() . '.' . $image->getClientOriginalExtension();
+            $image->move(public_path('/backend/upload/'), $imageName);
+            $updateData['logo'] = '/backend/upload/' . $imageName;
+            
+        }
+
+        // Update the company profile
+        $companyProfile->update($updateData);
+
+        return response()->json([
+            'status' => 'success',
+            'message' => 'Company profile settings updated successfully.'
+        ], 200);
+        
+    }
+    public function getProfileData(){
+        $getData = companyProfile::get()->first();
+        $getData['logo'] = url($getData->logo);
+        return response()->json($getData);
     }
 }

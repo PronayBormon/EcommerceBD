@@ -1,4 +1,4 @@
-exports.ids = [82,18,19,20,22,26,29,30,34];
+exports.ids = [81,17,18,19,21,25,28,29,33];
 exports.modules = {
 
 /***/ 127:
@@ -14,7 +14,7 @@ if(content.locals) module.exports = content.locals;
 // add CSS to SSR context
 var add = __webpack_require__(9).default
 module.exports.__inject__ = function (context) {
-  add("7b648440", content, true, context)
+  add("29795ff6", content, true, context)
 };
 
 /***/ }),
@@ -24,9 +24,9 @@ module.exports.__inject__ = function (context) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_vue_style_loader_index_js_ref_3_oneOf_1_0_node_modules_css_loader_dist_cjs_js_ref_3_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_ref_3_oneOf_1_2_node_modules_nuxt_components_dist_loader_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_slug_vue_vue_type_style_index_0_id_039500d5_prod_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(127);
-/* harmony import */ var _node_modules_vue_style_loader_index_js_ref_3_oneOf_1_0_node_modules_css_loader_dist_cjs_js_ref_3_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_ref_3_oneOf_1_2_node_modules_nuxt_components_dist_loader_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_slug_vue_vue_type_style_index_0_id_039500d5_prod_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_vue_style_loader_index_js_ref_3_oneOf_1_0_node_modules_css_loader_dist_cjs_js_ref_3_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_ref_3_oneOf_1_2_node_modules_nuxt_components_dist_loader_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_slug_vue_vue_type_style_index_0_id_039500d5_prod_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__);
-/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _node_modules_vue_style_loader_index_js_ref_3_oneOf_1_0_node_modules_css_loader_dist_cjs_js_ref_3_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_ref_3_oneOf_1_2_node_modules_nuxt_components_dist_loader_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_slug_vue_vue_type_style_index_0_id_039500d5_prod_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__) if(["default"].indexOf(__WEBPACK_IMPORT_KEY__) < 0) (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _node_modules_vue_style_loader_index_js_ref_3_oneOf_1_0_node_modules_css_loader_dist_cjs_js_ref_3_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_ref_3_oneOf_1_2_node_modules_nuxt_components_dist_loader_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_slug_vue_vue_type_style_index_0_id_039500d5_prod_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__[key]; }) }(__WEBPACK_IMPORT_KEY__));
+/* harmony import */ var _node_modules_vue_style_loader_index_js_ref_3_oneOf_1_0_node_modules_css_loader_dist_cjs_js_ref_3_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_ref_3_oneOf_1_2_node_modules_nuxt_components_dist_loader_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_slug_vue_vue_type_style_index_0_id_fb6fe7c0_prod_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(127);
+/* harmony import */ var _node_modules_vue_style_loader_index_js_ref_3_oneOf_1_0_node_modules_css_loader_dist_cjs_js_ref_3_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_ref_3_oneOf_1_2_node_modules_nuxt_components_dist_loader_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_slug_vue_vue_type_style_index_0_id_fb6fe7c0_prod_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_vue_style_loader_index_js_ref_3_oneOf_1_0_node_modules_css_loader_dist_cjs_js_ref_3_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_ref_3_oneOf_1_2_node_modules_nuxt_components_dist_loader_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_slug_vue_vue_type_style_index_0_id_fb6fe7c0_prod_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__);
+/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _node_modules_vue_style_loader_index_js_ref_3_oneOf_1_0_node_modules_css_loader_dist_cjs_js_ref_3_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_ref_3_oneOf_1_2_node_modules_nuxt_components_dist_loader_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_slug_vue_vue_type_style_index_0_id_fb6fe7c0_prod_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__) if(["default"].indexOf(__WEBPACK_IMPORT_KEY__) < 0) (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _node_modules_vue_style_loader_index_js_ref_3_oneOf_1_0_node_modules_css_loader_dist_cjs_js_ref_3_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_ref_3_oneOf_1_2_node_modules_nuxt_components_dist_loader_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_slug_vue_vue_type_style_index_0_id_fb6fe7c0_prod_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__[key]; }) }(__WEBPACK_IMPORT_KEY__));
 
 
 /***/ }),
@@ -38,7 +38,7 @@ __webpack_require__.r(__webpack_exports__);
 var ___CSS_LOADER_API_IMPORT___ = __webpack_require__(8);
 var ___CSS_LOADER_EXPORT___ = ___CSS_LOADER_API_IMPORT___(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.i, ".scrollimg[data-v-039500d5]{height:40px;width:20px}.sliderimg[data-v-039500d5]{display:block;width:100%}.Slider[data-v-039500d5]{margin:0 auto;max-width:80vw}.Slider-featuredImage[data-v-039500d5]{padding:4px}.Slider-thumbnails[data-v-039500d5]{margin-right:16px;margin-top:4px;padding:4px;width:100%}.Slider-thumbnail[data-v-039500d5]{cursor:pointer;opacity:.7}.Slider-thumbnail img[data-v-039500d5]{width:200px}.Slider-thumbnail .active[data-v-039500d5]{opacity:1}.Slider-thumbnail[data-v-039500d5]:active,.Slider-thumbnail[data-v-039500d5]:hover,.Slider-thumbnail[data-v-039500d5]:not(:first-of-type){margin-left:10px}", ""]);
+___CSS_LOADER_EXPORT___.push([module.i, ".scrollimg[data-v-fb6fe7c0]{height:40px;width:20px}.sliderimg[data-v-fb6fe7c0]{display:block;width:100%}.Slider[data-v-fb6fe7c0]{margin:0 auto;max-width:80vw}.Slider-featuredImage[data-v-fb6fe7c0]{padding:4px}.Slider-thumbnails[data-v-fb6fe7c0]{margin-right:16px;margin-top:4px;padding:4px;width:100%}.Slider-thumbnail[data-v-fb6fe7c0]{cursor:pointer;opacity:.7}.Slider-thumbnail img[data-v-fb6fe7c0]{width:200px}.Slider-thumbnail .active[data-v-fb6fe7c0]{opacity:1}.Slider-thumbnail[data-v-fb6fe7c0]:active,.Slider-thumbnail[data-v-fb6fe7c0]:hover,.Slider-thumbnail[data-v-fb6fe7c0]:not(:first-of-type){margin-left:10px}", ""]);
 // Exports
 ___CSS_LOADER_EXPORT___.locals = {};
 module.exports = ___CSS_LOADER_EXPORT___;
@@ -53,24 +53,24 @@ module.exports = ___CSS_LOADER_EXPORT___;
 // ESM COMPAT FLAG
 __webpack_require__.r(__webpack_exports__);
 
-// CONCATENATED MODULE: ./node_modules/babel-loader/lib??ref--2-0!./node_modules/vue-loader/lib/loaders/templateLoader.js??ref--6!./node_modules/@nuxt/components/dist/loader.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./pages/product-details/_slug.vue?vue&type=template&id=039500d5&scoped=true&
+// CONCATENATED MODULE: ./node_modules/babel-loader/lib??ref--2-0!./node_modules/vue-loader/lib/loaders/templateLoader.js??ref--6!./node_modules/@nuxt/components/dist/loader.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./pages/product-details/_slug.vue?vue&type=template&id=fb6fe7c0&scoped=true&
 var render = function render() {
   var _vm = this,
     _c = _vm._self._c;
-  return _c('div', [_c('LogoAndPayment'), _vm._ssrNode(" "), _c('navbarSecond'), _vm._ssrNode(" "), _vm._ssrNode("<section class=\"main_content\" data-v-039500d5>", "</section>", [_vm._ssrNode("<div class=\"container\" data-v-039500d5>", "</div>", [_vm._ssrNode("<div class=\"row\" data-v-039500d5>", "</div>", [_vm._ssrNode("<div class=\"col-xl-12 col-lg-12 col-md-12 col-sm-12\" data-v-039500d5>", "</div>", [_vm._ssrNode("<div class=\"product_details_part\" data-v-039500d5>", "</div>", [_vm._ssrNode("<div class=\"row\" data-v-039500d5>", "</div>", [_vm._ssrNode("<div class=\"col-md-5\" data-v-039500d5>", "</div>", [_vm.loading ? _vm._ssrNode("<div class=\"loading-indicator\" style=\"text-align: center;\" data-v-039500d5>", "</div>", [_vm._ssrNode("<div class=\"loader-container\" data-v-039500d5>", "</div>", [_c('center', {
+  return _c('div', [_c('LogoAndPayment'), _vm._ssrNode(" "), _c('navbarSecond'), _vm._ssrNode(" "), _vm._ssrNode("<section class=\"main_content\" data-v-fb6fe7c0>", "</section>", [_vm._ssrNode("<div class=\"container\" data-v-fb6fe7c0>", "</div>", [_vm._ssrNode("<div class=\"row\" data-v-fb6fe7c0>", "</div>", [_vm._ssrNode("<div class=\"col-xl-12 col-lg-12 col-md-12 col-sm-12\" data-v-fb6fe7c0>", "</div>", [_vm._ssrNode("<div class=\"product_details_part\" data-v-fb6fe7c0>", "</div>", [_vm._ssrNode("<div class=\"row\" data-v-fb6fe7c0>", "</div>", [_vm._ssrNode("<div class=\"col-md-5\" data-v-fb6fe7c0>", "</div>", [_vm.loading ? _vm._ssrNode("<div class=\"loading-indicator\" style=\"text-align: center;\" data-v-fb6fe7c0>", "</div>", [_vm._ssrNode("<div class=\"loader-container\" data-v-fb6fe7c0>", "</div>", [_c('center', {
     staticClass: "loader-text"
-  }, [_vm._v("Loading...")]), _vm._ssrNode(" <img src=\"/loader/loader.gif\" loading=\"lazy\" alt=\"Loader\" data-v-039500d5>")], 2)]) : _vm._e(), _vm._ssrNode(" <section class=\"Slider\" data-v-039500d5><div data-v-039500d5><img id=\"featuredImage\" loading=\"lazy\"" + _vm._ssrAttr("src", _vm.featuresimgs) + " class=\"Slider-featuredImage sliderimg\" data-v-039500d5></div> <div class=\"Slider-thumbnails\" data-v-039500d5>" + _vm._ssrList(_vm.slider_img, function (image, index) {
+  }, [_vm._v("Loading...")]), _vm._ssrNode(" <img src=\"/loader/loader.gif\" loading=\"lazy\" alt=\"Loader\" data-v-fb6fe7c0>")], 2)]) : _vm._e(), _vm._ssrNode(" <section class=\"Slider\" data-v-fb6fe7c0><div data-v-fb6fe7c0><img id=\"featuredImage\" loading=\"lazy\"" + _vm._ssrAttr("src", _vm.featuresimgs) + " class=\"Slider-featuredImage sliderimg\" data-v-fb6fe7c0></div> <div class=\"Slider-thumbnails\" data-v-fb6fe7c0>" + _vm._ssrList(_vm.slider_img, function (image, index) {
     return "<a" + _vm._ssrAttr("href", image.thumnail) + _vm._ssrClass(null, {
       'Slider-thumbnail': true,
       'active': index === 0
-    }) + " data-v-039500d5><img" + _vm._ssrAttr("src", image.thumnail) + _vm._ssrAttr("alt", image.alt) + " class=\"border border-1 rounded\" style=\"height: 80px; width: 70px;\" data-v-039500d5></a>";
-  }) + "</div></section> <div class=\"social_share\" data-v-039500d5><h5 data-v-039500d5>Share This Product</h5> <ul data-v-039500d5><li data-v-039500d5><a href=\"#\" data-v-039500d5><i class=\"fa-brands fa-facebook-f\" data-v-039500d5></i></a></li> <li data-v-039500d5><a href=\"#\" data-v-039500d5><i class=\"fa-brands fa-instagram\" data-v-039500d5></i></a></li> <li data-v-039500d5><a href=\"#\" data-v-039500d5><i class=\"fa-brands fa-twitter\" data-v-039500d5></i></a></li></ul></div>")], 2), _vm._ssrNode(" "), _vm._ssrNode("<div class=\"col-md-7\" data-v-039500d5>", "</div>", [_vm._ssrNode("<div class=\"pro_info\" data-v-039500d5>", "</div>", [_vm._ssrNode("<div class=\"badgeses\" data-v-039500d5><div data-v-039500d5>" + (_vm.seller.business_name !== null ? "<span data-v-039500d5>" + _vm._ssrEscape(_vm._s(_vm.seller.business_name)) + "</span>" : "<!---->") + " " + (_vm.pro_row.free_shopping == 1 ? "<strong data-v-039500d5>free delivery</strong>" : "<!---->") + "</div> " + (_vm.loggedIn ? "<div data-v-039500d5><a href=\"#\" data-v-039500d5><i class=\"fa-regular fa-heart\" data-v-039500d5></i></a></div>" : "<div data-v-039500d5><a href=\"#\" data-v-039500d5><i class=\"fa-regular fa-heart\" data-v-039500d5></i></a></div>") + "</div> "), _vm._ssrNode("<div class=\"details_title\" data-v-039500d5>", "</div>", [_vm._ssrNode("<h1 data-v-039500d5>" + _vm._ssrEscape(_vm._s(_vm.pro_row.product_name)) + "</h1> "), _vm._l(_vm.brands_details, function (brand) {
-    return _vm._ssrNode("<h6 data-v-039500d5>", "</h6>", [_vm._ssrNode("\n                                            Brand:\n                                            "), brand.name !== undefined && brand.name !== '' ? _c('nuxt-link', {
+    }) + " data-v-fb6fe7c0><img" + _vm._ssrAttr("src", image.thumnail) + _vm._ssrAttr("alt", image.alt) + " class=\"border border-1 rounded\" style=\"height: 80px; width: 70px;\" data-v-fb6fe7c0></a>";
+  }) + "</div></section> <div class=\"social_share\" data-v-fb6fe7c0><h5 data-v-fb6fe7c0>Share This Product</h5> <ul data-v-fb6fe7c0><li data-v-fb6fe7c0><a href=\"#\" data-v-fb6fe7c0><i class=\"fa-brands fa-facebook-f\" data-v-fb6fe7c0></i></a></li> <li data-v-fb6fe7c0><a href=\"#\" data-v-fb6fe7c0><i class=\"fa-brands fa-instagram\" data-v-fb6fe7c0></i></a></li> <li data-v-fb6fe7c0><a href=\"#\" data-v-fb6fe7c0><i class=\"fa-brands fa-twitter\" data-v-fb6fe7c0></i></a></li></ul></div>")], 2), _vm._ssrNode(" "), _vm._ssrNode("<div class=\"col-md-7\" data-v-fb6fe7c0>", "</div>", [_vm._ssrNode("<div class=\"pro_info\" data-v-fb6fe7c0>", "</div>", [_vm._ssrNode("<div class=\"badgeses\" data-v-fb6fe7c0><div data-v-fb6fe7c0>" + (_vm.seller.business_name !== null ? "<span data-v-fb6fe7c0>" + _vm._ssrEscape(_vm._s(_vm.seller.business_name)) + "</span>" : "<!---->") + " " + (_vm.pro_row.free_shopping == 1 ? "<strong data-v-fb6fe7c0>free delivery</strong>" : "<!---->") + "</div> " + (_vm.loggedIn ? "<div data-v-fb6fe7c0><a href=\"#\" data-v-fb6fe7c0><i class=\"fa-regular fa-heart\" data-v-fb6fe7c0></i></a></div>" : "<div data-v-fb6fe7c0><a href=\"#\" data-v-fb6fe7c0><i class=\"fa-regular fa-heart\" data-v-fb6fe7c0></i></a></div>") + "</div> "), _vm._ssrNode("<div class=\"details_title\" data-v-fb6fe7c0>", "</div>", [_vm._ssrNode("<h1 data-v-fb6fe7c0>" + _vm._ssrEscape(_vm._s(_vm.pro_row.product_name)) + "</h1> "), _vm._l(_vm.brands_details, function (brand) {
+    return _vm._ssrNode("<h6 data-v-fb6fe7c0>", "</h6>", [_vm._ssrNode("\n                                            Brand:\n                                            "), brand.name !== undefined && brand.name !== '' ? _c('nuxt-link', {
       attrs: {
         "to": `/brand-product/brand-grid?slug=${brand.slug}`
       }
     }, [_vm._v("\n                                                " + _vm._s(brand.name) + "\n                                            ")]) : _c('span', [_vm._v("No Brand")])], 2);
-  })], 2), _vm._ssrNode(" "), _vm._ssrNode("<div class=\"price_div\" data-v-039500d5>", "</div>", [_vm.pro_row.discount_status == 1 ? _vm._ssrNode("<h5 data-v-039500d5>", "</h5>", [_vm._ssrNode("<div class=\"d-flex align-items-center\" data-v-039500d5>" + _vm._ssrEscape("\n                                                Now: $" + _vm._s(_vm.pro_row.last_price.toFixed(2)) + "\n                                                ") + "<p style=\"color: gray;font-size: 12px;\" data-v-039500d5>  +Inclusing VAT.</p></div> "), _vm._ssrNode("<p class=\"ms-0 d-block\" data-v-039500d5>", "</p>", [_vm.pro_row.discount !== 0 ? _c('strike', [_vm._v("Was: $" + _vm._s(_vm.pro_row.price.toFixed(2)) + " ")]) : _vm._e(), _vm._ssrNode("<span data-v-039500d5>" + _vm._ssrEscape(_vm._s(_vm.pro_row.discount) + "%") + "</span>")], 2)], 2) : _vm.pro_row.discount_status == 2 ? _vm._ssrNode("<h5 data-v-039500d5>", "</h5>", [_vm._ssrNode("<div class=\"d-flex align-items-center\" data-v-039500d5>" + _vm._ssrEscape("\n                                                Now: $" + _vm._s(_vm.pro_row.last_price.toFixed(2)) + "\n                                                ") + "<p style=\"color: gray;font-size: 12px;\" data-v-039500d5>  +Inclusing VAT.</p></div> "), _vm._ssrNode("<p class=\"ms-0 d-block\" data-v-039500d5>", "</p>", [_vm.pro_row.discount !== 0 ? _c('strike', [_vm._v("Was: $" + _vm._s(_vm.pro_row.price.toFixed(2)) + " ")]) : _vm._e(), _vm._ssrNode("<span data-v-039500d5>" + _vm._ssrEscape("$" + _vm._s(_vm.pro_row.discount)) + "</span>")], 2)], 2) : _vm._ssrNode("<h5 data-v-039500d5>" + _vm._ssrEscape("$" + _vm._s(_vm.pro_row.last_price) + " ") + "</h5>"), _vm._ssrNode(" " + (_vm.pro_row.stock_status == 1 && _vm.pro_row.stock_qty >= 1 ? "<p data-v-039500d5>In stock</p>" : _vm.pro_row.stock_status == 2 && _vm.pro_row.stock_qty >= 1 ? "<p data-v-039500d5>in stock\n                                        </p>" : _vm.pro_row.stock_status == 3 ? "<p data-v-039500d5>Out of stock</p>" : _vm.pro_row.stock_status == 4 ? "<p data-v-039500d5>Preorder</p>" : _vm.pro_row.stock_qty == 0 ? "<p data-v-039500d5>Out Of stock</p>" : "<p data-v-039500d5>Out Of stock</p>"))], 2), _vm._ssrNode(" "), _vm._ssrNode("<div class=\"ratings_pro\" data-v-039500d5>", "</div>", [_vm._ssrNode((_vm.pro_row.free_shopping == 0 ? "<p data-v-039500d5>" + _vm._ssrEscape("+shipping ($" + _vm._s(_vm.pro_row.flat_rate_price) + " in per " + _vm._s(_vm.pro_row.unit) + ")") + "</p>" : "<!---->") + " <div class=\"d-flex align-items-center\" data-v-039500d5><div class=\"d-flex align-items-center\" data-v-039500d5><i class=\"fa-solid fa-star active\" data-v-039500d5></i> <i class=\"fa-solid fa-star active\" data-v-039500d5></i> <i class=\"fa-solid fa-star active\" data-v-039500d5></i> <i class=\"fa-solid fa-star\" data-v-039500d5></i> <i class=\"fa-solid fa-star\" data-v-039500d5></i></div> <h6 class=\"mb-0 ms-2\" data-v-039500d5>( <a href=\"#feedback\" data-v-039500d5>188 verified ratings</a>)\n                                            </h6></div> "), _vm._ssrNode("<div class=\"d-flex align-items-end\" data-v-039500d5>", "</div>", [_vm.colorGroup !== null && _vm.colorGroup.length > 0 ? _vm._ssrNode("<div class=\"size_attr\" data-v-039500d5>", "</div>", [_vm._ssrNode("<label for data-v-039500d5>Color:</label> "), _c('select', {
+  })], 2), _vm._ssrNode(" "), _vm._ssrNode("<div class=\"price_div\" data-v-fb6fe7c0>", "</div>", [_vm.pro_row.discount_status == 1 ? _vm._ssrNode("<h5 data-v-fb6fe7c0>", "</h5>", [_vm._ssrNode("<div class=\"d-flex align-items-center\" data-v-fb6fe7c0>" + _vm._ssrEscape("\n                                                Now: $" + _vm._s(_vm.pro_row.last_price.toFixed(2)) + "\n                                                ") + "<p style=\"color: gray;font-size: 12px;\" data-v-fb6fe7c0>  +Inclusing VAT.</p></div> "), _vm._ssrNode("<p class=\"ms-0 d-block\" data-v-fb6fe7c0>", "</p>", [_vm.pro_row.discount !== 0 ? _c('strike', [_vm._v("Was: $" + _vm._s(_vm.pro_row.price.toFixed(2)) + " ")]) : _vm._e(), _vm._ssrNode("<span data-v-fb6fe7c0>" + _vm._ssrEscape(_vm._s(_vm.pro_row.discount) + "%") + "</span>")], 2)], 2) : _vm.pro_row.discount_status == 2 ? _vm._ssrNode("<h5 data-v-fb6fe7c0>", "</h5>", [_vm._ssrNode("<div class=\"d-flex align-items-center\" data-v-fb6fe7c0>" + _vm._ssrEscape("\n                                                Now: $" + _vm._s(_vm.pro_row.last_price.toFixed(2)) + "\n                                                ") + "<p style=\"color: gray;font-size: 12px;\" data-v-fb6fe7c0>  +Inclusing VAT.</p></div> "), _vm._ssrNode("<p class=\"ms-0 d-block\" data-v-fb6fe7c0>", "</p>", [_vm.pro_row.discount !== 0 ? _c('strike', [_vm._v("Was: $" + _vm._s(_vm.pro_row.price.toFixed(2)) + " ")]) : _vm._e(), _vm._ssrNode("<span data-v-fb6fe7c0>" + _vm._ssrEscape("$" + _vm._s(_vm.pro_row.discount)) + "</span>")], 2)], 2) : _vm._ssrNode("<h5 data-v-fb6fe7c0>" + _vm._ssrEscape("$" + _vm._s(_vm.pro_row.last_price) + " ") + "</h5>"), _vm._ssrNode(" " + (_vm.pro_row.stock_status == 1 && _vm.pro_row.stock_qty >= 1 ? "<p data-v-fb6fe7c0>In stock</p>" : _vm.pro_row.stock_status == 2 && _vm.pro_row.stock_qty >= 1 ? "<p data-v-fb6fe7c0>in stock\n                                        </p>" : _vm.pro_row.stock_status == 3 ? "<p data-v-fb6fe7c0>Out of stock</p>" : _vm.pro_row.stock_status == 4 ? "<p data-v-fb6fe7c0>Preorder</p>" : _vm.pro_row.stock_qty == 0 ? "<p data-v-fb6fe7c0>Out Of stock</p>" : "<p data-v-fb6fe7c0>Out Of stock</p>"))], 2), _vm._ssrNode(" "), _vm._ssrNode("<div class=\"ratings_pro\" data-v-fb6fe7c0>", "</div>", [_vm._ssrNode((_vm.pro_row.free_shopping == 0 ? "<p data-v-fb6fe7c0>" + _vm._ssrEscape("+shipping ($" + _vm._s(_vm.pro_row.flat_rate_price) + " in per " + _vm._s(_vm.pro_row.unit) + ")") + "</p>" : "<!---->") + " <div class=\"d-flex align-items-center\" data-v-fb6fe7c0><div class=\"d-flex align-items-center\" data-v-fb6fe7c0><i class=\"fa-solid fa-star active\" data-v-fb6fe7c0></i> <i class=\"fa-solid fa-star active\" data-v-fb6fe7c0></i> <i class=\"fa-solid fa-star active\" data-v-fb6fe7c0></i> <i class=\"fa-solid fa-star\" data-v-fb6fe7c0></i> <i class=\"fa-solid fa-star\" data-v-fb6fe7c0></i></div> <h6 class=\"mb-0 ms-2\" data-v-fb6fe7c0>( <a href=\"#feedback\" data-v-fb6fe7c0>188 verified ratings</a>)\n                                            </h6></div> "), _vm._ssrNode("<div class=\"d-flex align-items-end\" data-v-fb6fe7c0>", "</div>", [_vm.colorGroup !== null && _vm.colorGroup.length > 0 ? _vm._ssrNode("<div class=\"size_attr\" data-v-fb6fe7c0>", "</div>", [_vm._ssrNode("<label for data-v-fb6fe7c0>Color:</label> "), _c('select', {
     directives: [{
       name: "model",
       rawName: "v-model",
@@ -105,7 +105,7 @@ var render = function render() {
         "selected": item.selected
       }
     }, [_vm._v("\n                                                        " + _vm._s(item.color) + "\n                                                    ")]);
-  })], 2)], 2) : _vm._e(), _vm._ssrNode(" "), _vm.varientList !== null && _vm.varientList.length > 0 ? _vm._ssrNode("<div class=\"size_attr\" data-v-039500d5>", "</div>", [_vm._ssrNode("<label for data-v-039500d5>Size:</label> "), _c('select', {
+  })], 2)], 2) : _vm._e(), _vm._ssrNode(" "), _vm.varientList !== null && _vm.varientList.length > 0 ? _vm._ssrNode("<div class=\"size_attr\" data-v-fb6fe7c0>", "</div>", [_vm._ssrNode("<label for data-v-fb6fe7c0>Size:</label> "), _c('select', {
     directives: [{
       name: "model",
       rawName: "v-model",
@@ -145,17 +145,17 @@ var render = function render() {
         }
       }
     }, [_vm._v("\n                                                        " + _vm._s(varient.size))]);
-  })], 2)], 2) : _vm._e(), _vm._ssrNode(" <div class=\"number my-1\" data-v-039500d5><span class=\"minus\" data-v-039500d5>-</span> <input type=\"number\"" + _vm._ssrAttr("value", _vm.updatedQuantity) + " data-v-039500d5> <span class=\"plus\" data-v-039500d5>+</span></div>")], 2), _vm._ssrNode(" <div class=\"d-flex align-items-center\" data-v-039500d5>" + (_vm.pro_row.stock_qty !== 0 ? "<button type=\"button\" class=\"btn_cart\" style=\"visibility: unset; max-width: 120px;\" data-v-039500d5><i class=\"fa-solid fa-cart-shopping\" data-v-039500d5></i>Add to Cart </button>" : "<button class=\"btn_sold\" style=\"max-width: 120px;\" data-v-039500d5>Sold\n                                                out</button>") + "</div> " + (_vm.pro_row.free_shopping !== 1 ? "<p class=\"m-0\" data-v-039500d5>Delivery by <strong data-v-039500d5>" + _vm._ssrEscape(_vm._s(_vm.futureDate)) + "</strong></p>" : "<!---->") + " " + (_vm.pro_row.free_shopping == 1 ? "<p class=\"m-0\" data-v-039500d5>Free Delivery by <strong data-v-039500d5>" + _vm._ssrEscape(_vm._s(_vm.futureDate)) + "</strong></p>" : "<!---->"))], 2), _vm._ssrNode(" <div class=\"shortDescPro\" data-v-039500d5></div> "), _vm._ssrNode("<div class=\"promotion\" data-v-039500d5>", "</div>", [_vm._ssrNode("<h4 data-v-039500d5>Promotions</h4> "), _vm._ssrNode("<ul data-v-039500d5>", "</ul>", [_vm._ssrNode("<li data-v-039500d5>", "</li>", [_c('nuxt-link', {
+  })], 2)], 2) : _vm._e(), _vm._ssrNode(" <div class=\"number my-1\" data-v-fb6fe7c0><span class=\"minus\" data-v-fb6fe7c0>-</span> <input type=\"number\"" + _vm._ssrAttr("value", _vm.updatedQuantity) + " data-v-fb6fe7c0> <span class=\"plus\" data-v-fb6fe7c0>+</span></div>")], 2), _vm._ssrNode(" <div class=\"d-flex align-items-center\" data-v-fb6fe7c0>" + (_vm.pro_row.stock_qty !== 0 ? "<button type=\"button\" class=\"btn_cart\" style=\"visibility: unset; max-width: 120px;\" data-v-fb6fe7c0><i class=\"fa-solid fa-cart-shopping\" data-v-fb6fe7c0></i>Add to Cart </button>" : "<button class=\"btn_sold\" style=\"max-width: 120px;\" data-v-fb6fe7c0>Sold\n                                                out</button>") + "</div> " + (_vm.pro_row.free_shopping !== 1 ? "<p class=\"m-0\" data-v-fb6fe7c0>Delivery by <strong data-v-fb6fe7c0>" + _vm._ssrEscape(_vm._s(_vm.futureDate)) + "</strong></p>" : "<!---->") + " " + (_vm.pro_row.free_shopping == 1 ? "<p class=\"m-0\" data-v-fb6fe7c0>Free Delivery by <strong data-v-fb6fe7c0>" + _vm._ssrEscape(_vm._s(_vm.futureDate)) + "</strong></p>" : "<!---->"))], 2), _vm._ssrNode(" <div class=\"shortDescPro\" data-v-fb6fe7c0></div> "), _vm._ssrNode("<div class=\"promotion\" data-v-fb6fe7c0>", "</div>", [_vm._ssrNode("<h4 data-v-fb6fe7c0>Promotions</h4> "), _vm._ssrNode("<ul data-v-fb6fe7c0>", "</ul>", [_vm._ssrNode("<li data-v-fb6fe7c0>", "</li>", [_c('nuxt-link', {
     attrs: {
       "to": "/sell-on-ecommerce"
     }
   }, [_c('i', {
     staticClass: "fa-solid fa-shield-halved"
-  }), _vm._v("Become a seller and\n                                                    start sell your product in ECOMMERCE ")])], 1)])], 2)], 2)]), _vm._ssrNode(" <div class=\"report\" data-v-039500d5></div>")], 2)])])])])]), _vm._ssrNode(" "), _vm._ssrNode("<section class=\"details_scrollspay\" data-v-039500d5>", "</section>", [_vm._ssrNode("<div class=\"container\" data-v-039500d5>", "</div>", [_vm._ssrNode("<div class=\"row\" data-v-039500d5>", "</div>", [_vm._ssrNode("<div class=\"col-12\" data-v-039500d5>", "</div>", [_vm._ssrNode("<div class=\"row\" data-v-039500d5>", "</div>", [_vm._ssrNode("<div class=\"col-12\" data-v-039500d5><div data-bs-spy=\"scroll\" data-bs-target=\"#list-example\" data-bs-offset=\"0\" tabindex=\"0\" class=\"scrollspy-example\" data-v-039500d5><div id=\"details\" class=\"product_details\" data-v-039500d5></div> <div id=\"feedback\" class=\"feedback\" data-v-039500d5><div class=\"side_title\" data-v-039500d5><h5 data-v-039500d5>Varified Customer Feedback</h5> <a href=\"customer-review.html\" data-v-039500d5>See All <i class=\"fa-solid fa-arrow-right\" data-v-039500d5></i></a></div> <div class=\"row\" data-v-039500d5><div class=\"col-md-4\" data-v-039500d5><h2 data-v-039500d5>Varified ratings(147)</h2> <div class=\"box_rating\" data-v-039500d5><h3 data-v-039500d5>4.5/5</h3> <div class=\"ratings\" data-v-039500d5><span class=\"fa fa-star checked\" data-v-039500d5></span> <span class=\"fa fa-star checked\" data-v-039500d5></span> <span class=\"fa fa-star checked\" data-v-039500d5></span> <span class=\"fa fa-star\" data-v-039500d5></span> <span class=\"fa fa-star\" data-v-039500d5></span></div> <p data-v-039500d5>147 verified ratings</p></div> <div class=\"rate_count\" data-v-039500d5><p data-v-039500d5>5</p> <i class=\"fa fa-star checked\" data-v-039500d5></i> <span data-v-039500d5>(106)</span> <div class=\"progress\" data-v-039500d5><div role=\"progressbar\" aria-valuenow=\"25\" aria-valuemin=\"0\" aria-valuemax=\"100\" class=\"progress-bar\" style=\"width: 25%;\" data-v-039500d5></div></div></div> <div class=\"rate_count\" data-v-039500d5><p data-v-039500d5>4</p> <i class=\"fa fa-star checked\" data-v-039500d5></i> <span data-v-039500d5>(106)</span> <div class=\"progress\" data-v-039500d5><div role=\"progressbar\" aria-valuenow=\"25\" aria-valuemin=\"0\" aria-valuemax=\"100\" class=\"progress-bar\" style=\"width: 25%;\" data-v-039500d5></div></div></div> <div class=\"rate_count\" data-v-039500d5><p data-v-039500d5>3</p> <i class=\"fa fa-star checked\" data-v-039500d5></i> <span data-v-039500d5>(106)</span> <div class=\"progress\" data-v-039500d5><div role=\"progressbar\" aria-valuenow=\"25\" aria-valuemin=\"0\" aria-valuemax=\"100\" class=\"progress-bar\" style=\"width: 25%;\" data-v-039500d5></div></div></div> <div class=\"rate_count\" data-v-039500d5><p data-v-039500d5>2</p> <i class=\"fa fa-star checked\" data-v-039500d5></i> <span data-v-039500d5>(106)</span> <div class=\"progress\" data-v-039500d5><div role=\"progressbar\" aria-valuenow=\"25\" aria-valuemin=\"0\" aria-valuemax=\"100\" class=\"progress-bar\" style=\"width: 25%;\" data-v-039500d5></div></div></div> <div class=\"rate_count\" data-v-039500d5><p data-v-039500d5>1</p> <i class=\"fa fa-star checked\" data-v-039500d5></i> <span data-v-039500d5>(106)</span> <div class=\"progress\" data-v-039500d5><div role=\"progressbar\" aria-valuenow=\"25\" aria-valuemin=\"0\" aria-valuemax=\"100\" class=\"progress-bar\" style=\"width: 25%;\" data-v-039500d5></div></div></div></div> <div class=\"col-md-8 right_side_rate\" data-v-039500d5><h2 data-v-039500d5>COMMENTS FROM VERIFIED PURCHASES(51)</h2> <div data-v-039500d5><div class=\"ratings\" data-v-039500d5><span class=\"fa fa-star checked\" data-v-039500d5></span> <span class=\"fa fa-star checked\" data-v-039500d5></span> <span class=\"fa fa-star checked\" data-v-039500d5></span> <span class=\"fa fa-star\" data-v-039500d5></span> <span class=\"fa fa-star\" data-v-039500d5></span></div> <h5 data-v-039500d5>Awsome</h5> <p data-v-039500d5>awesome</p> <div class=\"d-flex justify-content-between\" data-v-039500d5><p data-v-039500d5>04-08-2023 By <a href=\"#\" data-v-039500d5>User </a></p> <p class=\"varify_tag\" data-v-039500d5><i class=\"fa fa-check\" data-v-039500d5></i>Varified\n                                                        Customer</p></div></div> <div data-v-039500d5><div class=\"ratings\" data-v-039500d5><span class=\"fa fa-star checked\" data-v-039500d5></span> <span class=\"fa fa-star checked\" data-v-039500d5></span> <span class=\"fa fa-star checked\" data-v-039500d5></span> <span class=\"fa fa-star\" data-v-039500d5></span> <span class=\"fa fa-star\" data-v-039500d5></span></div> <h5 data-v-039500d5>Awsome</h5> <p data-v-039500d5>awesome</p> <div class=\"d-flex justify-content-between\" data-v-039500d5><p data-v-039500d5>04-08-2023 By <a href=\"#\" data-v-039500d5>User </a></p> <p class=\"varify_tag\" data-v-039500d5><i class=\"fa fa-check\" data-v-039500d5></i>Varified\n                                                        Customer</p></div></div> <div data-v-039500d5><div class=\"ratings\" data-v-039500d5><span class=\"fa fa-star checked\" data-v-039500d5></span> <span class=\"fa fa-star checked\" data-v-039500d5></span> <span class=\"fa fa-star checked\" data-v-039500d5></span> <span class=\"fa fa-star\" data-v-039500d5></span> <span class=\"fa fa-star\" data-v-039500d5></span></div> <h5 data-v-039500d5>Awsome</h5> <p data-v-039500d5>awesome</p> <div class=\"d-flex justify-content-between\" data-v-039500d5><p data-v-039500d5>04-08-2023 By <a href=\"#\" data-v-039500d5>User </a></p> <p class=\"varify_tag\" data-v-039500d5><i class=\"fa fa-check\" data-v-039500d5></i>Varified\n                                                        Customer</p></div></div></div></div></div></div></div> "), _vm._ssrNode("<div class=\"col-xl-4 col-lg-4 col-md-4 col-sm-12 d-none\" data-v-039500d5>", "</div>", [_vm._ssrNode("<div class=\"sidebar_here\" data-v-039500d5>", "</div>", [_vm._ssrNode("<div id=\"list-example\" class=\"list-group id_list\" data-v-039500d5><a href=\"#details\" class=\"list-group-item list-group-item-action active\" data-v-039500d5><i class=\"fa-regular fa-file-lines\" data-v-039500d5></i>Product details </a> <a href=\"#spacification\" class=\"list-group-item list-group-item-action\" data-v-039500d5><i class=\"fa-solid fa-list\" data-v-039500d5></i>Specification</a> <a href=\"#feedback\" class=\"list-group-item list-group-item-action\" data-v-039500d5><i class=\"fa-regular fa-message\" data-v-039500d5></i>Varified Customer Feedback</a></div> "), _vm._ssrNode("<div class=\"pro_cart\" data-v-039500d5>", "</div>", [_vm._ssrNode("<div class=\"d-flex\" data-v-039500d5>", "</div>", [_vm._ssrNode("<div data-v-039500d5><img" + _vm._ssrAttr("src", _vm.featuresimgs) + " alt data-v-039500d5></div> "), _vm._ssrNode("<div data-v-039500d5>", "</div>", [_vm._ssrNode("<p data-v-039500d5>" + _vm._ssrEscape("TK " + _vm._s(_vm.pro_row.price)) + "</p> "), _vm._ssrNode("<p data-v-039500d5>", "</p>", [_c('strike', [_vm._v("TK " + _vm._s(_vm.pro_row.discount))])], 1)], 2)], 2), _vm._ssrNode(" <button type=\"button\" class=\"btn_cart\" data-v-039500d5><i class=\"fa-solid fa-cart-shopping\" data-v-039500d5></i>Add to Cart </button>")], 2)], 2)])], 2)])]), _vm._ssrNode(" <div class=\"row\" data-v-039500d5><div class=\"col-12\" data-v-039500d5></div></div>")], 2)]), _vm._ssrNode(" "), _c('Footer')], 2);
+  }), _vm._v("Become a seller and\n                                                    start sell your product in ECOMMERCE ")])], 1)])], 2)], 2)]), _vm._ssrNode(" <div class=\"report\" data-v-fb6fe7c0></div>")], 2)])])])])]), _vm._ssrNode(" "), _vm._ssrNode("<section class=\"details_scrollspay\" data-v-fb6fe7c0>", "</section>", [_vm._ssrNode("<div class=\"container\" data-v-fb6fe7c0>", "</div>", [_vm._ssrNode("<div class=\"row\" data-v-fb6fe7c0>", "</div>", [_vm._ssrNode("<div class=\"col-12\" data-v-fb6fe7c0>", "</div>", [_vm._ssrNode("<div class=\"row\" data-v-fb6fe7c0>", "</div>", [_vm._ssrNode("<div class=\"col-12\" data-v-fb6fe7c0><div data-bs-spy=\"scroll\" data-bs-target=\"#list-example\" data-bs-offset=\"0\" tabindex=\"0\" class=\"scrollspy-example\" data-v-fb6fe7c0><div id=\"details\" class=\"product_details\" data-v-fb6fe7c0></div> <div id=\"feedback\" class=\"feedback\" data-v-fb6fe7c0><div class=\"side_title\" data-v-fb6fe7c0><h5 data-v-fb6fe7c0>Varified Customer Feedback</h5> <a href=\"customer-review.html\" data-v-fb6fe7c0>See All <i class=\"fa-solid fa-arrow-right\" data-v-fb6fe7c0></i></a></div> <div class=\"row\" data-v-fb6fe7c0><div class=\"col-md-4\" data-v-fb6fe7c0><h2 data-v-fb6fe7c0>Varified ratings(147)</h2> <div class=\"box_rating\" data-v-fb6fe7c0><h3 data-v-fb6fe7c0>4.5/5</h3> <div class=\"ratings\" data-v-fb6fe7c0><span class=\"fa fa-star checked\" data-v-fb6fe7c0></span> <span class=\"fa fa-star checked\" data-v-fb6fe7c0></span> <span class=\"fa fa-star checked\" data-v-fb6fe7c0></span> <span class=\"fa fa-star\" data-v-fb6fe7c0></span> <span class=\"fa fa-star\" data-v-fb6fe7c0></span></div> <p data-v-fb6fe7c0>147 verified ratings</p></div> <div class=\"rate_count\" data-v-fb6fe7c0><p data-v-fb6fe7c0>5</p> <i class=\"fa fa-star checked\" data-v-fb6fe7c0></i> <span data-v-fb6fe7c0>(106)</span> <div class=\"progress\" data-v-fb6fe7c0><div role=\"progressbar\" aria-valuenow=\"25\" aria-valuemin=\"0\" aria-valuemax=\"100\" class=\"progress-bar\" style=\"width: 25%;\" data-v-fb6fe7c0></div></div></div> <div class=\"rate_count\" data-v-fb6fe7c0><p data-v-fb6fe7c0>4</p> <i class=\"fa fa-star checked\" data-v-fb6fe7c0></i> <span data-v-fb6fe7c0>(106)</span> <div class=\"progress\" data-v-fb6fe7c0><div role=\"progressbar\" aria-valuenow=\"25\" aria-valuemin=\"0\" aria-valuemax=\"100\" class=\"progress-bar\" style=\"width: 25%;\" data-v-fb6fe7c0></div></div></div> <div class=\"rate_count\" data-v-fb6fe7c0><p data-v-fb6fe7c0>3</p> <i class=\"fa fa-star checked\" data-v-fb6fe7c0></i> <span data-v-fb6fe7c0>(106)</span> <div class=\"progress\" data-v-fb6fe7c0><div role=\"progressbar\" aria-valuenow=\"25\" aria-valuemin=\"0\" aria-valuemax=\"100\" class=\"progress-bar\" style=\"width: 25%;\" data-v-fb6fe7c0></div></div></div> <div class=\"rate_count\" data-v-fb6fe7c0><p data-v-fb6fe7c0>2</p> <i class=\"fa fa-star checked\" data-v-fb6fe7c0></i> <span data-v-fb6fe7c0>(106)</span> <div class=\"progress\" data-v-fb6fe7c0><div role=\"progressbar\" aria-valuenow=\"25\" aria-valuemin=\"0\" aria-valuemax=\"100\" class=\"progress-bar\" style=\"width: 25%;\" data-v-fb6fe7c0></div></div></div> <div class=\"rate_count\" data-v-fb6fe7c0><p data-v-fb6fe7c0>1</p> <i class=\"fa fa-star checked\" data-v-fb6fe7c0></i> <span data-v-fb6fe7c0>(106)</span> <div class=\"progress\" data-v-fb6fe7c0><div role=\"progressbar\" aria-valuenow=\"25\" aria-valuemin=\"0\" aria-valuemax=\"100\" class=\"progress-bar\" style=\"width: 25%;\" data-v-fb6fe7c0></div></div></div></div> <div class=\"col-md-8 right_side_rate\" data-v-fb6fe7c0><h2 data-v-fb6fe7c0>COMMENTS FROM VERIFIED PURCHASES(51)</h2> <div data-v-fb6fe7c0><div class=\"ratings\" data-v-fb6fe7c0><span class=\"fa fa-star checked\" data-v-fb6fe7c0></span> <span class=\"fa fa-star checked\" data-v-fb6fe7c0></span> <span class=\"fa fa-star checked\" data-v-fb6fe7c0></span> <span class=\"fa fa-star\" data-v-fb6fe7c0></span> <span class=\"fa fa-star\" data-v-fb6fe7c0></span></div> <h5 data-v-fb6fe7c0>Awsome</h5> <p data-v-fb6fe7c0>awesome</p> <div class=\"d-flex justify-content-between\" data-v-fb6fe7c0><p data-v-fb6fe7c0>04-08-2023 By <a href=\"#\" data-v-fb6fe7c0>User </a></p> <p class=\"varify_tag\" data-v-fb6fe7c0><i class=\"fa fa-check\" data-v-fb6fe7c0></i>Varified\n                                                        Customer</p></div></div> <div data-v-fb6fe7c0><div class=\"ratings\" data-v-fb6fe7c0><span class=\"fa fa-star checked\" data-v-fb6fe7c0></span> <span class=\"fa fa-star checked\" data-v-fb6fe7c0></span> <span class=\"fa fa-star checked\" data-v-fb6fe7c0></span> <span class=\"fa fa-star\" data-v-fb6fe7c0></span> <span class=\"fa fa-star\" data-v-fb6fe7c0></span></div> <h5 data-v-fb6fe7c0>Awsome</h5> <p data-v-fb6fe7c0>awesome</p> <div class=\"d-flex justify-content-between\" data-v-fb6fe7c0><p data-v-fb6fe7c0>04-08-2023 By <a href=\"#\" data-v-fb6fe7c0>User </a></p> <p class=\"varify_tag\" data-v-fb6fe7c0><i class=\"fa fa-check\" data-v-fb6fe7c0></i>Varified\n                                                        Customer</p></div></div> <div data-v-fb6fe7c0><div class=\"ratings\" data-v-fb6fe7c0><span class=\"fa fa-star checked\" data-v-fb6fe7c0></span> <span class=\"fa fa-star checked\" data-v-fb6fe7c0></span> <span class=\"fa fa-star checked\" data-v-fb6fe7c0></span> <span class=\"fa fa-star\" data-v-fb6fe7c0></span> <span class=\"fa fa-star\" data-v-fb6fe7c0></span></div> <h5 data-v-fb6fe7c0>Awsome</h5> <p data-v-fb6fe7c0>awesome</p> <div class=\"d-flex justify-content-between\" data-v-fb6fe7c0><p data-v-fb6fe7c0>04-08-2023 By <a href=\"#\" data-v-fb6fe7c0>User </a></p> <p class=\"varify_tag\" data-v-fb6fe7c0><i class=\"fa fa-check\" data-v-fb6fe7c0></i>Varified\n                                                        Customer</p></div></div></div></div></div></div></div> "), _vm._ssrNode("<div class=\"col-xl-4 col-lg-4 col-md-4 col-sm-12 d-none\" data-v-fb6fe7c0>", "</div>", [_vm._ssrNode("<div class=\"sidebar_here\" data-v-fb6fe7c0>", "</div>", [_vm._ssrNode("<div id=\"list-example\" class=\"list-group id_list\" data-v-fb6fe7c0><a href=\"#details\" class=\"list-group-item list-group-item-action active\" data-v-fb6fe7c0><i class=\"fa-regular fa-file-lines\" data-v-fb6fe7c0></i>Product details </a> <a href=\"#spacification\" class=\"list-group-item list-group-item-action\" data-v-fb6fe7c0><i class=\"fa-solid fa-list\" data-v-fb6fe7c0></i>Specification</a> <a href=\"#feedback\" class=\"list-group-item list-group-item-action\" data-v-fb6fe7c0><i class=\"fa-regular fa-message\" data-v-fb6fe7c0></i>Varified Customer Feedback</a></div> "), _vm._ssrNode("<div class=\"pro_cart\" data-v-fb6fe7c0>", "</div>", [_vm._ssrNode("<div class=\"d-flex\" data-v-fb6fe7c0>", "</div>", [_vm._ssrNode("<div data-v-fb6fe7c0><img" + _vm._ssrAttr("src", _vm.featuresimgs) + " alt data-v-fb6fe7c0></div> "), _vm._ssrNode("<div data-v-fb6fe7c0>", "</div>", [_vm._ssrNode("<p data-v-fb6fe7c0>" + _vm._ssrEscape("TK " + _vm._s(_vm.pro_row.price)) + "</p> "), _vm._ssrNode("<p data-v-fb6fe7c0>", "</p>", [_c('strike', [_vm._v("TK " + _vm._s(_vm.pro_row.discount))])], 1)], 2)], 2), _vm._ssrNode(" <button type=\"button\" class=\"btn_cart\" data-v-fb6fe7c0><i class=\"fa-solid fa-cart-shopping\" data-v-fb6fe7c0></i>Add to Cart </button>")], 2)], 2)])], 2)])]), _vm._ssrNode(" <div class=\"row\" data-v-fb6fe7c0><div class=\"col-12\" data-v-fb6fe7c0></div></div>")], 2)]), _vm._ssrNode(" "), _c('Footer')], 2);
 };
 var staticRenderFns = [];
 
-// CONCATENATED MODULE: ./pages/product-details/_slug.vue?vue&type=template&id=039500d5&scoped=true&
+// CONCATENATED MODULE: ./pages/product-details/_slug.vue?vue&type=template&id=fb6fe7c0&scoped=true&
 
 // EXTERNAL MODULE: external "jquery"
 var external_jquery_ = __webpack_require__(32);
@@ -265,9 +265,24 @@ var navbarSecond = __webpack_require__(63);
     },
     handleButtonClick(varient) {
       this.varientData = varient;
-      this.pro_row.last_price = varient.price;
+      this.pro_row.price = varient.price;
       this.pro_row.stock_qty = varient.qty;
       this.featuresimgs = varient.image ? varient.image : this.pro_mainimage;
+      let last_price; // Declare using let instead of const
+      let d_status = this.pro_row.discount_status;
+      let dis_c = this.pro_row.discount;
+      if (d_status == 1) {
+        last_price = varient.price - varient.price * dis_c / 100;
+      } else if (d_status == 2) {
+        last_price = varient.price - dis_c;
+      } else {
+        last_price = varient.price;
+      }
+      this.pro_row.last_price = last_price;
+
+      // console.log(this.pro_row.stock_qty);
+      // console.log(this.pro_row.last_price);
+
       // Handle button click event for the selected variant
       // console.log('Button clicked for color:', varient.color);
       // console.log('Button clicked for size:', varient.size);
@@ -288,9 +303,10 @@ var navbarSecond = __webpack_require__(63);
         }
       }).then(response => {
         this.varientList = response.data;
-        console.log(response.data);
+        // console.log(response.data);
       });
     },
+
     // =================================================
     updateDateTime() {
       const now = new Date();
@@ -400,7 +416,7 @@ var navbarSecond = __webpack_require__(63);
         itemCount += parseInt(item.quantity);
       });
       this.itemCount = itemCount;
-      console.log('Emitting cartItemCountUpdated event with itemCount:', this.itemCount);
+      // console.log('Emitting cartItemCountUpdated event with itemCount:', this.itemCount);
       this.$eventBus.$emit('cartItemCountUpdated', this.itemCount);
     },
     updateQuantity(productId, newQuantity) {
@@ -413,12 +429,84 @@ var navbarSecond = __webpack_require__(63);
     async addToCart(productId) {
       // console.log(this.pro_row.last_price);
       const up_price = this.pro_row.last_price;
-      try {
-        const productToAdd = this.product.find(product => product.id === productId);
+      const pro_price = this.pro_row.price;
+      const qty = this.pro_row.stock_qty;
+      if (this.colorGroup.length > 0) {
+        try {
+          const productToAdd = this.product.find(product => product.id === productId);
 
-        // Ensure product and quantity are valid
-        if (!productToAdd || !this.updatedQuantity) {
-          // console.error('Product or quantity is invalid.');
+          // Ensure product and quantity are valid
+          if (!productToAdd || !this.updatedQuantity) {
+            // console.error('Product or quantity is invalid.');
+            const Toast = Swal.mixin({
+              toast: true,
+              position: "top-end",
+              showConfirmButton: false,
+              timer: 3000,
+              timerProgressBar: true,
+              didOpen: toast => {
+                toast.onmouseenter = Swal.stopTimer;
+                toast.onmouseleave = Swal.resumeTimer;
+              }
+            });
+            Toast.fire({
+              icon: "error",
+              title: "Product or quantity is invalid."
+            });
+            return;
+          }
+          productToAdd.last_price = up_price;
+          productToAdd.price = pro_price;
+          productToAdd.stock_qty = qty;
+          if (this.color == '' && this.size == '') {
+            const Toast = Swal.mixin({
+              toast: true,
+              position: "top-end",
+              showConfirmButton: false,
+              timer: 3000,
+              timerProgressBar: true,
+              didOpen: toast => {
+                toast.onmouseenter = Swal.stopTimer;
+                toast.onmouseleave = Swal.resumeTimer;
+              }
+            });
+            Toast.fire({
+              icon: "error",
+              title: "Please select Color and size"
+            });
+          } else {
+            productToAdd.color = this.color;
+            productToAdd.size = this.size;
+            const existingItem = this.cart.find(item => item.product.id === productId);
+            if (existingItem) {
+              existingItem.quantity += this.updatedQuantity;
+            } else {
+              this.cart.push({
+                product: productToAdd,
+                quantity: this.updatedQuantity
+              });
+              const Toast = Swal.mixin({
+                toast: true,
+                position: "top-end",
+                showConfirmButton: false,
+                timer: 3000,
+                timerProgressBar: true,
+                didOpen: toast => {
+                  toast.onmouseenter = Swal.stopTimer;
+                  toast.onmouseleave = Swal.resumeTimer;
+                }
+              });
+              Toast.fire({
+                icon: "success",
+                title: "Product successfully Added to cart"
+              });
+            }
+            this.saveCart();
+            this.cartItemCount();
+            console.log('Item added to cart successfully.');
+          }
+        } catch (error) {
+          console.error('Error adding item to cart:', error);
           const Toast = Swal.mixin({
             toast: true,
             position: "top-end",
@@ -432,28 +520,33 @@ var navbarSecond = __webpack_require__(63);
           });
           Toast.fire({
             icon: "error",
-            title: "Product or quantity is invalid."
+            title: "Product not Added to cart"
           });
-          return;
         }
-        productToAdd.last_price = up_price;
-        if (this.color == '' && this.size == '') {
-          const Toast = Swal.mixin({
-            toast: true,
-            position: "top-end",
-            showConfirmButton: false,
-            timer: 3000,
-            timerProgressBar: true,
-            didOpen: toast => {
-              toast.onmouseenter = Swal.stopTimer;
-              toast.onmouseleave = Swal.resumeTimer;
-            }
-          });
-          Toast.fire({
-            icon: "error",
-            title: "Please select Color and size"
-          });
-        } else {
+      } else {
+        try {
+          const productToAdd = this.product.find(product => product.id === productId);
+          // Ensure product and quantity are valid
+          if (!productToAdd || !this.updatedQuantity) {
+            // console.error('Product or quantity is invalid.');
+            const Toast = Swal.mixin({
+              toast: true,
+              position: "top-end",
+              showConfirmButton: false,
+              timer: 3000,
+              timerProgressBar: true,
+              didOpen: toast => {
+                toast.onmouseenter = Swal.stopTimer;
+                toast.onmouseleave = Swal.resumeTimer;
+              }
+            });
+            Toast.fire({
+              icon: "error",
+              title: "Product or quantity is invalid."
+            });
+            return;
+          }
+          productToAdd.last_price = up_price;
           productToAdd.color = this.color;
           productToAdd.size = this.size;
           const existingItem = this.cart.find(item => item.product.id === productId);
@@ -483,24 +576,24 @@ var navbarSecond = __webpack_require__(63);
           this.saveCart();
           this.cartItemCount();
           console.log('Item added to cart successfully.');
+        } catch (error) {
+          console.error('Error adding item to cart:', error);
+          const Toast = Swal.mixin({
+            toast: true,
+            position: "top-end",
+            showConfirmButton: false,
+            timer: 3000,
+            timerProgressBar: true,
+            didOpen: toast => {
+              toast.onmouseenter = Swal.stopTimer;
+              toast.onmouseleave = Swal.resumeTimer;
+            }
+          });
+          Toast.fire({
+            icon: "error",
+            title: "Product not Added to cart"
+          });
         }
-      } catch (error) {
-        console.error('Error adding item to cart:', error);
-        const Toast = Swal.mixin({
-          toast: true,
-          position: "top-end",
-          showConfirmButton: false,
-          timer: 3000,
-          timerProgressBar: true,
-          didOpen: toast => {
-            toast.onmouseenter = Swal.stopTimer;
-            toast.onmouseleave = Swal.resumeTimer;
-          }
-        });
-        Toast.fire({
-          icon: "error",
-          title: "Product not Added to cart"
-        });
       }
     },
     //end cart
@@ -572,7 +665,7 @@ var component = Object(componentNormalizer["a" /* default */])(
   staticRenderFns,
   false,
   injectStyles,
-  "039500d5",
+  "fb6fe7c0",
   "35f05751"
   
 )

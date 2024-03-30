@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\AdminController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
@@ -109,6 +110,8 @@ Route::group([
     Route::post('updatebannerFive', [UserController::class, 'updatebannerFive']);
     Route::post('updateYAds', [UserController::class, 'updateYAds']);
     Route::post('getSellerAds', [UserController::class, 'getSellerAds']);
+    Route::post('saveCard', [UserController::class, 'saveCard']);
+    Route::get('cardlist/{id}', [UserController::class, 'getCard']);
 });
 Route::group([
     'middleware' => 'api',
@@ -329,6 +332,9 @@ Route::group([
     // sliders     
     Route::post('addslidersImages', [SettingController::class, 'saveslidersImages']);
     Route::post('deleteSlider', [SettingController::class, 'deleteSliderimage']);
+
+    Route::post('companyProfile', [SettingController::class, 'updateCompanyProfile']);
+    Route::get('getCompanyData', [SettingController::class, 'getProfileData']);
 
     
 });

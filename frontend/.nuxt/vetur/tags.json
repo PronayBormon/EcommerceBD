@@ -11,9 +11,6 @@
   "BrandProductGrid": {
     "description": "Auto imported from components/brandProductGrid.vue"
   },
-  "CardPayment": {
-    "description": "Auto imported from components/cardPayment.vue"
-  },
   "CategoryFive": {
     "description": "Auto imported from components/CategoryFive.vue"
   },

@@ -255,7 +255,7 @@ class ProductController extends Controller
             //update
         }
     }
-    
+
     function generateUnique4DigitNumber($existingNumbers = [])
     {
         do {
@@ -265,12 +265,12 @@ class ProductController extends Controller
         return $uniqueNumber;
     }
 
-    
+
     public function getVarientHistory(Request $request)
     {
         $product_id         = $request->product_id;
-        $arrData            = ProductVarrientHistory::where('product_id',$product_id)->get();
-        $groupData          = ProductVarrientHistory::where('product_id',$product_id)->select('id','color')->groupBy('color')->get();
+        $arrData            = ProductVarrientHistory::where('product_id', $product_id)->get();
+        $groupData          = ProductVarrientHistory::where('product_id', $product_id)->select('id', 'color')->groupBy('color')->get();
         $formatedData = [];
         foreach ($arrData as $Key => $value) {
             $formatedData[] = [
@@ -291,11 +291,11 @@ class ProductController extends Controller
                 'color'            => $value->color,
             ];
         }
-       
+
         $pdata['varient']    = $formatedData;
         $pdata['colorGroup'] = $gdata;
         return response()->json($pdata);
-    }    
+    }
     public function deleteValrient(Request $request)
     {
 
@@ -368,14 +368,23 @@ class ProductController extends Controller
 
     public function getProductList()
     {
-        $data = Product::orderBy('id', 'desc')->get();
+        $data = Product::orderBy('product.id', 'desc')
+               ->leftJoin('brands', 'brands.id', '=', 'product.brand')  // Corrected foreign key assumption
+               ->select('product.*', 'brands.name AS brand_name')  // Select all product columns and brand name with alias
+               ->get();
+
+
         $collection = collect($data);
         $modifiedCollection = $collection->map(function ($item) {
             return [
-                'id'        => $item['id'],
-                'name'      => substr($item['name'], 0, 20),
-                'stock_qty' => $item['stock_qty'],
-                'status'    => $item['status'],
+                'id'            => $item['id'],
+                'name'          => substr($item['name'], 0, 20),
+                'stock_qty'     => $item['stock_qty'],
+                'status'        => $item['status'],
+                'sku'           => $item['sku'],
+                'thumnail_img'  => url($item['thumnail_img']),
+                'brand'         => $item['brand'],
+                'brand_name'    => $item['brand_name'],
 
             ];
         });
@@ -417,7 +426,7 @@ class ProductController extends Controller
         $orders = $query->paginate($perPage, ['*'], 'page', $page);
 
         $modifiedCollection = $orders->getCollection()->map(function ($item) {
-        $statusCheck =  OrderStatus::where('id', $item->order_status)->first();
+            $statusCheck =  OrderStatus::where('id', $item->order_status)->first();
 
             return [
                 'order_id'    => $item->order_id,
@@ -517,7 +526,7 @@ class ProductController extends Controller
             'price.*' => 'required|numeric',
             'images.*' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048', // Adjust file validation as needed
         ]);
-    
+
         if ($validator->fails()) {
             return response()->json(['errors' => $validator->errors()], 422);
         }
@@ -532,7 +541,7 @@ class ProductController extends Controller
         ];
         // dd($data);
         // return false;
-        
+
         if (
             isset($request->id) && is_array($request->id) &&
             isset($request->sku) && is_array($request->sku) &&
@@ -546,42 +555,43 @@ class ProductController extends Controller
 
             //  dd($request->all());
             // Loop through the arrays and update records
-        foreach ($request->id as $index => $id) {
-            // Check if SKU, Qty, and Price are not null or empty
-            if (
-                !empty($request->sku[$index]) && !empty($request->qty[$index]) && !empty($request->price[$index]) &&
-                $request->hasFile('images.' . $index)
-            ) {
-                // Update records based on $id
+            foreach ($request->id as $index => $id) {
+                // Check if SKU, Qty, and Price are not null or empty
+                if (
+                    !empty($request->sku[$index]) && !empty($request->qty[$index]) && !empty($request->price[$index]) &&
+                    $request->hasFile('images.' . $index)
+                ) {
+                    // Update records based on $id
 
-                $image = $request->file('images.' . $index); // Retrieve the image file
-                $imageName = time() . '_' . $image->getClientOriginalName(); // Generate unique image name
-                $image->move(public_path('/backend/files/'), $imageName); // Move image to storage
+                    $image = $request->file('images.' . $index); // Retrieve the image file
+                    $imageName = time() . '_' . $image->getClientOriginalName(); // Generate unique image name
+                    $image->move(public_path('/backend/files/'), $imageName); // Move image to storage
 
-                ProductVarrientHistory::where('id', $id)->update([
-                    'sku'   => !empty($request->sku[$index]) ? $request->sku[$index] : "",
-                    'qty'   => !empty($request->qty[$index]) ? $request->qty[$index] : "", //$request->qty[$index],
-                    'price' => !empty($request->price[$index]) ? $request->price[$index] : "", //$request->qty[$index],//$request->price[$index]
-                    'image' => '/backend/files/' . $imageName // Store image path
-                ]);
-            }else if (
-                !empty($request->sku[$index]) && !empty($request->qty[$index]) && !empty($request->price[$index])
-            ) {
+                    ProductVarrientHistory::where('id', $id)->update([
+                        'sku'   => !empty($request->sku[$index]) ? $request->sku[$index] : "",
+                        'qty'   => !empty($request->qty[$index]) ? $request->qty[$index] : "", //$request->qty[$index],
+                        'price' => !empty($request->price[$index]) ? $request->price[$index] : "", //$request->qty[$index],//$request->price[$index]
+                        'image' => '/backend/files/' . $imageName // Store image path
+                    ]);
+                } else if (
+                    !empty($request->sku[$index]) && !empty($request->qty[$index]) && !empty($request->price[$index])
+                ) {
 
-                ProductVarrientHistory::where('id', $id)->update([
-                    'sku'   => !empty($request->sku[$index]) ? $request->sku[$index] : "",
-                    'qty'   => !empty($request->qty[$index]) ? $request->qty[$index] : "", //$request->qty[$index],
-                    'price' => !empty($request->price[$index]) ? $request->price[$index] : "", 
-                ]);
+                    ProductVarrientHistory::where('id', $id)->update([
+                        'sku'   => !empty($request->sku[$index]) ? $request->sku[$index] : "",
+                        'qty'   => !empty($request->qty[$index]) ? $request->qty[$index] : "", //$request->qty[$index],
+                        'price' => !empty($request->price[$index]) ? $request->price[$index] : "",
+                    ]);
+                }
             }
-        }
         }
 
         return response()->json(['message' => 'Data updated successfully'], 200);
     }
 
 
-    public function checkAttribue(Request $request){
+    public function checkAttribue(Request $request)
+    {
 
         try {
             $data['attribute'] = ProductVarrientHistory::where('color', $request->color)
@@ -592,7 +602,6 @@ class ProductController extends Controller
             // Handle query exception
             return response()->json(['error' => 'Query exception occurred'], 500);
         }
-
     }
 
     public function varientList($product_id)
@@ -662,5 +671,4 @@ class ProductController extends Controller
         // Return combinations as JSON response
         return response()->json($pdata);
     }
-    
 }

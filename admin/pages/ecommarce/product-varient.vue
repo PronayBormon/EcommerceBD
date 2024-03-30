@@ -126,8 +126,8 @@
                                                                 @input="updatePrice(index, $event.target.value)"
                                                                 placeholder="0.00" style="width: 50px;" />
                                                         </td>
-                                                        <td>
-                                                            <input value="" type="file" @change="onFileChange(index, $event)"
+                                                        <td max-width="100px">
+                                                            <input value="" class="form-control" type="file" @change="onFileChange(index, $event)"
                                                                 accept="image/*" />
                                                         </td>
                                                         <td>

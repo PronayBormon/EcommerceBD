@@ -10,7 +10,6 @@ You can directly use them in pages and other components without the need to impo
 - `<BestPrice>` | `<best-price>` (components/BestPrice.vue)
 - `<BrandiOfficialStore>` | `<brandi-official-store>` (components/BrandiOfficialStore.vue)
 - `<BrandProductGrid>` | `<brand-product-grid>` (components/brandProductGrid.vue)
-- `<CardPayment>` | `<card-payment>` (components/cardPayment.vue)
 - `<CategoryFive>` | `<category-five>` (components/CategoryFive.vue)
 - `<CategoryFour>` | `<category-four>` (components/CategoryFour.vue)
 - `<CategoryMultipleProduct>` | `<category-multiple-product>` (components/CategoryMultipleProduct.vue)

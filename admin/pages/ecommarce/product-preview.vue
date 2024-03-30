@@ -336,7 +336,6 @@
         </div>
         <!--end row-->
     </div>
-    </div>
 </template>
 
 <script>

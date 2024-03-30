@@ -164,13 +164,12 @@
                                                 </div>
                                                 <!-- ==============================  -->
                                             </div>
-
                                             <div class="d-flex align-items-center">
                                                 <button type="button" v-if="pro_row.stock_qty !== 0" class="btn_cart "
                                                     style="visibility: unset; max-width: 120px;"
                                                     @click="addToCart(pro_row.id)"><i
                                                         class="fa-solid fa-cart-shopping"></i>Add to Cart </button>
-                                                <button style="max-width: 120px;" v-else class="btn_sold">Sold
+                                                <button style="max-width: 120px;" v-else  class="btn_sold">Sold
                                                     out</button>
                                             </div>
                                             <p v-if="pro_row.free_shopping !== 1" class="m-0">Delivery by <strong>{{
@@ -417,7 +416,6 @@ export default {
         Common_MobileSidebar,
         Common_MiniTabNavbar,
         Common_MobileSearchProduct,
-
     },
 
     head: {
@@ -503,9 +501,27 @@ export default {
         },
         handleButtonClick(varient) {
             this.varientData = varient;
-            this.pro_row.last_price = varient.price;
+            this.pro_row.price = varient.price;
             this.pro_row.stock_qty = varient.qty;
             this.featuresimgs = varient.image ? varient.image : this.pro_mainimage;
+
+            let last_price; // Declare using let instead of const
+            let d_status = this.pro_row.discount_status;
+            let dis_c = this.pro_row.discount;
+
+            if (d_status == 1) {
+                last_price = varient.price - (varient.price * dis_c / 100);
+            } else if (d_status == 2) {
+                last_price = varient.price - dis_c ;
+            }else{
+                last_price = varient.price;
+            }
+
+            this.pro_row.last_price = last_price;
+
+            // console.log(this.pro_row.stock_qty);
+            // console.log(this.pro_row.last_price);
+
             // Handle button click event for the selected variant
             // console.log('Button clicked for color:', varient.color);
             // console.log('Button clicked for size:', varient.size);
@@ -526,7 +542,7 @@ export default {
                 }
             }).then(response => {
                 this.varientList = response.data;
-                console.log(response.data);
+                // console.log(response.data);
             });
 
 
@@ -643,7 +659,7 @@ export default {
                 itemCount += parseInt(item.quantity);
             });
             this.itemCount = itemCount;
-            console.log('Emitting cartItemCountUpdated event with itemCount:', this.itemCount);
+            // console.log('Emitting cartItemCountUpdated event with itemCount:', this.itemCount);
             this.$eventBus.$emit('cartItemCountUpdated', this.itemCount);
 
         },
@@ -658,12 +674,94 @@ export default {
         async addToCart(productId) {
             // console.log(this.pro_row.last_price);
             const up_price = this.pro_row.last_price;
-            try {
-                const productToAdd = this.product.find((product) => product.id === productId);
+            const pro_price = this.pro_row.price;
+            const qty = this.pro_row.stock_qty;
 
-                // Ensure product and quantity are valid
-                if (!productToAdd || !this.updatedQuantity) {
-                    // console.error('Product or quantity is invalid.');
+            if (this.colorGroup.length > 0) {
+                try {
+                    const productToAdd = this.product.find((product) => product.id === productId);
+
+                    // Ensure product and quantity are valid
+                    if (!productToAdd || !this.updatedQuantity) {
+                        // console.error('Product or quantity is invalid.');
+                        const Toast = Swal.mixin({
+                            toast: true,
+                            position: "top-end",
+                            showConfirmButton: false,
+                            timer: 3000,
+                            timerProgressBar: true,
+                            didOpen: (toast) => {
+                                toast.onmouseenter = Swal.stopTimer;
+                                toast.onmouseleave = Swal.resumeTimer;
+                            }
+                        });
+                        Toast.fire({
+                            icon: "error",
+                            title: "Product or quantity is invalid."
+                        });
+                        return;
+                    }
+
+                    productToAdd.last_price = up_price;
+                    productToAdd.price = pro_price;
+                    productToAdd.stock_qty = qty;
+
+                    if (this.color == '' && this.size == '') {
+                        const Toast = Swal.mixin({
+                            toast: true,
+                            position: "top-end",
+                            showConfirmButton: false,
+                            timer: 3000,
+                            timerProgressBar: true,
+                            didOpen: (toast) => {
+                                toast.onmouseenter = Swal.stopTimer;
+                                toast.onmouseleave = Swal.resumeTimer;
+                            }
+                        });
+                        Toast.fire({
+                            icon: "error",
+                            title: "Please select Color and size"
+                        });
+                    } else {
+                        productToAdd.color = this.color;
+                        productToAdd.size = this.size;
+
+                        const existingItem = this.cart.find((item) => item.product.id === productId);
+
+                        if (existingItem) {
+                            existingItem.quantity += this.updatedQuantity;
+                        } else {
+                            this.cart.push({
+                                product: productToAdd,
+                                quantity: this.updatedQuantity,
+                            });
+
+                            const Toast = Swal.mixin({
+                                toast: true,
+                                position: "top-end",
+                                showConfirmButton: false,
+                                timer: 3000,
+                                timerProgressBar: true,
+                                didOpen: (toast) => {
+                                    toast.onmouseenter = Swal.stopTimer;
+                                    toast.onmouseleave = Swal.resumeTimer;
+                                }
+                            });
+                            Toast.fire({
+                                icon: "success",
+                                title: "Product successfully Added to cart"
+                            });
+                        }
+
+                        this.saveCart();
+                        this.cartItemCount();
+                        console.log('Item added to cart successfully.');
+                    }
+
+
+                } catch (error) {
+                    console.error('Error adding item to cart:', error);
+
                     const Toast = Swal.mixin({
                         toast: true,
                         position: "top-end",
@@ -677,29 +775,34 @@ export default {
                     });
                     Toast.fire({
                         icon: "error",
-                        title: "Product or quantity is invalid."
+                        title: "Product not Added to cart"
                     });
-                    return;
                 }
+            } else {
+                try {
+                    const productToAdd = this.product.find((product) => product.id === productId);
+                    // Ensure product and quantity are valid
+                    if (!productToAdd || !this.updatedQuantity) {
+                        // console.error('Product or quantity is invalid.');
+                        const Toast = Swal.mixin({
+                            toast: true,
+                            position: "top-end",
+                            showConfirmButton: false,
+                            timer: 3000,
+                            timerProgressBar: true,
+                            didOpen: (toast) => {
+                                toast.onmouseenter = Swal.stopTimer;
+                                toast.onmouseleave = Swal.resumeTimer;
+                            }
+                        });
+                        Toast.fire({
+                            icon: "error",
+                            title: "Product or quantity is invalid."
+                        });
+                        return;
+                    }
 
-                productToAdd.last_price = up_price;
-                if (this.color == '' && this.size == '') {
-                    const Toast = Swal.mixin({
-                        toast: true,
-                        position: "top-end",
-                        showConfirmButton: false,
-                        timer: 3000,
-                        timerProgressBar: true,
-                        didOpen: (toast) => {
-                            toast.onmouseenter = Swal.stopTimer;
-                            toast.onmouseleave = Swal.resumeTimer;
-                        }
-                    });
-                    Toast.fire({
-                        icon: "error",
-                        title: "Please select Color and size"
-                    });
-                } else {
+                    productToAdd.last_price = up_price;
                     productToAdd.color = this.color;
                     productToAdd.size = this.size;
 
@@ -733,28 +836,30 @@ export default {
                     this.saveCart();
                     this.cartItemCount();
                     console.log('Item added to cart successfully.');
+
+
+                } catch (error) {
+                    console.error('Error adding item to cart:', error);
+
+                    const Toast = Swal.mixin({
+                        toast: true,
+                        position: "top-end",
+                        showConfirmButton: false,
+                        timer: 3000,
+                        timerProgressBar: true,
+                        didOpen: (toast) => {
+                            toast.onmouseenter = Swal.stopTimer;
+                            toast.onmouseleave = Swal.resumeTimer;
+                        }
+                    });
+                    Toast.fire({
+                        icon: "error",
+                        title: "Product not Added to cart"
+                    });
                 }
-
-
-            } catch (error) {
-                console.error('Error adding item to cart:', error);
-
-                const Toast = Swal.mixin({
-                    toast: true,
-                    position: "top-end",
-                    showConfirmButton: false,
-                    timer: 3000,
-                    timerProgressBar: true,
-                    didOpen: (toast) => {
-                        toast.onmouseenter = Swal.stopTimer;
-                        toast.onmouseleave = Swal.resumeTimer;
-                    }
-                });
-                Toast.fire({
-                    icon: "error",
-                    title: "Product not Added to cart"
-                });
             }
+
+
         },
         //end cart
         initLightSlider() {
