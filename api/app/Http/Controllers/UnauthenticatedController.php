@@ -578,8 +578,9 @@ class UnauthenticatedController extends Controller
             )
             ->first();
 
-            
-            $last_price = 0;
+
+        $last_price = 0;
+        
         $v = $data['pro_row'];
         $vat = $v->vat ? $v->vat : '0';
         $price = $v->price + ($v->price * $vat / 100);
@@ -633,7 +634,7 @@ class UnauthenticatedController extends Controller
         // dd($product_chk);
         // return false;
         foreach ($product_chk as $key => $v) {
-            
+
             $last_price = 0;
 
             $vat = $v->vat ? $v->vat : '0';
@@ -774,7 +775,7 @@ class UnauthenticatedController extends Controller
         // return false;
         $result = [];
         foreach ($proCategorys as $key => $v) {
-            
+
             $last_price = 0;
             $vat = $v->vat ? $v->vat : '0';
             $price = $v->price + ($v->price * $vat / 100);
@@ -986,7 +987,7 @@ class UnauthenticatedController extends Controller
             } else {
                 if ($pro_price >= $coupon->min_shopping) {
                     $dis_value = 0;
-                    $last_price =0;
+                    $last_price = 0;
                     if ($coupon->code_type == 'percentage') {
                         $last_price = $pro_price - ($pro_price * $coupon->d_percent / 100);
                         $dis_value = $pro_price * $coupon->d_percent / 100;

@@ -30,13 +30,11 @@
                                                     <div>
                                                         <h1>
                                                             <Nuxt-Link
-                                                                :to="`/product-details/${item.product.pro_slug}`">{{
-                            item.product.product_name }}</Nuxt-Link>
+                                                                :to="`/product-details/${item.product.pro_slug}`">{{    item.product.product_name }}</Nuxt-Link>
                                                         </h1>
                                                         <p v-if="item.product.seller_name">Seller:
                                                             <nuxt-link style="color: #900c3f;"
-                                                                :to="`/business/${item.product.seller_slug}`">{{
-                            item.product.seller_name }}</nuxt-link>
+                                                                :to="`/business/${item.product.seller_slug}`">{{ item.product.seller_name }}</nuxt-link>
                                                         </p>
                                                         <p v-else>Seller: Ecommerce</p>
                                                         <span class="mt-0 text-success"
@@ -83,10 +81,11 @@
                                     </li>
                                 </ul>
 
-                                <div v-if="itemCount !== 0">
+                                <div class="d-flex justify-content-between align-item-center mt-3" >
+                                    <nuxt-link class="btn btn_edit" style="width: fit-content;" to="/">Continue Shopping</nuxt-link>
 
-                                    <Button class="btn_cart mt-2" style="visibility: unset; background-color: #0C356A;"
-                                        @click="clearCart()">Clear Cart</Button>
+                                    <button class="btn_cart " style="width: fit-content;" v-if="itemCount !== 0" 
+                                        @click="clearCart()">Clear Cart</button>
                                 </div>
 
                             </div>

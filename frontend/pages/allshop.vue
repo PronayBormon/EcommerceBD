@@ -6,62 +6,65 @@
         <!-- Main section start here  -->
         <section class="main_content">
             <div class="container">
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="page_title">
-                            <h4>All Shops</h4>
-                        </div>
-                    </div>
-                    <div class="col-md-12">
-                        <div class="shopContainer">
-                            <!-- loop start here  -->
-                            <div class="shopBox" v-for="sellerlist in paginatedSellerList" :key="sellerlist.id">
-                                <nuxt-link :to="`/business/${sellerlist.slug}`" class="shopImg">
-                                    <img :src="sellerlist.businessLogo" alt="Shop Logo" class="img-fluid">
-                                </nuxt-link>
-                                <nuxt-link :to="`/business/${sellerlist.slug}`">
-                                    <h6>{{ sellerlist.businessName }}</h6>
-                                </nuxt-link>
-                                <div class="rateReview">
-                                    <div class="start_ratings">
-                                        <i class="fa-solid fa-star"></i>
-                                        <i class="fa-solid fa-star"></i>
-                                        <i class="fa-solid fa-star"></i>
-                                        <i class="fa-solid fa-star"></i>
-                                        <i class="fa-solid fa-star"></i>
-                                    </div>
-                                    <p>(100 reviews)</p>
-                                    <p>1k Followers</p>
-                                </div>
-                                <nuxt-link :to="`/business/${sellerlist.slug}`" class="btn_primary">Visit
-                                    Store</nuxt-link>
+                <div class="main_profile">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="page_title">
+                                <h4>All Shops</h4>
                             </div>
-                            <!-- loop end here  -->
-                            <!-- <div class="pagination">
+                        </div>
+                        <div class="col-md-12">
+                            <div class="shopContainer">
+                                <!-- loop start here  -->
+                                <div class="shopBox" v-for="sellerlist in paginatedSellerList" :key="sellerlist.id">
+                                    <nuxt-link :to="`/business/${sellerlist.slug}`" class="shopImg">
+                                        <img :src="sellerlist.businessLogo" alt="Shop Logo" class="img-fluid">
+                                    </nuxt-link>
+                                    <nuxt-link :to="`/business/${sellerlist.slug}`">
+                                        <h6>{{ sellerlist.businessName }}</h6>
+                                    </nuxt-link>
+                                    <div class="rateReview">
+                                        <div class="start_ratings">
+                                            <i class="fa-solid fa-star"></i>
+                                            <i class="fa-solid fa-star"></i>
+                                            <i class="fa-solid fa-star"></i>
+                                            <i class="fa-solid fa-star"></i>
+                                            <i class="fa-solid fa-star"></i>
+                                        </div>
+                                        <p>(100 reviews)</p>
+                                        <p>1k Followers</p>
+                                    </div>
+                                    <nuxt-link :to="`/business/${sellerlist.slug}`" class="btn_primary">Visit
+                                        Store</nuxt-link>
+                                </div>
+                                <!-- loop end here  -->
+                                <!-- <div class="pagination">
                                 <button @click="previousPage" :disabled="currentPage === 1">Previous</button>
                                 <span>{{ currentPage }}</span>
                                 <button @click="nextPage" :disabled="currentPage === totalPages">Next</button>
                             </div> -->
 
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="row">
-                    <div class="col-12">
-                        <div class="pagination">
-                            <ul>
-                                <li>
-                                    <a href="#" type="button" @click="previousPage" :disabled="currentPage === 1">
-                                        Previous </a>
-                                </li>
-                                <li>
-                                    <a href="#" class="active"> {{ currentPage }}</a>
-                                </li>
-                                <li>
-                                    <a href="#" type="button" @click="nextPage" :disabled="currentPage === totalPages">
-                                        Next </a>
-                                </li>
-                            </ul>
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="pagination">
+                                <ul>
+                                    <li>
+                                        <a href="#" type="button" @click="previousPage" :disabled="currentPage === 1">
+                                            Previous </a>
+                                    </li>
+                                    <li>
+                                        <a href="#" class="active"> {{ currentPage }}</a>
+                                    </li>
+                                    <li>
+                                        <a href="#" type="button" @click="nextPage"
+                                            :disabled="currentPage === totalPages">
+                                            Next </a>
+                                    </li>
+                                </ul>
+                            </div>
                         </div>
                     </div>
                 </div>

@@ -706,7 +706,7 @@ export default {
                     productToAdd.price = pro_price;
                     productToAdd.stock_qty = qty;
 
-                    if (this.color == '' && this.size == '') {
+                    if (this.color == '' || this.size == '') {
                         const Toast = Swal.mixin({
                             toast: true,
                             position: "top-end",
@@ -720,7 +720,7 @@ export default {
                         });
                         Toast.fire({
                             icon: "error",
-                            title: "Please select Color and size"
+                            title: "Please select an attribute"
                         });
                     } else {
                         productToAdd.color = this.color;

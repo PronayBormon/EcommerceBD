@@ -15,6 +15,8 @@ use App\Models\OrderHistory;
 use App\Models\ProductCategory;
 use App\Models\CategoryCommissionHistory;
 use App\Models\couponUseHistory;
+use App\Models\ordersProduct;
+use App\Models\trackingModel;
 use App\Models\WishList;
 use App\Models\User;
 use Illuminate\Support\Facades\Validator as FacadesValidator;
@@ -188,15 +190,57 @@ class OrderController extends Controller
     {
 
         $orderStatus     = orderStatus::all();
-        $findorder       = Order::join('order_status', 'order_status.id', '=', 'orders.order_status')->select('orders.*', 'order_status.name as orderstatus', 'order_status.id as orderstatus_id')->where('orderId', $order_id)->first();
+        $findorder       = Order::join('order_status', 'order_status.id', '=', 'orders.order_status')
+            ->select('orders.*', 'order_status.name as orderstatus', 'order_status.id as orderstatus_id')
+            ->where('orderId', $order_id)->first();
+
         $data['orders']  = OrderHistory::join('product', 'product.id', '=', 'order_history.product_id')
-            ->select('product.name as product_name', 'product.thumnail_img', 'order_history.*')
+            ->select('product.name as product_name', 'product.thumnail_img', 'product.discount_status', 'product.discount', 'product.vat_status', 'product.vat', 'order_history.*')
             ->where('order_id', $findorder->id)->get();
+
+        $findOrderedProduct = ordersProduct::where('order_id', $order_id)
+            ->join('product', 'product.id', '=', 'orders_product.product_id')
+            ->select('product.name as pro_name', 'product.slug as pro_slug', 'product.thumnail_img as pro_image', 'orders_product.*')
+            ->get();
+
+        foreach ($findOrderedProduct as $item) {
+            $item->pro_img = url($item->pro_image);
+        }
+
+
+
+        // dd($findOrderedProduct);
+        // return false;
+
+
         foreach ($data['orders'] as $v) {
+
+            $last_price = 0;
+            $vat = $v->vat ? $v->vat : '0';
+            $price = $v->price + ($v->price * $vat / 100);
+
+            $percent_discount = $price - ($price * $v->discount / 100);
+            $fixed_discount = $price - $v->discount;
+
+            if ($v->discount_status == 1) {
+                $last_price = $percent_discount;
+            } elseif ($v->discount_status == 2) {
+                $last_price = $fixed_discount;
+            } else {
+                $last_price = $v->price;
+            }
+
             $orders[] = [
-                'product_name'    => $v->product_name,
-                'thumbnail_img'   => url($v->thumnail_img),
-                'quantity'        => $v->quantity,
+                'product_name'      => $v->product_name,
+                'thumbnail_img'     => url($v->thumnail_img),
+                'quantity'          => $v->quantity,
+                'price'             => $v->price,
+                'discount_status'   => $v->discount_status,
+                'discount'          => $v->discount,
+                'vat_status'        => $v->vat_status,
+                'vat'               => $v->vat,
+                'last_price'        => $last_price,
+
                 'price'           => $v->price,
                 'total'           => $v->quantity * $v->price,
             ];
@@ -211,23 +255,44 @@ class OrderController extends Controller
         $order['orderstatus_id'] = !empty($findorder->orderstatus_id) ? $findorder->orderstatus_id : "";
         $order['orderData']     = !empty($findorder) ? $findorder : "";
         $order['OrderStatus']   = $orderStatus;
-        // dd($order['order_status']);
+
+        $order['packed_status'] = !empty($findorder->packed_status) ? $findorder->packed_status : "";
+        $order['dispatched_status'] = !empty($findorder->dispatched_status) ? $findorder->dispatched_status : "";
+        $order['outForDelivery_status'] = !empty($findorder->outForDelivery_status) ? $findorder->outForDelivery_status : "";
+        $order['delivered_status'] = !empty($findorder->delivered_status) ? $findorder->delivered_status : "";
+        $order['cancel_status'] = !empty($findorder->cancel_status) ? $findorder->cancel_status : "";
+        $order['return_status'] = !empty($findorder->return_status) ? $findorder->return_status : "";
+        $order['products'] = !empty($findOrderedProduct)?$findOrderedProduct:'';
+
+        $timestamp = strtotime($findorder->created_at);
+        $formattedDate = date("jS F, Y", $timestamp);
+        $order['create_at'] = !empty($findorder->created_at) ? $formattedDate : "";
+
         return response()->json($order, 200);
     }
     public function allOrders()
     {
 
-        $data['orders']  = Order::join('order_status', 'orders.order_status', '=', 'order_status.id')
-            ->select('orders.*', 'order_status.name')
+
+        $data['orders'] = Order::join('order_status', 'orders.order_status', '=', 'order_status.id')
+            ->select('orders.*', 'order_status.name', 'order_history.id as order_history_id', 'order_history.product_id as order_history_product_id', 'order_history.seller_id as order_history_seller_id', 'order_history.quantity as order_history_quantity', 'order_history.price as order_history_price', 'order_history.total as order_history_total', 'product.name as product_name', 'product.slug as product_slug', 'product.thumnail_img as thumbnail_img')
+            ->join('order_history', 'order_history.order_id', '=', 'orders.id')
+            ->join('product', 'product.id', '=', 'order_history.product_id') // Join with product table
             ->where('orders.customer_id', $this->userid)
-            ->orderBy('created_at', 'desc')
-            ->get(); //Order::where('customer_id', $this->userid)->get();
+            ->orderBy('orders.created_at', 'desc')
+            ->get();
+
+
         foreach ($data['orders'] as $v) {
             $orders[] = [
-                'name'         => $v->name,
-                'orderId'      => $v->orderId,
-                'placeOn'      => date_format(date_create($v->created_at), "Y-m-d"),
-                'total'        => number_format($v->total, 2),
+                'name'          => $v->name,
+                'orderId'       => $v->orderId,
+                'placeOn'       => date_format(date_create($v->created_at), "Y-m-d H:i"),
+                'total'         => number_format($v->total, 2),
+                'pro_name'      => $v->product_name,
+                'pro_slug'       => $v->product_slug,
+                'pro_img'       => url($v->thumbnail_img)
+
             ];
         }
 
@@ -248,7 +313,7 @@ class OrderController extends Controller
                 'id'           => $v->id,
                 'name'         => $v->name,
                 'orderId'      => $v->orderId,
-                'placeOn'      => date_format(date_create($v->created_at), "Y-m-d"),
+                'placeOn' => date('d M Y', strtotime($v->created_at)),
                 'total'        => number_format($v->total, 2),
             ];
         }
@@ -260,15 +325,6 @@ class OrderController extends Controller
 
     public function submitOrder(Request $request)
     {
-
-        //    dd($request->all());
-        //    return false;
-        // formData.append('subTotal', this.totalSum);
-        // formData.append('shipp_address', this.shipp_address);
-        // formData.append('billAddress', this.billAddress);
-        // formData.append('Cutomer_name', this.insertdata.name);
-        // formData.append('Cutomer_email', this.insertdata.email);
-        // formData.append('Cutomer_phone_number', this.insertdata.phone_number);
 
         $validator = FacadesValidator::make(
             $request->all(),
@@ -289,35 +345,11 @@ class OrderController extends Controller
                 'payment_staus'         => 'Please select payment method',
 
             ]
-            // ,
-            // [
-            //     'billing_name'         => 'Billing Name is required',
-            //     'billing_email'        => 'Billing email is required',
-            //     'billing_phone_number' => 'Billing Phone is required',
-            //     'billing_address'      => 'Billing address is required',
-            //     'billing_country'      => 'Billing country is required',
-            //     'billing_city'         => 'Billing city is required',
-            // ]
         );
 
         if ($validator->fails()) {
             return response()->json(['errors' => $validator->errors()], 422);
         }
-
-        //Billing Info.
-        // $billing_name         = $request->billing_name;
-        // $billing_email        = $request->billing_email;
-        // $billing_phone_number = $request->billing_phone_number;
-        // $billing_address      = $request->billing_address;
-        // $billing_country      = $request->billing_country;
-        // $billing_city         = $request->billing_city;
-        //Shipping Info.
-        // $shipper_name         = !empty($request->shipper_name) ? $request->shipper_name : "";
-        // $shipper_email        = !empty($request->shipper_email) ? $request->shipper_email : "";
-        // $shipper_phone_number = !empty($request->shipper_phone_number) ? $request->shipper_phone_number : "";
-        // $shipper_address      = !empty($request->shipper_address) ? $request->shipper_address : "";
-        // $shipper_country      = !empty($request->shipper_country) ? $request->shipper_country : "";
-        // $shipper_city         = !empty($request->shipper_city) ? $request->shipper_city : "";
 
         $subTotal               = $request->subTotal;
         $item_total               = $request->item_total;
@@ -335,7 +367,8 @@ class OrderController extends Controller
             // Convert the stdClass object to an array
             $cartData = [$cartData];
         }
-        //dd($cartData);
+        // dd($cartData);
+        // return false;
         $total = 0;
         foreach ($cartData as $cartItem) {
             $productid = $cartItem->product->id; //$cartItem['product']['id'];
@@ -371,10 +404,39 @@ class OrderController extends Controller
 
         $order->customer_id     = $this->userid;
         $order->order_status    = 1; // Order Placed 
-        // $order->save();
-        // Get the last inserted order ID
+        $order->save();
+
         $lastOrderId = $order->id;
         // Update orderId with the last inserted order ID
+
+        // add product data in table 
+
+
+        // dd($order->orderId );
+        // return false;
+        $formattedItems = [];
+        foreach ($cartData as $item) {
+            $formattedItem = [
+                'order_id' => $order->orderId,
+                'product_id' => $item->product->id,
+                'price' => $item->product->price,
+                'discount' => $item->product->discount,
+                'discount_status' => $item->product->discount_status,
+                'last_price' => $item->product->last_price,
+                'qty' => $item->quantity,
+                'color' => $item->product->color,
+                'size' => $item->product->size,
+                'vat' => $item->product->vat,
+                'vat_status' => $item->product->vat_status,
+
+            ];
+
+            $formattedItems[] = $formattedItem;
+            ordersProduct::create($formattedItem);
+        }
+
+        // dd($formattedItems);
+        // return false;
 
         $itemtotal = 0;
         foreach ($cartData as $cartItem) {
@@ -414,16 +476,39 @@ class OrderController extends Controller
             $order_history->total           = $itemtotal;
             $order_history->save();
         }
+
         $couponUse = $request->coupon_id ?? '';
         if ($couponUse !== '') {
             // dd($request->coupon_id,$request->user_id);
             $couponUseadd = couponUseHistory::create([
                 'user_id' => $request->user_id,
-                'coupon_id' =>$request->coupon_id,
+                'coupon_id' => $request->coupon_id,
             ]);
-            
-        return response()->json("Your order successfully done!", 200);
+
+            return response()->json("Your order successfully done!", 200);
         }
-        // return response()->json("Your order successfully done!", 200);
+        return response()->json("Your order successfully done!", 200);
+    }
+    public function orderTrackadd(request $request)
+    {
+
+        $id = $request->order_id;
+
+        $order = Order::where('orderId', $id)->first();
+
+        if ($order) {
+            $order->update([
+                'packed_status' => $request->packed ? 1 : 0,
+                'dispatched_status' => $request->dispatched ? 1 : 0,
+                'outForDelivery_status' => $request->outForDelivery ? 1 : 0,
+                'delivered_status' => $request->deliverd ? 1 : 0,
+                'cancel_status' => $request->canceled ? 1 : 0,
+                'return_status' => $request->returned ? 1 : 0,
+            ]);
+
+            return response()->json(['message' => 'Order status updated successfully'], 200);
+        } else {
+            return response()->json(['error' => 'Order not found'], 404);
+        }
     }
 }

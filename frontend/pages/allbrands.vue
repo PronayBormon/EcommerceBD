@@ -6,21 +6,23 @@
         <!-- Main section start here  -->
 
         <section class="container">
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="page_title">
-                        <h4>All Brands</h4>
+            <div class="main_profile">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="page_title">
+                            <h4>All Brands</h4>
+                        </div>
                     </div>
-                </div>
-                <div class="col-md-12">
-                    <!-- {{ brands }} -->
-                    <div class="brandContainer">
-                        <a v-for="(brand, index) in brands" :key="index" @click="redirectbrandlist(brand.slug)"
-                            class="brandBox">
-                            <!-- <img :src="`/images/brands/brand(${brand.id}).webp`" :alt="brand.name" class="img-fluid"> -->
-                            <img :src="brand.image" :alt="brand.name" class="img-fluid">
-                            <p>{{ brand.name }}</p>
-                        </a>
+                    <div class="col-md-12">
+                        <!-- {{ brands }} -->
+                        <div class="brandContainer">
+                            <a v-for="(brand, index) in brands" :key="index" @click="redirectbrandlist(brand.slug)"
+                                class="brandBox">
+                                <!-- <img :src="`/images/brands/brand(${brand.id}).webp`" :alt="brand.name" class="img-fluid"> -->
+                                <img :src="brand.image" :alt="brand.name" class="img-fluid">
+                                <p>{{ brand.name }}</p>
+                            </a>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -74,8 +76,8 @@ export default {
 
             } catch (error) {
                 // Handle error
-            } 
-            
+            }
+
         },
     },
 }

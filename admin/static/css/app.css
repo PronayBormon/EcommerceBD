@@ -2487,3 +2487,70 @@ input.search-control-2::placeholder {
     color: #FF0000 !important;
 	font-size: 13px;
 }
+
+.order-track {
+	margin-top: 0;
+	padding: 0px 5px;
+	border-top: 1px dashed #2c3e50;
+	padding-top: 2.5rem;
+	display: flex;
+	flex-direction: column;
+  }
+  
+  .order-track-step {
+	display: flex;
+	height: 60px;
+  }
+  
+  .order-track-step:last-child {
+	overflow: hidden;
+	height: 4rem;
+  }
+  
+  .order-track-step:last-child .order-track-status span:last-of-type {
+	display: none;
+  }
+  
+  .order-track-status {
+	margin-right: 1.5rem;
+	position: relative;
+  }
+  
+  .order-track-step.active .order-track-status-dot,
+  .order-track-step.active .order-track-status-line {
+	background: var(--bs-green);
+  }
+  
+  .order-track-status-dot {
+	display: block;
+	width: 20px;
+	height: 20px;
+	border-radius: 50%;
+	background: var(--bs-gray);
+  }
+  
+  .order-track-status-line {
+	display: block;
+	margin: 0 auto;
+	width: 2px;
+	height: 60px;
+	background: var(--bs-gray);
+  }
+  
+  .order-track-text-stat {
+	font-size: 14px;
+	font-weight: 500;
+	margin-bottom: 3px;
+	height: 14px;
+  }
+  
+  .order-track-text-sub {
+	font-size: 12px;
+	font-weight: 300;
+  }
+  
+  .order-track {
+	transition: all 0.3s height 0.3s;
+	transform-origin: top center;
+  }
+  

@@ -22,6 +22,7 @@ const _6957aaa2 = () => interopDefault(import('..\\pages\\official-store.vue' /*
 const _76d3a77e = () => interopDefault(import('..\\pages\\official-store-grid.vue' /* webpackChunkName: "pages/official-store-grid" */))
 const _2c04de1b = () => interopDefault(import('..\\pages\\OfficialStoreFilter.vue' /* webpackChunkName: "pages/OfficialStoreFilter" */))
 const _00d54101 = () => interopDefault(import('..\\pages\\OfficialStoreFilterGrid.vue' /* webpackChunkName: "pages/OfficialStoreFilterGrid" */))
+const _fb7e4824 = () => interopDefault(import('..\\pages\\order-confirm.vue' /* webpackChunkName: "pages/order-confirm" */))
 const _4323d3f3 = () => interopDefault(import('..\\pages\\payment.vue' /* webpackChunkName: "pages/payment" */))
 const _fa706e72 = () => interopDefault(import('..\\pages\\product-grid.vue' /* webpackChunkName: "pages/product-grid" */))
 const _7ff0fbc2 = () => interopDefault(import('..\\pages\\product-list.vue' /* webpackChunkName: "pages/product-list" */))
@@ -61,6 +62,7 @@ const _cf661cde = () => interopDefault(import('..\\pages\\user\\account-statemen
 const _58e56d28 = () => interopDefault(import('..\\pages\\user\\my-reviews.vue' /* webpackChunkName: "pages/user/my-reviews" */))
 const _8b5d7378 = () => interopDefault(import('..\\pages\\user\\mySalary.vue' /* webpackChunkName: "pages/user/mySalary" */))
 const _5681e985 = () => interopDefault(import('..\\pages\\user\\order-details.vue' /* webpackChunkName: "pages/user/order-details" */))
+const _c3f74de4 = () => interopDefault(import('..\\pages\\user\\track-order.vue' /* webpackChunkName: "pages/user/track-order" */))
 const _4a9fe966 = () => interopDefault(import('..\\pages\\user\\user-blogPost.vue' /* webpackChunkName: "pages/user/user-blogPost" */))
 const _18199dfc = () => interopDefault(import('..\\pages\\user\\user-dashborad.vue' /* webpackChunkName: "pages/user/user-dashborad" */))
 const _5fb2225a = () => interopDefault(import('..\\pages\\user\\user-mlm.vue' /* webpackChunkName: "pages/user/user-mlm" */))
@@ -162,6 +164,10 @@ export const routerOptions = {
     path: "/OfficialStoreFilterGrid",
     component: _00d54101,
     name: "OfficialStoreFilterGrid"
+  }, {
+    path: "/order-confirm",
+    component: _fb7e4824,
+    name: "order-confirm"
   }, {
     path: "/payment",
     component: _4323d3f3,
@@ -318,6 +324,10 @@ export const routerOptions = {
     path: "/user/order-details",
     component: _5681e985,
     name: "user-order-details"
+  }, {
+    path: "/user/track-order",
+    component: _c3f74de4,
+    name: "user-track-order"
   }, {
     path: "/user/user-blogPost",
     component: _4a9fe966,

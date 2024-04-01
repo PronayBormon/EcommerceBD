@@ -224,6 +224,8 @@ Route::group([
     Route::post('save_order', [OrderController::class, 'save_order']);
     Route::get('allOrdersAdmin', [OrderController::class, 'allOrdersAdmin']);
     Route::post('update_order_status', [OrderController::class, 'update_order_status']);
+    Route::post('orderTrack', [OrderController::class, 'orderTrackadd']);
+    Route::get('orderTrackList/{orderid}', [OrderController::class, 'orderTrackaddList']);
 });
 
 Route::group([

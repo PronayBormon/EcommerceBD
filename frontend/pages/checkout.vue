@@ -35,15 +35,30 @@
                 </div>
                 <div class="pickUp_address d-none">
                 </div>
-                <p>
-                  Bill to:<span v-if="getDatas.address_1 !== null">{{ billAddress }}</span>
-                  <select v-if="getDatas.address_1 !== null && getDatas.address_1 !== ''" v-model="billAddress"
-                    style="padding: 3px; font-size: 12px; height: 20px">
-                    <option v-for="(data, index) in dataArray" :key="index" :value="data">
-                      Address {{ index + 1 }}
-                    </option>
-                  </select>
-                  <nuxt-link to="/user/user-profile" v-else class="btn_edit">Add address</nuxt-link>
+                <p> Bill to same address : <a class="billing_address btn_edit" style="cursor: pointer;">Edit</a>
+
+                  <!-- modal  -->
+                <div class="modal_checkoutpage bill_address">
+                  <div class="modal_box">
+                    <div class="row">
+                      <div class="col-8 text-end">
+                        <h6 class="m-0">Select billing address</h6>
+                      </div>
+                      <div class="col-4 ms-auto text-end">
+                        <a class="btn_edit modal_close"><i class="fa-solid fa-x"></i></a>
+                      </div>
+                    </div>
+                    <form action="">
+                      <select class="form-control mb-2" v-if="getDatas.address_1 !== null && getDatas.address_1 !== ''"
+                        v-model="billAddress">
+                        <option v-for="(data, index) in dataArray" :key="index" :value="data">
+                          Address {{ index + 1 }}
+                        </option>
+                      </select>
+                      <a style="cursor: pointer;" class="btn_confirm modal_close mt-2">Submit</a>
+                    </form>
+                  </div>
+                </div>
                 </p>
               </div>
 
@@ -64,8 +79,8 @@
                             </h5>
                             <p>
                               <span v-if="item.product.brand_name" class="p-0 m-0">{{
-          item.product.brand_name
-        }}</span>
+                                item.product.brand_name
+                                }}</span>
                               <span v-else class="p-0 m-0">No Brand</span>
                               <span v-if="item.product.color !== null &&
           item.product.color !== '' &&
@@ -94,10 +109,10 @@
                       <div class="d-flex justify-content-end align-items-center">
                         <span class="badges px-1"
                           v-if="item.product.discount_status == 1 && item.product.discount !== 0">{{
-          item.product.discount }}%</span>
+                          item.product.discount }}%</span>
                         <span class="badges px-1"
                           v-if="item.product.discount_status == 2 && item.product.discount !== 0">${{
-          item.product.discount.toFixed(2) }}</span>
+                          item.product.discount.toFixed(2) }}</span>
                         <p>
                           <del class="me-1" v-if="item.product.discount !== 0">${{ item.product.price.toFixed(2)
                             }}</del>${{ item.product.last_price.toFixed(2) }}
@@ -156,7 +171,8 @@
                       <div class="btn-group-vertical" role="group" aria-label="Vertical button group">
                         <div class="cardPay w-100">
                           <!-- {{ cardList }} -->
-                          <div v-if="cardList !== ''" v-for="(card, index) in cardList.paymentCard" :key="index" class="mb-2 w-100">
+                          <div v-if="cardList !== ''" v-for="(card, index) in cardList.paymentCard" :key="index"
+                            class="mb-2 w-100">
                             <input type="radio" @change="handlePaymentSelection()" class="btn-check" :value="card.id"
                               v-model="selectedPayment" name="paymentMethod" :id="'option' + index"
                               autocomplete="off" />
@@ -189,31 +205,25 @@
                           <form action="" @submit.prevent="saveCard()" id="cardInput">
                             <div class="row mb-4">
                               <div class="col-md-12">
-                                <input type="text" v-model="user_id" class="form-control">
+                                <input type="text" v-model="user_id" hidden class="form-control">
                                 <div class="form-group mb-2">
                                   <label for="">Card holder name</label>
                                   <input type="text" v-model="cardData.holder_name" placeholder="Jhon Due"
                                     autocomplete="off" class="form-control" />
                                 </div>
                               </div>
-                              <div class="col-7">
+                              <div class="col-8">
                                 <div class="form-group mb-2">
                                   <label for="">Card Number</label>
                                   <input type="text" v-model="cardData.card_number" placeholder="**** **** ****"
                                     autocomplete="off" class="form-control" />
                                 </div>
                               </div>
-                              <div class="col-3">
+                              <div class="col-4">
                                 <div class="form-group mb-2">
                                   <label for="">Expire</label>
                                   <input type="text" v-model="cardData.expiry_date" placeholder="MM/YY"
                                     autocomplete="off" class="form-control" />
-                                </div>
-                              </div>
-                              <div class="col-2">
-                                <div class="form-group mb-2">
-                                  <label for="">CVV</label>
-                                  <input type="text" placeholder="CVV" autocomplete="off" class="form-control" />
                                 </div>
                               </div>
                               <div class="col-12">
@@ -292,26 +302,41 @@
                         <td><strong>Cash on delivery Fee </strong></td>
                         <td class="text-end">${{ COD_fee }}</td>
                       </tr>
+                      <tr>
+                        <td><strong>Delivery Fee </strong></td>
+                        <td class="text-end">${{ sumOfFlatRatePrices.toFixed(2) }}</td>
+                      </tr>
                       <tr id="discount">
-                        <td><strong class="text-success">Discount</strong></td>
+                        <td><strong class="text-success">Coupon Discount</strong></td>
                         <td class="text-end text-success">-${{ typeof discount === 'number' ? discount.toFixed(2) : ''
                           }}</td>
 
                       </tr>
                       <tr>
-                        <td><strong>Delivery Fee </strong></td>
-                        <td class="text-end">${{ sumOfFlatRatePrices.toFixed(2) }}</td>
-                      </tr>
-                      <tr>
                         <td><strong>Total Payment</strong></td>
                         <td class="text-end">${{ totalSum.toFixed(2) }}</td>
+                      </tr>
+                      <tr class="border-0" id="#Paymethod" v-if="this.selectedPayment == 'COD'">
+                        <td class="border-0"><strong>Payment method</strong></td>
+                        <td class="text-end border-0">
+                          <p class="badge bg-success text-white">COD</p>
+                        </td>
+                      </tr>
+                      <tr class="border-0" id="#Paymethod"
+                        v-if="this.selectedPayment !== '' && this.selectedPayment !== 'COD'">
+                        <td class="border-0"><strong>Payment method</strong></td>
+                        <td class="text-end border-0">
+                          <p class="badge bg-success-light">CARD</p>
+                        </td>
                       </tr>
                     </tbody>
                   </table>
 
                   <div class="">
-                    <p class="text-start badge bg-danger-light" style="width: fit-content;" id="errorDiscount">Wrong coupon code </p>
-                    <p class="text-start badge bg-success-light"  style="width: fit-content;" id="discount_msg">Checkout with Coupon Cashback</p>
+                    <p class="text-start badge bg-danger-light" style="width: fit-content;" id="errorDiscount">Wrong
+                      coupon code </p>
+                    <p class="text-start badge bg-success-light" style="width: fit-content;" id="discount_msg">Checkout
+                      with Coupon Cashback</p>
                     <p class="text-end">VAT included, Where applicable </p>
                   </div>
 
@@ -348,446 +373,326 @@
 </template>
 
 <script>
-import $ from "jquery";
-import axios from "axios";
-import Common_MobileSidebar from "~/components/Common_MobileSidebar.vue";
-import Common_MiniTabNavbar from "~/components/Common_MiniTabNavbar.vue";
-import Common_MobileSearchProduct from "~/components/Common_MobileSearchProduct.vue";
-import RecentView from "~/components/RecentView.vue";
-import navbarSecond from "../components/navbarSecond.vue";
+  import $ from "jquery";
+  import axios from "axios";
+  import Common_MobileSidebar from "~/components/Common_MobileSidebar.vue";
+  import Common_MiniTabNavbar from "~/components/Common_MiniTabNavbar.vue";
+  import Common_MobileSearchProduct from "~/components/Common_MobileSearchProduct.vue";
+  import RecentView from "~/components/RecentView.vue";
+  import navbarSecond from "../components/navbarSecond.vue";
 
-export default {
-  middleware: "auth",
-  components: {
-    navbarSecond,
-    Common_MobileSidebar,
-    Common_MiniTabNavbar,
-    Common_MobileSearchProduct,
-    RecentView,
-  },
-  head: {
-    title: "Checkout",
-  },
-  data() {
-    return {
-      cardList: [],
-      cardData: {
-        holder_name: '',
-        card_number: '',
-        expiry_date: '',
-      },
-      billAddress: "",
-      shipp_address: null,
-      user_id: 0,
-      userdata: {
-        name: "",
+  export default {
+    middleware: "auth",
+    components: {
+      navbarSecond,
+      Common_MobileSidebar,
+      Common_MiniTabNavbar,
+      Common_MobileSearchProduct,
+      RecentView,
+    },
+    head: {
+      title: "Checkout",
+    },
+    data() {
+      return {
+        cardList: [],
+        cardData: {
+          holder_name: '',
+          card_number: '',
+          expiry_date: '',
+        },
+        billAddress: "",
+        shipp_address: null,
+        user_id: 0,
+        userdata: {
+          name: "",
+          email: "",
+          phone_number: "",
+          gender: "",
+          birthdate: "",
+          address: "",
+          address_1: "",
+          country_1: "",
+          landmark_1: "",
+          city_1: "",
+          phone_1: "",
+          address_2: "",
+          country_2: "",
+          landmark_2: "",
+          city_2: "",
+          phone_2: "",
+          created_at: null,
+        },
+        getDatas: [],
+        insertdata: {
+          id: "",
+          name: "",
+          address: "",
+          email: "",
+          phone_number: "",
+          country: "",
+          city: "",
+          //ship
+          shipper_name: "",
+          shipper_email: "",
+          shipper_phone_number: "",
+          shipper_address: "",
+          shipper_country: "",
+          shipper_city: "",
+
+          address_1: "",
+          country_1: "",
+          city_1: "",
+          landmark_1: "",
+
+          address_2: "",
+          country_2: "",
+          city_2: "",
+          landmark_2: "",
+
+          addresses: [],
+        },
+        coupons: {
+          couponCode: "",
+          price: this.sumOfLastPrices,
+        },
+        loading: false,
         email: "",
-        phone_number: "",
-        gender: "",
-        birthdate: "",
-        address: "",
-        address_1: "",
-        country_1: "",
-        landmark_1: "",
-        city_1: "",
-        phone_1: "",
-        address_2: "",
-        country_2: "",
-        landmark_2: "",
-        city_2: "",
-        phone_2: "",
-        created_at: null,
-      },
-      getDatas: [],
-      insertdata: {
-        id: "",
-        name: "",
-        address: "",
-        email: "",
-        phone_number: "",
-        country: "",
-        city: "",
-        //ship
-        shipper_name: "",
-        shipper_email: "",
-        shipper_phone_number: "",
-        shipper_address: "",
-        shipper_country: "",
-        shipper_city: "",
-
-        address_1: "",
-        country_1: "",
-        city_1: "",
-        landmark_1: "",
-
-        address_2: "",
-        country_2: "",
-        city_2: "",
-        landmark_2: "",
-
-        addresses: [],
-      },
-      coupons: {
-        couponCode: "",
-        price: this.sumOfLastPrices,
-      },
-      loading: false,
-      email: "",
-      showDifferentAddress: false,
-      differentAddressField: "", // Initialize different address field if needed
-      cart: [],
-      notifmsg: "",
-      invidecodeError: "",
-      errors: {},
-      itemCount: 0,
-      subtotal: 0,
-      updatedQuantity: 0,
-      customer_id: "",
-      coupon: "",
-      dataArray: [],
-      sumOfLastPrices: 0,
-      sumOfFlatRatePrices: 0,
-      totalSum: 0,
-      discount: "",
-      selectedPayment: '',
-      companyData: [],
-      COD_fee: 0,
-    };
-  },
-
-  computed: {
-    loggedIn() {
-      if (!$auth.loggedIn) {
-        this.$router.push("/checkout");
-      } else {
-        this.$router.push("/");
-      }
-      return this.$auth.loggedIn;
-    },
-  },
-  mounted() {
-    this.openPromo();
-    this.cart.forEach((item) => {
-      item.shippingDate = this.calculateShippingDate(item.product.shipping_days);
-    });
-
-    if (process.client) {
-      this.addCard();
-      this.defaultLoadingData();
-      this.calculateSubtotal();
-      this.loadCart();
-      this.cartItemCount();
-      this.subtotal = this.calculateSubtotal();
-
-      $(document).ready(function () {
-        $(".filter_btn").on("click", function () {
-          $(".filter_modal").show();
-        });
-        $(".filter_close").on("click", function () {
-          $(".filter_modal").hide();
-        });
-      });
-      // Now you can work with myElement
-    }
-    this.calculateSumOfLastPrices();
-    this.getcompanyData();
-  },
-  methods: {
-    handlePaymentSelection() {
-      if (this.selectedPayment === 'COD') {
-        this.calculateSumOfLastPrices();
-      } else {
-        this.calculateSumOfLastPrices();
-      }
-    },
-    saveCard() {
-      const formData = new FormData();
-      formData.append('user_id', this.user_id);
-      formData.append('holder_name', this.cardData.holder_name);
-      formData.append('card_number', this.cardData.card_number);
-      formData.append('expiry_date', this.cardData.expiry_date);
-      // console.log(formData);
-      this.$axios.post('/user/saveCard', formData)
-        .then(response => {
-          // console.log(response.data);
-          const Toast = Swal.mixin({
-            toast: true,
-            position: "top-end",
-            showConfirmButton: false,
-            timer: 3000,
-            timerProgressBar: true,
-            didOpen: (toast) => {
-              toast.onmouseenter = Swal.stopTimer;
-              toast.onmouseleave = Swal.resumeTimer;
-            },
-          });
-          Toast.fire({
-            icon: "success",
-            title: "Order submitted successfully!",
-          });
-          $("#cardInput")[0].reset();
-        })
-        .catch((error) => {
-          if (error.response.status === 422) {
-            this.errors = error.response.data.errors;
-            const errorMessages = Object.values(this.errors).flat();
-
-            // Concatenate error messages into a single string
-            const errorMessage = errorMessages.join("<br>");
-            const Toast = Swal.mixin({
-              toast: true,
-              position: "top-end",
-              showConfirmButton: false,
-              timer: 3000,
-              timerProgressBar: true,
-              didOpen: (toast) => {
-                toast.onmouseenter = Swal.stopTimer;
-                toast.onmouseleave = Swal.resumeTimer;
-              },
-            });
-            Toast.fire({
-              icon: "error",
-              title: errorMessage,
-            });
-          }
-        });
-    },
-    addCard() {
-      $(".addNewCardBT").click(function () {
-        $(".addNewCard").fadeIn();
-      });
-      $(".backBT").click(function () {
-        $(".addNewCard").fadeOut();
-      });
-    },
-    calculateSumOfLastPrices() {
-      let selectedPayment = this.selectedPayment ? this.selectedPayment : '0';
-      let COD_fee = this.COD_fee;
-      // console.log(COD_fee);
-      const cartData = localStorage.getItem("cart");
-      if (cartData) {
-        const cart = JSON.parse(cartData);
-        let sumOfLastPrices = 0;
-        let sumOfFlatRatePrices = 0;
-
-        cart.forEach((item) => {
-          sumOfLastPrices += parseFloat(item.product.last_price) * item.quantity;
-          sumOfFlatRatePrices += parseFloat(item.product.flat_rate_price ? item.product.flat_rate_price : '0') * item.quantity;
-        });
-        let allsum;
-        let subsum = sumOfLastPrices + sumOfFlatRatePrices;
-
-        // console.log(subsum);
-
-        if(selectedPayment == "COD"){
-          allsum = parseFloat(subsum) + parseFloat(COD_fee);
-          // console.log(allsum);
-        }else{
-          allsum = subsum;
-        }
-
-        this.coupons.price = allsum;
-        this.sumOfLastPrices = sumOfLastPrices;
-        this.sumOfFlatRatePrices = sumOfFlatRatePrices;
-        this.totalSum = allsum;
-      }
-    },
-
-    updateSelectedData() {
-      // console.log("Selected data:", this.shipp_address, "BilTo:", this.billAddress);
-    },
-
-    getPrice(item) {
-      const price = item.quantity * item.product.last_price;
-      // console.log(price);
-      return price;
-    },
-    getSave(item) {
-      const save =
-        item.quantity * item.product.price - item.quantity * item.product.last_price;
-      // console.log(save);
-      return save;
-    },
-    calculateShippingDate(shippingDays) {
-      const currentDate = new Date();
-      const currentHour = currentDate.getHours();
-      const nextDay = currentHour >= 17 ? 1 : 0;
-
-      const shippingDate = new Date();
-      shippingDate.setDate(currentDate.getDate() + (shippingDays ? shippingDays : nextDay));
-
-      const options = {
-        weekday: "short",
-        month: "short",
-        day: "numeric",
-        year: "numeric",
+        showDifferentAddress: false,
+        differentAddressField: "", // Initialize different address field if needed
+        cart: [],
+        notifmsg: "",
+        invidecodeError: "",
+        errors: {},
+        itemCount: 0,
+        subtotal: 0,
+        updatedQuantity: 0,
+        customer_id: "",
+        coupon: "",
+        dataArray: [],
+        sumOfLastPrices: 0,
+        sumOfFlatRatePrices: 0,
+        totalSum: 0,
+        discount: "",
+        selectedPayment: '',
+        companyData: [],
+        COD_fee: 0,
       };
-
-      const formattedDate = shippingDate.toLocaleDateString("en-US", options);
-
-      return formattedDate;
-    },
-    async getCouponData() {
-      const formData = {
-        couponCode: this.coupons.couponCode,
-        price: this.coupons.price,
-        user_id: this.insertdata.id,
-      };
-      console.log(formData);
-      this.$axios
-        .post(`/unauthenticate/couponDiscount`, formData)
-        .then((response) => {
-          this.coupon = response.data.coupon_data;
-          this.totalSum = response.data.coupon_data.last_discount_price;
-          this.discount = this.coupon.discount;
-          this.coupon_id = response.data.coupon_data.id;
-          $("#discount").fadeIn();
-          $("#discount_msg").fadeIn();
-          $("#errorDiscount").fadeOut();
-          // console.log(response.data.coupon_data.last_discount_price);
-        })
-        .catch((error) => {
-          // console.error("Error fetching coupon data:", error);
-          $("#errorDiscount").fadeIn();
-
-          this.errors = error.response.data.errors;
-          const errorMessages = Object.values(this.errors).flat();
-
-          const Toast = Swal.mixin({
-            toast: true,
-            position: "top-end",
-            showConfirmButton: false,
-            timer: 3000,
-            timerProgressBar: true,
-            didOpen: (toast) => {
-              toast.onmouseenter = Swal.stopTimer;
-              toast.onmouseleave = Swal.resumeTimer;
-            },
-          });
-          Toast.fire({
-            icon: "error",
-            title: errorMessages,
-          });
-        });
     },
 
-    openPromo() {
-      $(".btn_promo").on("click", function () {
-        $(".promo").fadeIn();
-      });
-      $(".modal_close").on("click", function () {
-        $(".promo").fadeOut();
-      });
-    },
-    copybillingAddress() {
-      this.insertdata.shipper_name = this.insertdata.name;
-      this.insertdata.shipper_email = this.insertdata.email;
-      this.insertdata.shipper_phone_number = this.insertdata.phone_number;
-      this.insertdata.shipper_address = this.insertdata.address;
-      this.insertdata.shipper_country = this.insertdata.country;
-      this.insertdata.shipper_city = this.insertdata.city;
-    },
-    defaultLoadingData() {
-      this.$axios.get("/auth/showProfileData").then((response) => {
-        // console.log(response.data.data.card_number);
-        this.insertdata.id = response.data.data.id;
-        // this.user_id = response.data.data.id;
-        this.insertdata.name = response.data.data.name;
-        this.getDatas = response.data.data;
-        this.getDatasAddressOne = response.data.data.address_1;
-        this.insertdata.email = response.data.data.email;
-        this.insertdata.phone_number = response.data.data.phone_number;
-
-        let address1 = this.getDatasAddressOne
-          ? `${response.data.data.landmark_1 ? response.data.data.landmark_1 : ''} ${response.data.data.address_1 ? response.data.data.address_1 : ''} ${response.data.data.city_1 ? response.data.data.city_1 : ''} ${response.data.data.country_1 ? response.data.data.country_1 : ''}`
-          : "";
-        let address2 = this.getDatasAddressOne
-          ? `${response.data.data.landmark_2 ? response.data.data.landmark_2 : ''} ${response.data.data.address_2 ? response.data.data.address_2 : ''} ${response.data.data.city_2 ? response.data.data.city_2 : ''} ${response.data.data.country_2 ? response.data.data.country_2 : ''} `
-          : "";
-        this.shipp_address = address1;
-        this.billAddress = address1;
-        this.dataArray.push(address1, address2);
-
-        this.user_id = response.data.data.id;
-        this.defaultLoading();
-      });
-    },
-    getcompanyData() {
-      this.$axios.get('/setting/getCompanyData')
-        .then(response => {
-          this.companyData = response.data;
-          this.COD_fee = response.data.transaction_fee;
-        });
-    },
-
-    defaultLoading() {
-      // console.log(this.insertdata.id);
-      const id = this.insertdata.id;
-      this.$axios.get(`/user/cardlist/${id}`).then(response => {
-        this.cardList = response.data;
-        // console.log(response.data);
-      }).catch(error => {
-        // console.error('Error fetching card list:', error);
-      });
-    },
-    clearCart() {
-      this.loading = true;
-      localStorage.removeItem("cart");
-      this.cart = [];
-      this.cartItemCount();
-      setTimeout(() => {
-        this.loading = false;
-      }, 2000);
-    },
-    placeOrder() {
-      const formData = new FormData();
-      formData.append("cart", JSON.stringify(this.cart));
-      formData.append("subTotal", this.totalSum);
-      formData.append("item_total", this.sumOfLastPrices);
-      formData.append("shipp_address", this.shipp_address);
-      formData.append("billAddress", this.billAddress);
-      formData.append("Cutomer_name", this.insertdata.name);
-      formData.append("Cutomer_email", this.insertdata.email);
-      formData.append("Cutomer_phone_number", this.insertdata.phone_number);
-      formData.append("coupon_id", this.coupon_id ? this.coupon_id : '');
-      formData.append("user_id", this.insertdata.id);
-      formData.append("payment_staus", this.selectedPayment);
-      // console.log(formData);
-      const headers = {
-        "Content-Type": "multipart/form-data",
-      };
-      this.$axios
-        .post("/order/submitOrder", formData, {
-          headers,
-        })
-        .then((response) => {
-          // const token = response.data.access_token;
-          // this.$auth.setUserToken(token);
-          const Toast = Swal.mixin({
-            toast: true,
-            position: "top-end",
-            showConfirmButton: false,
-            timer: 3000,
-            timerProgressBar: true,
-            didOpen: (toast) => {
-              toast.onmouseenter = Swal.stopTimer;
-              toast.onmouseleave = Swal.resumeTimer;
-            },
-          });
-          Toast.fire({
-            icon: "success",
-            title: "Order submitted successfully!",
-          });
-          this.clearCart();
+    computed: {
+      loggedIn() {
+        if (!$auth.loggedIn) {
+          this.$router.push("/checkout");
+        } else {
           this.$router.push("/");
+        }
+        return this.$auth.loggedIn;
+      },
+    },
+    mounted() {
+      this.openPromo();
+      this.cart.forEach((item) => {
+        item.shippingDate = this.calculateShippingDate(item.product.shipping_days);
+      });
+
+      if (process.client) {
+        this.addCard();
+        this.defaultLoadingData();
+        this.calculateSubtotal();
+        this.loadCart();
+        this.cartItemCount();
+        this.subtotal = this.calculateSubtotal();
+
+        $(document).ready(function () {
+          $(".filter_btn").on("click", function () {
+            $(".filter_modal").show();
+          });
+          $(".filter_close").on("click", function () {
+            $(".filter_modal").hide();
+          });
+        });
+        // Now you can work with myElement
+      }
+      this.calculateSumOfLastPrices();
+      this.getcompanyData();
+      this.openModal();
+      this.getQuponList();
+    },
+    methods: {
+      getQuponList(){
+        console.log(this.totalSum);
+        const minShop = this.totalSum;
+        this.$axios.get('/setting/getCompanyData')
+      },
+      handlePaymentSelection() {
+        if (this.selectedPayment === 'COD') {
+          this.calculateSumOfLastPrices();
+        } else {
+          this.calculateSumOfLastPrices();
+        }
+      },
+      openModal() {
+        $('.billing_address').click(function () {
+          $(".bill_address").fadeIn();
+        });
+        $('.modal_close').click(function () {
+          $(".bill_address").fadeOut();
         })
-        .catch((error) => {
-          if (error.response.status === 422) {
+      },
+      saveCard() {
+        const formData = new FormData();
+        formData.append('user_id', this.user_id);
+        formData.append('holder_name', this.cardData.holder_name);
+        formData.append('card_number', this.cardData.card_number);
+        formData.append('expiry_date', this.cardData.expiry_date);
+        // console.log(formData);
+        this.$axios.post('/user/saveCard', formData)
+          .then(response => {
+            // console.log(response.data);
+            const Toast = Swal.mixin({
+              toast: true,
+              position: "top-end",
+              showConfirmButton: false,
+              timer: 3000,
+              timerProgressBar: true,
+              didOpen: (toast) => {
+                toast.onmouseenter = Swal.stopTimer;
+                toast.onmouseleave = Swal.resumeTimer;
+              },
+            });
+            Toast.fire({
+              icon: "success",
+              title: "Order submitted successfully!",
+            });
+            $("#cardInput")[0].reset();
+          })
+          .catch((error) => {
+            if (error.response.status === 422) {
+              this.errors = error.response.data.errors;
+              const errorMessages = Object.values(this.errors).flat();
+
+              // Concatenate error messages into a single string
+              const errorMessage = errorMessages.join("<br>");
+              const Toast = Swal.mixin({
+                toast: true,
+                position: "top-end",
+                showConfirmButton: false,
+                timer: 3000,
+                timerProgressBar: true,
+                didOpen: (toast) => {
+                  toast.onmouseenter = Swal.stopTimer;
+                  toast.onmouseleave = Swal.resumeTimer;
+                },
+              });
+              Toast.fire({
+                icon: "error",
+                title: errorMessage,
+              });
+            }
+          });
+      },
+      addCard() {
+        $(".addNewCardBT").click(function () {
+          $(".addNewCard").fadeIn();
+        });
+        $(".backBT").click(function () {
+          $(".addNewCard").fadeOut();
+        });
+      },
+      calculateSumOfLastPrices() {
+        let selectedPayment = this.selectedPayment ? this.selectedPayment : '0';
+        let COD_fee = this.COD_fee;
+        // console.log(COD_fee);
+        const cartData = localStorage.getItem("cart");
+        if (cartData) {
+          const cart = JSON.parse(cartData);
+          let sumOfLastPrices = 0;
+          let sumOfFlatRatePrices = 0;
+
+          cart.forEach((item) => {
+            sumOfLastPrices += parseFloat(item.product.last_price) * item.quantity;
+            sumOfFlatRatePrices += parseFloat(item.product.flat_rate_price ? item.product.flat_rate_price : '0') * item.quantity;
+          });
+          let allsum;
+          let subsum = sumOfLastPrices + sumOfFlatRatePrices;
+
+          // console.log(subsum);
+
+          if (selectedPayment == "COD") {
+            allsum = parseFloat(subsum) + parseFloat(COD_fee);
+            // console.log(allsum);
+          } else {
+            allsum = subsum;
+          }
+
+          this.coupons.price = allsum;
+          this.sumOfLastPrices = sumOfLastPrices;
+          this.sumOfFlatRatePrices = sumOfFlatRatePrices;
+          this.totalSum = allsum;
+        }
+      },
+
+      updateSelectedData() {
+        // console.log("Selected data:", this.shipp_address, "BilTo:", this.billAddress);
+      },
+
+      getPrice(item) {
+        const price = item.quantity * item.product.last_price;
+        // console.log(price);
+        return price;
+      },
+      getSave(item) {
+        const save =
+          item.quantity * item.product.price - item.quantity * item.product.last_price;
+        // console.log(save);
+        return save;
+      },
+      calculateShippingDate(shippingDays) {
+        const currentDate = new Date();
+        const currentHour = currentDate.getHours();
+        const nextDay = currentHour >= 17 ? 1 : 0;
+
+        const shippingDate = new Date();
+        shippingDate.setDate(currentDate.getDate() + (shippingDays ? shippingDays : nextDay));
+
+        const options = {
+          weekday: "short",
+          month: "short",
+          day: "numeric",
+          year: "numeric",
+        };
+
+        const formattedDate = shippingDate.toLocaleDateString("en-US", options);
+
+        return formattedDate;
+      },
+      async getCouponData() {
+        const formData = {
+          couponCode: this.coupons.couponCode,
+          price: this.coupons.price,
+          user_id: this.insertdata.id,
+        };
+        console.log(formData);
+        this.$axios
+          .post(`/unauthenticate/couponDiscount`, formData)
+          .then((response) => {
+            this.coupon = response.data.coupon_data;
+            this.totalSum = response.data.coupon_data.last_discount_price;
+            this.discount = this.coupon.discount;
+            this.coupon_id = response.data.coupon_data.id;
+            $("#discount").fadeIn();
+            $("#discount_msg").fadeIn();
+            $("#errorDiscount").fadeOut();
+            // console.log(response.data.coupon_data.last_discount_price);
+          })
+          .catch((error) => {
+            // console.error("Error fetching coupon data:", error);
+            $("#errorDiscount").fadeIn();
+
             this.errors = error.response.data.errors;
             const errorMessages = Object.values(this.errors).flat();
 
-            // Concatenate error messages into a single string
-            const errorMessage = errorMessages.join("<br>");
             const Toast = Swal.mixin({
               toast: true,
               position: "top-end",
@@ -801,174 +706,309 @@ export default {
             });
             Toast.fire({
               icon: "error",
-              title: errorMessage,
+              title: errorMessages,
             });
-          }
+          });
+      },
+      openPromo() {
+        $(".btn_promo").on("click", function () {
+          $(".promo").fadeIn();
         });
+        $(".modal_close").on("click", function () {
+          $(".promo").fadeOut();
+        });
+      },
+      copybillingAddress() {
+        this.insertdata.shipper_name = this.insertdata.name;
+        this.insertdata.shipper_email = this.insertdata.email;
+        this.insertdata.shipper_phone_number = this.insertdata.phone_number;
+        this.insertdata.shipper_address = this.insertdata.address;
+        this.insertdata.shipper_country = this.insertdata.country;
+        this.insertdata.shipper_city = this.insertdata.city;
+      },
+      defaultLoadingData() {
+        this.$axios.get("/auth/showProfileData").then((response) => {
+          // console.log(response.data.data.card_number);
+          this.insertdata.id = response.data.data.id;
+          // this.user_id = response.data.data.id;
+          this.insertdata.name = response.data.data.name;
+          this.getDatas = response.data.data;
+          this.getDatasAddressOne = response.data.data.address_1;
+          this.insertdata.email = response.data.data.email;
+          this.insertdata.phone_number = response.data.data.phone_number;
 
-    },
-    clearCart() {
-      this.loading = true;
-      localStorage.removeItem("cart");
-      this.cart = [];
-      this.cartItemCount();
-      setTimeout(() => {
-        this.loading = false;
-      }, 2000);
-    },
-    updateQuantity(productId, newQuantity) {
-      this.loading = true;
-      const index = this.cart.findIndex((item) => item.product.id === productId);
-      if (index !== -1) {
-        this.cart[index].quantity = newQuantity;
-        this.saveCart();
-        this.calculateSubtotal(); // Optionally recalculate subtotal after updating quantity
+          let address1 = this.getDatasAddressOne
+            ? `${response.data.data.landmark_1 ? response.data.data.landmark_1 : ''} ${response.data.data.address_1 ? response.data.data.address_1 : ''} ${response.data.data.city_1 ? response.data.data.city_1 : ''} ${response.data.data.country_1 ? response.data.data.country_1 : ''}`
+            : "";
+          let address2 = this.getDatasAddressOne
+            ? `${response.data.data.landmark_2 ? response.data.data.landmark_2 : ''} ${response.data.data.address_2 ? response.data.data.address_2 : ''} ${response.data.data.city_2 ? response.data.data.city_2 : ''} ${response.data.data.country_2 ? response.data.data.country_2 : ''} `
+            : "";
+          this.shipp_address = address1;
+          this.billAddress = address1;
+          this.dataArray.push(address1, address2);
+
+          this.user_id = response.data.data.id;
+          this.defaultLoading();
+        });
+      },
+      getcompanyData() {
+        this.$axios.get('/setting/getCompanyData')
+          .then(response => {
+            this.companyData = response.data;
+            this.COD_fee = response.data.transaction_fee;
+          });
+      },
+      defaultLoading() {
+        // console.log(this.insertdata.id);
+        const id = this.insertdata.id;
+        this.$axios.get(`/user/cardlist/${id}`).then(response => {
+          this.cardList = response.data;
+          // console.log(response.data);
+        }).catch(error => {
+          // console.error('Error fetching card list:', error);
+        });
+      },
+      clearCart() {
+        this.loading = true;
+        localStorage.removeItem("cart");
+        this.cart = [];
+        this.cartItemCount();
         setTimeout(() => {
           this.loading = false;
         }, 2000);
-      }
-    },
-    loadCart() {
-      this.loading = true;
-      const savedCart = localStorage.getItem('cart');
+      },
+      placeOrder() {
+        const formData = new FormData();
+        formData.append("cart", JSON.stringify(this.cart));
+        formData.append("subTotal", this.totalSum);
+        formData.append("item_total", this.sumOfLastPrices);
+        formData.append("shipp_address", this.shipp_address);
+        formData.append("billAddress", this.billAddress);
+        formData.append("Cutomer_name", this.insertdata.name);
+        formData.append("Cutomer_email", this.insertdata.email);
+        formData.append("Cutomer_phone_number", this.insertdata.phone_number);
+        formData.append("coupon_id", this.coupon_id ? this.coupon_id : '');
+        formData.append("user_id", this.insertdata.id);
+        formData.append("payment_staus", this.selectedPayment);
+        console.log(formData);
+        const headers = {
+          "Content-Type": "multipart/form-data",
+        };
+        this.$axios
+          .post("/order/submitOrder", formData, {
+            headers,
+          })
+          .then((response) => {
+            // const token = response.data.access_token;
+            // this.$auth.setUserToken(token);
+            const Toast = Swal.mixin({
+              toast: true,
+              position: "top-end",
+              showConfirmButton: false,
+              timer: 3000,
+              timerProgressBar: true,
+              didOpen: (toast) => {
+                toast.onmouseenter = Swal.stopTimer;
+                toast.onmouseleave = Swal.resumeTimer;
+              },
+            });
+            Toast.fire({
+              icon: "success",
+              title: "Order submitted successfully!",
+            });
+            this.clearCart();
+            this.$router.push("/");
+          })
+          .catch((error) => {
+            if (error.response.status === 422) {
+              this.errors = error.response.data.errors;
+              const errorMessages = Object.values(this.errors).flat();
 
-      if (savedCart) {
-        this.cart = JSON.parse(savedCart);
+              // Concatenate error messages into a single string
+              const errorMessage = errorMessages.join("<br>");
+              const Toast = Swal.mixin({
+                toast: true,
+                position: "top-end",
+                showConfirmButton: false,
+                timer: 3000,
+                timerProgressBar: true,
+                didOpen: (toast) => {
+                  toast.onmouseenter = Swal.stopTimer;
+                  toast.onmouseleave = Swal.resumeTimer;
+                },
+              });
+              Toast.fire({
+                icon: "error",
+                title: errorMessage,
+              });
+            }
+          });
 
-      }
-
-      let itemCount = 0;
-      this.cart.forEach((item) => {
-        if (item.product) { // Add a check to ensure item.product is defined
-          itemCount += parseInt(item.quantity);
+      },
+      clearCart() {
+        this.loading = true;
+        localStorage.removeItem("cart");
+        this.cart = [];
+        this.cartItemCount();
+        setTimeout(() => {
+          this.loading = false;
+        }, 2000);
+      },
+      updateQuantity(productId, newQuantity) {
+        this.loading = true;
+        const index = this.cart.findIndex((item) => item.product.id === productId);
+        if (index !== -1) {
+          this.cart[index].quantity = newQuantity;
+          this.saveCart();
+          this.calculateSubtotal(); // Optionally recalculate subtotal after updating quantity
+          setTimeout(() => {
+            this.loading = false;
+          }, 2000);
         }
-      });
-      this.itemCount = itemCount;
-      setTimeout(() => {
-        this.loading = false;
-      }, 2000);
-    },
-    handleCartItemCountUpdated(itemCount) {
-      // This method will be called when the event is emitted from ComponentA
-      // console.log('Received  DesktopViewOptions Com.:', itemCount);
-      // Update the local data property with the received itemCount
-      this.itemCount = itemCount;
-    },
-    removeFromCart(product) {
-      this.loading = true;
-      const index = this.cart.findIndex((item) => item.product.id === product.id);
+      },
+      loadCart() {
+        this.loading = true;
+        const savedCart = localStorage.getItem('cart');
 
-      if (index !== -1) {
-        if (this.cart[index].quantity > 1) {
-          this.cart[index].quantity -= 1;
+        if (savedCart) {
+          this.cart = JSON.parse(savedCart);
+
+        }
+
+        let itemCount = 0;
+        this.cart.forEach((item) => {
+          if (item.product) { // Add a check to ensure item.product is defined
+            itemCount += parseInt(item.quantity);
+          }
+        });
+        this.itemCount = itemCount;
+        setTimeout(() => {
+          this.loading = false;
+        }, 2000);
+      },
+      handleCartItemCountUpdated(itemCount) {
+        // This method will be called when the event is emitted from ComponentA
+        // console.log('Received  DesktopViewOptions Com.:', itemCount);
+        // Update the local data property with the received itemCount
+        this.itemCount = itemCount;
+      },
+      removeFromCart(product) {
+        this.loading = true;
+        const index = this.cart.findIndex((item) => item.product.id === product.id);
+
+        if (index !== -1) {
+          if (this.cart[index].quantity > 1) {
+            this.cart[index].quantity -= 1;
+          } else {
+            this.cart.splice(index, 1);
+          }
+
+          this.saveCart();
+          this.calculateSubtotal();
+          this.cartItemCount();
+          this.calculateSumOfLastPrices();
+          setTimeout(() => {
+            this.loading = false;
+          }, 1000);
+        }
+      },
+      saveCart() {
+        localStorage.setItem("cart", JSON.stringify(this.cart));
+      },
+      addToCart(productId) {
+        const productToAdd = this.prouducts.find((product) => product.id === productId);
+        const existingItem = this.cart.find((item) => item.product.id === productId);
+
+        if (existingItem) {
+          // existingItem.quantity += 1;
         } else {
-          this.cart.splice(index, 1);
+          this.cart.push({
+            product: productToAdd,
+            quantity: 1,
+          });
         }
 
         this.saveCart();
-        this.calculateSubtotal();
         this.cartItemCount();
-        this.calculateSumOfLastPrices();
-        setTimeout(() => {
-          this.loading = false;
-        }, 1000);
-      }
-    },
-    saveCart() {
-      localStorage.setItem("cart", JSON.stringify(this.cart));
-    },
-    addToCart(productId) {
-      const productToAdd = this.prouducts.find((product) => product.id === productId);
-      const existingItem = this.cart.find((item) => item.product.id === productId);
-
-      if (existingItem) {
-        // existingItem.quantity += 1;
-      } else {
-        this.cart.push({
-          product: productToAdd,
-          quantity: 1,
+        this.calculateSubtotal();
+      },
+      cartItemCount() {
+        //  this.loading = true;
+        let itemCount = 0;
+        this.cart.forEach((item) => {
+          itemCount += parseInt(item.quantity);
         });
-      }
+        this.itemCount = itemCount;
+        console.log("Emitting cartItemCountUpdated event with itemCount:", this.itemCount);
+        this.$eventBus.$emit("cartItemCountUpdated", this.itemCount);
+      },
+      calculateSubtotal() {
+        //  this.loading = true;
+        let subtotal = 0;
+        this.cart.forEach((item) => {
+          const product = item.product;
+          // console.log(`Quantity: ${item.quantity}, Price: ${product.price}`);
+          // const priceWithoutCommas = product.price.replace(/,/g, '');
+          const priceWithoutCommas = product.price;
+          const priceAsNumber = parseFloat(priceWithoutCommas);
+          if (!isNaN(item.quantity) && !isNaN(priceAsNumber)) {
+            subtotal += item.quantity * priceAsNumber;
+          } else {
+            console.error("Invalid quantity or price:", item.quantity, product.price);
+          }
+          // console.log(`Intermediate Subtotal: ${subtotal}`);
+        });
 
-      this.saveCart();
-      this.cartItemCount();
-      this.calculateSubtotal();
+        //console.log(`Final Subtotal: ${subtotal}`);
+        return (this.subtotal = subtotal);
+        //return subtotal;
+      },
     },
-    cartItemCount() {
-      //  this.loading = true;
-      let itemCount = 0;
-      this.cart.forEach((item) => {
-        itemCount += parseInt(item.quantity);
-      });
-      this.itemCount = itemCount;
-      console.log("Emitting cartItemCountUpdated event with itemCount:", this.itemCount);
-      this.$eventBus.$emit("cartItemCountUpdated", this.itemCount);
-    },
-    calculateSubtotal() {
-      //  this.loading = true;
-      let subtotal = 0;
-      this.cart.forEach((item) => {
-        const product = item.product;
-        // console.log(`Quantity: ${item.quantity}, Price: ${product.price}`);
-        // const priceWithoutCommas = product.price.replace(/,/g, '');
-        const priceWithoutCommas = product.price;
-        const priceAsNumber = parseFloat(priceWithoutCommas);
-        if (!isNaN(item.quantity) && !isNaN(priceAsNumber)) {
-          subtotal += item.quantity * priceAsNumber;
-        } else {
-          console.error("Invalid quantity or price:", item.quantity, product.price);
-        }
-        // console.log(`Intermediate Subtotal: ${subtotal}`);
-      });
-
-      //console.log(`Final Subtotal: ${subtotal}`);
-      return (this.subtotal = subtotal);
-      //return subtotal;
-    },
-  },
-};
+  };
 </script>
 <style>
-.btn-check:checked+.btn,
-.btn.active,
-.btn.show,
-.btn:first-child:active,
-:not(.btn-check)+.btn:active {
-  background-color: #933c5e3b;
-}
+  .btn-check:checked+.btn,
+  .btn.active,
+  .btn.show,
+  .btn:first-child:active,
+  :not(.btn-check)+.btn:active {
+    background-color: #933c5e3b;
+  }
 
-.checkItem {
-  border-bottom: 1px solid #e1e1e1;
-  padding-top: 15px;
-}
+  .checkItem {
+    border-bottom: 1px solid #e1e1e1;
+    padding-top: 15px;
+  }
 
-.checkItem:last-child {
-  border: none;
-}
+  .checkItem:last-child {
+    border: none;
+  }
 
-#discount {
-  display: none;
-}
+  #discount {
+    display: none;
+  }
 
-.paymentMethod_tabs .btn-check:checked {
-  color: #000;
-}
+  .paymentMethod_tabs .btn-check:checked {
+    color: #000;
+  }
 
-.paymentMethod_tabs h6,
-.paymentMethod_tabs h3,
-.paymentMethod_tabs p,
-.paymentMethod_tabs span {
-  color: #000;
-}
+  .paymentMethod_tabs h6,
+  .paymentMethod_tabs h3,
+  .paymentMethod_tabs p,
+  .paymentMethod_tabs span {
+    color: #000;
+  }
 
-.addNewCard {
-  display: none;
-}
+  .addNewCard {
+    display: none;
+  }
 
-.checkIProtem {
-  width: 310px;
-}
-#errorDiscount,#discount_msg{
-  display: none;
-}
+  .checkIProtem {
+    width: 310px;
+  }
+
+  #errorDiscount,
+  #discount_msg {
+    display: none;
+  }
 </style>
