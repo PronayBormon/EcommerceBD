@@ -16,6 +16,7 @@ use App\Models\ProductCategory;
 use App\Models\CategoryCommissionHistory;
 use App\Models\couponUseHistory;
 use App\Models\ordersProduct;
+use App\Models\productwarrantyhistory;
 use App\Models\trackingModel;
 use App\Models\WishList;
 use App\Models\User;
@@ -111,17 +112,75 @@ class OrderController extends Controller
 
 
 
-        $rows = WishList::join('product', 'product.id', '=', 'wishlist.product_id')->where('wishlist.customer_id', $this->userid)->select('wishlist.id as wishid', 'product.thumnail_img', 'product.slug', 'product.name', 'price', 'product.discount', 'product.id')->get();
+        $rows = WishList::join('product', 'product.id', '=', 'wishlist.product_id')->where('wishlist.customer_id', $this->userid)
+            ->select(
+                'wishlist.id as wishid',
+                'product.thumnail_img',
+                'product.slug',
+                'product.name',
+                'price',
+                'product.discount',
+                'product.id',
+                'product.discount_status',
+                'product.vat',
+                'product.vat_status',
+                'product.free_shopping',
+                'product.flat_rate_price',
+                'product.shipping_days',
+                'product.brand',
+                'product.stock_qty',
+                'product.seller_id',
+                'brands.name as brand_name',
+                'brands.slug as brand_slug',
+                'users.business_name as seller_name',
+                'users.business_name_slug as seller_slug'
+            )
+            ->leftJoin('users', 'users.id', '=', 'product.seller_id')
+            ->leftJoin('brands', 'product.brand', '=', 'brands.id')
+            ->get();
+
+
         $products = [];
         foreach ($rows as $key => $v) {
+            $last_price = 0;
+
+            $vat = $v->vat ? $v->vat : '0';
+            $price = $v->price + ($v->price * $vat / 100);
+
+            $percent_discount = $price - ($price * $v->discount / 100);
+            $fixed_discount = $price - $v->discount;
+
+            if ($v->discount_status == 1) {
+                $last_price = $percent_discount;
+            } elseif ($v->discount_status == 2) {
+                $last_price = $fixed_discount;
+            } else {
+                $last_price = $price;
+            }
+
             $products[] = [
                 'id'                => $v->id,
                 'product_name'      => $v->name,
+                'name'      => $v->name,
                 'wishid'            => $v->wishid,
-                'price'             => number_format($v->price, 2),
-                'discount'   => number_format($v->discount, 2),
+                'price'             => $v->price,
+                'discount'          => $v->discount,
+                'discount_status'   => $v->discount_status,
                 'thumnail_img'      => url($v->thumnail_img),
                 'slug'              => $v->slug,
+                'last_price'        => $last_price,
+                'pro_slug'              => $v->slug,
+
+
+                'free_shopping'         => $v->free_shopping,
+                'flat_rate_price'       => $v->flat_rate_price,
+                'shipping_days'         => $v->shipping_days,
+                'brand_name'            => $v->brand_name,
+                'brand_slug'            => $v->brand_slug,
+                'stock_qty'             => $v->stock_qty,
+                'seller_name'             => $v->seller_name,
+                'seller_slug'             => $v->seller_slug,
+
 
             ];
         }
@@ -262,7 +321,7 @@ class OrderController extends Controller
         $order['delivered_status'] = !empty($findorder->delivered_status) ? $findorder->delivered_status : "";
         $order['cancel_status'] = !empty($findorder->cancel_status) ? $findorder->cancel_status : "";
         $order['return_status'] = !empty($findorder->return_status) ? $findorder->return_status : "";
-        $order['products'] = !empty($findOrderedProduct)?$findOrderedProduct:'';
+        $order['products'] = !empty($findOrderedProduct) ? $findOrderedProduct : '';
 
         $timestamp = strtotime($findorder->created_at);
         $formattedDate = date("jS F, Y", $timestamp);
@@ -273,9 +332,17 @@ class OrderController extends Controller
     public function allOrders()
     {
 
+        // $data['orders'] = Order::join('order_status', 'orders.order_status', '=', 'order_status.id')
+        //     ->select('orders.*', 'order_status.name as order_status_name', 'orders_product.*')
+        //     ->join('orders_product', 'orders_product.order_id', '=', 'orders.orderId')
+        //     ->join('product', 'product.id', '=', 'orders_product.product_id')
+        //     ->get();
+
+        // dd($data);
+        // return false;
 
         $data['orders'] = Order::join('order_status', 'orders.order_status', '=', 'order_status.id')
-            ->select('orders.*', 'order_status.name', 'order_history.id as order_history_id', 'order_history.product_id as order_history_product_id', 'order_history.seller_id as order_history_seller_id', 'order_history.quantity as order_history_quantity', 'order_history.price as order_history_price', 'order_history.total as order_history_total', 'product.name as product_name', 'product.slug as product_slug', 'product.thumnail_img as thumbnail_img')
+            ->select('orders.*', 'order_status.name', 'order_history.id as order_history_id', 'order_history.product_id as order_history_product_id', 'order_history.seller_id as order_history_seller_id', 'order_history.quantity as order_history_quantity', 'order_history.price as order_history_price', 'order_history.total as order_history_total', 'order_history.quantity as qty', 'product.name as product_name', 'product.slug as product_slug', 'product.thumnail_img as thumbnail_img')
             ->join('order_history', 'order_history.order_id', '=', 'orders.id')
             ->join('product', 'product.id', '=', 'order_history.product_id') // Join with product table
             ->where('orders.customer_id', $this->userid)
@@ -287,6 +354,7 @@ class OrderController extends Controller
             $orders[] = [
                 'name'          => $v->name,
                 'orderId'       => $v->orderId,
+                'qty'       => $v->qty,
                 'placeOn'       => date_format(date_create($v->created_at), "Y-m-d H:i"),
                 'total'         => number_format($v->total, 2),
                 'pro_name'      => $v->product_name,
@@ -351,6 +419,7 @@ class OrderController extends Controller
             return response()->json(['errors' => $validator->errors()], 422);
         }
 
+
         $subTotal               = $request->subTotal;
         $item_total               = $request->item_total;
         $shipp_address          = $request->shipp_address;
@@ -377,14 +446,11 @@ class OrderController extends Controller
             $price     = floatval($price); // Convert to float
 
             if (!is_numeric($quantity) || !is_numeric($price)) {
-                //  echo "Invalid quantity or price for Product ID: {$productid}<br/>";
-                continue;  // Skip the current iteration and move to the next item
+                continue;
             }
             // Calculate the subtotal for the current item
             $subtotal = $quantity * $price;
-            // Add the subtotal to the total
             $total += $subtotal;
-            //echo "Product ID: {$productid} - Quantity: {$quantity} - Price: {$price} - Subtotal: {$subtotal} - Total: {$total}<br/>";
         }
 
         $order                  = new Order();
@@ -404,7 +470,7 @@ class OrderController extends Controller
 
         $order->customer_id     = $this->userid;
         $order->order_status    = 1; // Order Placed 
-        $order->save();
+        // $order->save();
 
         $lastOrderId = $order->id;
         // Update orderId with the last inserted order ID
@@ -412,7 +478,7 @@ class OrderController extends Controller
         // add product data in table 
 
 
-        // dd($order->orderId );
+        // dd($cartData );
         // return false;
         $formattedItems = [];
         foreach ($cartData as $item) {
@@ -424,19 +490,25 @@ class OrderController extends Controller
                 'discount_status' => $item->product->discount_status,
                 'last_price' => $item->product->last_price,
                 'qty' => $item->quantity,
-                'color' => $item->product->color,
-                'size' => $item->product->size,
+                'color' => $item->product->color ? $item->product->color : '',
+                'size' => $item->product->size ? $item->product->size : '',
                 'vat' => $item->product->vat,
                 'vat_status' => $item->product->vat_status,
 
             ];
 
+            if ($item->product->warranty_id) {
+                productwarrantyhistory::create([
+                    'warranty_id'   => $item->product->warranty_id,
+                    'product_id'    => $item->product->id,
+                    'order_id'      => $order->orderId,
+                ]);
+            } 
+
             $formattedItems[] = $formattedItem;
             ordersProduct::create($formattedItem);
         }
 
-        // dd($formattedItems);
-        // return false;
 
         $itemtotal = 0;
         foreach ($cartData as $cartItem) {

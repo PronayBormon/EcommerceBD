@@ -165,6 +165,9 @@ Route::group([
     Route::post('deleteVarient', [ProductController::class, 'deleteVarient']);
     Route::get('varient-list/{id}', [ProductController::class, 'varientList']);
     Route::get('checkAttribue', [ProductController::class, 'checkAttribue']);
+    Route::post('addWarranty', [ProductController::class, 'addWarranty']);
+    Route::get('addWarranty/{product_id}', [ProductController::class, 'getaddWarranty']);
+    Route::get('deletewarranty/{id}', [ProductController::class, 'deletewarranty']);
 });
 
 Route::group([
@@ -337,6 +340,7 @@ Route::group([
 
     Route::post('companyProfile', [SettingController::class, 'updateCompanyProfile']);
     Route::get('getCompanyData', [SettingController::class, 'getProfileData']);
+    Route::get('getcoupons', [SettingController::class, 'getcoupos']);
 
     
 });

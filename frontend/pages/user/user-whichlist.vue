@@ -21,13 +21,13 @@
                         <div class="cart rounded-0 p-0" style="background-color: transparent; box-shadow: none;">
                             <div class="side_title">
                                 <h6>Wishlist</h6>
-                                <button type="button" class="btn_cart" style="visibility: unset; width: fit-content;">Add
+                                <!-- <button type="button" class="btn_cart" style="visibility: unset; width: fit-content;">Add
                                     all to
-                                    cart</button>
+                                    cart</button> -->
                             </div>
                             <div class="card_porduct userWpro">
-                                <ul>
-                                    <!-- product  -->
+                                <!-- <ul>
+                                    
                                     <li v-for="product in products" :key="product.wishid">
                                         <div class="row">
                                             <div class="col-8">
@@ -61,7 +61,61 @@
                                             </div>
                                         </div>
                                     </li>
-                                </ul>
+                                </ul> -->
+                                
+                                <div class="row">
+                                    <!-- ========== Loop ==============  -->
+                                    <!-- {{ prouducts }} -->
+                                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6" v-for="item in products"
+                                        :key="item.id">
+                                        <div class="product_grid text-start">
+                                    <div class="loading-indicator" v-if="loading" style="text-align: center;position: absolute; z-index: 2; left: 0; top: 0; background: #ffffff5c; height: 100%; width: 100%; object-fit: contain;">
+                                        <div class="loader-container">
+                                            <!-- <center class="loader-text">Loading...</center> -->
+                                            <img src="/loader/loader.gif" alt="Loader" />
+                                        </div>
+                                    </div>
+                                    <nuxt-link :to="`/product-details/${item.slug}`">
+                                        <img :src="item.thumnail_img" class="img-fluid" loading="lazy">
+
+                                        <span v-if="item.free_shopping == 1">Free Delivery</span>
+                                        <!-- <strong>Official Store </strong> -->
+                                        <h1>{{ item.name }}</h1>
+                                        <div v-if="item.discount_status == 1" class="d-flex aligh-items-center">
+                                            <p>${{ item.last_price.toFixed(2) }}</p>
+                                            <p class="ms-1" v-if="item.discount !== 0"><strike>${{ item.price.toFixed(2)
+                                                    }}</strike> <span>{{ item.discount }}%</span> </p>
+                                        </div>
+                                        <div v-else-if="item.discount_status == 2" class="d-flex aligh-items-center">
+                                            <p>${{ item.last_price.toFixed(2) }}</p>
+
+                                            <p class="ms-1" v-if="item.discount !== 0"><strike>${{ item.price.toFixed(2)
+                                                    }}</strike>
+                                                <span>${{ item.discount.toFixed(2) }}</span>
+                                            </p>
+                                        </div>
+                                        <div v-else>
+                                            <p>${{ item.last_price.toFixed(2) }}</p>
+                                        </div>
+                                    </Nuxt-link>
+
+                                    <div class="d-flex align-items-center">
+                                        <div class="rating">
+                                            <i class="fa fa-star checked"></i>
+                                            <i class="fa fa-star checked"></i>
+                                            <i class="fa fa-star checked"></i>
+                                            <i class="fa fa-star checked"></i>
+                                            <i class="fa fa-star "></i>
+                                        </div>
+                                        <h6>(200)</h6>
+                                    </div>
+                                    <button type="button" class="btn_cart" @click="addToCart(item.id)">Add to
+                                        cart</button>
+                                    <!-- <button type="button" class="btn_sold">SoldOut</button> -->
+                                </div>
+                                    </div>
+                                    <!-- ================= Loop ===================  -->
+                                </div>
                             </div>
 
                         </div>

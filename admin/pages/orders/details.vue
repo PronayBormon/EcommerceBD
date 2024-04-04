@@ -332,9 +332,13 @@ export default {
             // formData.append('status', this.tracking.status);
             // formData.append('description', this.tracking.description);
             // console.log(formData);
-
-            this.$axios.post('/order/orderTrack/', formData)
+            this.$axios.post('/order/orderTrack', formData)
+                // .then(response => {
+                //     // Handle successful response
+                //     console.log('Success:', response.data);
+                // })
                 .then(response => {
+                    console.log('Success:', response.data);
                     Lobibox.notify('success', {
                         pauseDelayOnHover: true,
                         continueDelayOnInactiveTab: false,
@@ -344,6 +348,8 @@ export default {
                     });
                 })
                 .catch(error => {
+                    // Handle error
+                    console.error('Error:', error);
                     let errorMessage = 'An error occurred while updating the order. Please try again later.';
 
                     if (error.response && error.response.status === 422) {
@@ -363,8 +369,42 @@ export default {
                         msg: errorMessage
                     });
 
-                    console.error('Error:', error);
                 });
+
+
+
+            // this.$axios.post('/order/orderTrack', formData)
+            //     .then(response => {
+            //         Lobibox.notify('success', {
+            //             pauseDelayOnHover: true,
+            //             continueDelayOnInactiveTab: false,
+            //             position: 'top right',
+            //             icon: 'bx bx-check-circle',
+            //             msg: 'Order has been successfully updated'
+            //         });
+            //     })
+            //     .catch(error => {
+            //         let errorMessage = 'An error occurred while updating the order. Please try again later.';
+
+            //         if (error.response && error.response.status === 422) {
+            //             const validationErrors = error.response.data.errors;
+            //             errorMessage = Object.keys(validationErrors)
+            //                 .map(field => `${field}: ${validationErrors[field].join(', ')}`)
+            //                 .join('\n');
+            //         } else if (error.response && error.response.data && error.response.data.message) {
+            //             errorMessage = error.response.data.message;
+            //         }
+
+            //         Lobibox.notify('error', {
+            //             pauseDelayOnHover: true,
+            //             continueDelayOnInactiveTab: false,
+            //             position: 'top right',
+            //             icon: 'bx bx-error-circle',
+            //             msg: errorMessage
+            //         });
+
+            //         console.error('Error:', error);
+            //     });
         },
         // getTrackstatus(){
         //     const orderId = this.$route.query.orderId;

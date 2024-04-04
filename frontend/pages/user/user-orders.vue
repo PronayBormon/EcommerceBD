@@ -29,6 +29,7 @@
                                             <th>Order ID</th>
                                             <th class="text-center">Place On </th>
                                             <th class="text-center">Item </th>
+                                            <th class="text-center">Quantity </th>
                                             <th class="text-center">Total </th>
                                             <th class="text-center">Status </th>
                                             <th></th>
@@ -45,6 +46,7 @@
                                                         :alt="order.pro_name">
                                                 </nuxt-link>
                                             </td>
+                                            <td class="text-center">{{ order.qty }}</td>
                                             <td class="text-center">{{ order.total }}</td>
                                             <td class="text-center">
                                                 <p v-if="order.name == 'Cancelled or Returned'"

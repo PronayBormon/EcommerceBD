@@ -28,18 +28,23 @@
                                                 <div class="img_title">
                                                     <img :src="item.product.thumnail_img" class="img-fluid" alt="">
                                                     <div>
-                                                        <h1>
+                                                        <h1 class="mb-0">
                                                             <Nuxt-Link
-                                                                :to="`/product-details/${item.product.pro_slug}`">{{    item.product.product_name }}</Nuxt-Link>
+                                                                :to="`/product-details/${item.product.pro_slug}`">{{
+                            item.product.product_name }}</Nuxt-Link>
                                                         </h1>
-                                                        <p v-if="item.product.seller_name">Seller:
+                                                        <p class="m-0" v-if="item.product.seller_name">Seller:
                                                             <nuxt-link style="color: #900c3f;"
-                                                                :to="`/business/${item.product.seller_slug}`">{{ item.product.seller_name }}</nuxt-link>
+                                                                :to="`/business/${item.product.seller_slug}`">{{
+                            item.product.seller_name }}</nuxt-link>
                                                         </p>
-                                                        <p v-else>Seller: Ecommerce</p>
-                                                        <span class="mt-0 text-success"
+                                                        <p class="m-0" v-else>Seller: Ecommerce</p>
+                                                        <p class="m-0" v-if="item.product.warranty_id">Warranty:
+                                                            {{ item.product.warranty_name }}</p>
+                                                        <span class="mt-0 text-success d-block"
                                                             v-if="item.product.stock_qty >= 1">In stock </span>
-                                                        <span class="mt-0 text-danger" v-else>Out of stock </span>
+                                                        <span class="mt-0 text-danger  d-block" v-else>Out of stock
+                                                        </span>
                                                         <p class="mt-0 "
                                                             v-if="item.product.flat_rate_price !== 0 && item.product.free_shopping == 0">
                                                             Delivery Charge ${{ item.product.flat_rate_price }}</p>
@@ -56,6 +61,10 @@
                                                         }}</strong>
                                                     <strong class="d-block" style="color:#adadad;">Was:<del>${{
                             parseFloat(item.product.price).toFixed(2) }}</del></strong>
+                                                    <span style="font-size: 14px;"
+                                                        v-if="item.product.warranty_id">Warranty: ${{
+                            item.product.warrantyamt.toFixed(2) }}</span>
+
 
                                                 </div>
                                             </div>
@@ -72,7 +81,8 @@
                                                         @change="checkqty(item.product.stock_qty, item.quantity)"
                                                         class="quantity" type="number" @keypress="allowOnlyNumbers" />
                                                 </div>
-                                                <Button class="btn_cart mt-2" :disabled="item.quantity>=item.product.stock_qty"
+                                                <Button class="btn_cart mt-2"
+                                                    :disabled="item.quantity >= item.product.stock_qty"
                                                     style="visibility: unset; background-color: #0C356A;"
                                                     @click="updateQuantity(item.product.id, item.quantity)">Update</Button>
 
@@ -81,10 +91,11 @@
                                     </li>
                                 </ul>
 
-                                <div class="d-flex justify-content-between align-item-center mt-3" >
-                                    <nuxt-link class="btn btn_edit" style="width: fit-content;" to="/">Continue Shopping</nuxt-link>
+                                <div class="d-flex justify-content-between align-item-center mt-3">
+                                    <nuxt-link class="btn btn_edit" style="width: fit-content;" to="/">Continue
+                                        Shopping</nuxt-link>
 
-                                    <button class="btn_cart " style="width: fit-content;" v-if="itemCount !== 0" 
+                                    <button class="btn_cart " style="width: fit-content;" v-if="itemCount !== 0"
                                         @click="clearCart()">Clear Cart</button>
                                 </div>
 
@@ -196,7 +207,6 @@ export default {
 
         if (process.client) {
 
-            this.calculateSubtotal();
             this.loadCart();
             this.cartItemCount();
             this.subtotal = this.calculateSubtotal();
@@ -211,6 +221,8 @@ export default {
             })
             // Now you can work with myElement
         }
+        
+        this.calculateSubtotal();
     },
     computed: {
         loggedIn() {
@@ -404,30 +416,33 @@ export default {
 
         },
         calculateSubtotal() {
-            let subtotal = 0;
-            this.cart.forEach((item) => {
-                const product = item.product;
-                console.log("Last Price" + product.last_price);
+    let subtotal = 0;
+    this.cart.forEach((item) => {
+        const product = item.product;
+        const warrAmt = parseFloat(product.warrantyamt || 0); // Parse warranty amount to a number, defaulting to 0 if not provided
 
-                let priceWithoutCommas;
-                if (typeof product.last_price === 'string') {
-                    priceWithoutCommas = product.last_price.replace(/,/g, '');
-                } else {
-                    // If product.price is not a string, use it as is
-                    priceWithoutCommas = product.last_price;
-                }
-
-                const priceAsNumber = parseFloat(priceWithoutCommas);
-                if (!isNaN(item.quantity) && !isNaN(priceAsNumber)) {
-                    subtotal += item.quantity * priceAsNumber;
-                } else {
-                    console.error('Invalid quantity or price:', item.quantity, product.last_price);
-                }
-            });
-
-            this.subtotal = subtotal;
-            return subtotal;
+        let priceWithoutCommas;
+        if (typeof product.last_price === 'string') {
+            priceWithoutCommas = parseFloat(product.last_price.replace(/,/g, ''));
+        } else {
+            priceWithoutCommas = parseFloat(product.last_price);
         }
+
+        if (!isNaN(item.quantity) && !isNaN(priceWithoutCommas)) {
+            // Calculate the total price for the item including warranty, if applicable
+            const totalPrice = priceWithoutCommas + warrAmt;
+
+            // Add the total price multiplied by quantity to the subtotal
+            subtotal += item.quantity * totalPrice;
+        } else {
+            console.error('Invalid quantity or price:', item.quantity, product.last_price);
+        }
+    });
+
+    // Assign subtotal to both subtotal and subtotal_
+    this.subtotal = subtotal;
+    return subtotal;
+},
 
 
     },

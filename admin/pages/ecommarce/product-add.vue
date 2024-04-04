@@ -23,262 +23,347 @@
                 <!-- Basic information part start here  -->
                 <form @submit.prevent="saveData()" id="formrest" class="forms-sample" enctype="multipart/form-data">
                     <div class="row">
-                        <div class="col-md-7">
+                        <div class="col-md-12">
                             <div class="card">
-                                <div class="card-header">
-                                    <h5>Basic information</h5>
-                                </div>
                                 <div class="card-body">
-                                    <div class="form-group mb-2">
-                                        <label for="input-name-1" class="col-sm-2 col-form-label required-label">Product
-                                            Name</label>
-                                        <input type="text" name="name" placeholder="Product Name"
-                                            v-model="insertdata.name" class="form-control" />
-                                        <input type="hidden" name="id" id="id" class="form-control" />
-                                        <span class="text-danger" v-if="errors.name">{{
-                                            errors.name[0] }}</span>
-                                    </div>
-                                    <div class="form-group mb-2">
-                                        <label for="input-meta-title-1" class=" form-label">Brands</label>
-                                        <select v-model="insertdata.brand" class="form-select model">
-                                            <option value="" selected>No Brand</option>
-                                            <option v-for='data in modelresults' :value='data.id'>{{data.name}}
-                                            </option>
-                                        </select>
-                                    </div>
-
-                                    <div class="form-group mb-2">
-                                        <label for="input-meta-description-1"
-                                            class="col-sm-2 col-form-label required-label">Categories</label>
-                                        <div>
-                                            <input v-model="categories" @input="search" class="form-control"
-                                                placeholder="Search..." />
-                                            <ul v-if="searchResults.length">
-                                                <li v-for="result in searchResults" :key="result.name"
-                                                    class="custom-list">
-                                                    {{ result.category }} <a href="javascript:void(0);"
-                                                        @click="addToSelected(result)"><i
-                                                            class="fadeIn animated bx bx-plus-circle"></i></a>
-                                                </li>
-                                            </ul>
-                                            <div v-else>
-                                                <!-- <small>No results found.</small> -->
-                                            </div>
-                                            <span class="text-danger" v-if="errors.category">{{
-                                                errors.category[0] }}</span>
-                                            <span class="d-none">
-                                                <textarea v-model="multi_categories" placeholder="Selected Value"
-                                                    class="w-100"></textarea>
-                                            </span>
-                                            <div v-if="selectedItems.length" class="bgColo">
-                                                <hr />
-                                                <div v-for="item in selectedItems" :key="item.id">
-                                                    {{ item.category }} <a href="javascript:void(0);" class="text-danger" 
-                                                        @click="removeFromSelected(item)"><i
-                                                            class="fadeIn animated bx bx-minus-circle"></i></a>
+                                    <ul class="nav nav-pills mb-0" role="tablist">
+                                        <li class="nav-item" role="presentation">
+                                            <a class="nav-link active" data-bs-toggle="pill" href="#primary-pills-home"
+                                                role="tab" aria-selected="true">
+                                                <div class="d-flex align-items-center">
+                                                    <div class="tab-icon"><i class='bx bx-home font-18 me-1'></i>
+                                                    </div>
+                                                    <div class="tab-title">Basic information</div>
                                                 </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="form-group mb-2">
-                                        <label for="input-description-1" class="">Short
-                                            Description</label>
-                                        <client-only placeholder="loading...">
-                                            <ckeditor-nuxt v-model="insertdata.short_description" :config="editorConfig"
-                                                class="form-control" />
-                                        </client-only>
-                                    </div>
-                                    <div class="form-group mb-2 " style="min-height: 100px;">
-                                        <label for="input-description-1" class="">Description</label>
-                                        <client-only placeholder="loading...">
-                                            <ckeditor-nuxt v-model="insertdata.description" :config="editorConfig"
-                                                class="form-control" />
-                                        </client-only>
-                                    </div>
-                                </div>
-                            </div>
+                                            </a>
+                                        </li>
+                                        <li class="nav-item" role="presentation">
+                                            <a class="nav-link" data-bs-toggle="pill" href="#primary-pills-profile"
+                                                role="tab" aria-selected="false">
+                                                <div class="d-flex align-items-center">
+                                                    <div class="tab-icon"><i class='bx bx-user-pin font-18 me-1'></i>
+                                                    </div>
+                                                    <div class="tab-title">Product Details</div>
+                                                </div>
+                                            </a>
+                                        </li>
+                                        <li class="nav-item" role="presentation">
+                                            <a class="nav-link" data-bs-toggle="pill" href="#primary-pills-contact"
+                                                role="tab" aria-selected="false">
+                                                <div class="d-flex align-items-center">
+                                                    <div class="tab-icon"><i
+                                                            class='fadeIn animated bx bx-images font-18 me-1'></i>
+                                                    </div>
+                                                    <div class="tab-title">Images & Warranty</div>
+                                                </div>
+                                            </a>
+                                        </li>
 
-                            <div class="card">
-                                <div class="card-header">
-                                    <h5>Basic information</h5>
-                                </div>
-                                <div class="card-body">
-                                    <div class="form-group mb-2">
-                                        <label for="input-meta-title-1" class="form-label">Product Tags</label>
-                                        <input type="text" placeholder="Product Tags" v-model="insertdata.ptag"
-                                            class="form-control" @input="addCommas" />
-                                        <input type="hidden" placeholder="Product Tags" v-model="insertdata.product_tag"
-                                            class="form-control" />
-                                        {{product_tag_msg}}
-                                        <small>Comma separated</small>
-                                    </div>
-                                    <div class="form-group mb-2">
-                                        <label for="input-meta-title-1" class="">Meta Tag Title</label>
-                                        <input type="text" name="meta_title" value placeholder="Meta Tag Title"
-                                            v-model="insertdata.meta_title" class="form-control" />
-                                    </div>
-                                    <div class="form-group mb-2">
-                                        <label for="input-meta-description-1" class="form-label">Meta Tag
-                                            Description</label>
-                                        <textarea name="meta_description" rows="3" placeholder="Meta Tag Description"
-                                            v-model="insertdata.meta_description" id="meta_description"
-                                            class="form-control"></textarea>
-                                    </div>
-                                    <div class="form-group mb-2">
-                                        <label for="input-meta-description-1" class="form-label">Meta Tag
-                                            Keywords</label>
-                                        <textarea name="meta_keyword" rows="3" placeholder="Meta Tag Keywords"
-                                            class="form-control" v-model="insertdata.meta_keyword"></textarea>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="card">
-                                <div class="card-header">
-                                    <h6>Product Details </h6>
-                                </div>
-                                <div class="card-body">
-                                    <div class="form-group mb-2">
-                                        <label for="input-meta-title-1" class="form-label required-label">SKU</label>
-                                        <input type="text" required placeholder="SKU" v-model="insertdata.sku"
-                                            class="form-control" />
-                                        <span class="text-danger" v-if="errors.sku">{{
-                                            errors.sku[0] }}</span>
-                                        <small>Stock Keeping Unit</small>
-                                    </div>
-                                    <div class="form-group mb-2">
-                                        <label for="input-meta-title-1" class="col-sm-4 col-form-label">Unit</label>
-                                        <input type="text" required placeholder="Unit (e.g. KG, Pc etc)"
-                                            v-model="insertdata.unit" class="form-control" />
-                                    </div>
-                                    <div class="form-group mb-2">
-                                        <label for="input-meta-title-1" class="form-label">Shipping</label>
-                                        <select class="form-select form-select-sm" @change="shippingHandaller()"
-                                            aria-label=".form-select-sm example" v-model="insertdata.free_shopping">
-                                            <option selected>Select</option>
-                                            <option value="0">Flat rate </option>
-                                            <option value="1">Free shipping</option>
-                                        </select>
-                                    </div>
-                                    <div class="form-group mb-2">
-                                        <label for="input-meta-title-1" class="form-label sflatRate">Flat
-                                            Rate</label>
-                                        <input type="text" v-model="insertdata.flat_rate_price" class="form-control sflatRate"
-                                            @input="validateInput" />
-                                    </div>
-                                    <div class="form-group mb-2">
-                                        <label for="input-meta-title-1"
-                                            class="form-label required-label">Quantity</label>
-                                        <input type="text" placeholder="1" v-model="insertdata.stock_qty"
-                                            class="form-control" @input="validateInput" />
-                                    </div>
-                                    <div class="form-group mb-2">
-                                        <label for="input-meta-title-1" class="form-label required-label">Minimum
-                                            Quantity</label>
-                                        <input type="text" v-model="insertdata.stock_mini_qty" class="form-control"
-                                            @input="validateInput" />
-                                    </div>
-                                    <div class="form-group mb-2">
-                                        <label for="input-meta-title-1" class="form-label">Out Of Stock
-                                            Status</label>
-                                        <select class="form-select form-select-sm" aria-label=".form-select-sm example"
-                                            v-model="insertdata.stock_status">
-                                            <option selected>Select</option>
-                                            <!-- <option value="1">2-3 Days</option> -->
-                                            <option value="2">In Stock</option>
-                                            <option value="3">Out Of Stock</option>
-                                            <option value="4">Pre-Order</option>
-                                            <option value="5">Others</option>
-                                        </select>
-                                    </div>
-
+                                        <!-- <li class="nav-item" role="presentation">
+                                            <a class="nav-link" data-bs-toggle="pill" href="#image" role="tab"
+                                                aria-selected="false">
+                                                <div class="d-flex align-items-center">
+                                                    <div class="tab-icon"><i
+                                                            class='fadeIn animated bx bx-images font-18 me-1'></i>
+                                                    </div>
+                                                    <div class="tab-title">Images</div>
+                                                </div>
+                                            </a>
+                                        </li> -->
+                                    </ul>
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-5">
-                            <div class="card">
-                                <div class="card-header">
-                                    <h6>Price Details</h6>
-                                </div>
-                                <div class="card-body">
-                                    <div class="form-group mb-2">
-                                        <label for="input-meta-title-1" class="form-label required-label">Price</label>
-                                        <input type="text" placeholder="00.00" v-model="insertdata.price"
-                                            class="form-control" @input="validateInput" />
-                                        <span class="text-danger" v-if="errors.price">{{
-                                            errors.price[0] }}</span>
-                                    </div>
-                                    <div class="form-group mb-2">
-                                        <label for="input-meta-title-1" class="form-label">Discount</label>
-                                        <input type="text" placeholder="0" v-model="insertdata.discount"
-                                            class="form-control" @input="validateInput" />
-                                        <select class="form-select form-select-sm mt-2"
-                                            aria-label=".form-select-sm example" v-model="insertdata.discount_status">
-                                            <option selected>Select</option>
-                                            <option value="0">No Discount</option>
-                                            <option value="1">Percent</option>
-                                            <option value="2">Flat</option>
-                                        </select>
-                                    </div>
-                                    <div class="form-group mb-2">
-                                        <label for="input-meta-title-1" class="form-label">Shipping
-                                            Days</label>
-                                        <input type="text" v-model="insertdata.shipping_days" class="form-control"
-                                            @input="validateInput" />
-                                        <span>Days</span> <br>
-                                        <span class="text-danger" v-if="errors.shipping_days">{{
-                                            errors.shipping_days[0] }}</span>
-                                    </div>
-                                    <div class="form-group mb-2">
-                                        <label for="input-meta-title-1" class="form-label">VAT/Tax </label>
-                                        <select class="form-select" @change="vathandaller()"
-                                            aria-label=".form-select-sm example" v-model="insertdata.vat_status">
-                                            <option selected>Select</option>
-                                            <option value="1">Yes</option>
-                                            <option value="0">No</option>
-                                        </select>
-                                    </div>
-                                    <div class="form-group mb-2">
-                                        <label for="input-meta-title-1" class=" form-label vat_">Amount in
-                                            percentage(%)</label>
-                                        <input type="text" v-model="insertdata.vat" class="form-control vat_"
-                                            @input="validateInput" />
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="card">
-                                <div class="card-header">
-                                    <h6>Product images </h6>
-                                </div>
-                                <div class="card-body">
-                                    <img v-if="previewUrl" :src="previewUrl" alt="Preview"
-                                        style="height: 100px; width: 100px;" class="img-fluids border" />
-                                    <div class="form-group mb-2 ">
-                                        <label for="input-meta-description-1"
-                                            class="form-label required-label">Thumbnail
-                                            Image <span class="text-danger">*(300x300)</span> </label>
-                                        <input type="file" value class="form-control" accept="image/png,image/jpeg"
-                                            ref="files" @change="previewImage" />
-                                        <span class="text-danger" v-if="errors.files">{{
-                                            errors.files[0] }}</span>
-                                    </div>
-                                    <div class="form-group mb-2">
-                                        <label for="input-meta-description-1" class="form-label">Additional
-                                            Image<span class="text-danger">*(300x300)</span></label>
-                                        <input type="file" multiple class="form-control" accept="image/png,image/jpeg"
-                                            @change="handleImageUpload" ref="images" />
-                                        <div class="row mt-3 px-3">
-                                            <div class="col-md-3 px-1" v-for="(image, index) in images" :key="index">
-                                                <div class="card">
-                                                    <img :src="image.url" class="card-img-top w-100" alt="Preview" />
-                                                    <div class="card-body">
-                                                        <button type="button" class="btn btn-danger btn-sm"
-                                                            @click="removeImage(index)">Remove</button>
+                    </div>
+                    <div class="tab-content" id="pills-tabContent">
+                        <div class="tab-pane fade show active" id="primary-pills-home" role="tabpanel">
+                          
+                            <div class="row">
+                                <div class="col-md-7">
+                                    <div class="card">
+                                        <div class="card-header">
+                                            <h5>Basic information</h5>
+                                        </div>
+                                        <div class="card-body">
+                                            <div class="form-group mb-2">
+                                                <label for="input-name-1"
+                                                    class="col-sm-2 col-form-label required-label">Product
+                                                    Name</label>
+                                                <input type="text" name="name" placeholder="Product Name"
+                                                    v-model="insertdata.name" class="form-control" />
+                                                <input type="hidden" name="id" id="id" class="form-control" />
+                                                <span class="text-danger" v-if="errors.name">{{
+                                                    errors.name[0] }}</span>
+                                            </div>
+                                            <div class="form-group mb-2">
+                                                <label for="input-meta-title-1" class=" form-label">Brands</label>
+                                                <select v-model="insertdata.brand" class="form-select model">
+                                                    <option value="" selected>No Brand</option>
+                                                    <option v-for='data in modelresults' :value='data.id'>{{data.name}}
+                                                    </option>
+                                                </select>
+                                            </div>
+
+                                            <div class="form-group mb-2">
+                                                <label for="input-meta-description-1"
+                                                    class="col-sm-2 col-form-label required-label">Categories</label>
+                                                <div>
+                                                    <input v-model="categories" @input="search" class="form-control"
+                                                        placeholder="Search..." />
+                                                    <ul v-if="searchResults.length">
+                                                        <li v-for="result in searchResults" :key="result.name"
+                                                            class="custom-list">
+                                                            {{ result.category }} <a href="javascript:void(0);"
+                                                                @click="addToSelected(result)"><i
+                                                                    class="fadeIn animated bx bx-plus-circle"></i></a>
+                                                        </li>
+                                                    </ul>
+                                                    <div v-else>
+                                                    </div>
+                                                    <span class="text-danger" v-if="errors.category">{{
+                                                        errors.category[0] }}</span>
+                                                    <span class="d-none">
+                                                        <textarea v-model="multi_categories"
+                                                            placeholder="Selected Value" class="w-100"></textarea>
+                                                    </span>
+                                                    <div v-if="selectedItems.length" class="bgColo">
+                                                        <hr />
+                                                        <div v-for="item in selectedItems" :key="item.id">
+                                                            {{ item.category }} <a href="javascript:void(0);"
+                                                                class="text-danger" @click="removeFromSelected(item)"><i
+                                                                    class="fadeIn animated bx bx-minus-circle"></i></a>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
+                                            <div class="form-group mb-2">
+                                                <label for="input-description-1" class="">Short
+                                                    Description</label>
+                                                <client-only placeholder="loading...">
+                                                    <ckeditor-nuxt v-model="insertdata.short_description"
+                                                        :config="editorConfig" class="form-control" />
+                                                </client-only>
+                                            </div>
+                                            <div class="form-group mb-2 " style="min-height: 100px;">
+                                                <label for="input-description-1" class="">Description</label>
+                                                <client-only placeholder="loading...">
+                                                    <ckeditor-nuxt v-model="insertdata.description"
+                                                        :config="editorConfig" class="form-control" />
+                                                </client-only>
+                                            </div>
                                         </div>
                                     </div>
-                                    <button type="submit" class="btn btn-outline-success px-5 w-100"><i class="bx bx-check-circle mr-1"></i> Save & Next</button>
+                                </div>
+                                <div class="col-md-5">
+
+                                    <div class="card">
+                                        <div class="card-header">
+                                            <h5>Basic information</h5>
+                                        </div>
+                                        <div class="card-body">
+                                            <div class="form-group mb-2">
+                                                <label for="input-meta-title-1" class="form-label">Product Tags</label>
+                                                <input type="text" placeholder="Product Tags" v-model="insertdata.ptag"
+                                                    class="form-control" @input="addCommas" />
+                                                <input type="hidden" placeholder="Product Tags"
+                                                    v-model="insertdata.product_tag" class="form-control" />
+                                                {{product_tag_msg}}
+                                                <small>Comma separated</small>
+                                            </div>
+                                            <div class="form-group mb-2">
+                                                <label for="input-meta-title-1" class="">Meta Tag Title</label>
+                                                <input type="text" name="meta_title" value placeholder="Meta Tag Title"
+                                                    v-model="insertdata.meta_title" class="form-control" />
+                                            </div>
+                                            <div class="form-group mb-2">
+                                                <label for="input-meta-description-1" class="form-label">Meta Tag
+                                                    Description</label>
+                                                <textarea name="meta_description" rows="3"
+                                                    placeholder="Meta Tag Description"
+                                                    v-model="insertdata.meta_description" id="meta_description"
+                                                    class="form-control"></textarea>
+                                            </div>
+                                            <div class="form-group mb-2">
+                                                <label for="input-meta-description-1" class="form-label">Meta Tag
+                                                    Keywords</label>
+                                                <textarea name="meta_keyword" rows="3" placeholder="Meta Tag Keywords"
+                                                    class="form-control" v-model="insertdata.meta_keyword"></textarea>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="primary-pills-profile" role="tabpanel">
+                            <div class="row">
+                                <div class="col-md-7">
+                                    <div class="card">
+                                        <div class="card-header">
+                                            <h6>Product Details </h6>
+                                        </div>
+                                        <div class="card-body">
+                                            <div class="form-group mb-2">
+                                                <label for="input-meta-title-1"
+                                                    class="form-label required-label">SKU</label>
+                                                <input type="text" required placeholder="SKU" v-model="insertdata.sku"
+                                                    class="form-control" />
+                                                <span class="text-danger" v-if="errors.sku">{{
+                                                    errors.sku[0] }}</span>
+                                                <small>Stock Keeping Unit</small>
+                                            </div>
+                                            <div class="form-group mb-2">
+                                                <label for="input-meta-title-1"
+                                                    class="col-sm-4 col-form-label">Unit</label>
+                                                <input type="text" required placeholder="Unit (e.g. KG, Pc etc)"
+                                                    v-model="insertdata.unit" class="form-control" />
+                                            </div>
+                                            <div class="form-group mb-2">
+                                                <label for="input-meta-title-1" class="form-label">Shipping</label>
+                                                <select class="form-select form-select-sm" @change="shippingHandaller()"
+                                                    aria-label=".form-select-sm example"
+                                                    v-model="insertdata.free_shopping">
+                                                    <option selected>Select</option>
+                                                    <option value="0">Flat rate </option>
+                                                    <option value="1">Free shipping</option>
+                                                </select>
+                                            </div>
+                                            <div class="form-group mb-2">
+                                                <label for="input-meta-title-1" class="form-label sflatRate">Flat
+                                                    Rate</label>
+                                                <input type="text" v-model="insertdata.flat_rate_price"
+                                                    class="form-control sflatRate" @input="validateInput" />
+                                            </div>
+                                            <div class="form-group mb-2">
+                                                <label for="input-meta-title-1"
+                                                    class="form-label required-label">Quantity</label>
+                                                <input type="text" placeholder="1" v-model="insertdata.stock_qty"
+                                                    class="form-control" @input="validateInput" />
+                                            </div>
+                                            <div class="form-group mb-2">
+                                                <label for="input-meta-title-1"
+                                                    class="form-label required-label">Minimum
+                                                    Quantity</label>
+                                                <input type="text" v-model="insertdata.stock_mini_qty"
+                                                    class="form-control" @input="validateInput" />
+                                            </div>
+                                            <div class="form-group mb-2">
+                                                <label for="input-meta-title-1" class="form-label">Out Of Stock
+                                                    Status</label>
+                                                <select class="form-select form-select-sm"
+                                                    aria-label=".form-select-sm example"
+                                                    v-model="insertdata.stock_status">
+                                                    <option selected>Select</option>
+                                                    <option value="2">In Stock</option>
+                                                    <option value="3">Out Of Stock</option>
+                                                    <option value="4">Pre-Order</option>
+                                                    <option value="5">Others</option>
+                                                </select>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-5">
+
+                                    <div class="card">
+                                        <div class="card-header">
+                                            <h6>Price Details</h6>
+                                        </div>
+                                        <div class="card-body">
+                                            <div class="form-group mb-2">
+                                                <label for="input-meta-title-1"
+                                                    class="form-label required-label">Price</label>
+                                                <input type="text" placeholder="00.00" v-model="insertdata.price"
+                                                    class="form-control" @input="validateInput" />
+                                                <span class="text-danger" v-if="errors.price">{{
+                                                    errors.price[0] }}</span>
+                                            </div>
+                                            <div class="form-group mb-2">
+                                                <label for="input-meta-title-1" class="form-label">Discount</label>
+                                                <input type="text" placeholder="0" v-model="insertdata.discount"
+                                                    class="form-control" @input="validateInput" />
+                                                <select class="form-select form-select-sm mt-2"
+                                                    aria-label=".form-select-sm example"
+                                                    v-model="insertdata.discount_status">
+                                                    <option selected>Select</option>
+                                                    <option value="0">No Discount</option>
+                                                    <option value="1">Percent</option>
+                                                    <option value="2">Flat</option>
+                                                </select>
+                                            </div>
+                                            <div class="form-group mb-2">
+                                                <label for="input-meta-title-1" class="form-label">Shipping
+                                                    Days</label>
+                                                <input type="text" v-model="insertdata.shipping_days"
+                                                    class="form-control" @input="validateInput" />
+                                                <span>Days</span> <br>
+                                                <span class="text-danger" v-if="errors.shipping_days">{{
+                                                    errors.shipping_days[0] }}</span>
+                                            </div>
+                                            <div class="form-group mb-2">
+                                                <label for="input-meta-title-1" class="form-label">VAT/Tax </label>
+                                                <select class="form-select" @change="vathandaller()"
+                                                    aria-label=".form-select-sm example"
+                                                    v-model="insertdata.vat_status">
+                                                    <option selected>Select</option>
+                                                    <option value="1">Yes</option>
+                                                    <option value="0">No</option>
+                                                </select>
+                                            </div>
+                                            <div class="form-group mb-2">
+                                                <label for="input-meta-title-1" class=" form-label vat_">Amount in
+                                                    percentage(%)</label>
+                                                <input type="text" v-model="insertdata.vat" class="form-control vat_"
+                                                    @input="validateInput" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="primary-pills-contact" role="tabpanel">
+                            <div class="row">
+                                <div class="col-md-7">
+                                    <div class="card">
+                                        <div class="card-header">
+                                            <h6>Product images </h6>
+                                        </div>
+                                        <div class="card-body">
+                                            <img v-if="previewUrl" :src="previewUrl" alt="Preview"
+                                                style="height: 100px; width: 100px;" class="img-fluids border" />
+                                            <div class="form-group mb-2 ">
+                                                <label for="input-meta-description-1"
+                                                    class="form-label required-label">Thumbnail
+                                                    Image <span class="text-danger">*(300x300)</span> </label>
+                                                <input type="file" value class="form-control"
+                                                    accept="image/png,image/jpeg" ref="files" @change="previewImage" />
+                                                <span class="text-danger" v-if="errors.files">{{
+                                                    errors.files[0] }}</span>
+                                            </div>
+                                            <div class="form-group mb-2">
+                                                <label for="input-meta-description-1" class="form-label">Additional
+                                                    Image<span class="text-danger">*(300x300)</span></label>
+                                                <input type="file" multiple class="form-control"
+                                                    accept="image/png,image/jpeg" @change="handleImageUpload"
+                                                    ref="images" />
+                                                <div class="row mt-3 px-3">
+                                                    <div class="col-md-3 px-1" v-for="(image, index) in images"
+                                                        :key="index">
+                                                        <div class="card">
+                                                            <img :src="image.url" class="card-img-top w-100"
+                                                                alt="Preview" />
+                                                            <div class="card-body">
+                                                                <button type="button" class="btn btn-danger btn-sm"
+                                                                    @click="removeImage(index)">Remove</button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <button type="submit" class="btn btn-outline-success px-5 w-100"><i
+                                                    class="bx bx-check-circle mr-1"></i> Save & Next</button>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -430,6 +515,9 @@
 
             },
             validateInput() {
+                if (!/^[+-]?\d*\.?\d*$/.test(this.warrantydata.price)) {
+                    this.insertdata.price = this.warrantydata.price.slice(0, -1);
+                }
                 if (!/^[+-]?\d*\.?\d*$/.test(this.insertdata.price)) {
                     this.insertdata.price = this.insertdata.price.slice(0, -1);
                 }
@@ -607,7 +695,13 @@
                 formData.append('tax_status', this.insertdata.tax_status);
                 formData.append('cash_dev_status', this.insertdata.cash_dev_status);
                 formData.append('shipping_days', this.insertdata.shipping_days);
-                // formData.append('status', this.insertdata.status);
+
+
+                
+
+
+                // console.log(formData);
+                formData.append('status', this.insertdata.status);
                 const headers = {
                     'Content-Type': 'multipart/form-data'
                 };

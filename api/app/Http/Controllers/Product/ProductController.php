@@ -22,6 +22,7 @@ use App\Models\ProductVarrient;
 use App\Models\AttributeValues;
 use App\Models\Attribute as Attr;
 use App\Models\OrderHistory;
+use App\Models\product_warranty;
 use Illuminate\Support\Str;
 use Illuminate\Pagination\LengthAwarePaginator;
 use App\Rules\MatchOldPassword;
@@ -146,7 +147,9 @@ class ProductController extends Controller
 
     public function save(Request $request)
     {
-        //dd($request->all());
+
+        // dd($formattedData);
+        // return false;
         $validator = Validator::make($request->all(), [
             'name'           => 'required',
             'category'       => 'required',
@@ -369,9 +372,9 @@ class ProductController extends Controller
     public function getProductList()
     {
         $data = Product::orderBy('product.id', 'desc')
-               ->leftJoin('brands', 'brands.id', '=', 'product.brand')  // Corrected foreign key assumption
-               ->select('product.*', 'brands.name AS brand_name')  // Select all product columns and brand name with alias
-               ->get();
+            ->leftJoin('brands', 'brands.id', '=', 'product.brand')  // Corrected foreign key assumption
+            ->select('product.*', 'brands.name AS brand_name')  // Select all product columns and brand name with alias
+            ->get();
 
 
         $collection = collect($data);
@@ -670,5 +673,54 @@ class ProductController extends Controller
         $pdata['varient'] = ProductVarrientHistory::where('product_id', $product_id)->get();
         // Return combinations as JSON response
         return response()->json($pdata);
+    }
+    public function addWarranty(Request $request)
+    {
+        // dd($request->all());
+        // return false;
+
+        $product_id = $request->product_id;
+
+        $warrantyData = $request->input('warranty');
+
+        // $formattedData = [];
+
+        foreach ($warrantyData as $item) {
+            $formattedItem = [
+                'product_id' => $product_id,
+                'warranty_name' => $item['warranty'],
+                'days' => $item['days'],
+                'price' => $item['price']
+            ];
+            product_warranty::create($formattedItem);
+        }
+
+        return response()->json(['msg' => 'add succfully', 200]);
+    }
+    public function getaddWarranty(Request $request, int $id)
+    {
+        // dd($id);
+
+        $getData = product_warranty::where('product_id', $id)->get();
+        // dd($getData);
+        return response()->json($getData);
+    }
+    public function deletewarranty(Request $request, $id)
+    {
+        try {
+            
+            $warranty = product_warranty::find($id);
+            if ($warranty) {                
+                $warranty->delete();
+                
+                return response()->json(['message' => 'Warranty deleted successfully'], 200);
+            } else {
+                
+                return response()->json(['message' => 'Warranty not found'], 404);
+            }
+        } catch (\Exception $e) {
+            
+            return response()->json(['message' => 'Failed to delete warranty', 'error' => $e->getMessage()], 500);
+        }
     }
 }

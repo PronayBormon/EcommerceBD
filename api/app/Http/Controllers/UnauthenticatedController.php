@@ -43,6 +43,7 @@ use App\Models\ProductAttributeValue;
 use App\Models\ProductVarrientHistory;
 use Illuminate\Database\QueryException;
 use App\Models\HomeAroductSliderCategory;
+use App\Models\product_warranty;
 use Illuminate\Support\Facades\Validator as FacadesValidator;
 use Workbench\App\Models\User as AppModelsUser;
 
@@ -631,8 +632,14 @@ class UnauthenticatedController extends Controller
             ->get();
 
         $products = [];
-        // dd($product_chk);
+
+        $warrantyCheck = product_warranty::where('product_id', $data['pro_row']->id)->get();
+
+        
+        // dd($warrantyCheck);
         // return false;
+
+
         foreach ($product_chk as $key => $v) {
 
             $last_price = 0;
@@ -736,6 +743,7 @@ class UnauthenticatedController extends Controller
             'brand'     => $formateBrand,
             'seller'    => !empty($seller) ? $seller : '',
             'attibute' => $pdata,
+            'warranty' => $warrantyCheck,
         ], 200);
     }
 

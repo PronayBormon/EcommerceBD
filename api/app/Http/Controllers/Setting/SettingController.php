@@ -19,6 +19,7 @@ use App\Rules\MatchOldPassword;
 use App\Models\sliderSideAdsModel;
 use App\Http\Controllers\Controller;
 use App\Models\companyProfile;
+use App\Models\couponUseHistory;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
@@ -1039,12 +1040,12 @@ class SettingController extends Controller
             'email' => 'nullable|email|max:255',
             'industry' => 'nullable|max:255',
             'about' => 'nullable|string',
-        ],[
+        ], [
             'transaction_fee' => 'Cash on delivery fee must be only number',
         ]);
 
         if ($validator->fails()) {
-            return response()->json([ 'errors' => $validator->errors()->toArray() ], 422);
+            return response()->json(['errors' => $validator->errors()->toArray()], 422);
         }
 
         $companyId = $request->id;
@@ -1077,14 +1078,13 @@ class SettingController extends Controller
                 'logo' => 'nullable|mimes:jpg,png,jpeg,gif,webp|max:2048',
             ]);
             if ($validator->fails()) {
-                return response()->json([ 'errors' => $validator->errors()->toArray() ], 422);
+                return response()->json(['errors' => $validator->errors()->toArray()], 422);
             }
-    
+
             $image = $request->file('logo');
             $imageName = time() . '.' . $image->getClientOriginalExtension();
             $image->move(public_path('/backend/upload/'), $imageName);
             $updateData['logo'] = '/backend/upload/' . $imageName;
-            
         }
 
         // Update the company profile
@@ -1094,11 +1094,41 @@ class SettingController extends Controller
             'status' => 'success',
             'message' => 'Company profile settings updated successfully.'
         ], 200);
-        
     }
-    public function getProfileData(){
+    public function getProfileData()
+    {
         $getData = companyProfile::get()->first();
         $getData['logo'] = url($getData->logo);
         return response()->json($getData);
+    }
+
+    public function getcoupos(Request $request)
+    {
+        $minShop = $request->query('minShop');
+        $user_id = $request->query('user_id');
+
+        
+        $couponList = coupons::where('min_shopping', '<', $minShop)
+            ->where('status', 1)
+            ->limit(3)
+            ->get();
+
+            
+        foreach ($couponList as $key => $coupon) {
+            
+            $usageRecord = CouponUseHistory::where('user_id', $user_id)
+                ->where('coupon_id', $coupon->id)
+                ->first();
+
+                
+            if ($usageRecord) {
+                unset($couponList[$key]);
+            }
+        }
+
+        // dd($couponList);
+        // return false;
+        
+        return response()->json(['couponList' => array_values($couponList->toArray())]);
     }
 }

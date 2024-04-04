@@ -16,7 +16,7 @@ body {
   /* font-family: Roboto-Regular, 'Helvetica Neue', Helvetica, Tahoma, Arial, Sans-serif; */
   /* font-family: 'Montserrat', sans-serif; */
   /* font-weight: 300; */
-  font-family:Roboto,-apple-system,BlinkMacSystemFont,Segoe UI,Helvetica Neue,Arial,sans-serif
+  font-family: Roboto, -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica Neue, Arial, sans-serif
 }
 
 :root {
@@ -3966,14 +3966,11 @@ footer {
 }
 
 .btn_edit {
-
   padding: 5px 20px;
-
   background: transparent;
-
   border: none;
-
   color: var(--color_Primary);
+  cursor: pointer;
 }
 
 .btn_edit i {}
@@ -10093,3 +10090,39 @@ select:valid {
 }
 
 /* order confirm page end here  */
+.discountList .coupon {
+  background: #fff;
+  border: 1px dashed;
+  margin-bottom: 5px;
+}
+
+.discountList .coupon h3,
+.discountList .coupon p,
+.discountList .coupon span {
+  color: #000;
+}
+
+/* Style the success message */
+.success-message {
+  position: fixed;
+  bottom: 20px;
+  left: 20px;
+  background-color: #4CAF50;
+  color: white;
+  padding: 15px;
+  border-radius: 5px;
+  z-index: 99999999;
+}
+
+.discountList .coupon .cbottom p {
+  font-size: 13px;
+}
+
+.discountList .coupon .cbottom p span {
+  color: var(--color-green);
+}
+
+.discountList .coupon .cbottom p strong {
+  font-size: 14px;
+  font-weight: 500;
+}
